@@ -4,6 +4,7 @@ import { useCounter } from '../hooks/useScrollReveal';
 import ThreeHeroCanvas from './ThreeHeroCanvas';
 import Text3DFlip from './Text3DFlip';
 import ScrollClipReveal from './ScrollClipReveal';
+import SplineScene from './SplineScene';
 import './Hero.css';
 
 const STATS = [
@@ -37,6 +38,7 @@ export default function Hero() {
   return (
     <section className="hero" id="home">
       <ThreeHeroCanvas />
+      <SplineScene className="hero-spline-bg" sceneUrl="https://prod.spline.design/6Wnt13KfuhiStPhG/scene.splinecode" />
 
       {/* Dynamic Glow Orbs */}
       <div className="hero-orb hero-orb-1" />
