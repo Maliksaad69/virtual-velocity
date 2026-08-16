@@ -1,0 +1,48 @@
+.process { background: var(--bg-primary); padding: clamp(60px, 8vw, 100px) 0; }
+
+.process-timeline { position: relative; max-width: 900px; margin: 0 auto; }
+.timeline-line {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue), var(--border-subtle));
+  transform: translateX(-50%); z-index: 1;
+}
+
+.timeline-item {
+  position: relative; width: 50%; padding: 0 40px; margin-bottom: 30px;
+  z-index: 2;
+}
+.timeline-item.left { left: 0; text-align: right; }
+.timeline-item.right { left: 50%; text-align: left; }
+
+.timeline-dot {
+  position: absolute; top: 20px; width: 34px; height: 34px;
+  border-radius: 50%; background: var(--bg-surface);
+  border: 2px solid var(--accent-cyan);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 15px rgba(0, 212, 170, 0.4); z-index: 3;
+}
+.timeline-item.left .timeline-dot { right: -17px; }
+.timeline-item.right .timeline-dot { left: -17px; }
+
+.timeline-number { font-family: var(--font-display); font-size: 0.78rem; font-weight: 900; color: var(--accent-cyan); }
+
+.timeline-card { padding: 22px; }
+.timeline-item.left .timeline-card { display: flex; flex-direction: column; align-items: flex-end; }
+.timeline-item.right .timeline-card { display: flex; flex-direction: column; align-items: flex-start; }
+
+.timeline-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(var(--accent-cyan-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-cyan-rgb), 0.25);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent-cyan); margin-bottom: 12px;
+}
+.timeline-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+.timeline-desc { font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary); }
+
+@media (max-width: 768px) {
+  .timeline-line { left: 20px; }
+  .timeline-item { width: 100%; left: 0 !important; padding-left: 60px; padding-right: 0; text-align: left !important; }
+  .timeline-item .timeline-card { align-items: flex-start !important; }
+  .timeline-item.left .timeline-dot, .timeline-item.right .timeline-dot { left: 3px; }
+}

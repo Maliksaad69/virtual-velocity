@@ -1,0 +1,58 @@
+.loader-screen {
+  position: fixed; inset: 0; z-index: 10000;
+  background: var(--dark-950);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.loader-screen.fade-out { opacity: 0; visibility: hidden; }
+
+.loader-content { text-align: center; }
+
+.loader-logo { position: relative; width: 120px; height: 120px; margin: 0 auto 24px; }
+
+.loader-vv {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+}
+.loader-v {
+  font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  animation: fadeInUp 0.8s var(--ease-out-expo) both;
+}
+.loader-v:nth-child(2) { animation-delay: 0.2s; margin-left: -8px; }
+
+.loader-ring { position: absolute; inset: 0; }
+.loader-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.loader-ring-bg { fill: none; stroke: var(--dark-400); stroke-width: 2; }
+.loader-ring-fill {
+  fill: none; stroke: url(#loader-grad); stroke: var(--primary);
+  stroke-width: 2.5; stroke-linecap: round;
+  stroke-dasharray: 283; stroke-dashoffset: 283;
+  transition: stroke-dashoffset 0.3s ease;
+  filter: drop-shadow(0 0 6px rgba(var(--primary-rgb), 0.5));
+}
+
+.loader-name {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+  color: var(--white); letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.8s 0.4s var(--ease-out-expo) both;
+}
+
+.loader-bar {
+  width: 200px; height: 2px; background: var(--dark-400);
+  border-radius: 2px; margin: 0 auto 16px; overflow: hidden;
+  animation: fadeIn 0.8s 0.6s var(--ease-out-expo) both;
+}
+.loader-bar-fill {
+  height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px; transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.5);
+}
+
+.loader-tagline {
+  font-size: 0.75rem; letter-spacing: 0.25em; text-transform: lowercase;
+  color: var(--gray-500); font-weight: 500;
+  animation: fadeInUp 0.8s 0.8s var(--ease-out-expo) both;
+}

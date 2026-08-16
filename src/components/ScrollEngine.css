@@ -1,0 +1,64 @@
+/* Top Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent), #ffffff);
+  z-index: 10000; transition: width 0.1s linear;
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.8);
+}
+
+/* Magnetic Cursor */
+@media (hover: hover) and (pointer: fine) {
+  .magnetic-cursor {
+    position: fixed; top: -20px; left: -20px;
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1.5px solid rgba(var(--primary-rgb), 0.5);
+    background: rgba(var(--primary-rgb), 0.03);
+    backdrop-filter: blur(2px);
+    pointer-events: none; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo),
+                background 0.3s, border-color 0.3s;
+    mix-blend-mode: difference;
+  }
+  .magnetic-cursor.active {
+    width: 70px; height: 70px;
+    top: -35px; left: -35px;
+    border-color: var(--primary);
+    background: rgba(var(--primary-rgb), 0.18);
+  }
+  .cursor-text {
+    font-size: 0.65rem; font-weight: 900; color: var(--white);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    pointer-events: none; opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .magnetic-cursor.active .cursor-text { opacity: 1; }
+}
+@media (hover: none) {
+  .magnetic-cursor { display: none !important; }
+}
+
+/* Glass Card Mouse Spotlight */
+.glass-card, .service-card, .portfolio-card, .why-card, .ai-card, .team-card {
+  position: relative;
+}
+.glass-card::before, .service-card::before, .portfolio-card::before,
+.why-card::before, .ai-card::before, .team-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--primary-rgb), 0.12),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.glass-card:hover::before, .service-card:hover::before, .portfolio-card:hover::before,
+.why-card:hover::before, .ai-card:hover::before, .team-card:hover::before {
+  opacity: 1;
+}
