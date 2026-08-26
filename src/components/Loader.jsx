@@ -6,19 +6,33 @@ export default function Loader({ onFinish }) {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
+    // Fast progress increment
     const interval = setInterval(() => {
-      setProgress((p) => {
-        if (p >= 100) {
-          clearInterval(interval);
-          setFadeOut(true);
-          setTimeout(() => onFinish(), 300);
-          return 100;
+      setProgress((prev) => Math.min(prev + 25, 100));
+    }, 35);
+
+    // Guaranteed safety timeout to ensure loader NEVER gets stuck
+    const safetyTimer = setTimeout(() => {
+      setProgress(100);
+    }, 800);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(safetyTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (progress >= 100 && !fadeOut) {
+      setFadeOut(true);
+      const finishTimer = setTimeout(() => {
+        if (typeof onFinish === 'function') {
+          onFinish();
         }
-        return p + 25;
-      });
-    }, 30);
-    return () => clearInterval(interval);
-  }, [onFinish]);
+      }, 300);
+      return () => clearTimeout(finishTimer);
+    }
+  }, [progress, fadeOut, onFinish]);
 
   return (
     <div className={`loader-screen ${fadeOut ? 'fade-out' : ''}`}>

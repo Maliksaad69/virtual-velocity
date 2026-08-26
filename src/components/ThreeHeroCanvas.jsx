@@ -11,11 +11,18 @@ export default function ThreeHeroCanvas() {
     let width = container.clientWidth || window.innerWidth;
     let height = container.clientHeight || window.innerHeight;
 
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    } catch (e) {
+      console.warn('WebGL init fallback:', e);
+      return;
+    }
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
     camera.position.z = 7;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
@@ -26,7 +33,7 @@ export default function ThreeHeroCanvas() {
       color: 0x00d4aa,
       wireframe: true,
       transparent: true,
-      opacity: 0.12,
+      opacity: 0.15,
     });
     const icoMesh = new THREE.Mesh(icoGeo, icoMat);
     scene.add(icoMesh);
@@ -37,13 +44,13 @@ export default function ThreeHeroCanvas() {
       color: 0x47bfff,
       wireframe: true,
       transparent: true,
-      opacity: 0.25,
+      opacity: 0.28,
     });
     const octMesh = new THREE.Mesh(octGeo, octMat);
     scene.add(octMesh);
 
-    // 3D Stars Field
-    const count = 1800;
+    // 3D Starfield Particles
+    const count = 1200;
     const geo = new THREE.BufferGeometry();
     const pos = new Float32Array(count * 3);
     const cols = new Float32Array(count * 3);
@@ -66,10 +73,10 @@ export default function ThreeHeroCanvas() {
     geo.setAttribute('color', new THREE.BufferAttribute(cols, 3));
 
     const mat = new THREE.PointsMaterial({
-      size: 0.04,
+      size: 0.045,
       vertexColors: true,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.65,
       blending: THREE.AdditiveBlending,
     });
 
@@ -84,37 +91,38 @@ export default function ThreeHeroCanvas() {
       mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
       mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     const handleResize = () => {
+      if (!container) return;
       width = container.clientWidth || window.innerWidth;
       height = container.clientHeight || window.innerHeight;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     let animId;
     const clock = new THREE.Clock();
 
     const animate = () => {
+      animId = requestAnimationFrame(animate);
       const t = clock.getElapsedTime();
 
-      icoMesh.rotation.x = t * 0.15;
-      icoMesh.rotation.y = t * 0.2;
+      icoMesh.rotation.x = t * 0.12;
+      icoMesh.rotation.y = t * 0.18;
 
-      octMesh.rotation.x = -t * 0.25;
-      octMesh.rotation.y = -t * 0.3;
+      octMesh.rotation.x = -t * 0.2;
+      octMesh.rotation.y = -t * 0.25;
 
-      points.rotation.y = t * 0.03;
+      points.rotation.y = t * 0.025;
 
       camera.position.x += (mouseX - camera.position.x) * 0.05;
       camera.position.y += (-mouseY - camera.position.y) * 0.05;
       camera.lookAt(scene.position);
 
       renderer.render(scene, camera);
-      animId = requestAnimationFrame(animate);
     };
     animate();
 
@@ -122,10 +130,10 @@ export default function ThreeHeroCanvas() {
       cancelAnimationFrame(animId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
-      if (container.contains(renderer.domElement)) {
+      if (renderer && renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
-      renderer.dispose();
+      if (renderer) renderer.dispose();
       icoGeo.dispose();
       icoMat.dispose();
       octGeo.dispose();

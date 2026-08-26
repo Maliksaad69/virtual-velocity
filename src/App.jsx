@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import ErrorBoundary from './components/ErrorBoundary';
 import Loader from './components/Loader';
 import ScrollEngine from './components/ScrollEngine';
 import Navbar from './components/Navbar';
@@ -20,31 +21,35 @@ import Footer from './components/Footer';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const handleFinish = useCallback(() => setLoading(false), []);
+  const handleFinish = useCallback(() => {
+    setLoading(false);
+  }, []);
 
   return (
-    <div className="app">
-      {loading && <Loader onFinish={handleFinish} />}
-      <ScrollEngine />
-      <Navbar />
-      <main>
-        <Hero />
-        <MarqueeText />
-        <About />
-        <Services />
-        <Portfolio />
-        <MarqueeText />
-        <Clients />
-        <WhyChooseUs />
-        <AISolutions />
-        <Process />
-        <Testimonials />
-        <Stats />
-        <Team />
-        <FAQ />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ErrorBoundary>
+      <div className="app">
+        {loading && <Loader onFinish={handleFinish} />}
+        <ScrollEngine />
+        <Navbar />
+        <main>
+          <Hero />
+          <MarqueeText />
+          <About />
+          <Services />
+          <Portfolio />
+          <MarqueeText />
+          <Clients />
+          <WhyChooseUs />
+          <AISolutions />
+          <Process />
+          <Testimonials />
+          <Stats />
+          <Team />
+          <FAQ />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ErrorBoundary>
   );
 }
