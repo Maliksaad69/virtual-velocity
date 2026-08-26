@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { ArrowUpRight, Megaphone, Share2, BarChart3, Search, Palette, Film, Camera, Users, Globe, ShoppingCart, Database, Bot, Phone, Workflow, TrendingUp, Target, PenTool, Sparkles, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Megaphone, Share2, BarChart3, Search, Palette, Film, Camera, Users, Globe, ShoppingCart, Database, Bot, Phone, Workflow, Target, Sparkles, CheckCircle2 } from 'lucide-react';
 import './Services.css';
 
 const CATEGORIES = ['ALL', 'DIGITAL MARKETING', 'CREATIVE PRODUCTION', 'AI & AUTOMATION', 'WEB & CRM'];
@@ -35,7 +36,13 @@ export default function Services() {
   return (
     <section className="section services" id="services">
       <div className="container">
-        <div className="section-header">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7 }}
+        >
           <span className="label"><Sparkles size={13} style={{ display: 'inline', marginRight: 4 }} /> Full-Service Digital Agency</span>
           <h2 className="heading-lg">
             Services Built for <span className="text-gradient">Market Leadership</span>
@@ -43,51 +50,84 @@ export default function Services() {
           <p className="text-lg">
             From strategic growth marketing to AI voice agents and custom web development.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Category Filters */}
-        <div className="services-filter-bar">
+        {/* Category Filters with Motion Indicator */}
+        <motion.div
+          className="services-filter-bar"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           {CATEGORIES.map((cat) => (
-            <button
+            <motion.button
               key={cat}
               className={`services-filter-btn ${activeCategory === cat ? 'active' : ''}`}
               onClick={() => setActiveCategory(cat)}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
             >
               {cat}
-            </button>
+              {activeCategory === cat && (
+                <motion.div
+                  className="active-pill-glow"
+                  layoutId="activeCategoryPill"
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                />
+              )}
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Interactive Services Showcase */}
-        <div className="services-grid">
-          {filteredServices.map((s, i) => (
-            <div key={i} className="service-card glass-card">
-              <div className="service-card-image-wrap">
-                <img src={s.image} alt={s.title} className="service-card-image" loading="lazy" />
-                <div className="service-card-badge">{s.category}</div>
-              </div>
-
-              <div className="service-card-body">
-                <div className="service-icon">{s.icon}</div>
-                <h3 className="service-title">{s.title}</h3>
-                <p className="service-desc">{s.desc}</p>
-
-                <div className="service-tags">
-                  {s.tags.map((tag, tIdx) => (
-                    <span key={tIdx} className="service-tag">
-                      <CheckCircle2 size={11} style={{ marginRight: 3, color: 'var(--primary)' }} />
-                      {tag}
-                    </span>
-                  ))}
+        {/* Interactive Animated Services Showcase Grid */}
+        <motion.div className="services-grid" layout>
+          <AnimatePresence mode="popLayout">
+            {filteredServices.map((s) => (
+              <motion.div
+                key={s.title}
+                layout
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.85, y: -20 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="service-card glass-card"
+                whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0, 212, 170, 0.25)' }}
+              >
+                <div className="service-card-image-wrap">
+                  <motion.img
+                    src={s.image}
+                    alt={s.title}
+                    className="service-card-image"
+                    loading="lazy"
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.4 }}
+                  />
+                  <div className="service-card-badge">{s.category}</div>
                 </div>
 
-                <a href="#contact" className="btn btn-secondary service-btn">
-                  Explore Solution <ArrowUpRight size={14} />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+                <div className="service-card-body">
+                  <div className="service-icon">{s.icon}</div>
+                  <h3 className="service-title">{s.title}</h3>
+                  <p className="service-desc">{s.desc}</p>
+
+                  <div className="service-tags">
+                    {s.tags.map((tag, tIdx) => (
+                      <span key={tIdx} className="service-tag">
+                        <CheckCircle2 size={11} style={{ marginRight: 3, color: 'var(--primary)' }} />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a href="#contact" className="btn btn-secondary service-btn">
+                    Explore Solution <ArrowUpRight size={14} />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

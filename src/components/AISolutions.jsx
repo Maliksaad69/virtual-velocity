@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Bot, PhoneCall, Mic, Sparkles, CheckCircle2, Play, Pause, Zap, ArrowRight, Database, MessageSquare } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Bot, PhoneCall, Sparkles, Play, Pause, Zap, ArrowRight } from 'lucide-react';
 import './AISolutions.css';
 
 const AI_CAPABILITIES = [
@@ -12,25 +13,26 @@ export default function AISolutions() {
   const [activeTab, setActiveTab] = useState('voice');
   const [isCalling, setIsCalling] = useState(false);
   const [callLog, setCallLog] = useState([
-    { sender: 'AI Agent', text: 'Hello! This is Sarah from Virtual Velocity. I saw your request regarding revenue scaling. Is this a good time to chat?' },
+    { id: 1, sender: 'AI Agent', text: 'Hello! This is Sarah from Virtual Velocity. I saw your request regarding revenue scaling. Is this a good time to chat?' },
   ]);
 
   const handleSimulateCall = () => {
+    if (isCalling) return;
     setIsCalling(true);
     setCallLog([
-      { sender: 'AI Agent', text: 'Initiating automated outbound call to prospect line...' },
+      { id: Date.now(), sender: 'AI Agent', text: 'Initiating automated outbound call to prospect line...' },
     ]);
 
     setTimeout(() => {
-      setCallLog((prev) => [...prev, { sender: 'Prospect', text: 'Hi Sarah, yes! We are looking to scale our Meta & Google Ads.' }]);
+      setCallLog((prev) => [...prev, { id: Date.now(), sender: 'Prospect', text: 'Hi Sarah, yes! We are looking to scale our Meta & Google Ads.' }]);
     }, 1500);
 
     setTimeout(() => {
-      setCallLog((prev) => [...prev, { sender: 'AI Agent', text: 'Awesome! Based on your target market, our automated funnel can increase your lead volume by 3x. Shall I book a strategy call for tomorrow at 2 PM?' }]);
+      setCallLog((prev) => [...prev, { id: Date.now(), sender: 'AI Agent', text: 'Awesome! Based on your target market, our automated funnel can increase your lead volume by 3x. Shall I book a strategy call for tomorrow at 2 PM?' }]);
     }, 3200);
 
     setTimeout(() => {
-      setCallLog((prev) => [...prev, { sender: 'Prospect', text: 'Perfect, 2 PM works. Please send the calendar invite.' }]);
+      setCallLog((prev) => [...prev, { id: Date.now(), sender: 'Prospect', text: 'Perfect, 2 PM works. Please send the calendar invite.' }]);
       setIsCalling(false);
     }, 5000);
   };
@@ -38,7 +40,13 @@ export default function AISolutions() {
   return (
     <section className="section ai-solutions" id="ai-solutions">
       <div className="container">
-        <div className="section-header">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7 }}
+        >
           <span className="label"><Sparkles size={13} style={{ display: 'inline', marginRight: 4 }} /> Proprietary Tech</span>
           <h2 className="heading-lg">
             AI-Driven <span className="text-gradient">Automation Systems</span>
@@ -46,25 +54,49 @@ export default function AISolutions() {
           <p className="text-lg">
             Replace manual outreach and support with 24/7 autonomous AI calling agents and workflow pipelines.
           </p>
-        </div>
+        </motion.div>
 
         {/* Interactive Feature Tabs */}
-        <div className="ai-tabs-container">
+        <motion.div
+          className="ai-tabs-container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+        >
           {AI_CAPABILITIES.map((cap) => (
-            <div
+            <motion.div
               key={cap.id}
               className={`ai-tab-card glass-card ${activeTab === cap.id ? 'active' : ''}`}
               onClick={() => setActiveTab(cap.id)}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+              }}
+              whileHover={{ y: -6, boxShadow: '0 15px 35px rgba(0, 212, 170, 0.2)' }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="ai-tab-icon">{cap.icon}</div>
               <h3 className="ai-tab-title">{cap.title}</h3>
               <p className="ai-tab-desc">{cap.desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Live Interactive Simulator Console */}
-        <div className="ai-simulator-console glass-card">
+        <motion.div
+          className="ai-simulator-console glass-card"
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="console-header">
             <div className="console-title">
               <span className="status-indicator-dot pulsing" />
@@ -75,30 +107,46 @@ export default function AISolutions() {
 
           <div className="console-body">
             <div className="console-chat-window">
-              {callLog.map((log, i) => (
-                <div key={i} className={`chat-bubble ${log.sender === 'AI Agent' ? 'agent' : 'prospect'}`}>
-                  <span className="chat-sender">{log.sender}</span>
-                  <p className="chat-text">{log.text}</p>
-                </div>
-              ))}
+              <AnimatePresence initial={false}>
+                {callLog.map((log) => (
+                  <motion.div
+                    key={log.id}
+                    initial={{ opacity: 0, x: log.sender === 'AI Agent' ? -30 : 30, scale: 0.9 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className={`chat-bubble ${log.sender === 'AI Agent' ? 'agent' : 'prospect'}`}
+                  >
+                    <span className="chat-sender">{log.sender}</span>
+                    <p className="chat-text">{log.text}</p>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </div>
 
             <div className="console-controls">
-              <button
+              <motion.button
                 className={`btn btn-primary ${isCalling ? 'calling' : ''}`}
                 onClick={handleSimulateCall}
                 disabled={isCalling}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {isCalling ? <Pause size={18} /> : <Play size={18} />}
                 {isCalling ? 'Simulating Live Call...' : 'Test Live AI Calling Agent'}
-              </button>
+              </motion.button>
 
-              <a href="#contact" className="btn btn-secondary">
+              <motion.a
+                href="#contact"
+                className="btn btn-secondary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Deploy For My Business <ArrowRight size={16} />
-              </a>
+              </motion.a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

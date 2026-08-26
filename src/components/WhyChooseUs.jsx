@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Brain, BarChart3, Users, Cpu, Zap, MessageCircle, Shield, Headphones } from 'lucide-react';
 import './WhyChooseUs.css';
 
@@ -16,24 +17,55 @@ export default function WhyChooseUs() {
   return (
     <section className="section why-choose" id="why-choose">
       <div className="container">
-        <div className="section-header">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7 }}
+        >
           <span className="label">Why Choose Us</span>
           <h2 className="heading-lg">
             The <span className="text-gradient">Virtual Velocity</span> Advantage
           </h2>
           <p className="text-lg">What makes us the preferred partner for 100+ businesses worldwide.</p>
-        </div>
+        </motion.div>
 
-        <div className="why-grid">
+        <motion.div
+          className="why-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.1 },
+            },
+          }}
+        >
           {REASONS.map((r, i) => (
-            <div key={i} className="why-card reveal" style={{ transitionDelay: `${(i % 4) * 0.1}s` }}>
+            <motion.div
+              key={i}
+              className="why-card"
+              variants={{
+                hidden: { opacity: 0, y: 35, scale: 0.95 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+                },
+              }}
+              whileHover={{ y: -8, boxShadow: '0 15px 35px rgba(0, 212, 170, 0.2)' }}
+            >
               <div className="why-card-number">{String(i + 1).padStart(2, '0')}</div>
               <div className="why-card-icon">{r.icon}</div>
               <h3 className="why-card-title">{r.title}</h3>
               <p className="why-card-desc">{r.desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

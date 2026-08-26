@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { IconLinkedin as Linkedin, IconTwitter as Twitter, IconInstagram as Instagram } from './SocialIcons';
 import './Team.css';
 
@@ -12,32 +13,82 @@ export default function Team() {
   return (
     <section className="section team" id="team">
       <div className="container">
-        <div className="section-header">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7 }}
+        >
           <span className="label">Our Team</span>
           <h2 className="heading-lg">
             Meet the <span className="text-gradient">Experts</span>
           </h2>
           <p className="text-lg">A passionate team of strategists, creatives, developers, and innovators.</p>
-        </div>
+        </motion.div>
 
-        <div className="team-grid">
+        <motion.div
+          className="team-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.12 },
+            },
+          }}
+        >
           {TEAM.map((member, i) => (
-            <div key={i} className="team-card reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
+            <motion.div
+              key={i}
+              className="team-card"
+              variants={{
+                hidden: { opacity: 0, y: 40, scale: 0.95 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+                },
+              }}
+              whileHover={{ y: -8, boxShadow: '0 15px 35px rgba(0, 212, 170, 0.2)' }}
+            >
               <div className="team-photo-wrapper">
-                <img src={member.photo} alt={member.name} className="team-photo" loading="lazy" />
+                <motion.img
+                  src={member.photo}
+                  alt={member.name}
+                  className="team-photo"
+                  loading="lazy"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.4 }}
+                />
                 <div className="team-socials">
-                  {member.socials.linkedin && <a href={member.socials.linkedin} aria-label="LinkedIn"><Linkedin size={18} /></a>}
-                  {member.socials.twitter && <a href={member.socials.twitter} aria-label="Twitter"><Twitter size={18} /></a>}
-                  {member.socials.instagram && <a href={member.socials.instagram} aria-label="Instagram"><Instagram size={18} /></a>}
+                  {member.socials.linkedin && (
+                    <motion.a href={member.socials.linkedin} aria-label="LinkedIn" whileHover={{ scale: 1.2 }}>
+                      <Linkedin size={18} />
+                    </motion.a>
+                  )}
+                  {member.socials.twitter && (
+                    <motion.a href={member.socials.twitter} aria-label="Twitter" whileHover={{ scale: 1.2 }}>
+                      <Twitter size={18} />
+                    </motion.a>
+                  )}
+                  {member.socials.instagram && (
+                    <motion.a href={member.socials.instagram} aria-label="Instagram" whileHover={{ scale: 1.2 }}>
+                      <Instagram size={18} />
+                    </motion.a>
+                  )}
                 </div>
               </div>
               <div className="team-info">
                 <h3 className="team-name">{member.name}</h3>
                 <span className="team-role">{member.role}</span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

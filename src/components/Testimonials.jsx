@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import './Testimonials.css';
 
@@ -12,56 +13,105 @@ const TESTIMONIALS = [
 
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
 
-  const prev = () => setCurrent((c) => (c === 0 ? TESTIMONIALS.length - 1 : c - 1));
-  const next = () => setCurrent((c) => (c === TESTIMONIALS.length - 1 ? 0 : c + 1));
+  const prev = () => {
+    setDirection(-1);
+    setCurrent((c) => (c === 0 ? TESTIMONIALS.length - 1 : c - 1));
+  };
+
+  const next = () => {
+    setDirection(1);
+    setCurrent((c) => (c === TESTIMONIALS.length - 1 ? 0 : c + 1));
+  };
+
   const t = TESTIMONIALS[current];
 
   return (
     <section className="section testimonials" id="testimonials">
       <div className="container">
-        <div className="section-header">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7 }}
+        >
           <span className="label">Testimonials</span>
           <h2 className="heading-lg">
             What Our Clients <span className="text-gradient">Say</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="testimonial-slider">
-          <div className="testimonial-card glass-card">
-            <Quote size={48} className="testimonial-quote-icon" />
-            <div className="testimonial-stars">
-              {Array.from({ length: t.rating }).map((_, i) => (
-                <Star key={i} size={18} fill="var(--primary)" color="var(--primary)" />
-              ))}
-            </div>
-            <p className="testimonial-text">{t.text}</p>
-            <div className="testimonial-author">
-              <img src={t.photo} alt={t.name} className="testimonial-photo" loading="lazy" />
-              <div>
-                <span className="testimonial-name">{t.name}</span>
-                <span className="testimonial-role">{t.role}</span>
-              </div>
-            </div>
+          <div style={{ overflow: 'hidden', width: '100%' }}>
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={current}
+                custom={direction}
+                initial={{ opacity: 0, x: direction * 80 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -direction * 80 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="testimonial-card glass-card"
+              >
+                <Quote size={48} className="testimonial-quote-icon" />
+                <div className="testimonial-stars">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: i * 0.08, type: 'spring' }}
+                    >
+                      <Star size={18} fill="var(--primary)" color="var(--primary)" />
+                    </motion.span>
+                  ))}
+                </div>
+                <p className="testimonial-text">{t.text}</p>
+                <div className="testimonial-author">
+                  <img src={t.photo} alt={t.name} className="testimonial-photo" loading="lazy" />
+                  <div>
+                    <span className="testimonial-name">{t.name}</span>
+                    <span className="testimonial-role">{t.role}</span>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           <div className="testimonial-nav">
-            <button className="testimonial-btn" onClick={prev} aria-label="Previous testimonial">
+            <motion.button
+              className="testimonial-btn"
+              onClick={prev}
+              aria-label="Previous testimonial"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <ChevronLeft size={20} />
-            </button>
+            </motion.button>
             <div className="testimonial-dots">
               {TESTIMONIALS.map((_, i) => (
                 <button
                   key={i}
                   className={`testimonial-dot ${i === current ? 'active' : ''}`}
-                  onClick={() => setCurrent(i)}
+                  onClick={() => {
+                    setDirection(i > current ? 1 : -1);
+                    setCurrent(i);
+                  }}
                   aria-label={`Testimonial ${i + 1}`}
                 />
               ))}
             </div>
-            <button className="testimonial-btn" onClick={next} aria-label="Next testimonial">
+            <motion.button
+              className="testimonial-btn"
+              onClick={next}
+              aria-label="Next testimonial"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <ChevronRight size={20} />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
