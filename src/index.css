@@ -139,6 +139,8 @@ body {
 .section {
   padding: clamp(60px, 8vw, 130px) 0;
   position: relative;
+  overflow: hidden;
+  width: 100%;
   z-index: 2;
 }
 
