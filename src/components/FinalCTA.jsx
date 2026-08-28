@@ -37,17 +37,17 @@ export default function FinalCTA() {
             <span>10 • LAUNCH DESTINATION</span>
           </div>
 
-          {/* Pure White Satoshi Headline */}
+          {/* Dynamic Color Satoshi Headline */}
           <h2 className="heading-hero spatial-cta-title">
-            <span className="heading-main">READY TO</span> <br />
-            <span className="heading-accent">MOVE FASTER?</span>
+            <span className="heading-line-ready">READY TO</span> <br />
+            <span className="heading-line-move">MOVE FASTER?</span>
           </h2>
 
           <p className="text-lg spatial-cta-lead">
             Let's build something impossible to ignore.
           </p>
 
-          {/* Hero Physical CTA Button with Gravitational Energy Aura */}
+          {/* Hero Physical CTA Button with Multi-Tone Gravitational Energy Aura */}
           <div className="spatial-cta-actions">
             <div className={`cta-aura-wrapper ${isHovered ? 'aura-active' : ''}`}>
               
@@ -55,7 +55,7 @@ export default function FinalCTA() {
               <div className="aura-orbit-ring" />
               <div className="aura-pulse-wave" />
 
-              {/* Physical Hero CTA Button */}
+              {/* Physical Hero CTA Button with Dynamic Shifting Multi-Color Surface */}
               <button
                 onClick={() => setModalOpen(true)}
                 onMouseEnter={() => setIsHovered(true)}
@@ -63,7 +63,7 @@ export default function FinalCTA() {
                 className="btn-hero-physical-cta"
                 data-cursor="LAUNCH"
               >
-                <span>START A PROJECT</span>
+                <span className="cta-btn-text">START A PROJECT</span>
                 <ArrowRight size={22} className="cta-arrow-icon" />
               </button>
             </div>

@@ -37,16 +37,16 @@
 }
 
 .cta-label {
-  color: #ffffff !important;
-  border-bottom-color: rgba(255, 255, 255, 0.4);
+  color: #00f0ff !important;
+  border-bottom-color: rgba(0, 240, 255, 0.4);
   margin-bottom: 24px;
 }
 
 .cta-label .label-icon {
-  color: #ec4899;
+  color: #00f0ff;
 }
 
-/* Oversized Pure White Satoshi Headline */
+/* Oversized Dynamic Changing Color Satoshi Headline */
 .spatial-cta-title {
   font-family: var(--font-display);
   font-weight: 900;
@@ -57,14 +57,30 @@
   margin-bottom: 20px;
 }
 
-.spatial-cta-title .heading-main {
+.heading-line-ready {
   color: #ffffff !important;
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.98);
 }
 
-.spatial-cta-title .heading-accent {
-  color: #ffffff !important;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.98), 0 0 35px rgba(236, 72, 153, 0.4);
+.heading-line-move {
+  background: linear-gradient(135deg, #00f0ff 0%, #ec4899 50%, #fbbf24 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 30px rgba(0, 240, 255, 0.5));
+  animation: ctaColorShift 6s ease infinite alternate;
+}
+
+@keyframes ctaColorShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .spatial-cta-lead {
@@ -93,22 +109,22 @@
   max-width: 100%;
 }
 
-/* Subtle Orbit Energy Rings */
+/* Multi-Color Energy Orbit Rings */
 .aura-orbit-ring {
   position: absolute;
   inset: -14px;
   border-radius: 8px;
-  border: 1px dashed rgba(236, 72, 153, 0.35);
+  border: 1.5px dashed #00f0ff;
   pointer-events: none;
   transition: all 0.5s var(--ease-out-expo);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .aura-pulse-wave {
   position: absolute;
   inset: -6px;
   border-radius: 6px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, rgba(0, 240, 255, 0.15) 50%, transparent 75%);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -116,7 +132,7 @@
 
 .aura-active .aura-orbit-ring {
   inset: -22px;
-  border-color: rgba(236, 72, 153, 0.8);
+  border-color: #ec4899;
   opacity: 1;
   transform: rotate(180deg);
 }
@@ -137,15 +153,17 @@
   }
 }
 
-/* PHYSICAL HERO CTA BUTTON — SOLID BRIGHT SURFACE WITH DARK TEXT */
+/* MULTI-COLOR ANIMATED HERO CTA BUTTON */
 .btn-hero-physical-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 18px;
   padding: 24px 54px;
-  background: #ffffff !important;
-  color: #000000 !important;
+  background: linear-gradient(135deg, #00f0ff 0%, #ec4899 50%, #a855f7 100%);
+  background-size: 200% 200%;
+  animation: ctaBtnGradient 5s ease infinite alternate;
+  color: #ffffff !important;
   font-family: var(--font-display);
   font-weight: 900;
   font-size: clamp(1.0rem, 2.2vw, 1.4rem);
@@ -158,22 +176,39 @@
   position: relative;
   z-index: 2;
   transition: all 0.35s var(--ease-out-expo);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 240, 255, 0.5), 0 0 50px rgba(236, 72, 153, 0.4);
+}
+
+@keyframes ctaBtnGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .btn-hero-physical-cta:hover {
-  background: #ffffff !important;
-  color: #000000 !important;
   transform: scale(1.06) translateY(-4px);
-  box-shadow: 0 20px 60px rgba(236, 72, 153, 0.7), 0 0 50px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 65px rgba(236, 72, 153, 0.85), 0 0 60px rgba(0, 240, 255, 0.9);
 }
 
 .btn-hero-physical-cta:active {
   transform: scale(0.97) translateY(0);
 }
 
+.cta-btn-text {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
 .cta-arrow-icon {
+  color: #ffffff !important;
   transition: transform 0.3s var(--ease-out-expo);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
 }
 
 .btn-hero-physical-cta:hover .cta-arrow-icon {
