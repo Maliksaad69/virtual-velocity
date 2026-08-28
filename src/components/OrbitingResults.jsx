@@ -1,54 +1,58 @@
 import { motion } from 'framer-motion';
+import { AnimatedSectionBackground } from './PresentationSection';
 import './OrbitingResults.css';
 
-const METRICS = [
-  { val: '+240%', label: 'Lead generation growth' },
-  { val: '180%', label: 'Average revenue growth' },
-  { val: '4.2M', label: 'Campaign audience reach' },
-  { val: '42%', label: 'Lower acquisition cost' },
-  { val: '$45M+', label: 'Tracked client revenue' },
-  { val: '150+', label: 'Projects delivered' }
+const RESULTS_METRICS = [
+  { metric: '$42M+', label: 'Client Revenue Generated' },
+  { metric: '4.2×', label: 'Average Campaign ROAS' },
+  { metric: '+240%', label: 'Lead Growth Year-over-Year' },
+  { metric: '150+', label: 'Global Campaigns Executed' },
+  { metric: '94%', label: 'Client Partner Retention' },
+  { metric: '12M+', label: 'Organic Organic Impressions' }
 ];
 
 export default function OrbitingResults() {
   return (
-    <section id="results" className="section agency-results-section">
-      <div className="container">
-        {/* Section Header */}
+    <section className="section agency-results-section" id="results">
+      <AnimatedSectionBackground
+        imageSrc="/images/bg_results.png"
+        overlayGradient="linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.4) 25%, rgba(7, 8, 11, 0.4) 75%, var(--bg-black) 100%)"
+      />
+
+      <div className="container relative-z">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.7 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="label-tag">
             <span className="dot"></span>
             <span>MEASURABLE IMPACT</span>
           </div>
           <h2 className="heading-xl editorial-section-title">
-            NO VANITY <br />
-            <span className="accent-text">METRICS.</span>
+            PROVEN IN THE <br />
+            <span className="accent-text">NUMBERS.</span>
           </h2>
           <p className="text-sub">
-            Beautiful creative means nothing if it doesn't move the business. Here is the proof behind our work.
+            Great aesthetics are only half the battle. Here is what happens when creative storytelling meets high-precision growth marketing.
           </p>
         </motion.div>
 
-        {/* Oversized Animated Statistics Grid */}
         <div className="oversized-metrics-grid">
-          {METRICS.map((metric, idx) => (
+          {RESULTS_METRICS.map((item, index) => (
             <motion.div
-              key={idx}
+              key={index}
               className="metric-card-editorial"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -6, borderColor: 'var(--accent-coral)' }}
+              initial={{ opacity: 0, scale: 0.85, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.05, y: -6 }}
             >
-              <div className="giant-metric-num">{metric.val}</div>
-              <div className="metric-editorial-label">{metric.label}</div>
+              <div className="giant-metric-num">{item.metric}</div>
+              <div className="metric-editorial-label">{item.label}</div>
             </motion.div>
           ))}
         </div>

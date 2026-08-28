@@ -1,40 +1,45 @@
 import { motion } from 'framer-motion';
+import { AnimatedSectionBackground } from './PresentationSection';
 import './WhyChooseUs.css';
 
 const WHY_STATEMENTS = [
   {
     num: '01',
-    title: 'CREATIVE WITH A PURPOSE.',
-    desc: 'Every visual decision has a business objective behind it.'
+    title: 'CREATIVE-LED PERFORMANCE',
+    desc: 'We do not run ugly ads for quick clicks. We build high-converting assets that elevate your brand aesthetic while driving measurable revenue.'
   },
   {
     num: '02',
-    title: 'ZERO COOKIE-CUTTER.',
-    desc: 'No generic templates. No recycled campaigns. No copy-paste identities.'
+    title: 'SPEED & EXECUTION',
+    desc: 'Traditional agencies take months to deliver. We move at digital velocity—launching full campaign systems and custom web apps in weeks.'
   },
   {
     num: '03',
-    title: 'BEAUTIFUL + MEASURABLE.',
-    desc: 'We care about aesthetics and the numbers behind them.'
+    title: 'COMPLETE TRANSPARENCY',
+    desc: 'No confusing jargon or vanity reports. You get direct access to real-time dashboards showing actual revenue, CAC, ROAS, and lead conversion rates.'
   },
   {
     num: '04',
-    title: 'ONE GROWTH PARTNER.',
-    desc: 'Strategy, creative, digital and performance under one roof.'
+    title: 'FULL-STACK CAPABILITIES',
+    desc: 'From brand design to video production, web applications, paid ad management, and AI workflow automation—everything under one roof.'
   }
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="section why-agency-section">
-      <div className="container">
-        {/* Section Header */}
+    <section className="section why-agency-section" id="difference">
+      <AnimatedSectionBackground
+        imageSrc="/images/bg_why_choose_us.png"
+        overlayGradient="linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.42) 30%, rgba(7, 8, 11, 0.42) 70%, var(--bg-black) 100%)"
+      />
+
+      <div className="container relative-z">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.7 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="label-tag">
             <span className="dot"></span>
@@ -44,19 +49,21 @@ export default function WhyChooseUs() {
             THE AGENCY <br />
             <span className="accent-text">DIFFERENCE.</span>
           </h2>
+          <p className="text-sub">
+            Built for ambitious brands that want to bypass slow agency bureaucracy and scale faster.
+          </p>
         </motion.div>
 
-        {/* 4 Distinct Statements Grid */}
         <div className="why-statements-grid">
-          {WHY_STATEMENTS.map((item, idx) => (
+          {WHY_STATEMENTS.map((item, index) => (
             <motion.div
-              key={idx}
+              key={index}
               className="why-statement-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -6, borderColor: 'var(--accent-coral)' }}
+              initial={{ opacity: 0, y: 45, scale: 0.94 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -6, scale: 1.02 }}
             >
               <div className="why-num">{item.num}</div>
               <h3 className="why-card-title">{item.title}</h3>

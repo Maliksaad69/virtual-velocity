@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export function PresentationSection({ children, className = '', id, sectionNumber, totalSections = '12' }) {
   const containerRef = useRef(null);
@@ -9,27 +9,17 @@ export function PresentationSection({ children, className = '', id, sectionNumbe
     offset: ['start end', 'end start']
   });
 
-  // Smooth spring physics for scroll movement
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  // Presentation scale & Y translation
-  const scale = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0.94, 1, 1, 0.96]);
-  const opacity = useTransform(smoothProgress, [0, 0.25, 0.75, 1], [0.3, 1, 1, 0.4]);
-  const y = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [60, 0, 0, -30]);
+  // Pure linear smooth fade & slight vertical rise without spring recoil/earthquake shaking
+  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.4, 1, 1, 0.4]);
+  const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [30, 0, 0, -15]);
 
   return (
     <motion.div
       ref={containerRef}
       id={id}
       style={{
-        scale,
         opacity,
-        y,
-        perspective: 1200
+        y
       }}
       className={`presentation-slide-wrap ${className}`}
     >
@@ -53,9 +43,8 @@ export function AnimatedSectionBackground({ imageSrc, overlayGradient, alt = 'Ba
     offset: ['start end', 'end start']
   });
 
-  // Parallax Y offset & slight zoom scale
-  const y = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1.02, 1.08]);
+  // Steady, subtle linear parallax without shake
+  const y = useTransform(scrollYProgress, [0, 1], ['-3%', '3%']);
 
   return (
     <div ref={bgRef} className="animated-section-bg-container">
@@ -63,12 +52,11 @@ export function AnimatedSectionBackground({ imageSrc, overlayGradient, alt = 'Ba
         src={imageSrc}
         alt={alt}
         className="animated-section-bg-img"
-        style={{ y, scale }}
-        animate={{
-          scale: [1.04, 1.08, 1.04],
-        }}
+        style={{ y }}
+        initial={{ scale: 1.03 }}
+        animate={{ scale: 1.05 }}
         transition={{
-          duration: 18,
+          duration: 12,
           repeat: Infinity,
           repeatType: 'mirror',
           ease: 'easeInOut'
@@ -86,10 +74,10 @@ export function AnimatedImageCard({ src, alt, className = '', aspect = '16/9' })
     <motion.div
       className={`animated-image-card-wrap ${className}`}
       style={{ aspectRatio: aspect }}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: '-20px' }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
       whileHover="hover"
     >
       <motion.img
@@ -98,9 +86,8 @@ export function AnimatedImageCard({ src, alt, className = '', aspect = '16/9' })
         className="animated-card-img"
         variants={{
           hover: {
-            scale: 1.06,
-            rotate: 0.5,
-            transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+            scale: 1.04,
+            transition: { duration: 0.4, ease: 'easeOut' }
           }
         }}
       />
@@ -118,7 +105,7 @@ export function WordRevealText({ text, className = '', tag = 'h2', delay = 0 }) 
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08,
+        staggerChildren: 0.06,
         delayChildren: delay
       }
     }
@@ -127,16 +114,14 @@ export function WordRevealText({ text, className = '', tag = 'h2', delay = 0 }) 
   const wordVariants = {
     hidden: {
       opacity: 0,
-      y: '100%',
-      rotateX: 45
+      y: 20
     },
     visible: {
       opacity: 1,
-      y: '0%',
-      rotateX: 0,
+      y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1]
+        duration: 0.6,
+        ease: 'easeOut'
       }
     }
   };
@@ -148,7 +133,7 @@ export function WordRevealText({ text, className = '', tag = 'h2', delay = 0 }) 
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        viewport={{ once: true }}
       >
         {words.map((word, index) => (
           <span key={index} className="word-mask">

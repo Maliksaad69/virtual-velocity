@@ -1,29 +1,30 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, MapPin, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle, Mail, MapPin } from 'lucide-react';
+import { AnimatedSectionBackground } from './PresentationSection';
 import './Contact.css';
 
 const GLOBAL_OFFICES = [
   {
+    city: 'LAHORE',
     flag: '🇵🇰',
-    city: 'Lahore, Pakistan',
-    title: 'Creative & Operations Hub',
-    address: 'Gulberg III, Main Boulevard, Lahore',
+    hub: 'CREATIVE & DIGITAL HQ',
+    address: 'Gulberg III, Main Boulevard, Lahore, Pakistan',
     email: 'lahore@virtualvelocity.co'
   },
   {
-    flag: '🇺🇸',
-    city: 'Chesapeake, USA',
-    title: 'Americas Growth & Media Hub',
-    address: 'Executive Center Pkwy, Chesapeake, VA',
-    email: 'usa@virtualvelocity.co'
+    city: 'DUBAI',
+    flag: '🇦🇪',
+    hub: 'MENA GROWTH HUB',
+    address: 'Dubai Design District (D3), Building 7, Dubai, UAE',
+    email: 'dubai@virtualvelocity.co'
   },
   {
-    flag: '🇲🇾',
-    city: 'Kuala Lumpur, Malaysia',
-    title: 'APAC Regional Hub',
-    address: 'KLCC Boulevard, Kuala Lumpur',
-    email: 'apac@virtualvelocity.co'
+    city: 'LONDON',
+    flag: '🇬🇧',
+    hub: 'EUROPEAN STRATEGY',
+    address: 'Soho Works, 180 Strand, London WC2R 1EA, UK',
+    email: 'london@virtualvelocity.co'
   }
 ];
 
@@ -33,184 +34,179 @@ export default function Contact() {
     name: '',
     email: '',
     company: '',
-    phone: '',
-    service: 'Creative Strategy & Branding',
-    budget: '$10k - $25k',
-    details: ''
+    service: 'Creative & Performance',
+    budget: '$5k - $15k',
+    message: ''
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.email) return;
     setSubmitted(true);
   };
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
-    <section id="contact" className="section agency-contact-section">
-      <div className="container">
-        {/* Section Header */}
+    <section className="section agency-contact-section" id="contact">
+      <AnimatedSectionBackground
+        imageSrc="/images/bg_creative_statement.png"
+        overlayGradient="linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.42) 30%, rgba(7, 8, 11, 0.42) 70%, var(--bg-black) 100%)"
+      />
+
+      <div className="container relative-z">
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
           <div className="label-tag">
             <span className="dot"></span>
-            <span>START A PROJECT</span>
+            <span>INITIATE DISCUSSIONS</span>
           </div>
           <h2 className="heading-xl editorial-section-title">
-            LET'S MAKE <br />
-            SOMETHING <br />
+            LET'S MAKE SOMETHING <br />
             <span className="accent-text">MATTER.</span>
           </h2>
+          <p className="text-sub">
+            Tell us about your brand goals. We'll outline a high-impact creative and performance strategy within 24 hours.
+          </p>
         </motion.div>
 
         <div className="contact-main-grid">
-          {/* Form Col */}
+          {/* Form Left Column */}
           <motion.div
             className="contact-form-card"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
             {submitted ? (
-              <div className="form-success-message">
+              <motion.div
+                className="form-success-message"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
                 <CheckCircle size={48} className="accent-text" />
-                <h3>PROJECT INQUIRY RECEIVED</h3>
-                <p>Thank you for reaching out. A Senior Brand Strategist will review your brief and respond within 12 hours.</p>
-                <button onClick={() => setSubmitted(false)} className="btn-secondary">
-                  Send Another Inquiry
-                </button>
-              </div>
+                <h3>PROJECT INQUIRY RECEIVED.</h3>
+                <p>Thank you, {formData.name}. One of our creative directors will reach out to {formData.email} within 24 hours.</p>
+              </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="minimal-inquiry-form">
                 <div className="form-grid-2">
                   <div className="form-group">
-                    <label>YOUR NAME *</label>
+                    <label htmlFor="input-name">YOUR NAME *</label>
                     <input
+                      id="input-name"
                       type="text"
-                      required
-                      placeholder="e.g. Zainab Malik"
+                      name="name"
+                      placeholder="e.g. Zayn Malik"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
 
                   <div className="form-group">
-                    <label>EMAIL ADDRESS *</label>
+                    <label htmlFor="input-email">WORK EMAIL *</label>
                     <input
+                      id="input-email"
                       type="email"
-                      required
-                      placeholder="name@company.com"
+                      name="email"
+                      placeholder="zayn@brand.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-grid-2">
-                  <div className="form-group">
-                    <label>COMPANY / BRAND *</label>
-                    <input
-                      type="text"
+                      onChange={handleChange}
                       required
-                      placeholder="e.g. Close-Knit Hosiery"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label>PHONE NUMBER</label>
-                    <input
-                      type="tel"
-                      placeholder="+1 (555) 000-0000"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     />
                   </div>
                 </div>
 
                 <div className="form-grid-2">
                   <div className="form-group">
-                    <label>SERVICE REQUIRED</label>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    >
-                      <option>Creative Strategy & Branding</option>
-                      <option>Paid Advertising & ROAS Scaling</option>
-                      <option>Social Content & Motion Video</option>
-                      <option>Custom Web Design & E-Commerce</option>
-                      <option>Full-Service Agency Retainer</option>
-                    </select>
+                    <label htmlFor="input-company">COMPANY / BRAND</label>
+                    <input
+                      id="input-company"
+                      type="text"
+                      name="company"
+                      placeholder="e.g. Daily Deli Co."
+                      value={formData.company}
+                      onChange={handleChange}
+                    />
                   </div>
 
                   <div className="form-group">
-                    <label>ESTIMATED BUDGET</label>
+                    <label htmlFor="select-service">INTERESTED DOMAIN</label>
                     <select
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                      id="select-service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
                     >
-                      <option>$5k - $10k</option>
-                      <option>$10k - $25k</option>
-                      <option>$25k - $50k</option>
-                      <option>$50k+</option>
+                      <option value="Creative & Performance">Creative & Performance (Full Service)</option>
+                      <option value="Brand Identity">Brand Strategy & Identity</option>
+                      <option value="Paid Advertising">Paid Advertising (Meta/Google)</option>
+                      <option value="Content Production">Content Production & Motion</option>
+                      <option value="Web & E-Commerce">Web & E-Commerce Development</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="form-group">
-                  <label>PROJECT DETAILS *</label>
+                  <label htmlFor="textarea-message">PROJECT BRIEF & GOALS</label>
                   <textarea
+                    id="textarea-message"
+                    name="message"
                     rows={4}
-                    required
-                    placeholder="Tell us about your brand, goals, target revenue, and campaign timelines..."
-                    value={formData.details}
-                    onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                    placeholder="Tell us about your brand, target timeline, and what success looks like..."
+                    value={formData.message}
+                    onChange={handleChange}
                   />
                 </div>
 
                 <motion.button
                   type="submit"
                   className="btn-primary form-submit-btn"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <span>SEND PROJECT INQUIRY</span>
+                  <span>SUBMIT PROJECT BRIEF</span>
                   <Send size={16} />
                 </motion.button>
               </form>
             )}
           </motion.div>
 
-          {/* Global Offices Col */}
-          <motion.div
-            className="global-offices-col"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <h3 className="offices-title">GLOBAL LOCATIONS</h3>
-            <p className="offices-sub">Operating globally across three key creative and growth hubs.</p>
+          {/* Global Offices Right Column */}
+          <div className="contact-offices-col">
+            <h3 className="offices-title">GLOBAL HUBS</h3>
+            <p className="offices-sub">Operating across three key timezone hubs to serve global brands.</p>
 
             <div className="offices-list">
-              {GLOBAL_OFFICES.map((office, idx) => (
-                <div key={idx} className="office-location-card">
+              {GLOBAL_OFFICES.map((office, index) => (
+                <motion.div
+                  key={index}
+                  className="office-location-card"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
                   <div className="office-top">
                     <span className="office-flag">{office.flag}</span>
                     <span className="office-city">{office.city}</span>
                   </div>
-                  <div className="office-hub-title">{office.title}</div>
-                  <div className="office-address">{office.address}</div>
+                  <span className="office-hub-title">{office.hub}</span>
+                  <span className="office-address">{office.address}</span>
                   <a href={`mailto:${office.email}`} className="office-email">{office.email}</a>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import { AnimatedSectionBackground } from './PresentationSection';
 import './FinalCTA.css';
 
 export default function FinalCTA() {
@@ -9,60 +10,46 @@ export default function FinalCTA() {
   };
 
   return (
-    <section className="section agency-final-cta-section">
-      {/* Floating Interactive Background Glow Elements */}
-      <motion.div
-        className="cta-glow-orb orb-a"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+    <section className="section agency-final-cta-section" id="final-cta">
+      <AnimatedSectionBackground
+        imageSrc="/images/hero_cinematic_nature.png"
+        overlayGradient="linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.38) 30%, rgba(7, 8, 11, 0.38) 70%, var(--bg-black) 100%)"
       />
+
+      <div className="cta-glow-orb orb-a" />
 
       <div className="container text-center relative-z">
         <motion.div
           className="cta-content-box"
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <div className="label-tag justify-center">
-            <span className="dot"></span>
-            <span>START A CONVERSATION</span>
+            <Sparkles size={12} className="accent-text" />
+            <span>LET'S BUILD SOMETHING EXTRAORDINARY</span>
           </div>
 
           <h2 className="cta-giant-headline">
             GOT A BRAND <br />
-            <span className="accent-text">WORTH TALKING ABOUT?</span>
+            WORTH TALKING <br />
+            <span className="accent-text">ABOUT?</span>
           </h2>
 
           <p className="cta-supporting-text">
-            Let's build something people can't scroll past.
+            Let's create campaigns, content, and digital experiences that turn attention into market dominance.
           </p>
 
           <div className="cta-buttons-wrap justify-center">
             <motion.button
               onClick={scrollToContact}
-              className="btn-primary cta-main-btn"
-              data-cursor="START"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
+              className="btn-primary hero-btn-main"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.96 }}
             >
               <span>START A PROJECT</span>
-              <ArrowRight size={18} className="btn-icon-arrow" />
-            </motion.button>
-
-            <motion.button
-              onClick={scrollToContact}
-              className="btn-secondary cta-sub-btn"
-              data-cursor="BOOK"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Calendar size={16} />
-              <span>BOOK A STRATEGY CALL</span>
+              <ArrowRight size={16} className="btn-icon-arrow" />
             </motion.button>
           </div>
         </motion.div>

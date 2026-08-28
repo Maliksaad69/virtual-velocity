@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { AnimatedSectionBackground } from './PresentationSection';
 import './Services.css';
 
 const SERVICES_DATA = [
@@ -56,14 +57,19 @@ export default function Services() {
 
   return (
     <section id="capabilities" className="section agency-services-section">
-      <div className="container">
+      <AnimatedSectionBackground
+        imageSrc="/images/bg_services.png"
+        overlayGradient="linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.42) 25%, rgba(7, 8, 11, 0.42) 75%, var(--bg-black) 100%)"
+      />
+
+      <div className="container relative-z">
         {/* Section Header */}
         <motion.div
           className="section-header"
-          initial={{ opacity: 0, y: 35 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.7 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="label-tag">
             <span className="dot"></span>
@@ -80,7 +86,7 @@ export default function Services() {
 
         {/* Vertical Interactive Accordion List */}
         <div className="services-vertical-list">
-          {SERVICES_DATA.map((service) => {
+          {SERVICES_DATA.map((service, index) => {
             const isOpen = activeId === service.id;
             return (
               <motion.div
@@ -88,10 +94,11 @@ export default function Services() {
                 className={`service-vertical-row ${isOpen ? 'is-open' : ''}`}
                 onMouseEnter={() => setActiveId(service.id)}
                 onClick={() => setActiveId(service.id)}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.01, x: 6 }}
               >
                 <div className="service-row-header">
                   <div className="row-num-box">
@@ -126,10 +133,16 @@ export default function Services() {
                           <span className="deliverables-heading">CORE DELIVERABLES</span>
                           <div className="deliverables-tags-wrap">
                             {service.items.map((item, idx) => (
-                              <span key={idx} className="deliverable-tag-pill">
+                              <motion.span
+                                key={idx}
+                                className="deliverable-tag-pill"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                              >
                                 <Sparkles size={12} className="accent-text" />
                                 {item}
-                              </span>
+                              </motion.span>
                             ))}
                           </div>
                         </div>
