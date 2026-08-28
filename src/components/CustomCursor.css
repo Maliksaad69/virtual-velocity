@@ -4,54 +4,53 @@
   left: -4px;
   width: 8px;
   height: 8px;
-  background-color: var(--accent-cyan);
+  background-color: var(--accent-coral);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  box-shadow: 0 0 12px var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-coral);
   will-change: transform;
 }
 
 .cursor-ring {
   position: fixed;
-  top: -24px;
-  left: -24px;
-  width: 48px;
-  height: 48px;
-  border: 1px solid rgba(0, 240, 255, 0.4);
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(4px);
+  top: -22px;
+  left: -22px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.02);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              top 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              left 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+  transition: width 0.3s var(--ease-smooth),
+              height 0.3s var(--ease-smooth),
+              top 0.3s var(--ease-smooth),
+              left 0.3s var(--ease-smooth),
               border-color 0.3s ease,
               background-color 0.3s ease;
   will-change: transform;
 }
 
 .cursor-ring.hovered {
-  width: 88px;
-  height: 88px;
-  top: -44px;
-  left: -44px;
-  background: rgba(0, 240, 255, 0.12);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+  width: 84px;
+  height: 84px;
+  top: -42px;
+  left: -42px;
+  background: rgba(255, 77, 41, 0.15);
+  border-color: var(--accent-coral);
+  backdrop-filter: blur(4px);
 }
 
 .cursor-text {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
   text-transform: uppercase;
   animation: fadeIn 0.2s ease forwards;
 }

@@ -1,88 +1,179 @@
-import { useEffect, useState } from 'react';
-import { ArrowRight, ArrowDown } from 'lucide-react';
-import { scrollStore } from '../utils/scrollStore';
+import { motion } from 'framer-motion';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import './Hero.css';
 
+const CLIENT_LOGOS = [
+  { name: 'SAMSUNG', category: 'Tech Giant' },
+  { name: 'KFC', category: 'Global QSR' },
+  { name: 'KIKO MILANO', category: 'Beauty & Cosmetics' },
+  { name: "DOMINO'S", category: 'Global Brand' },
+  { name: 'DAILY DELI CO', category: 'Food & Beverage' },
+  { name: 'SAMAD GROUP', category: 'Enterprise Industry' },
+  { name: 'LAKE CITY', category: 'Real Estate' },
+  { name: 'DYNAMITE GEAR', category: 'Fitness & Apparel' },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 35 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] },
+  },
+};
+
 export default function Hero() {
-  const [heroOpacity, setHeroOpacity] = useState(1);
-  const [heroScale, setHeroScale] = useState(1);
-
-  useEffect(() => {
-    const unsubscribe = scrollStore.subscribe((state) => {
-      // As you move inside the black hole (0.0 to 0.25 scroll), colors and opacity fade to dark void
-      const p = Math.min(state.progress / 0.25, 1.0);
-      setHeroOpacity(Math.max(0, 1 - p * 1.35));
-      setHeroScale(1 - p * 0.18);
-    });
-    return unsubscribe;
-  }, []);
-
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollToWork = () => {
+    const el = document.getElementById('work');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    const el = document.getElementById('contact');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="hero-section" id="hero">
-      {/* Main Spatial Hero Composition */}
-      <div className="container hero-container">
-        <div
-          className="hero-spatial-content"
-          style={{
-            opacity: heroOpacity,
-            transform: `scale(${heroScale}) translateY(${(1 - heroOpacity) * 40}px)`,
-            transition: 'opacity 0.1s linear, transform 0.1s linear'
-          }}
+    <section className="agency-hero-section" id="hero">
+      {/* Visual Treatment: Cinematic Natural Background Layer */}
+      <div className="hero-cinematic-bg-container">
+        <motion.img
+          src="/images/hero_cinematic_nature.png"
+          alt="Cinematic volcanic peak landscape"
+          className="hero-cinematic-img"
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.85 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        />
+        <div className="hero-cinematic-overlay" />
+      </div>
+
+      {/* Floating Animated Coral/Ember Glow Orbs */}
+      <motion.div
+        className="hero-glow-orb orb-1"
+        animate={{
+          y: [0, -25, 0],
+          x: [0, 15, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="hero-glow-orb orb-2"
+        animate={{
+          y: [0, 20, 0],
+          x: [0, -20, 0],
+          scale: [1, 1.15, 1],
+        }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <div className="container relative-z">
+        <motion.div
+          className="hero-content"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          {/* Spatial Technical Tag */}
-          <div className="spatial-tag">
-            <span className="tag-number">01</span>
-            <span className="tag-text">VIRTUAL VELOCITY / ACCELERATION ENGINE</span>
-          </div>
+          {/* Animated Category Label */}
+          <motion.div className="label-tag hero-badge" variants={itemVariants}>
+            <span className="dot"></span>
+            <span>CREATIVE / DIGITAL / PERFORMANCE</span>
+          </motion.div>
 
-          {/* Creative Hot Pink / White Gradient Headline */}
-          <h1 className="hero-spatial-title">
-            <span className="hero-title-main">TURN ATTENTION</span>
-            <br />
-            <span className="hero-accent-text">INTO VELOCITY.</span>
-          </h1>
+          {/* Master Redesign Headline */}
+          <motion.h1 className="heading-hero editorial-title" variants={itemVariants}>
+            WE MAKE BRANDS <br />
+            <span className="accent-text">IMPOSSIBLE TO IGNORE.</span>
+          </motion.h1>
 
-          {/* Supporting Copy */}
-          <p className="hero-spatial-lead">
-            We build digital growth systems for ambitious brands moving at full speed.
-          </p>
+          {/* Master Redesign Supporting Copy */}
+          <motion.p className="text-sub hero-description" variants={itemVariants}>
+            Creative strategy, campaigns, content, digital experiences and performance marketing built to turn attention into revenue.
+          </motion.p>
 
-          {/* Bold Editorial Physical Controls */}
-          <div className="hero-editorial-actions">
-            <button
+          {/* Master Hero Action Buttons */}
+          <motion.div className="hero-actions" variants={itemVariants}>
+            <motion.button
+              onClick={scrollToWork}
+              className="btn-primary hero-btn-main"
+              data-cursor="EXPLORE"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+            >
+              <span>EXPLORE OUR WORK</span>
+              <ArrowRight size={16} className="btn-icon-arrow" />
+            </motion.button>
+
+            <motion.button
               onClick={scrollToContact}
-              className="btn-editorial-primary"
-              data-cursor="LAUNCH"
+              className="btn-secondary hero-btn-sub"
+              data-cursor="START"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.96 }}
             >
               <span>START A PROJECT</span>
-              <ArrowRight size={18} />
-            </button>
+            </motion.button>
+          </motion.div>
 
-            <button
-              onClick={scrollToServices}
-              className="btn-editorial-secondary"
-              data-cursor="ENTER"
-            >
-              <span>EXPLORE SERVICES</span>
-              <ArrowDown size={16} />
-            </button>
+          {/* Minimal Editorial Metric Strip */}
+          <motion.div className="hero-quick-stats editorial-metrics-strip" variants={itemVariants}>
+            <motion.div className="stat-pill" whileHover={{ y: -4, scale: 1.03 }}>
+              <span className="stat-num">4.2×</span>
+              <span className="stat-lbl">Average ROAS</span>
+            </motion.div>
+            <div className="stat-divider">/</div>
+            <motion.div className="stat-pill" whileHover={{ y: -4, scale: 1.03 }}>
+              <span className="stat-num">+240%</span>
+              <span className="stat-lbl">Organic Lead Growth</span>
+            </motion.div>
+            <div className="stat-divider">/</div>
+            <motion.div className="stat-pill" whileHover={{ y: -4, scale: 1.03 }}>
+              <span className="stat-num">150+</span>
+              <span className="stat-lbl">Campaigns Launched</span>
+            </motion.div>
+            <div className="stat-divider">/</div>
+            <motion.div className="stat-pill" whileHover={{ y: -4, scale: 1.03 }}>
+              <span className="stat-num">94%</span>
+              <span className="stat-lbl">Client Retention</span>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Client Marquee Section */}
+      <motion.div
+        className="hero-marquee-wrapper"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+      >
+        <div className="marquee-label">
+          <Sparkles size={12} className="marquee-sparkle" />
+          <span>TRUSTED BY BRANDS THAT WANT TO MOVE FASTER.</span>
+        </div>
+        <div className="marquee-track">
+          <div className="marquee-content">
+            {CLIENT_LOGOS.concat(CLIENT_LOGOS).map((client, idx) => (
+              <div key={idx} className="client-logo-item">
+                <span className="client-name">{client.name}</span>
+                <span className="client-dot">•</span>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

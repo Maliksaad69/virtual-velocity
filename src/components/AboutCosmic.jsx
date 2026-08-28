@@ -1,5 +1,13 @@
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import './AboutCosmic.css';
+
+const AGENCY_PILLARS = [
+  'Strategy.',
+  'Creative.',
+  'Technology.',
+  'Performance.'
+];
 
 export default function AboutCosmic() {
   const scrollToContact = () => {
@@ -8,56 +16,76 @@ export default function AboutCosmic() {
   };
 
   return (
-    <section id="about" className="about-cosmic-section section">
+    <section id="agency" className="section agency-about-section">
       <div className="container">
-        {/* Header Label */}
-        <div className="section-header">
-          <div className="label">
-            <Sparkles size={14} className="label-icon" />
-            <span>07 • BRAND PHILOSOPHY</span>
-          </div>
-        </div>
-
-        {/* Huge Spatial Editorial Headline with Dynamic Shifting Colors */}
-        <div className="about-spatial-composition">
-          <h2 className="about-editorial-title">
-            <span className="heading-line-1">WE DON'T</span> <br />
-            <span className="heading-line-2">CHASE TRENDS.</span>
-          </h2>
-
-          <div className="about-editorial-divider" />
-
-          <h2 className="about-editorial-title hero-line-momentum">
-            <span className="heading-line-3">WE BUILD</span> <br />
-            <span className="heading-line-4">MOMENTUM.</span>
-          </h2>
-
-          {/* Minimal Story Points */}
-          <div className="about-spatial-points">
-            <div className="spatial-point">
-              <span className="point-num">01</span>
-              <p>Marketing creates the atmosphere.</p>
+        <div className="about-editorial-grid">
+          {/* Left Editorial Copy */}
+          <motion.div
+            className="about-copy-col"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="label-tag">
+              <span className="dot"></span>
+              <span>ABOUT VIRTUAL VELOCITY</span>
             </div>
-            <div className="spatial-point">
-              <span className="point-num">02</span>
-              <p>Content creates signals.</p>
-            </div>
-            <div className="spatial-point">
-              <span className="point-num">03</span>
-              <p>Advertising creates propulsion.</p>
-            </div>
-            <div className="spatial-point">
-              <span className="point-num">04</span>
-              <p>Conversion creates velocity.</p>
-            </div>
-          </div>
 
-          <div className="about-spatial-cta">
-            <button onClick={scrollToContact} className="btn-editorial-primary">
-              <span>START A PROJECT</span>
-              <ArrowRight size={18} />
-            </button>
-          </div>
+            <h2 className="heading-xl editorial-section-title">
+              WE'RE NOT A <br />
+              <span className="accent-text">POST-AND-PRAY AGENCY.</span>
+            </h2>
+
+            <p className="about-lead-text">
+              Virtual Velocity is a digital marketing and creative agency built at the intersection of bold creative thinking and measurable growth.
+            </p>
+
+            <p className="about-secondary-text">
+              We build brands people remember, campaigns people talk about and digital experiences that make businesses grow.
+            </p>
+
+            {/* Pillars Grid */}
+            <div className="about-pillars-box">
+              <div className="pillars-row">
+                {AGENCY_PILLARS.map((pillar, idx) => (
+                  <span key={idx} className="pillar-word">
+                    {pillar}
+                  </span>
+                ))}
+              </div>
+              <p className="one-team-goal">
+                One team. One goal: <strong className="accent-text">Make the work impossible to ignore.</strong>
+              </p>
+            </div>
+
+            <motion.button
+              onClick={scrollToContact}
+              className="btn-primary about-cta-btn"
+              data-cursor="MEET"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+            >
+              <span>MEET THE TEAM</span>
+              <ArrowRight size={16} className="btn-icon-arrow" />
+            </motion.button>
+          </motion.div>
+
+          {/* Right Visual Image Showcase */}
+          <motion.div
+            className="about-visual-col"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <div className="about-image-card">
+              <img src="/images/work_aura.png" alt="Creative studio direction showcase" />
+              <div className="about-image-overlay">
+                <span className="studio-badge">VIRTUAL VELOCITY / CREATIVE ENGINE</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

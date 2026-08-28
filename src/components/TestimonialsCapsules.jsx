@@ -1,92 +1,108 @@
 import { useState } from 'react';
-import { Sparkles, Quote } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import './TestimonialsCapsules.css';
 
 const TESTIMONIALS = [
   {
-    id: 't1',
-    name: 'Elena Rostova',
-    role: 'Chief Marketing Officer',
-    company: 'Aura Luxury Apparel',
-    quote: 'Virtual Velocity transformed the way we think about digital growth. Their acceleration engine and paid social strategy delivered an unprecedented 4.7× ROAS within 6 months.',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-    metrics: '+$1.8M Revenue',
-    color: '#e9d5ff'
+    quote: 'Virtual Velocity completely changed how we approached our digital presence. The creative was incredible — but the growth was even better.',
+    author: 'ZAINAB MALIK',
+    role: 'Marketing Director',
+    company: 'Close-Knit Hosiery',
+    image: '/images/work_closeknit.png'
   },
   {
-    id: 't2',
-    name: 'Marcus Vance',
-    role: 'VP of Growth',
-    company: 'Nexus Enterprise AI',
-    quote: 'Working with Virtual Velocity felt like stepping into a futuristic agency. Their search architecture generated +$4.2M in net new ARR while reducing our enterprise CAC by 45%.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-    metrics: '+$4.2M ARR',
-    color: '#c084fc'
+    quote: 'Within two weeks, our paid customer acquisition costs dropped by 42%. Their creative video ads and PPC strategy delivered instant, trackable ROAS.',
+    author: 'OMAR FAROOQ',
+    role: 'Chief Executive Officer',
+    company: 'Daily Deli Co.',
+    image: '/images/work_dailydeli.png'
   },
   {
-    id: 't3',
-    name: 'Dr. Sarah Lin',
-    role: 'Managing Director',
-    company: 'Synapse Health Systems',
-    quote: 'Their team engineered a privacy-compliant digital patient acquisition funnel that scaled our appointment booking by 220%. Unmatched technical sophistication.',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80',
-    metrics: '+220% Bookings',
-    color: '#e879f9'
+    quote: 'The brand strategy, custom typography, and editorial campaign rollout were flawless. They elevated our beauty brand into top-tier boutique retailers.',
+    author: 'SARAH RINALDI',
+    role: 'Brand & Creative Director',
+    company: 'Aura Luxury Botanicals',
+    image: '/images/work_aura.png'
   }
 ];
 
 export default function TestimonialsCapsules() {
-  const [selected, setSelected] = useState(TESTIMONIALS[0]);
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIdx((prev) => (prev + 1) % TESTIMONIALS.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIdx((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+  };
+
+  const current = TESTIMONIALS[currentIdx];
 
   return (
-    <section id="testimonials" className="testimonials-capsules-section section">
+    <section id="testimonials" className="section agency-testimonials-section">
       <div className="container">
-        {/* Header */}
-        <div className="section-header">
-          <div className="label">
-            <Sparkles size={14} className="label-icon" />
-            <span>08 • EXECUTIVE TESTIMONIALS</span>
+        {/* Section Header */}
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="label-tag">
+            <span className="dot"></span>
+            <span>CLIENT ENDORSEMENTS</span>
           </div>
-          <h2 className="heading-xl">
-            <span className="heading-main">CLIENT</span> <br />
-            <span className="heading-accent">TESTIMONIALS.</span>
+          <h2 className="heading-xl editorial-section-title">
+            WORDS FROM <br />
+            <span className="accent-text">FOUNDERS & CLOSERS.</span>
           </h2>
-          <p className="text-lg">
-            Hear from visionary executives whose brands achieved exponential market velocity.
-          </p>
-        </div>
+        </motion.div>
 
-        {/* Spatial Testimonial Layout */}
-        <div className="spatial-testimonials-layout">
-          {/* Selector List */}
-          <div className="spatial-author-selector">
-            {TESTIMONIALS.map((t) => {
-              const isSel = selected.id === t.id;
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => setSelected(t)}
-                  className={`spatial-author-btn ${isSel ? 'active' : ''}`}
-                >
-                  <span className="author-btn-name">{t.name}</span>
-                  <span className="author-btn-company">{t.company}</span>
-                </button>
-              );
-            })}
-          </div>
+        {/* Cinematic Editorial Testimonial Showcase */}
+        <div className="cinematic-testimonial-showcase">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIdx}
+              className="editorial-testimonial-card"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Quote Content Col */}
+              <div className="quote-content-col">
+                <Quote size={40} className="editorial-quote-mark" />
+                <blockquote className="giant-quote-text">
+                  "{current.quote}"
+                </blockquote>
 
-          {/* Active Quote Display */}
-          <div className="spatial-quote-display" key={selected.id}>
-            <Quote size={32} className="quote-icon" style={{ color: selected.color }} />
-            <blockquote className="spatial-quote-text">
-              "{selected.quote}"
-            </blockquote>
+                <div className="quote-author-block">
+                  <span className="author-name">{current.author}</span>
+                  <span className="author-role">{current.role} · <strong>{current.company}</strong></span>
+                </div>
+              </div>
 
-            <div className="spatial-quote-author">
-              <span className="author-full-name">{selected.name}</span>
-              <span className="author-full-role">{selected.role}, {selected.company}</span>
-              <span className="author-metric-badge" style={{ color: selected.color }}>{selected.metrics}</span>
-            </div>
+              {/* Campaign Image Col */}
+              <div className="campaign-visual-col">
+                <img src={current.image} alt={current.company} />
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Slider Controls */}
+          <div className="testimonial-controls">
+            <button onClick={prevSlide} className="ctrl-btn" aria-label="Previous Testimonial">
+              <ChevronLeft size={20} />
+            </button>
+            <span className="slider-counter">
+              0{currentIdx + 1} / 0{TESTIMONIALS.length}
+            </span>
+            <button onClick={nextSlide} className="ctrl-btn" aria-label="Next Testimonial">
+              <ChevronRight size={20} />
+            </button>
           </div>
         </div>
       </div>

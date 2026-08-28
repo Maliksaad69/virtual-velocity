@@ -2,22 +2,21 @@ import { useState, useCallback, lazy, Suspense } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
 import Loader from './components/Loader';
 import CustomCursor from './components/CustomCursor';
-import PlanetaryCanvas from './components/PlanetaryCanvas';
-import CinematicPresentationHUD from './components/CinematicPresentationHUD';
-import CinematicSceneWrapper from './components/CinematicSceneWrapper';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import ServicesUniverse from './components/ServicesUniverse';
-import VelocityEngine from './components/VelocityEngine';
+import SelectedWork from './components/SelectedWork';
+import CreativeStatement from './components/CreativeStatement';
+import Services from './components/Services';
 
-// Lazy Loaded Below-the-Fold Components for Instant Initial Page Render
-const CaseStudiesUniverse = lazy(() => import('./components/CaseStudiesUniverse'));
+// Below-the-fold components
+const CreativeVsPerformance = lazy(() => import('./components/CreativeVsPerformance'));
 const OrbitingResults = lazy(() => import('./components/OrbitingResults'));
 const ProcessSolar = lazy(() => import('./components/ProcessSolar'));
 const AboutCosmic = lazy(() => import('./components/AboutCosmic'));
+const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'));
 const TestimonialsCapsules = lazy(() => import('./components/TestimonialsCapsules'));
-const AIFutures = lazy(() => import('./components/AIFutures'));
 const FinalCTA = lazy(() => import('./components/FinalCTA'));
+const Contact = lazy(() => import('./components/Contact'));
 const FooterCosmic = lazy(() => import('./components/FooterCosmic'));
 
 export default function App() {
@@ -28,67 +27,39 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <div className="app-planetary-root">
+      <div className="agency-root">
         {loading && <Loader onFinish={handleFinish} />}
 
-        {/* Custom Futuristic Glass Cursor */}
+        {/* Minimal Editorial Ring Cursor */}
         <CustomCursor />
 
-        {/* Global WebGL 3D Planetary Hyperspace Canvas */}
-        <PlanetaryCanvas />
+        {/* Subtle Ambient Obsidian Mesh */}
+        <div className="minimal-bg-ambient">
+          <div className="minimal-grid-lines" />
+        </div>
 
-        {/* PowerPoint-Style Presentation Scene Navigation HUD & Speedometer */}
-        <CinematicPresentationHUD />
-
-        {/* Film Grain Atmospheric Noise Layer */}
+        {/* Subtle Film Grain Texture */}
         <div className="film-grain" />
 
-        {/* Floating Glass Capsule Navigation */}
+        {/* Floating Minimal Navigation */}
         <Navbar />
 
-        {/* Scene-by-Scene Presentation Journey */}
-        <main style={{ position: 'relative', zIndex: 2 }}>
-          <CinematicSceneWrapper variant="slide-up">
-            <Hero />
-          </CinematicSceneWrapper>
+        {/* Main Master Agency Layout */}
+        <main className="agency-main-content">
+          <Hero />
+          <SelectedWork />
+          <CreativeStatement />
+          <Services />
 
-          <CinematicSceneWrapper variant="zoom-depth">
-            <ServicesUniverse />
-          </CinematicSceneWrapper>
-
-          <CinematicSceneWrapper variant="slide-up">
-            <VelocityEngine />
-          </CinematicSceneWrapper>
-
-          <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
-            <CinematicSceneWrapper variant="slide-right">
-              <CaseStudiesUniverse />
-            </CinematicSceneWrapper>
-
-            <CinematicSceneWrapper variant="zoom-depth">
-              <OrbitingResults />
-            </CinematicSceneWrapper>
-
-            <CinematicSceneWrapper variant="slide-up">
-              <ProcessSolar />
-            </CinematicSceneWrapper>
-
-            <CinematicSceneWrapper variant="zoom-depth">
-              <AboutCosmic />
-            </CinematicSceneWrapper>
-
-            <CinematicSceneWrapper variant="slide-right">
-              <TestimonialsCapsules />
-            </CinematicSceneWrapper>
-
-            <CinematicSceneWrapper variant="zoom-depth">
-              <AIFutures />
-            </CinematicSceneWrapper>
-
-            <CinematicSceneWrapper variant="slide-up">
-              <FinalCTA />
-            </CinematicSceneWrapper>
-
+          <Suspense fallback={<div style={{ minHeight: '40vh' }} />}>
+            <CreativeVsPerformance />
+            <OrbitingResults />
+            <ProcessSolar />
+            <AboutCosmic />
+            <WhyChooseUs />
+            <TestimonialsCapsules />
+            <FinalCTA />
+            <Contact />
             <FooterCosmic />
           </Suspense>
         </main>

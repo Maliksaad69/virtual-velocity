@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import './Navbar.css';
 
 const NAV_SECTIONS = [
-  { id: 'hero', label: 'OVERVIEW' },
-  { id: 'services', label: 'SERVICES' },
-  { id: 'engine', label: 'THE ENGINE' },
-  { id: 'universe', label: 'CASE STUDIES' },
-  { id: 'process', label: 'METHODOLOGY' },
-  { id: 'about', label: 'PHILOSOPHY' },
+  { id: 'work', label: 'WORK' },
+  { id: 'capabilities', label: 'CAPABILITIES' },
+  { id: 'agency', label: 'ABOUT' },
   { id: 'contact', label: 'CONTACT' },
 ];
 
@@ -19,10 +17,9 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
 
-      // Active Section Intersection Detection
-      const scrollPos = window.scrollY + 200;
+      const scrollPos = window.scrollY + 220;
       for (const sec of NAV_SECTIONS) {
         const el = document.getElementById(sec.id);
         if (el) {
@@ -42,6 +39,10 @@ export default function Navbar() {
 
   const scrollToSection = (id) => {
     setMobileMenuOpen(false);
+    if (id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -49,69 +50,107 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`spatial-navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
-      <nav className="spatial-navbar-inner">
-        {/* Editorial Brand Logo */}
-        <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} className="spatial-logo">
-          <Sparkles className="logo-sparkle-icon" size={16} />
-          <span className="logo-text">VIRTUAL <span className="logo-accent">VELOCITY</span></span>
+    <motion.header
+      className={`agency-navbar ${scrolled ? 'scrolled' : ''}`}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <nav className="agency-navbar-inner">
+        {/* Minimal Editorial Agency Logo */}
+        <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} className="agency-logo">
+          <span className="logo-main">VIRTUAL VELOCITY</span>
+          <span className="logo-badge">STUDIO</span>
         </a>
 
-        {/* Floating Precision Nav Dock */}
-        <ul className="spatial-nav-links">
+        {/* Minimal Nav Links */}
+        <ul className="agency-nav-links">
           {NAV_SECTIONS.map((item) => {
             const isActive = activeSection === item.id;
             return (
-              <li key={item.id}>
+              <li key={item.id} style={{ position: 'relative' }}>
                 <button
                   onClick={() => scrollToSection(item.id)}
-                  className={`spatial-link ${isActive ? 'active' : ''}`}
+                  className={`agency-nav-link ${isActive ? 'active' : ''}`}
                 >
-                  <span>{item.label}</span>
+                  <span style={{ position: 'relative', zIndex: 2 }}>{item.label}</span>
+                  {isActive && (
+                    <motion.div
+                      className="nav-active-pill"
+                      layoutId="activeNavPill"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        borderRadius: 'var(--radius-full)',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        border: '1px solid var(--border-medium)',
+                        zIndex: 1,
+                      }}
+                    />
+                  )}
                 </button>
               </li>
             );
           })}
         </ul>
 
-        {/* Precision Physical Launch Trigger */}
-        <div className="spatial-cta-wrapper">
-          <button 
-            onClick={() => scrollToSection('contact')} 
-            className="btn-editorial-primary spatial-cta-btn"
-            data-cursor="LAUNCH"
+        {/* Right Status & Persistent CTA */}
+        <div className="agency-nav-right">
+          <div className="availability-status">
+            <span className="pulse-dot"></span>
+            <span className="status-text">AVAILABLE FOR Q3/Q4</span>
+          </div>
+
+          <motion.button
+            onClick={() => scrollToSection('contact')}
+            className="btn-primary nav-cta-btn"
+            data-cursor="TALK"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
           >
-            <span>START PROJECT →</span>
+            <span>START A PROJECT</span>
+            <ArrowUpRight size={15} className="btn-icon-arrow" />
+          </motion.button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="mobile-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-
-        {/* Mobile Minimal Toggle */}
-        <button 
-          className="mobile-toggle-btn" 
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle Navigation Menu"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </nav>
 
-      {/* Mobile Editorial Menu Drawer */}
-      {mobileMenuOpen && (
-        <div className="mobile-spatial-drawer">
-          <ul className="mobile-spatial-links">
-            {NAV_SECTIONS.map((sec) => (
-              <li key={sec.id}>
-                <button onClick={() => scrollToSection(sec.id)}>
-                  {sec.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-          <button onClick={() => scrollToSection('contact')} className="btn-editorial-primary mobile-cta">
-            START PROJECT →
-          </button>
-        </div>
-      )}
-    </header>
+      {/* Animated Mobile Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className="agency-mobile-drawer"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ul className="mobile-links">
+              {NAV_SECTIONS.map((sec) => (
+                <li key={sec.id}>
+                  <button onClick={() => scrollToSection(sec.id)}>
+                    {sec.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div className="mobile-cta-box">
+              <button onClick={() => scrollToSection('contact')} className="btn-primary full-width">
+                START A PROJECT <ArrowUpRight size={16} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

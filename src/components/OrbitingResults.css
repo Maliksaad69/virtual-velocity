@@ -1,49 +1,51 @@
-.orbiting-results-section {
+.agency-results-section {
   position: relative;
-  padding: 60px 0;
 }
 
-.spatial-results-grid {
+.oversized-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 32px;
-  margin-top: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
 }
 
-.spatial-result-card {
+.metric-card-editorial {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: clamp(28px, 4vw, 48px);
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 24px 0;
-  border-top: 1px solid var(--border-line);
-  cursor: pointer;
-  transition: all 0.3s ease;
+  justify-content: center;
+  transition: all 0.3s var(--ease-smooth);
 }
 
-.spatial-result-card:hover {
-  border-top-color: #ffffff;
-  transform: translateY(-4px);
-}
-
-.result-number {
+.giant-metric-num {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
   font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent-coral);
+  margin-bottom: 12px;
 }
 
-.result-label {
+.metric-editorial-label {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.result-detail {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+@media (max-width: 992px) {
+  .oversized-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .oversized-metrics-grid {
+    grid-template-columns: 1fr;
+  }
 }

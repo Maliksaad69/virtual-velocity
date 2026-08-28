@@ -1,91 +1,90 @@
-import { useState } from 'react';
-import { Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Lightbulb, Palette, Rocket, TrendingUp } from 'lucide-react';
 import './ProcessSolar.css';
 
 const PROCESS_STEPS = [
   {
-    number: '01',
-    title: 'DISCOVER',
-    subtitle: 'DEEP MARKET SIGNAL AUDIT',
-    description: 'We analyze your brand DNA, competitor gaps, high-intent search clusters, and conversion bottlenecks to chart your optimal trajectory.',
-    color: '#00f0ff'
+    num: '01',
+    title: 'THINK',
+    subtitle: 'Strategy & Positioning',
+    desc: 'Strategy, positioning, audience research and campaign direction.',
+    icon: Lightbulb
   },
   {
-    number: '02',
-    title: 'STRATEGIZE',
-    subtitle: 'GROWTH ARCHITECTURE BLUEPRINT',
-    description: 'Custom growth model design selecting high-ROAS acquisition channels, retention loops, and messaging positioning.',
-    color: '#38bdf8'
+    num: '02',
+    title: 'MAKE',
+    subtitle: 'Creative & Systems',
+    desc: 'Creative concepts, brand systems, content and digital experiences.',
+    icon: Palette
   },
   {
-    number: '03',
-    title: 'CREATE',
-    subtitle: 'HIGH-CONVERSION PRODUCTION',
-    description: 'Engineering high-velocity video creative, interactive 3D web interfaces, and persuasive editorial ad assets.',
-    color: '#60a5fa'
-  },
-  {
-    number: '04',
+    num: '03',
     title: 'LAUNCH',
-    subtitle: 'CAMPAIGN MARKET ENTRY',
-    description: 'Controlled campaign launch across paid networks, search indices, and social ecosystem channels with live telemetry monitoring.',
-    color: '#00f0ff'
+    subtitle: 'Distribution & Media',
+    desc: 'Campaigns, media, websites and distribution.',
+    icon: Rocket
   },
   {
-    number: '05',
-    title: 'OPTIMIZE',
-    subtitle: 'REAL-TIME TELEMETRY TUNING',
-    description: 'Continuous AI bid optimization, ad creative fatigue mitigation, and conversion rate optimization (CRO).',
-    color: '#38bdf8'
-  },
-  {
-    number: '06',
-    title: 'SCALE',
-    subtitle: 'EXPONENTIAL MARKET DOMINANCE',
-    description: 'Expanding budget allocation into winning campaigns, international channels, and multi-touch attribution loops.',
-    color: '#1d4ed8'
+    num: '04',
+    title: 'GROW',
+    subtitle: 'Optimize & Scale',
+    desc: 'Measure, optimize and scale what works.',
+    icon: TrendingUp
   }
 ];
 
 export default function ProcessSolar() {
-  const [activeStep, setActiveStep] = useState(0);
-
   return (
-    <section id="process" className="process-solar-section section">
+    <section id="process" className="section agency-process-section">
       <div className="container">
-        {/* Header */}
-        <div className="section-header">
-          <div className="label">
-            <Sparkles size={14} className="label-icon" />
-            <span>05 • OUR METHODOLOGY</span>
+        {/* Section Header */}
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="label-tag">
+            <span className="dot"></span>
+            <span>AGENCY METHODOLOGY</span>
           </div>
-          <h2 className="heading-xl">
-            <span className="heading-main">FROM SIGNAL</span> <br />
-            <span className="heading-accent">TO SCALE.</span>
+          <h2 className="heading-xl editorial-section-title">
+            THINK. MAKE. <br />
+            <span className="accent-text">LAUNCH. GROW.</span>
           </h2>
-          <p className="text-lg">
-            Six interconnected velocity milestones driving your brand from initial market discovery to exponential scaling.
+          <p className="text-sub">
+            Our agile framework balances high-level creative thinking with rapid media execution and data scaling.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Spatial Process Steps Grid */}
-        <div className="spatial-process-grid">
+        {/* Process Timeline Grid */}
+        <div className="process-timeline-grid">
           {PROCESS_STEPS.map((step, idx) => {
-            const isActive = idx === activeStep;
+            const Icon = step.icon;
             return (
-              <div
-                key={step.number}
-                onClick={() => setActiveStep(idx)}
-                className={`spatial-process-step ${isActive ? 'active' : ''}`}
+              <motion.div
+                key={idx}
+                className="process-timeline-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -8, borderColor: 'var(--accent-coral)' }}
               >
-                <div className="process-step-head">
-                  <span className="step-num" style={{ color: step.color }}>{step.number}</span>
-                  <span className="step-sub">{step.subtitle}</span>
+                <div className="process-step-top">
+                  <span className="process-num-large">{step.num}</span>
+                  <div className="process-icon-box">
+                    <Icon size={20} className="accent-text" />
+                  </div>
                 </div>
 
-                <h3 className="step-title">{step.title}</h3>
-                <p className="step-desc">{step.description}</p>
-              </div>
+                <h3 className="process-step-title">{step.title}</h3>
+                <span className="process-step-subtitle">{step.subtitle}</span>
+                <p className="process-step-desc">{step.desc}</p>
+
+                <div className="process-connector-line" />
+              </motion.div>
             );
           })}
         </div>

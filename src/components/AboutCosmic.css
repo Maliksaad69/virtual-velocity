@@ -1,122 +1,100 @@
-.about-cosmic-section {
+.agency-about-section {
   position: relative;
-  padding: 60px 0;
-  display: flex;
+}
+
+.about-editorial-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(40px, 6vw, 80px);
   align-items: center;
 }
 
-.about-spatial-composition {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 1200px;
-  margin-top: 16px;
+.about-lead-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-bottom: 16px;
 }
 
-.about-editorial-title {
+.about-secondary-text {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+
+.about-pillars-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 36px;
+}
+
+.pillars-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.pillar-word {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.4rem, 7.5vw, 7.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
+  font-size: 1.4rem;
+  color: var(--accent-coral);
 }
 
-/* DYNAMIC CHANGING COLOR GRADIENTS */
-.heading-line-1 {
-  color: #ffffff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
-}
-
-.heading-line-2 {
-  background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #38bdf8 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 25px rgba(236, 72, 153, 0.5));
-  animation: dynamicColorShift 6s ease infinite alternate;
-}
-
-.heading-line-3 {
-  color: #ffffff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
-}
-
-.heading-line-4 {
-  background: linear-gradient(135deg, #00f0ff 0%, #ec4899 50%, #fbbf24 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 25px rgba(0, 240, 255, 0.5));
-  animation: dynamicColorShift 6s ease infinite alternate-reverse;
-}
-
-@keyframes dynamicColorShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.about-editorial-divider {
-  width: 180px;
-  height: 2px;
-  background: linear-gradient(90deg, #ec4899, #00f0ff);
-  margin: 8px 0;
-  border-radius: 1px;
-}
-
-.about-spatial-points {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-  margin: 20px 0;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-line);
-}
-
-.spatial-point {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.point-num {
+.one-team-goal {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 14px;
+}
+
+.about-visual-col {
+  position: relative;
+}
+
+.about-image-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  aspect-ratio: 4 / 3;
+}
+
+.about-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-image-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  background: rgba(14, 16, 22, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+
+.studio-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 700;
-  color: #ec4899;
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
 }
 
-.spatial-point p {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  color: #ffffff !important;
-  line-height: 1.5;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
-}
-
-.about-spatial-cta {
-  margin-top: 12px;
-}
-
-@media (max-width: 768px) {
-  .about-spatial-points {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .about-editorial-divider {
-    width: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-spatial-points {
+@media (max-width: 992px) {
+  .about-editorial-grid {
     grid-template-columns: 1fr;
   }
 }

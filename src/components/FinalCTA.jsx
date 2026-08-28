@@ -1,150 +1,72 @@
-import { useState } from 'react';
-import { Sparkles, ArrowRight, CheckCircle, X } from 'lucide-react';
-import CosmicBot from './CosmicBot';
+import { motion } from 'framer-motion';
+import { ArrowRight, Calendar, Sparkles } from 'lucide-react';
 import './FinalCTA.css';
 
 export default function FinalCTA() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', budget: '$10k - $25k', message: '' });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setModalOpen(false);
-    }, 2500);
+  const scrollToContact = () => {
+    const el = document.getElementById('contact');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="contact" className="final-cta-section section">
-      {/* Background Focus Zone Darkener for Content Safe Zone */}
-      <div className="cta-focus-zone-bg" />
+    <section className="section agency-final-cta-section">
+      {/* Floating Interactive Background Glow Elements */}
+      <motion.div
+        className="cta-glow-orb orb-a"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
-      <div className="container">
-        <div className="spatial-cta-composition">
-          
-          {/* Futuristic Floating 3D AI Companion Bot */}
-          <div className="cosmic-bot-wrapper">
-            <CosmicBot isCtaHovered={isHovered} />
+      <div className="container text-center relative-z">
+        <motion.div
+          className="cta-content-box"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="label-tag justify-center">
+            <span className="dot"></span>
+            <span>START A CONVERSATION</span>
           </div>
 
-          {/* Section Eyebrow Label */}
-          <div className="label cta-label">
-            <Sparkles size={14} className="label-icon" />
-            <span>10 • LAUNCH DESTINATION</span>
-          </div>
-
-          {/* Dynamic Color Satoshi Headline */}
-          <h2 className="heading-hero spatial-cta-title">
-            <span className="heading-line-ready">READY TO</span> <br />
-            <span className="heading-line-move">MOVE FASTER?</span>
+          <h2 className="cta-giant-headline">
+            GOT A BRAND <br />
+            <span className="accent-text">WORTH TALKING ABOUT?</span>
           </h2>
 
-          <p className="text-lg spatial-cta-lead">
-            Let's build something impossible to ignore.
+          <p className="cta-supporting-text">
+            Let's build something people can't scroll past.
           </p>
 
-          {/* Hero Physical CTA Button with Multi-Tone Gravitational Energy Aura */}
-          <div className="spatial-cta-actions">
-            <div className={`cta-aura-wrapper ${isHovered ? 'aura-active' : ''}`}>
-              
-              {/* Localized Energy Orbit Rings & Pulses */}
-              <div className="aura-orbit-ring" />
-              <div className="aura-pulse-wave" />
+          <div className="cta-buttons-wrap justify-center">
+            <motion.button
+              onClick={scrollToContact}
+              className="btn-primary cta-main-btn"
+              data-cursor="START"
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>START A PROJECT</span>
+              <ArrowRight size={18} className="btn-icon-arrow" />
+            </motion.button>
 
-              {/* Physical Hero CTA Button with Dynamic Shifting Multi-Color Surface */}
-              <button
-                onClick={() => setModalOpen(true)}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                className="btn-hero-physical-cta"
-                data-cursor="LAUNCH"
-              >
-                <span className="cta-btn-text">START A PROJECT</span>
-                <ArrowRight size={22} className="cta-arrow-icon" />
-              </button>
-            </div>
+            <motion.button
+              onClick={scrollToContact}
+              className="btn-secondary cta-sub-btn"
+              data-cursor="BOOK"
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Calendar size={16} />
+              <span>BOOK A STRATEGY CALL</span>
+            </motion.button>
           </div>
-
-        </div>
+        </motion.div>
       </div>
-
-      {/* PROJECT LAUNCH FORM MODAL */}
-      {modalOpen && (
-        <div className="spatial-modal-overlay">
-          <div className="spatial-modal-content">
-            <button onClick={() => setModalOpen(false)} className="spatial-close-btn" aria-label="Close modal">
-              <X size={20} />
-            </button>
-
-            {submitted ? (
-              <div className="modal-success-state">
-                <CheckCircle size={48} className="success-icon" />
-                <h3 className="heading-md">TRANSMISSION RECEIVED</h3>
-                <p className="text-lg">Your project signal has been received. Our directors will respond within 2 hours.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="spatial-form">
-                <div className="modal-header">
-                  <span className="label">PROJECT LAUNCH</span>
-                  <h3 className="heading-md">START A PROJECT</h3>
-                </div>
-
-                <div className="form-group">
-                  <label>YOUR NAME / BRAND</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Alex Vance, Apex Corp"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>EMAIL ADDRESS</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="alex@apexcorp.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>MONTHLY GROWTH BUDGET</label>
-                  <select
-                    value={formData.budget}
-                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                  >
-                    <option>$10k - $25k</option>
-                    <option>$25k - $50k</option>
-                    <option>$50k - $100k+</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label>PROJECT OBJECTIVES</label>
-                  <textarea
-                    rows={3}
-                    placeholder="Describe your growth goals and timeline..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  />
-                </div>
-
-                <button type="submit" className="btn-editorial-primary modal-submit-btn">
-                  <span>INITIATE LAUNCH →</span>
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 }
