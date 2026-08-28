@@ -1,6 +1,6 @@
 .agency-about-section {
   position: relative;
-}
+  overflow: hidden;}
 
 .about-editorial-grid {
   display: grid;

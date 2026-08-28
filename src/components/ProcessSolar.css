@@ -1,6 +1,6 @@
 .agency-process-section {
   position: relative;
-}
+  overflow: hidden;}
 
 .process-timeline-grid {
   display: grid;

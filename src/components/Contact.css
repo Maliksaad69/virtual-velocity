@@ -1,6 +1,6 @@
 .agency-contact-section {
   position: relative;
-}
+  overflow: hidden;}
 
 .contact-main-grid {
   display: grid;

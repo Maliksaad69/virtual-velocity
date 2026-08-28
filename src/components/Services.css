@@ -1,6 +1,6 @@
 .agency-services-section {
   position: relative;
-}
+  overflow: hidden;}
 
 .services-vertical-list {
   display: flex;

@@ -1,6 +1,6 @@
 .creative-vs-performance-section {
   position: relative;
-}
+  overflow: hidden;}
 
 .split-agency-grid {
   display: grid;

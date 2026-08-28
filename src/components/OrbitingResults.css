@@ -1,6 +1,6 @@
 .agency-results-section {
   position: relative;
-}
+  overflow: hidden;}
 
 .oversized-metrics-grid {
   display: grid;
