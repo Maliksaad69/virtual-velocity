@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-export function PresentationSection({ children, className = '', id, sectionNumber, totalSections = '12' }) {
+export function PresentationSection({ children, className = '', id }) {
   const containerRef = useRef(null);
   
   const { scrollYProgress } = useScroll({
@@ -9,29 +9,18 @@ export function PresentationSection({ children, className = '', id, sectionNumbe
     offset: ['start end', 'end start']
   });
 
-  // Pure linear smooth fade & subtle vertical float
-  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.4, 1, 1, 0.4]);
-  const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [30, 0, 0, -15]);
+  // Subtle natural scroll entrance
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.85, 1, 1, 0.85]);
 
   return (
-    <motion.div
+    <motion.section
       ref={containerRef}
       id={id}
-      style={{
-        opacity,
-        y
-      }}
-      className={`presentation-slide-wrap ${className}`}
+      style={{ opacity }}
+      className={`page-section-wrapper ${className}`}
     >
-      {/* Slide Index Badge */}
-      {sectionNumber && (
-        <div className="presentation-slide-badge">
-          <span className="badge-dot" />
-          <span className="badge-num">SLIDE {sectionNumber} / {totalSections}</span>
-        </div>
-      )}
       {children}
-    </motion.div>
+    </motion.section>
   );
 }
 
@@ -43,8 +32,8 @@ export function AnimatedSectionBackground({ imageSrc, overlayGradient, alt = 'Ba
     offset: ['start end', 'end start']
   });
 
-  // Scroll parallax offset
-  const scrollY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
+  // Smooth background parallax float
+  const scrollY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
 
   return (
     <div ref={bgRef} className="animated-section-bg-container">
@@ -58,12 +47,12 @@ export function AnimatedSectionBackground({ imageSrc, overlayGradient, alt = 'Ba
           className="animated-section-bg-img"
           initial={{ scale: 1.05 }}
           animate={{
-            scale: [1, 1.12, 1],
-            y: ['-3%', '3%', '-3%'],
-            rotate: [0, 0.5, 0]
+            scale: [1, 1.1, 1],
+            y: ['-2%', '2%', '-2%'],
+            rotate: [0, 0.3, 0]
           }}
           transition={{
-            duration: 16,
+            duration: 18,
             repeat: Infinity,
             repeatType: 'reverse',
             ease: 'easeInOut'

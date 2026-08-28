@@ -32,22 +32,22 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Accordion List */}
-        <PresentationSection id="services-breakdown" sectionNumber="01" totalSections="04">
+        <PresentationSection id="services-breakdown">
           <Services />
         </PresentationSection>
 
         {/* Dual Engine breakdown */}
-        <PresentationSection id="dual-engine" sectionNumber="02" totalSections="04">
+        <PresentationSection id="dual-engine">
           <CreativeVsPerformance />
         </PresentationSection>
 
         {/* Solar Workflow */}
-        <PresentationSection id="solar-workflow" sectionNumber="03" totalSections="04">
+        <PresentationSection id="solar-workflow">
           <ProcessSolar />
         </PresentationSection>
 
         {/* CTA */}
-        <PresentationSection id="services-cta" sectionNumber="04" totalSections="04">
+        <PresentationSection id="services-cta">
           <FinalCTA />
         </PresentationSection>
       </div>

@@ -29,7 +29,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Form & Global Offices */}
-        <PresentationSection id="contact-form-section" sectionNumber="01" totalSections="01">
+        <PresentationSection id="contact-form-section">
           <Contact />
         </PresentationSection>
       </div>

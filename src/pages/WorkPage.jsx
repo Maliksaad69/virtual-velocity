@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Sparkles, Filter } from 'lucide-react';
+import { ArrowUpRight, Filter } from 'lucide-react';
 import SelectedWork from '../components/SelectedWork';
 import TestimonialsCapsules from '../components/TestimonialsCapsules';
 import FinalCTA from '../components/FinalCTA';
@@ -128,7 +128,7 @@ export default function WorkPage() {
         </section>
 
         {/* Filtered Grid Section */}
-        <PresentationSection id="work-grid" sectionNumber="01" totalSections="03">
+        <PresentationSection id="work-grid">
           <div className="container">
             <motion.div className="work-full-grid" layout style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '32px' }}>
               <AnimatePresence>
@@ -175,12 +175,12 @@ export default function WorkPage() {
         </PresentationSection>
 
         {/* Selected Work Carousel */}
-        <PresentationSection id="featured" sectionNumber="02" totalSections="03">
+        <PresentationSection id="featured">
           <SelectedWork />
         </PresentationSection>
 
         {/* Testimonials */}
-        <PresentationSection id="client-proof" sectionNumber="03" totalSections="03">
+        <PresentationSection id="client-proof">
           <TestimonialsCapsules />
           <FinalCTA />
         </PresentationSection>

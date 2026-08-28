@@ -32,22 +32,22 @@ export default function AboutPage() {
         </section>
 
         {/* Agency Story */}
-        <PresentationSection id="about-agency" sectionNumber="01" totalSections="04">
+        <PresentationSection id="about-agency">
           <AboutCosmic />
         </PresentationSection>
 
         {/* Why Choose Us Difference */}
-        <PresentationSection id="why-us" sectionNumber="02" totalSections="04">
+        <PresentationSection id="why-us">
           <WhyChooseUs />
         </PresentationSection>
 
         {/* Orbiting Math & Results */}
-        <PresentationSection id="agency-results" sectionNumber="03" totalSections="04">
+        <PresentationSection id="agency-results">
           <OrbitingResults />
         </PresentationSection>
 
         {/* CTA */}
-        <PresentationSection id="about-cta" sectionNumber="04" totalSections="04">
+        <PresentationSection id="about-cta">
           <FinalCTA />
         </PresentationSection>
       </div>
