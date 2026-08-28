@@ -1,0 +1,76 @@
+.presentation-slide-wrap {
+  position: relative;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+.presentation-slide-badge {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(14, 16, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.presentation-slide-badge .badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-coral);
+  box-shadow: 0 0 8px var(--accent-coral);
+}
+
+.presentation-slide-badge .badge-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.12em;
+}
+
+/* Word Reveal Mask Styling */
+.word-reveal-container {
+  overflow: hidden;
+  display: block;
+}
+
+.word-reveal-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.word-inline {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Interactive 3D Card Physics */
+.motion-card-interactive {
+  transition: border-color 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+}
+
+.motion-card-interactive:hover {
+  border-color: var(--accent-coral) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-coral-glow) !important;
+}
+
+@media (max-width: 768px) {
+  .presentation-slide-badge {
+    top: 12px;
+    right: 16px;
+  }
+}

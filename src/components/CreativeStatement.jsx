@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { WordRevealText } from './PresentationSection';
 import './CreativeStatement.css';
 
 export default function CreativeStatement() {
@@ -7,10 +8,10 @@ export default function CreativeStatement() {
       <div className="container text-center">
         <motion.div
           className="statement-header-box"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.9, rotateX: 20 }}
+          whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="label-tag justify-center">
             <span className="dot"></span>
@@ -26,7 +27,7 @@ export default function CreativeStatement() {
 
         <motion.div
           className="statement-copy-box"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-30px' }}
           transition={{ duration: 0.8, delay: 0.2 }}

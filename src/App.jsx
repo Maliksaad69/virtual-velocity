@@ -7,6 +7,8 @@ import Hero from './components/Hero';
 import SelectedWork from './components/SelectedWork';
 import CreativeStatement from './components/CreativeStatement';
 import Services from './components/Services';
+import { PresentationSection } from './components/PresentationSection';
+import './components/PresentationSection.css';
 
 // Below-the-fold components
 const CreativeVsPerformance = lazy(() => import('./components/CreativeVsPerformance'));
@@ -44,22 +46,57 @@ export default function App() {
         {/* Floating Minimal Navigation */}
         <Navbar />
 
-        {/* Main Master Agency Layout */}
+        {/* Main Master Agency Presentation Layout */}
         <main className="agency-main-content">
-          <Hero />
-          <SelectedWork />
-          <CreativeStatement />
-          <Services />
+          <PresentationSection id="hero" sectionNumber="01" totalSections="12">
+            <Hero />
+          </PresentationSection>
+
+          <PresentationSection id="work" sectionNumber="02" totalSections="12">
+            <SelectedWork />
+          </PresentationSection>
+
+          <PresentationSection id="statement" sectionNumber="03" totalSections="12">
+            <CreativeStatement />
+          </PresentationSection>
+
+          <PresentationSection id="capabilities" sectionNumber="04" totalSections="12">
+            <Services />
+          </PresentationSection>
 
           <Suspense fallback={<div style={{ minHeight: '40vh' }} />}>
-            <CreativeVsPerformance />
-            <OrbitingResults />
-            <ProcessSolar />
-            <AboutCosmic />
-            <WhyChooseUs />
-            <TestimonialsCapsules />
-            <FinalCTA />
-            <Contact />
+            <PresentationSection id="split-domains" sectionNumber="05" totalSections="12">
+              <CreativeVsPerformance />
+            </PresentationSection>
+
+            <PresentationSection id="results" sectionNumber="06" totalSections="12">
+              <OrbitingResults />
+            </PresentationSection>
+
+            <PresentationSection id="process" sectionNumber="07" totalSections="12">
+              <ProcessSolar />
+            </PresentationSection>
+
+            <PresentationSection id="agency" sectionNumber="08" totalSections="12">
+              <AboutCosmic />
+            </PresentationSection>
+
+            <PresentationSection id="difference" sectionNumber="09" totalSections="12">
+              <WhyChooseUs />
+            </PresentationSection>
+
+            <PresentationSection id="testimonials" sectionNumber="10" totalSections="12">
+              <TestimonialsCapsules />
+            </PresentationSection>
+
+            <PresentationSection id="final-cta" sectionNumber="11" totalSections="12">
+              <FinalCTA />
+            </PresentationSection>
+
+            <PresentationSection id="contact" sectionNumber="12" totalSections="12">
+              <Contact />
+            </PresentationSection>
+
             <FooterCosmic />
           </Suspense>
         </main>
