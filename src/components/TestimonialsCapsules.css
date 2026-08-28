@@ -1,5 +1,7 @@
 .agency-testimonials-section {
   position: relative;
+  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.85) 30%, rgba(7, 8, 11, 0.88) 70%, var(--bg-black) 100%),
+              url('/images/bg_testimonials.png') center/cover no-repeat;
 }
 
 .cinematic-testimonial-showcase {
@@ -11,7 +13,8 @@
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: clamp(32px, 5vw, 64px);
-  background: var(--bg-surface);
+  background: rgba(14, 16, 23, 0.88);
+  backdrop-filter: blur(14px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
   padding: clamp(32px, 5vw, 60px);
@@ -27,7 +30,7 @@
 .editorial-quote-mark {
   color: var(--accent-coral);
   margin-bottom: 24px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .giant-quote-text {

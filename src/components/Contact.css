@@ -1,5 +1,7 @@
 .agency-contact-section {
   position: relative;
+  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.85) 30%, rgba(7, 8, 11, 0.88) 70%, var(--bg-black) 100%),
+              url('/images/bg_creative_statement.png') center/cover no-repeat;
 }
 
 .contact-main-grid {
@@ -10,11 +12,12 @@
 }
 
 .contact-form-card {
-  background: var(--bg-surface);
+  background: rgba(14, 16, 23, 0.88);
+  backdrop-filter: blur(14px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
   padding: clamp(32px, 5vw, 56px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .minimal-inquiry-form {
@@ -47,7 +50,7 @@
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background: #090b10;
+  background: rgba(9, 11, 16, 0.9);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-sm);
   padding: 16px 20px;
@@ -129,7 +132,8 @@
 }
 
 .office-location-card {
-  background: var(--bg-surface);
+  background: rgba(14, 16, 23, 0.85);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
   padding: 24px;
