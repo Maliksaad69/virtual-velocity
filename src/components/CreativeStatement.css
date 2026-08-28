@@ -1,10 +1,19 @@
 .creative-statement-section {
-  padding: clamp(100px, 12vw, 180px) 0;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 77, 41, 0.05) 0%, transparent 70%), var(--bg-black);
+  padding: clamp(120px, 14vw, 200px) 0;
+  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.72) 30%, rgba(7, 8, 11, 0.72) 70%, var(--bg-black) 100%),
+              url('/images/bg_creative_statement.png') center/cover no-repeat;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
   position: relative;
   overflow: hidden;
+}
+
+.creative-statement-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 59, 25, 0.12) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .text-center {
@@ -30,6 +39,7 @@
   color: var(--text-primary);
   margin-top: 16px;
   margin-bottom: 40px;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
 }
 
 .statement-copy-box {
@@ -43,6 +53,7 @@
   line-height: 1.35;
   color: var(--text-primary);
   margin-bottom: 20px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
 }
 
 .statement-sub-paragraph {

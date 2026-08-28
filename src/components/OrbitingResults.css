@@ -1,5 +1,7 @@
 .agency-results-section {
   position: relative;
+  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.82) 25%, rgba(7, 8, 11, 0.85) 75%, var(--bg-black) 100%),
+              url('/images/bg_results.png') center/cover no-repeat;
 }
 
 .oversized-metrics-grid {
@@ -10,7 +12,8 @@
 }
 
 .metric-card-editorial {
-  background: var(--bg-surface);
+  background: rgba(14, 16, 23, 0.85);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
   padding: clamp(28px, 4vw, 48px);

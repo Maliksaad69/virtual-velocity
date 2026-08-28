@@ -1,5 +1,7 @@
 .agency-services-section {
   position: relative;
+  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.85) 25%, rgba(7, 8, 11, 0.88) 75%, var(--bg-black) 100%),
+              url('/images/bg_services.png') center/cover no-repeat;
 }
 
 .services-vertical-list {
@@ -7,11 +9,12 @@
   flex-direction: column;
   border-top: 1px solid var(--border-medium);
   margin-top: 48px;
+  backdrop-filter: blur(8px);
 }
 
 .service-vertical-row {
   border-bottom: 1px solid var(--border-medium);
-  padding: 32px 0;
+  padding: 32px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   position: relative;
@@ -20,7 +23,7 @@
 
 .service-vertical-row:hover,
 .service-vertical-row.is-open {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(14, 16, 23, 0.75);
 }
 
 .service-row-header {
