@@ -1,6 +1,6 @@
 .agency-services-section {
   position: relative;
-  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.85) 25%, rgba(7, 8, 11, 0.88) 75%, var(--bg-black) 100%),
+  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.45) 25%, rgba(7, 8, 11, 0.45) 75%, var(--bg-black) 100%),
               url('/images/bg_services.png') center/cover no-repeat;
 }
 
@@ -23,7 +23,7 @@
 
 .service-vertical-row:hover,
 .service-vertical-row.is-open {
-  background: rgba(14, 16, 23, 0.75);
+  background: rgba(14, 16, 23, 0.85);
 }
 
 .service-row-header {
@@ -51,6 +51,7 @@
   color: var(--text-primary);
   margin: 0;
   flex-shrink: 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
 }
 
 .row-subtitle-preview {

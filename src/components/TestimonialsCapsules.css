@@ -1,6 +1,6 @@
 .agency-testimonials-section {
   position: relative;
-  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.85) 30%, rgba(7, 8, 11, 0.88) 70%, var(--bg-black) 100%),
+  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.45) 30%, rgba(7, 8, 11, 0.45) 70%, var(--bg-black) 100%),
               url('/images/bg_testimonials.png') center/cover no-repeat;
 }
 
@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: clamp(32px, 5vw, 64px);
-  background: rgba(14, 16, 23, 0.88);
+  background: rgba(14, 16, 23, 0.82);
   backdrop-filter: blur(14px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);

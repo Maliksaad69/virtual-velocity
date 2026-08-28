@@ -1,6 +1,6 @@
 .creative-vs-performance-section {
   position: relative;
-  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.85) 30%, rgba(7, 8, 11, 0.88) 70%, var(--bg-black) 100%),
+  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.45) 30%, rgba(7, 8, 11, 0.45) 70%, var(--bg-black) 100%),
               url('/images/bg_creative_vs_performance.png') center/cover no-repeat;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .split-card {
-  background: rgba(14, 16, 23, 0.82);
+  background: rgba(14, 16, 23, 0.78);
   backdrop-filter: blur(14px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
@@ -70,7 +70,7 @@
 
 /* Synthesis Center Banner */
 .synthesis-banner {
-  background: rgba(14, 16, 22, 0.92);
+  background: rgba(14, 16, 22, 0.88);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
