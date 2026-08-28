@@ -1,14 +1,10 @@
+import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import './FooterCosmic.css';
 
 export default function FooterCosmic() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -30,12 +26,11 @@ export default function FooterCosmic() {
           <div className="footer-links-col">
             <h4 className="footer-col-title">NAVIGATION</h4>
             <ul className="footer-links">
-              <li><button onClick={() => scrollToSection('work')}>Selected Work</button></li>
-              <li><button onClick={() => scrollToSection('services')}>Services</button></li>
-              <li><button onClick={() => scrollToSection('agency')}>About Agency</button></li>
-              <li><button onClick={() => scrollToSection('process')}>Our Process</button></li>
-              <li><button onClick={() => scrollToSection('results')}>Impact & Math</button></li>
-              <li><button onClick={() => scrollToSection('contact')}>Contact Us</button></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/work">Selected Work</Link></li>
+              <li><Link to="/services">Services & Capabilities</Link></li>
+              <li><Link to="/about">About Agency</Link></li>
+              <li><Link to="/contact">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -63,9 +58,9 @@ export default function FooterCosmic() {
         <div className="footer-bottom-bar">
           <p>© {new Date().getFullYear()} VIRTUAL VELOCITY DIGITAL MARKETING & CREATIVE AGENCY. ALL RIGHTS RESERVED.</p>
           <div className="footer-legal-links">
-            <a href="#privacy">Privacy Policy</a>
+            <Link to="/contact">Privacy Policy</Link>
             <span>•</span>
-            <a href="#terms">Terms of Service</a>
+            <Link to="/contact">Terms of Service</Link>
           </div>
         </div>
       </div>

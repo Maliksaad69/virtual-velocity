@@ -1,51 +1,38 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import './Navbar.css';
 
-const NAV_SECTIONS = [
-  { id: 'work', label: 'WORK' },
-  { id: 'capabilities', label: 'CAPABILITIES' },
-  { id: 'agency', label: 'ABOUT' },
-  { id: 'contact', label: 'CONTACT' },
+const NAV_ITEMS = [
+  { path: '/', label: 'HOME' },
+  { path: '/work', label: 'WORK' },
+  { path: '/services', label: 'SERVICES' },
+  { path: '/about', label: 'ABOUT' },
+  { path: '/contact', label: 'CONTACT' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
-
-      const scrollPos = window.scrollY + 220;
-      for (const sec of NAV_SECTIONS) {
-        const el = document.getElementById(sec.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(sec.id);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
+  const handleNavClick = (path) => {
     setMobileMenuOpen(false);
-    if (id === 'hero') {
+    if (location.pathname === path) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(path);
     }
   };
 
@@ -58,19 +45,25 @@ export default function Navbar() {
     >
       <nav className="agency-navbar-inner">
         {/* Minimal Editorial Agency Logo */}
-        <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }} className="agency-logo">
+        <Link to="/" onClick={() => handleNavClick('/')} className="agency-logo">
           <span className="logo-main">VIRTUAL VELOCITY</span>
           <span className="logo-badge">STUDIO</span>
-        </a>
+        </Link>
 
         {/* Minimal Nav Links */}
         <ul className="agency-nav-links">
-          {NAV_SECTIONS.map((item) => {
-            const isActive = activeSection === item.id;
+          {NAV_ITEMS.map((item) => {
+            const isActive = location.pathname === item.path;
             return (
-              <li key={item.id} style={{ position: 'relative' }}>
-                <button
-                  onClick={() => scrollToSection(item.id)}
+              <li key={item.path} style={{ position: 'relative' }}>
+                <Link
+                  to={item.path}
+                  onClick={(e) => {
+                    if (location.pathname === item.path) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
                   className={`agency-nav-link ${isActive ? 'active' : ''}`}
                 >
                   <span style={{ position: 'relative', zIndex: 2 }}>{item.label}</span>
@@ -89,7 +82,7 @@ export default function Navbar() {
                       }}
                     />
                   )}
-                </button>
+                </Link>
               </li>
             );
           })}
@@ -103,7 +96,7 @@ export default function Navbar() {
           </div>
 
           <motion.button
-            onClick={() => scrollToSection('contact')}
+            onClick={() => handleNavClick('/contact')}
             className="btn-primary nav-cta-btn"
             data-cursor="TALK"
             whileHover={{ scale: 1.04 }}
@@ -135,18 +128,18 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
           >
             <ul className="mobile-links">
-              {NAV_SECTIONS.map((sec) => (
-                <li key={sec.id}>
-                  <button onClick={() => scrollToSection(sec.id)}>
-                    {sec.label}
-                  </button>
+              {NAV_ITEMS.map((item) => (
+                <li key={item.path}>
+                  <Link to={item.path} onClick={() => setMobileMenuOpen(false)}>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
             <div className="mobile-cta-box">
-              <button onClick={() => scrollToSection('contact')} className="btn-primary full-width">
+              <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="btn-primary full-width">
                 START A PROJECT <ArrowUpRight size={16} />
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
