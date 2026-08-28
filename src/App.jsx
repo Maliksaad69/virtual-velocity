@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, lazy, Suspense } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
 import Loader from './components/Loader';
 import CustomCursor from './components/CustomCursor';
@@ -9,14 +9,16 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ServicesUniverse from './components/ServicesUniverse';
 import VelocityEngine from './components/VelocityEngine';
-import CaseStudiesUniverse from './components/CaseStudiesUniverse';
-import OrbitingResults from './components/OrbitingResults';
-import ProcessSolar from './components/ProcessSolar';
-import AboutCosmic from './components/AboutCosmic';
-import TestimonialsCapsules from './components/TestimonialsCapsules';
-import AIFutures from './components/AIFutures';
-import FinalCTA from './components/FinalCTA';
-import FooterCosmic from './components/FooterCosmic';
+
+// Lazy Loaded Below-the-Fold Components for Instant Initial Page Render
+const CaseStudiesUniverse = lazy(() => import('./components/CaseStudiesUniverse'));
+const OrbitingResults = lazy(() => import('./components/OrbitingResults'));
+const ProcessSolar = lazy(() => import('./components/ProcessSolar'));
+const AboutCosmic = lazy(() => import('./components/AboutCosmic'));
+const TestimonialsCapsules = lazy(() => import('./components/TestimonialsCapsules'));
+const AIFutures = lazy(() => import('./components/AIFutures'));
+const FinalCTA = lazy(() => import('./components/FinalCTA'));
+const FooterCosmic = lazy(() => import('./components/FooterCosmic'));
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -58,37 +60,38 @@ export default function App() {
             <VelocityEngine />
           </CinematicSceneWrapper>
 
-          <CinematicSceneWrapper variant="slide-right">
-            <CaseStudiesUniverse />
-          </CinematicSceneWrapper>
+          <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+            <CinematicSceneWrapper variant="slide-right">
+              <CaseStudiesUniverse />
+            </CinematicSceneWrapper>
 
-          <CinematicSceneWrapper variant="zoom-depth">
-            <OrbitingResults />
-          </CinematicSceneWrapper>
+            <CinematicSceneWrapper variant="zoom-depth">
+              <OrbitingResults />
+            </CinematicSceneWrapper>
 
-          <CinematicSceneWrapper variant="slide-up">
-            <ProcessSolar />
-          </CinematicSceneWrapper>
+            <CinematicSceneWrapper variant="slide-up">
+              <ProcessSolar />
+            </CinematicSceneWrapper>
 
-          <CinematicSceneWrapper variant="zoom-depth">
-            <AboutCosmic />
-          </CinematicSceneWrapper>
+            <CinematicSceneWrapper variant="zoom-depth">
+              <AboutCosmic />
+            </CinematicSceneWrapper>
 
-          <CinematicSceneWrapper variant="slide-right">
-            <TestimonialsCapsules />
-          </CinematicSceneWrapper>
+            <CinematicSceneWrapper variant="slide-right">
+              <TestimonialsCapsules />
+            </CinematicSceneWrapper>
 
-          <CinematicSceneWrapper variant="zoom-depth">
-            <AIFutures />
-          </CinematicSceneWrapper>
+            <CinematicSceneWrapper variant="zoom-depth">
+              <AIFutures />
+            </CinematicSceneWrapper>
 
-          <CinematicSceneWrapper variant="slide-up">
-            <FinalCTA />
-          </CinematicSceneWrapper>
+            <CinematicSceneWrapper variant="slide-up">
+              <FinalCTA />
+            </CinematicSceneWrapper>
+
+            <FooterCosmic />
+          </Suspense>
         </main>
-
-        {/* Minimal Cosmic Footer */}
-        <FooterCosmic />
       </div>
     </ErrorBoundary>
   );

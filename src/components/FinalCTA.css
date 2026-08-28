@@ -1,55 +1,183 @@
 .final-cta-section {
   position: relative;
-  padding: 80px 0 60px;
+  padding: 100px 0 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+  content-visibility: auto;
 }
 
-.spatial-cta-content {
+/* Background Focus Zone Darkener for Content Safe Zone */
+.cta-focus-zone-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.95) 0%, rgba(6, 1, 10, 0.85) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spatial-cta-composition {
+  position: relative;
+  z-index: 5;
   max-width: 1100px;
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
+/* 3D AI Companion Bot Positioning */
+.cosmic-bot-wrapper {
+  margin-bottom: -10px;
+  transform: translateY(0);
+  filter: drop-shadow(0 15px 35px rgba(236, 72, 153, 0.4));
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.cta-label {
+  color: #ffffff !important;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 24px;
+}
+
+.cta-label .label-icon {
+  color: #ec4899;
+}
+
+/* Oversized Pure White Satoshi Headline */
 .spatial-cta-title {
-  margin-top: 16px;
-  font-size: clamp(3.5rem, 10vw, 8.5rem) !important;
   font-family: var(--font-display);
   font-weight: 900;
-  line-height: 0.94;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.8rem, 9.5vw, 8.5rem) !important;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 .spatial-cta-title .heading-main {
   color: #ffffff !important;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.98);
 }
 
 .spatial-cta-title .heading-accent {
-  color: #e879f9 !important;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98), 0 0 25px rgba(232, 121, 249, 0.5);
-}
-
-.final-cta-section .label {
-  color: #e879f9 !important;
-  border-bottom-color: rgba(232, 121, 249, 0.3);
-}
-
-.final-cta-section .label-icon {
-  color: #e879f9;
+  color: #ffffff !important;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.98), 0 0 35px rgba(236, 72, 153, 0.4);
 }
 
 .spatial-cta-lead {
-  font-size: clamp(1.1rem, 1.8vw, 1.5rem) !important;
-  color: var(--text-secondary) !important;
-  margin-bottom: 36px;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 2vw, 1.6rem) !important;
+  color: #ffffff !important;
+  margin-bottom: 40px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
 }
 
 .spatial-cta-actions {
   display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+/* GRAVITATIONAL ENERGY AURA WRAPPER */
+.cta-aura-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  max-width: 100%;
+}
+
+/* Subtle Orbit Energy Rings */
+.aura-orbit-ring {
+  position: absolute;
+  inset: -14px;
+  border-radius: 8px;
+  border: 1px dashed rgba(236, 72, 153, 0.35);
+  pointer-events: none;
+  transition: all 0.5s var(--ease-out-expo);
+  opacity: 0.5;
+}
+
+.aura-pulse-wave {
+  position: absolute;
+  inset: -6px;
+  border-radius: 6px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.aura-active .aura-orbit-ring {
+  inset: -22px;
+  border-color: rgba(236, 72, 153, 0.8);
+  opacity: 1;
+  transform: rotate(180deg);
+}
+
+.aura-active .aura-pulse-wave {
+  opacity: 1;
+  animation: pulseAura 1.5s infinite alternate;
+}
+
+@keyframes pulseAura {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+/* PHYSICAL HERO CTA BUTTON — SOLID BRIGHT SURFACE WITH DARK TEXT */
+.btn-hero-physical-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px 54px;
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.0rem, 2.2vw, 1.4rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: all 0.35s var(--ease-out-expo);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.btn-hero-physical-cta:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+  transform: scale(1.06) translateY(-4px);
+  box-shadow: 0 20px 60px rgba(236, 72, 153, 0.7), 0 0 50px rgba(255, 255, 255, 0.8);
+}
+
+.btn-hero-physical-cta:active {
+  transform: scale(0.97) translateY(0);
+}
+
+.cta-arrow-icon {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.btn-hero-physical-cta:hover .cta-arrow-icon {
+  transform: translateX(8px);
 }
 
 /* Form Modal Overlay */
@@ -61,7 +189,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
 }
 
 .spatial-modal-content {
@@ -70,14 +198,16 @@
   max-width: 580px;
   background: #000000;
   border: 1px solid var(--border-line-bright);
-  padding: 48px 40px;
+  padding: 36px 28px;
   border-radius: 4px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .spatial-close-btn {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 20px;
+  right: 20px;
   background: transparent;
   border: none;
   color: #ffffff;
@@ -87,20 +217,20 @@
 .spatial-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .form-group label {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
-  color: #e879f9;
+  color: #ec4899;
   letter-spacing: 0.15em;
 }
 
@@ -111,9 +241,9 @@
   background: #050914;
   border: 1px solid var(--border-line);
   color: #ffffff;
-  padding: 14px 16px;
+  padding: 12px 14px;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   border-radius: 4px;
   outline: none;
 }
@@ -121,7 +251,7 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #e879f9;
+  border-color: #ec4899;
 }
 
 .modal-submit-btn {
@@ -138,5 +268,20 @@
 }
 
 .success-icon {
-  color: #e879f9;
+  color: #ec4899;
+}
+
+@media (max-width: 768px) {
+  .final-cta-section {
+    padding: 60px 0 80px;
+  }
+  .btn-hero-physical-cta {
+    padding: 18px 32px;
+    font-size: 0.98rem;
+    gap: 12px;
+    width: 100%;
+  }
+  .cosmic-bot-wrapper {
+    transform: scale(0.75) translateY(0);
+  }
 }

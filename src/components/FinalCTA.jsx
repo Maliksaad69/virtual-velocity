@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Sparkles, ArrowRight, CheckCircle, Send, X } from 'lucide-react';
+import { Sparkles, ArrowRight, CheckCircle, X } from 'lucide-react';
+import CosmicBot from './CosmicBot';
 import './FinalCTA.css';
 
 export default function FinalCTA() {
   const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', budget: '$10k - $25k', message: '' });
 
   const handleSubmit = (e) => {
@@ -18,15 +20,24 @@ export default function FinalCTA() {
 
   return (
     <section id="contact" className="final-cta-section section">
+      {/* Background Focus Zone Darkener for Content Safe Zone */}
+      <div className="cta-focus-zone-bg" />
+
       <div className="container">
-        <div className="spatial-cta-content">
-          {/* Spatial Label */}
-          <div className="label">
-            <Sparkles size={14} className="label-icon" />
-            <span>06 • LAUNCH DESTINATION</span>
+        <div className="spatial-cta-composition">
+          
+          {/* Futuristic Floating 3D AI Companion Bot */}
+          <div className="cosmic-bot-wrapper">
+            <CosmicBot isCtaHovered={isHovered} />
           </div>
 
-          {/* Oversized Headline */}
+          {/* Section Eyebrow Label */}
+          <div className="label cta-label">
+            <Sparkles size={14} className="label-icon" />
+            <span>10 • LAUNCH DESTINATION</span>
+          </div>
+
+          {/* Pure White Satoshi Headline */}
           <h2 className="heading-hero spatial-cta-title">
             <span className="heading-main">READY TO</span> <br />
             <span className="heading-accent">MOVE FASTER?</span>
@@ -36,17 +47,28 @@ export default function FinalCTA() {
             Let's build something impossible to ignore.
           </p>
 
-          {/* Control Button */}
+          {/* Hero Physical CTA Button with Gravitational Energy Aura */}
           <div className="spatial-cta-actions">
-            <button
-              onClick={() => setModalOpen(true)}
-              className="btn-editorial-primary"
-              data-cursor="LAUNCH"
-            >
-              <span>START A PROJECT</span>
-              <ArrowRight size={18} />
-            </button>
+            <div className={`cta-aura-wrapper ${isHovered ? 'aura-active' : ''}`}>
+              
+              {/* Localized Energy Orbit Rings & Pulses */}
+              <div className="aura-orbit-ring" />
+              <div className="aura-pulse-wave" />
+
+              {/* Physical Hero CTA Button */}
+              <button
+                onClick={() => setModalOpen(true)}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="btn-hero-physical-cta"
+                data-cursor="LAUNCH"
+              >
+                <span>START A PROJECT</span>
+                <ArrowRight size={22} className="cta-arrow-icon" />
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
 

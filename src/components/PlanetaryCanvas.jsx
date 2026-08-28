@@ -13,11 +13,12 @@ export default function PlanetaryCanvas() {
 
     let width = window.innerWidth;
     let height = window.innerHeight;
+    const isMobile = width < 768 || ('ontouchstart' in window);
 
     let renderer;
     try {
       renderer = new THREE.WebGLRenderer({
-        antialias: true,
+        antialias: !isMobile,
         alpha: true,
         powerPreference: 'high-performance',
       });
@@ -27,14 +28,14 @@ export default function PlanetaryCanvas() {
     }
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x000000, 0.02);
+    scene.fog = new THREE.FogExp2(0x000000, 0.018);
 
     const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
 
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio, 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.85; // Muted exposure for zero glare & high text legibility
+    renderer.toneMappingExposure = 0.85;
     container.appendChild(renderer.domElement);
 
     // --- 01. PROCEDURAL 3D WORMHOLE SPLINE PATH ---
@@ -51,29 +52,30 @@ export default function PlanetaryCanvas() {
     const wormholeCurve = new THREE.CatmullRomCurve3(splinePoints);
 
     // --- 02. 3D WORMHOLE TUNNEL MESH & DARK MAGENTA GRID ---
-    const tubeGeo = new THREE.TubeGeometry(wormholeCurve, 220, 4.5, 32, false);
+    const tubeSegments = isMobile ? 120 : 220;
+    const tubeGeo = new THREE.TubeGeometry(wormholeCurve, tubeSegments, 4.5, isMobile ? 16 : 32, false);
 
     const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 512;
+    canvas.width = 256;
+    canvas.height = 256;
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, 512, 512);
+    ctx.fillRect(0, 0, 256, 256);
 
     ctx.strokeStyle = '#ec4899';
     ctx.lineWidth = 1.0;
-    for (let x = 0; x <= 512; x += 32) {
+    for (let x = 0; x <= 256; x += 16) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
-      ctx.lineTo(x, 512);
+      ctx.lineTo(x, 256);
       ctx.stroke();
     }
     ctx.strokeStyle = '#831843';
     ctx.lineWidth = 0.7;
-    for (let y = 0; y <= 512; y += 32) {
+    for (let y = 0; y <= 256; y += 16) {
       ctx.beginPath();
       ctx.moveTo(0, y);
-      ctx.lineTo(512, y);
+      ctx.lineTo(256, y);
       ctx.stroke();
     }
 
@@ -103,35 +105,32 @@ export default function PlanetaryCanvas() {
     const tubeWireMesh = new THREE.Mesh(tubeGeo, tubeWireMat);
     scene.add(tubeWireMesh);
 
-    // --- 03. METEORITE RAIN SYSTEM (METEORS RAINING DOWN THROUGH SPACE) ---
-    const meteorCount = 120;
+    // --- 03. METEORITE RAIN SYSTEM ---
+    const meteorCount = isMobile ? 30 : 70;
     const meteorGeo = new THREE.BufferGeometry();
-    const meteorPos = new Float32Array(meteorCount * 6); // 2 vertices per line streak
+    const meteorPos = new Float32Array(meteorCount * 6);
     const meteorVelocities = new Float32Array(meteorCount * 3);
     const meteorLengths = new Float32Array(meteorCount);
 
     for (let i = 0; i < meteorCount; i++) {
-      const rx = (Math.random() - 0.5) * 60;
-      const ry = Math.random() * 50 + 10;
-      const rz = (Math.random() - 0.5) * 60;
+      const rx = (Math.random() - 0.5) * 70;
+      const ry = Math.random() * 60 - 10;
+      const rz = (Math.random() - 0.5) * 70;
 
-      const len = 1.5 + Math.random() * 3.5;
+      const len = 1.2 + Math.random() * 2.8;
       meteorLengths[i] = len;
 
-      // Line start (head)
       meteorPos[i * 6] = rx;
       meteorPos[i * 6 + 1] = ry;
       meteorPos[i * 6 + 2] = rz;
 
-      // Line end (tail)
-      meteorPos[i * 6 + 3] = rx + len * 0.3;
+      meteorPos[i * 6 + 3] = rx + len * 0.2;
       meteorPos[i * 6 + 4] = ry + len;
-      meteorPos[i * 6 + 5] = rz + len * 0.2;
+      meteorPos[i * 6 + 5] = rz + len * 0.15;
 
-      // Downward velocity
-      meteorVelocities[i * 3] = -(0.1 + Math.random() * 0.15); // X drift
-      meteorVelocities[i * 3 + 1] = -(0.4 + Math.random() * 0.6); // Y rain speed
-      meteorVelocities[i * 3 + 2] = -(0.08 + Math.random() * 0.1); // Z drift
+      meteorVelocities[i * 3] = -(0.04 + Math.random() * 0.08);
+      meteorVelocities[i * 3 + 1] = -(0.2 + Math.random() * 0.3);
+      meteorVelocities[i * 3 + 2] = -(0.03 + Math.random() * 0.05);
     }
 
     meteorGeo.setAttribute('position', new THREE.BufferAttribute(meteorPos, 3));
@@ -139,8 +138,8 @@ export default function PlanetaryCanvas() {
     const meteorMat = new THREE.LineBasicMaterial({
       color: 0xec4899,
       transparent: true,
-      opacity: 0.7,
-      linewidth: 2,
+      opacity: 0.45,
+      linewidth: 1.5,
     });
 
     const meteorRainLines = new THREE.LineSegments(meteorGeo, meteorMat);
@@ -152,53 +151,48 @@ export default function PlanetaryCanvas() {
     scene.add(blackHoleGroup);
 
     // 4.1 Pitch-Black Event Horizon Void Core
-    const eventHorizonGeo = new THREE.SphereGeometry(3.0, 64, 64);
-    const eventHorizonMat = new THREE.MeshBasicMaterial({
-      color: 0x000000,
-    });
+    const eventHorizonGeo = new THREE.SphereGeometry(3.0, isMobile ? 32 : 64, isMobile ? 32 : 64);
+    const eventHorizonMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
     const eventHorizonMesh = new THREE.Mesh(eventHorizonGeo, eventHorizonMat);
     blackHoleGroup.add(eventHorizonMesh);
 
-    // 4.2 Multi-Stripe Accretion Disk Canvas Texture
+    // 4.2 Accretion Disk Canvas Texture
     const accretionCanvas = document.createElement('canvas');
-    accretionCanvas.width = 1024;
-    accretionCanvas.height = 1024;
+    accretionCanvas.width = isMobile ? 512 : 1024;
+    accretionCanvas.height = isMobile ? 512 : 1024;
     const actx = accretionCanvas.getContext('2d');
     
-    const cx = 512, cy = 512;
+    const cx = accretionCanvas.width / 2;
+    const cy = accretionCanvas.height / 2;
     actx.fillStyle = '#000000';
-    actx.fillRect(0, 0, 1024, 1024);
+    actx.fillRect(0, 0, accretionCanvas.width, accretionCanvas.height);
 
-    const ringColors = [
-      '#ec4899', '#ffffff', '#be185d', '#9d174d', '#831843', '#581c87',
-      '#000000', '#db2777', '#ffffff', '#ec4899', '#831843'
-    ];
+    const grad = actx.createRadialGradient(cx, cy, cx * 0.28, cx, cy, cx * 0.98);
+    grad.addColorStop(0.0, 'rgba(255, 255, 255, 1.0)');
+    grad.addColorStop(0.12, 'rgba(236, 72, 153, 0.9)');
+    grad.addColorStop(0.35, 'rgba(192, 132, 252, 0.6)');
+    grad.addColorStop(0.60, 'rgba(131, 24, 67, 0.35)');
+    grad.addColorStop(0.85, 'rgba(88, 28, 135, 0.15)');
+    grad.addColorStop(1.0, 'transparent');
 
-    for (let r = 500; r > 130; r -= 10) {
+    actx.fillStyle = grad;
+    actx.fillRect(0, 0, accretionCanvas.width, accretionCanvas.height);
+
+    for (let r = cx * 0.32; r < cx * 0.94; r += 16) {
       actx.beginPath();
       actx.arc(cx, cy, r, 0, Math.PI * 2);
-      const colorIdx = Math.floor((r / 500) * ringColors.length) % ringColors.length;
-      actx.fillStyle = ringColors[colorIdx];
-      actx.fill();
-    }
-
-    for (let i = 0; i < 360; i += 4) {
-      const angle = (i * Math.PI) / 180;
-      actx.beginPath();
-      actx.moveTo(cx + Math.cos(angle) * 140, cy + Math.sin(angle) * 140);
-      actx.lineTo(cx + Math.cos(angle + 0.45) * 495, cy + Math.sin(angle + 0.45) * 495);
-      actx.strokeStyle = 'rgba(0,0,0,0.55)';
-      actx.lineWidth = 5;
+      actx.strokeStyle = r % 32 === 0 ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.25)';
+      actx.lineWidth = 6;
       actx.stroke();
     }
 
     const accretionTex = new THREE.CanvasTexture(accretionCanvas);
-    const accretionGeo = new THREE.RingGeometry(3.05, 11.8, 128);
+    const accretionGeo = new THREE.RingGeometry(3.05, 11.8, isMobile ? 64 : 128);
     const accretionMat = new THREE.MeshBasicMaterial({
       map: accretionTex,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.7,
       blending: THREE.NormalBlending,
     });
     const accretionMesh = new THREE.Mesh(accretionGeo, accretionMat);
@@ -207,11 +201,11 @@ export default function PlanetaryCanvas() {
     blackHoleGroup.add(accretionMesh);
 
     // 4.3 Gravitational Lensing Arches
-    const topLensGeo = new THREE.TorusGeometry(3.3, 0.45, 32, 128, Math.PI);
+    const topLensGeo = new THREE.TorusGeometry(3.3, 0.45, 16, isMobile ? 64 : 128, Math.PI);
     const topLensMat = new THREE.MeshBasicMaterial({
       map: accretionTex,
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.55,
       blending: THREE.NormalBlending,
     });
     const topLensMesh = new THREE.Mesh(topLensGeo, topLensMat);
@@ -223,73 +217,80 @@ export default function PlanetaryCanvas() {
     bottomLensMesh.rotation.x = -Math.PI / 2;
     blackHoleGroup.add(bottomLensMesh);
 
-    // 4.4 Intense Photon Core Ring
-    const einsteinGeo = new THREE.TorusGeometry(3.06, 0.09, 32, 128);
+    // 4.4 Photon Ring
+    const einsteinGeo = new THREE.TorusGeometry(3.06, 0.08, 16, isMobile ? 64 : 128);
     const einsteinMat = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.85,
     });
     const einsteinRing = new THREE.Mesh(einsteinGeo, einsteinMat);
     blackHoleGroup.add(einsteinRing);
 
-    // 4.5 Soft Cosmic Dust / Cloud Particles
-    const nebulaCount = 35;
+    // 4.5 Cosmic Cloud Sprites
+    const nebulaCount = isMobile ? 8 : 20;
     const nebulaGroup = new THREE.Group();
 
     for (let i = 0; i < nebulaCount; i++) {
       const nebCanvas = document.createElement('canvas');
-      nebCanvas.width = 128;
-      nebCanvas.height = 128;
+      nebCanvas.width = 64;
+      nebCanvas.height = 64;
       const nctx = nebCanvas.getContext('2d');
-      const ngrad = nctx.createRadialGradient(64, 64, 0, 64, 64, 64);
-      ngrad.addColorStop(0, 'rgba(236, 72, 153, 0.18)');
+      const ngrad = nctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      ngrad.addColorStop(0, 'rgba(236, 72, 153, 0.15)');
       ngrad.addColorStop(1, 'transparent');
       nctx.fillStyle = ngrad;
-      nctx.fillRect(0, 0, 128, 128);
+      nctx.fillRect(0, 0, 64, 64);
 
       const nebTex = new THREE.CanvasTexture(nebCanvas);
       const nebMat = new THREE.SpriteMaterial({
         map: nebTex,
         transparent: true,
-        opacity: 0.3,
+        opacity: 0.25,
       });
       const sprite = new THREE.Sprite(nebMat);
 
       const angle = Math.random() * Math.PI * 2;
-      const dist = 6.0 + Math.random() * 18.0;
+      const dist = 6.0 + Math.random() * 16.0;
       sprite.position.set(
         Math.cos(angle) * dist,
-        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 8,
         Math.sin(angle) * dist
       );
-      const scale = 8.0 + Math.random() * 14.0;
+      const scale = 8.0 + Math.random() * 12.0;
       sprite.scale.set(scale, scale, 1);
       nebulaGroup.add(sprite);
     }
     blackHoleGroup.add(nebulaGroup);
 
     // 4.6 Gravitational Particle Inflow System
-    const pullParticleCount = 3000;
+    const pullParticleCount = isMobile ? 450 : 1200;
     const pullGeo = new THREE.BufferGeometry();
     const pullPos = new Float32Array(pullParticleCount * 3);
-    const pullVelocities = new Float32Array(pullParticleCount);
+    const pullAngles = new Float32Array(pullParticleCount);
+    const pullRadii = new Float32Array(pullParticleCount);
+    const pullSpeeds = new Float32Array(pullParticleCount);
+    const pullYOffsets = new Float32Array(pullParticleCount);
     const pullColors = new Float32Array(pullParticleCount * 3);
 
     const pinkColor = new THREE.Color(0xec4899);
     const whiteColor = new THREE.Color(0xffffff);
-    const purpleColor = new THREE.Color(0x831843);
+    const purpleColor = new THREE.Color(0xc084fc);
 
     for (let i = 0; i < pullParticleCount; i++) {
-      const radius = 4.0 + Math.random() * 16.0;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = (Math.random() - 0.5) * Math.PI * 0.9;
+      const radius = 3.5 + Math.random() * 14.5;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 0.015 + Math.random() * 0.03;
+      const yOffset = (Math.random() - 0.5) * 4.0;
 
-      pullPos[i * 3] = radius * Math.cos(theta) * Math.cos(phi);
-      pullPos[i * 3 + 1] = radius * Math.sin(phi);
-      pullPos[i * 3 + 2] = 11.5 + radius * Math.sin(theta) * Math.cos(phi);
+      pullRadii[i] = radius;
+      pullAngles[i] = angle;
+      pullSpeeds[i] = speed;
+      pullYOffsets[i] = yOffset;
 
-      pullVelocities[i] = 0.03 + Math.random() * 0.05;
+      pullPos[i * 3] = radius * Math.cos(angle);
+      pullPos[i * 3 + 1] = yOffset;
+      pullPos[i * 3 + 2] = radius * Math.sin(angle);
 
       const randVal = Math.random();
       const randColor = randVal > 0.6 ? pinkColor : (randVal > 0.3 ? whiteColor : purpleColor);
@@ -302,25 +303,25 @@ export default function PlanetaryCanvas() {
     pullGeo.setAttribute('color', new THREE.BufferAttribute(pullColors, 3));
 
     const pullMat = new THREE.PointsMaterial({
-      size: 0.12,
+      size: isMobile ? 0.14 : 0.1,
       vertexColors: true,
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.45,
     });
 
     const pullParticles = new THREE.Points(pullGeo, pullMat);
-    scene.add(pullParticles);
+    blackHoleGroup.add(pullParticles);
 
-    // --- 05. AMBIENT ATMOSPHERIC LIGHTING ---
+    // --- 05. AMBIENT LIGHTING ---
     scene.add(new THREE.AmbientLight(0x000000, 1.0));
 
-    // --- 06. MOUSE PARALLAX & EVENT LISTENERS ---
+    // --- 06. MOUSE & TOUCH PARALLAX ---
     let mouseX = 0;
     let mouseY = 0;
 
     const handleMouseMove = (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * 1.5;
-      mouseY = (e.clientY / window.innerHeight - 0.5) * 1.5;
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 1.2;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 1.2;
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
@@ -336,122 +337,130 @@ export default function PlanetaryCanvas() {
 
     window.addEventListener('resize', handleResize, { passive: true });
 
+    // Battery Saver Listener
+    let isPaused = false;
+    const handleVisibilityChange = () => {
+      isPaused = document.visibilityState === 'hidden';
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     // --- 07. ANIMATION RAF LOOP ---
     let animId;
     const clock = new THREE.Clock();
+    let smoothScrollT = 0;
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
+      if (isPaused) return;
+
       const elapsed = clock.getElapsedTime();
 
-      const { progress: scrollPercent, velocity: scrollVel } = scrollStore.getState();
+      const { progress: rawProgress } = scrollStore.getState();
+
+      smoothScrollT += (rawProgress - smoothScrollT) * 0.08;
+
+      // AUTOMATIC CTA FOCUS ZONE BACKGROUND DIMMING (Rules #12, #14, #19)
+      const ctaQuietFactor = Math.max(0.12, 1.0 - Math.max(0, (smoothScrollT - 0.78) / 0.15));
+      tubeMat.opacity = 0.45 * ctaQuietFactor;
+      tubeWireMat.opacity = 0.1 * ctaQuietFactor;
+      meteorMat.opacity = 0.45 * ctaQuietFactor;
 
       // ANIMATE METEORITE RAIN
       const mPos = meteorGeo.attributes.position.array;
       for (let i = 0; i < meteorCount; i++) {
         const len = meteorLengths[i];
 
-        mPos[i * 6] += meteorVelocities[i * 3];     // head X
-        mPos[i * 6 + 1] += meteorVelocities[i * 3 + 1]; // head Y
-        mPos[i * 6 + 2] += meteorVelocities[i * 3 + 2]; // head Z
+        mPos[i * 6] += meteorVelocities[i * 3] * ctaQuietFactor;
+        mPos[i * 6 + 1] += meteorVelocities[i * 3 + 1] * ctaQuietFactor;
+        mPos[i * 6 + 2] += meteorVelocities[i * 3 + 2] * ctaQuietFactor;
 
-        mPos[i * 6 + 3] = mPos[i * 6] + len * 0.3; // tail X
-        mPos[i * 6 + 4] = mPos[i * 6 + 1] + len;   // tail Y
-        mPos[i * 6 + 5] = mPos[i * 6 + 2] + len * 0.2; // tail Z
+        mPos[i * 6 + 3] = mPos[i * 6] + len * 0.2;
+        mPos[i * 6 + 4] = mPos[i * 6 + 1] + len;
+        mPos[i * 6 + 5] = mPos[i * 6 + 2] + len * 0.15;
 
-        // Reset meteor when it passes bottom
-        if (mPos[i * 6 + 1] < -30) {
-          const rx = (Math.random() - 0.5) * 60;
-          const ry = 35 + Math.random() * 15;
-          const rz = (Math.random() - 0.5) * 60;
+        if (mPos[i * 6 + 1] < -35) {
+          const rx = (Math.random() - 0.5) * 70;
+          const ry = 40 + Math.random() * 15;
+          const rz = (Math.random() - 0.5) * 70;
 
           mPos[i * 6] = rx;
           mPos[i * 6 + 1] = ry;
           mPos[i * 6 + 2] = rz;
 
-          mPos[i * 6 + 3] = rx + len * 0.3;
+          mPos[i * 6 + 3] = rx + len * 0.2;
           mPos[i * 6 + 4] = ry + len;
-          mPos[i * 6 + 5] = rz + len * 0.2;
+          mPos[i * 6 + 5] = rz + len * 0.15;
         }
       }
       meteorGeo.attributes.position.needsUpdate = true;
 
       // FLY-THROUGH CAMERA MOTION ALONG SPLINE
-      const splineT = Math.min(scrollPercent * 0.98, 0.98);
+      const splineT = Math.min(smoothScrollT * 0.98, 0.98);
       const camPoint = wormholeCurve.getPointAt(splineT);
       const lookPoint = wormholeCurve.getPointAt(Math.min(splineT + 0.04, 1.0));
       const tangent = wormholeCurve.getTangentAt(splineT);
 
-      // Smooth Lerp Position
-      const targetX = camPoint.x + mouseX * 0.5;
-      const targetY = camPoint.y - mouseY * 0.5;
+      const targetX = camPoint.x + mouseX * 0.4;
+      const targetY = camPoint.y - mouseY * 0.4;
       const targetZ = camPoint.z;
 
-      camera.position.x += (targetX - camera.position.x) * 0.15;
-      camera.position.y += (targetY - camera.position.y) * 0.15;
-      camera.position.z += (targetZ - camera.position.z) * 0.15;
+      camera.position.x += (targetX - camera.position.x) * 0.1;
+      camera.position.y += (targetY - camera.position.y) * 0.1;
+      camera.position.z += (targetZ - camera.position.z) * 0.1;
 
-      camera.lookAt(lookPoint.x + mouseX * 0.25, lookPoint.y - mouseY * 0.25, lookPoint.z);
+      camera.lookAt(lookPoint.x + mouseX * 0.2, lookPoint.y - mouseY * 0.2, lookPoint.z);
 
-      const rollAngle = tangent.x * 0.2;
-      camera.rotation.z += (rollAngle - camera.rotation.z) * 0.1;
+      const rollAngle = tangent.x * 0.15;
+      camera.rotation.z += (rollAngle - camera.rotation.z) * 0.08;
 
-      // HERO SECTION BLACK HOLE RINGS & GRAVITATIONAL PULL
-      if (scrollPercent < 0.28) {
+      // BLACK HOLE SMOOTH DISSOLVE
+      const blackHoleFade = Math.max(0, Math.min(1, 1 - (smoothScrollT - 0.18) / 0.12));
+
+      if (blackHoleFade > 0.001) {
         blackHoleGroup.visible = true;
-        pullParticles.visible = true;
 
-        const p = scrollPercent / 0.28;
+        const p = Math.min(smoothScrollT / 0.25, 1.0);
 
-        accretionMesh.rotation.z = elapsed * 0.75 + p * Math.PI;
-        topLensMesh.rotation.z = Math.PI - elapsed * 0.25;
-        bottomLensMesh.rotation.z = elapsed * 0.25;
-        nebulaGroup.rotation.y = elapsed * 0.1;
+        accretionMesh.rotation.z = elapsed * 0.4 + p * Math.PI;
+        topLensMesh.rotation.z = Math.PI - elapsed * 0.15;
+        bottomLensMesh.rotation.z = elapsed * 0.15;
+        nebulaGroup.rotation.y = elapsed * 0.05;
 
-        camera.fov = 65 - p * 16;
+        blackHoleGroup.scale.set(1.0 + p * 2.5, 1.0 + p * 2.5, 1.0 + p * 2.5);
+
+        accretionMat.opacity = 0.7 * blackHoleFade;
+        topLensMat.opacity = 0.55 * blackHoleFade;
+        einsteinMat.opacity = 0.85 * blackHoleFade;
+        pullMat.opacity = 0.45 * blackHoleFade;
+
+        camera.fov = 65 - p * 14;
         camera.updateProjectionMatrix();
 
-        blackHoleGroup.scale.set(1.0 + p * 2.8, 1.0 + p * 2.8, 1.0 + p * 2.8);
+        // GRAVITATIONAL SPIRAL INFLOW PHYSICS
+        const pPos = pullGeo.attributes.position.array;
+        for (let i = 0; i < pullParticleCount; i++) {
+          pullRadii[i] -= pullSpeeds[i];
+          pullAngles[i] += 0.02 + (15.0 / (pullRadii[i] + 1.0)) * 0.003;
+
+          if (pullRadii[i] < 3.05) {
+            pullRadii[i] = 14.0 + Math.random() * 4.0;
+          }
+
+          pPos[i * 3] = pullRadii[i] * Math.cos(pullAngles[i]);
+          pPos[i * 3 + 1] = pullYOffsets[i];
+          pPos[i * 3 + 2] = pullRadii[i] * Math.sin(pullAngles[i]);
+        }
+        pullGeo.attributes.position.needsUpdate = true;
       } else {
         blackHoleGroup.visible = false;
-        pullParticles.visible = false;
         if (camera.fov !== 65) {
           camera.fov = 65;
           camera.updateProjectionMatrix();
         }
       }
 
-      // GRAVITATIONAL INWARD PARTICLE ACCELERATION PHYSICS
-      if (blackHoleGroup.visible) {
-        const pPos = pullGeo.attributes.position.array;
-        for (let i = 0; i < pullParticleCount; i++) {
-          const dx = 0 - pPos[i * 3];
-          const dy = 0 - pPos[i * 3 + 1];
-          const dz = 11.5 - pPos[i * 3 + 2];
-          const distSq = dx * dx + dy * dy + dz * dz;
-          const dist = Math.sqrt(distSq);
-
-          const gravityForce = (0.04 + scrollVel * 0.002) / Math.max(dist, 0.4);
-
-          pPos[i * 3] += dx * gravityForce;
-          pPos[i * 3 + 1] += dy * gravityForce;
-          pPos[i * 3 + 2] += dz * gravityForce;
-
-          if (dist < 0.4) {
-            const radius = 8.0 + Math.random() * 12.0;
-            const theta = Math.random() * Math.PI * 2;
-            const phi = (Math.random() - 0.5) * Math.PI * 0.9;
-            pPos[i * 3] = radius * Math.cos(theta) * Math.cos(phi);
-            pPos[i * 3 + 1] = radius * Math.sin(phi);
-            pPos[i * 3 + 2] = 11.5 + radius * Math.sin(theta) * Math.cos(phi);
-          }
-        }
-        pullGeo.attributes.position.needsUpdate = true;
-      }
-
-      // Animate wormhole texture offset and wireframe rotation
-      tubeTexture.offset.y = -elapsed * 0.4 - scrollPercent * 7.0 - scrollVel * 0.04;
-      tubeWireMesh.rotation.z = elapsed * 0.2;
+      tubeTexture.offset.y = -elapsed * (0.25 * ctaQuietFactor) - smoothScrollT * 6.0;
+      tubeWireMesh.rotation.z = elapsed * 0.15;
 
       renderer.render(scene, camera);
     };
@@ -462,6 +471,7 @@ export default function PlanetaryCanvas() {
       cancelAnimationFrame(animId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (renderer && renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
@@ -475,7 +485,7 @@ export default function PlanetaryCanvas() {
       eventHorizonGeo.dispose();
       eventHorizonMat.dispose();
       accretionGeo.dispose();
-      accretionMat.dispose();
+      accretionMat.opacity;
       accretionTex.dispose();
       topLensGeo.dispose();
       topLensMat.dispose();

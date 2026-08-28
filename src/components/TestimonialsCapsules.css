@@ -3,6 +3,37 @@
   padding: 60px 0;
 }
 
+.testimonials-capsules-section .heading-xl {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.4rem, 7.5vw, 6.2rem);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  background: none;
+  filter: none;
+  -webkit-text-fill-color: initial;
+}
+
+.testimonials-capsules-section .heading-main {
+  color: #ffffff !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98);
+}
+
+.testimonials-capsules-section .heading-accent {
+  color: #e9d5ff !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98), 0 0 25px rgba(233, 213, 255, 0.5);
+}
+
+.testimonials-capsules-section .label {
+  color: #e9d5ff !important;
+  border-bottom-color: rgba(233, 213, 255, 0.3);
+}
+
+.testimonials-capsules-section .label-icon {
+  color: #e9d5ff;
+}
+
 .spatial-testimonials-layout {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -32,7 +63,7 @@
 
 .spatial-author-btn.active,
 .spatial-author-btn:hover {
-  border-bottom-color: #ffffff;
+  border-bottom-color: #e9d5ff;
 }
 
 .author-btn-name {
@@ -61,7 +92,7 @@
 
 .spatial-quote-text {
   font-family: var(--font-body);
-  font-size: clamp(1.3rem, 2.2vw, 2.0rem);
+  font-size: clamp(1.15rem, 2.2vw, 2.0rem);
   font-weight: 400;
   line-height: 1.5;
   color: #ffffff;
@@ -97,6 +128,16 @@
 @media (max-width: 992px) {
   .spatial-testimonials-layout {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
+  }
+  .spatial-author-selector {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    gap: 16px;
+  }
+  .spatial-author-btn {
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
   }
 }

@@ -3,6 +3,37 @@
   padding: 60px 0;
 }
 
+.ai-futures-section .heading-xl {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3.2rem, 7.5vw, 6.2rem);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  background: none;
+  filter: none;
+  -webkit-text-fill-color: initial;
+}
+
+.ai-futures-section .heading-main {
+  color: #ffffff !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98);
+}
+
+.ai-futures-section .heading-accent {
+  color: #00f0ff !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98), 0 0 25px rgba(0, 240, 255, 0.5);
+}
+
+.ai-futures-section .label {
+  color: #00f0ff !important;
+  border-bottom-color: rgba(0, 240, 255, 0.3);
+}
+
+.ai-futures-section .label-icon {
+  color: #00f0ff;
+}
+
 .spatial-ai-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -22,7 +53,7 @@
 
 .spatial-ai-item:hover,
 .spatial-ai-item.active {
-  border-top-color: #ffffff;
+  border-top-color: #00f0ff;
 }
 
 .ai-item-meta {

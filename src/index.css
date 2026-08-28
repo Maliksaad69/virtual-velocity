@@ -41,6 +41,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -52,14 +53,14 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  width: 100%;
+  width: 100vw;
 }
 
 body {
   overflow-x: hidden;
   position: relative;
   background-color: var(--bg-black);
-  width: 100%;
+  width: 100vw;
 }
 
 /* Custom Minimal Scrollbar */
@@ -84,11 +85,19 @@ body {
   z-index: 5;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
 .section {
-  padding: clamp(60px, 8vw, 120px) 0;
+  padding: clamp(50px, 7vw, 120px) 0;
   position: relative;
   overflow: hidden;
   z-index: 5;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
 
 .section-header {
@@ -137,7 +146,7 @@ body {
 .heading-hero {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3.8rem, 11vw, 9.5rem);
+  font-size: clamp(3.2rem, 10vw, 9.5rem);
   line-height: 0.92;
   letter-spacing: -0.04em;
   text-transform: uppercase;
@@ -150,7 +159,7 @@ body {
 .heading-xl {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.8rem, 7vw, 5.8rem);
+  font-size: clamp(2.5rem, 6.5vw, 5.8rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -162,7 +171,7 @@ body {
 .heading-lg {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.0rem, 4.5vw, 3.4rem);
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
   line-height: 1.02;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -174,7 +183,7 @@ body {
 .heading-md {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.4rem, 2.5vw, 2.0rem);
+  font-size: clamp(1.3rem, 2.3vw, 2.0rem);
   line-height: 1.15;
   letter-spacing: -0.015em;
   color: #ffffff !important;
@@ -184,7 +193,7 @@ body {
 .text-lg {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.0rem, 1.5vw, 1.35rem);
   line-height: 1.6;
   color: #ffffff !important;
   max-width: 680px;

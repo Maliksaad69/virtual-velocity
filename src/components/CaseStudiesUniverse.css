@@ -6,7 +6,7 @@
 .case-studies-section .heading-xl {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3.2rem, 7.5vw, 6.2rem);
+  font-size: clamp(2.4rem, 7.5vw, 6.2rem);
   line-height: 0.94;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -40,26 +40,27 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 28px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--border-line);
   cursor: pointer;
   transition: all 0.35s var(--ease-out-expo);
 }
 
 .spatial-portal-item:hover {
-  padding-left: 20px;
+  padding-left: 14px;
   border-bottom-color: #fb7185;
 }
 
 .portal-meta {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   color: #fb7185;
+  flex-wrap: wrap;
 }
 
 .portal-num {
@@ -72,7 +73,7 @@
 
 .portal-title {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-size: clamp(1.8rem, 5vw, 4.2rem);
   font-weight: 900;
   text-transform: uppercase;
   color: #ffffff !important;
@@ -83,14 +84,14 @@
 
 .portal-stats-row {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   flex-wrap: wrap;
   margin-top: 8px;
 }
 
 .portal-stat-pill {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
   letter-spacing: 0.1em;
 }
@@ -104,14 +105,14 @@
 .spatial-journey-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(2, 6, 23, 0.78);
+  background: rgba(2, 6, 23, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   z-index: 1001;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
 }
 
 /* Sub-Wormhole Transition Overlay Effect */
@@ -149,11 +150,11 @@
   background: linear-gradient(145deg, #1c0915 0%, #080206 100%);
   border: 1px solid rgba(251, 113, 133, 0.4);
   border-radius: 12px;
-  padding: 36px 40px;
+  padding: 32px 36px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 45px rgba(251, 113, 133, 0.25);
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 24px;
   z-index: 5;
   transform-origin: center center;
   animation: spatialWormholeEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -190,7 +191,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   position: relative;
   z-index: 2;
@@ -227,7 +228,7 @@
 
 .journey-title {
   margin-top: 8px;
-  font-size: clamp(1.8rem, 3.8vw, 2.8rem) !important;
+  font-size: clamp(1.5rem, 3.8vw, 2.8rem) !important;
   color: #ffffff !important;
   line-height: 1;
 }
@@ -235,7 +236,7 @@
 .journey-spatial-steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 20px;
   position: relative;
   z-index: 2;
 }
@@ -244,7 +245,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
+  padding: 16px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -260,7 +261,7 @@
 
 .journey-spatial-step h4 {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.01em;
@@ -268,7 +269,7 @@
 
 .journey-spatial-step p {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -282,12 +283,19 @@
 }
 
 @media (max-width: 768px) {
+  .spatial-journey-backdrop {
+    padding: 12px;
+  }
   .spatial-journey-modal {
-    padding: 24px 20px;
+    padding: 24px 18px;
     max-height: 90vh;
+    border-radius: 8px;
   }
   .journey-spatial-steps {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
+  }
+  .spatial-portal-item {
+    padding: 18px 0;
   }
 }

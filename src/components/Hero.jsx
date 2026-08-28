@@ -33,25 +33,6 @@ export default function Hero() {
 
   return (
     <section className="hero-section" id="hero">
-      {/* Minimal Technical Spatial Telemetry (Fades as you enter the hole) */}
-      <div
-        className="hero-spatial-telemetry telemetry-left"
-        style={{ opacity: heroOpacity, transform: `scale(${heroScale})` }}
-      >
-        <span className="telemetry-label">[ 01 // CORE SYSTEM ]</span>
-        <span className="telemetry-metric">12.4 MACH</span>
-        <span className="telemetry-sub">VELOCITY VECTOR</span>
-      </div>
-
-      <div
-        className="hero-spatial-telemetry telemetry-right"
-        style={{ opacity: heroOpacity, transform: `scale(${heroScale})` }}
-      >
-        <span className="telemetry-label">[ 02 // ENGINE STATUS ]</span>
-        <span className="telemetry-metric">ONLINE</span>
-        <span className="telemetry-sub">3.8× EXPONENTIAL</span>
-      </div>
-
       {/* Main Spatial Hero Composition */}
       <div className="container hero-container">
         <div
@@ -101,16 +82,6 @@ export default function Hero() {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Minimal Scroll Prompt */}
-      <div
-        className="hero-scroll-indicator"
-        onClick={scrollToServices}
-        style={{ opacity: heroOpacity }}
-      >
-        <span className="scroll-indicator-text">SCROLL TO ENTER SINGULARITY</span>
-        <ArrowDown size={14} className="scroll-indicator-arrow" />
       </div>
     </section>
   );

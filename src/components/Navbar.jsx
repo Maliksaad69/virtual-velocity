@@ -3,12 +3,12 @@ import { Sparkles, Menu, X } from 'lucide-react';
 import './Navbar.css';
 
 const NAV_SECTIONS = [
-  { id: 'hero', label: 'SINGULARITY' },
+  { id: 'hero', label: 'OVERVIEW' },
   { id: 'services', label: 'SERVICES' },
-  { id: 'engine', label: 'ENGINE' },
-  { id: 'universe', label: 'PORTALS' },
-  { id: 'process', label: 'PROCESS' },
-  { id: 'about', label: 'ABOUT' },
+  { id: 'engine', label: 'THE ENGINE' },
+  { id: 'universe', label: 'CASE STUDIES' },
+  { id: 'process', label: 'METHODOLOGY' },
+  { id: 'about', label: 'PHILOSOPHY' },
   { id: 'contact', label: 'CONTACT' },
 ];
 
@@ -81,7 +81,7 @@ export default function Navbar() {
             className="btn-editorial-primary spatial-cta-btn"
             data-cursor="LAUNCH"
           >
-            <span>LAUNCH MODULE →</span>
+            <span>START PROJECT →</span>
           </button>
         </div>
 
@@ -108,7 +108,7 @@ export default function Navbar() {
             ))}
           </ul>
           <button onClick={() => scrollToSection('contact')} className="btn-editorial-primary mobile-cta">
-            LAUNCH PROJECT →
+            START PROJECT →
           </button>
         </div>
       )}

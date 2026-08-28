@@ -29,14 +29,14 @@ const AI_NODES = [
     title: 'PERSONALIZATION',
     badge: 'DYNAMIC 1:1',
     description: 'Generative 1:1 landing page variations and customized ad creative matching individual visitor intent vectors.',
-    color: '#1d4ed8'
+    color: '#38bdf8'
   },
   {
     id: 'content-intel',
     title: 'CONTENT INTELLIGENCE',
     badge: 'NLP VECTOR',
     description: 'AI sentiment scoring and semantic keyword clustering ensuring content captures maximum algorithmic gravity.',
-    color: '#0284c7'
+    color: '#00f0ff'
   }
 ];
 
@@ -50,11 +50,11 @@ export default function AIFutures() {
         <div className="section-header">
           <div className="label">
             <Sparkles size={14} className="label-icon" />
-            <span>[ 08 // AI INTELLIGENCE ]</span>
+            <span>09 • PREDICTIVE AI LABS</span>
           </div>
           <h2 className="heading-xl">
-            PREDICTIVE <br />
-            AI INTELLIGENCE.
+            <span className="heading-main">PREDICTIVE</span> <br />
+            <span className="heading-accent">AI INTELLIGENCE.</span>
           </h2>
           <p className="text-lg">
             AI-powered marketing intelligence wrapped in an autonomous neural network engine.
@@ -72,7 +72,7 @@ export default function AIFutures() {
                 className={`spatial-ai-item ${isActive ? 'active' : ''}`}
               >
                 <div className="ai-item-meta">
-                  <span className="ai-item-badge" style={{ color: node.color }}>[ {node.badge} ]</span>
+                  <span className="ai-item-badge" style={{ color: node.color }}>{node.badge}</span>
                   <h3 className="ai-item-title">{node.title}</h3>
                 </div>
                 <p className="ai-item-desc">{node.description}</p>
