@@ -1,81 +1,160 @@
-.navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-  padding: 18px 0; transition: all 0.35s var(--ease-out-expo);
-}
-.navbar.scrolled {
-  padding: 12px 0;
-  background: rgba(5, 6, 10, 0.82);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
-.navbar-inner {
-  display: flex; align-items: center; justify-content: space-between;
+.spatial-navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 24px 48px;
+  background: transparent;
+  transition: all 0.4s var(--ease-out-expo);
 }
 
-.navbar-logo {
-  display: flex; align-items: center; gap: 10px; text-decoration: none;
+.spatial-navbar-wrapper.scrolled {
+  padding: 14px 48px;
+  background: rgba(4, 1, 10, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(236, 72, 153, 0.25);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
 }
-.logo-vv {
-  width: 38px; height: 38px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-  color: #05060a; font-family: var(--font-display);
-  font-size: 0.95rem; font-weight: 900;
-  display: flex; align-items: center; justify-content: center;
-  letter-spacing: -0.05em;
-  box-shadow: 0 0 20px rgba(0, 212, 170, 0.35);
+
+.spatial-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  margin: 0 auto;
 }
+
+/* Editorial Brand Logo */
+.spatial-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.logo-sparkle-icon {
+  color: #ec4899;
+}
+
 .logo-text {
-  font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;
-  color: var(--text-primary); letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.15rem;
+  letter-spacing: 0.15em;
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
-.navbar-links { display: flex; align-items: center; gap: 28px; }
-.nav-link {
-  font-family: var(--font-display); font-size: 0.88rem; font-weight: 600;
-  color: var(--text-secondary); text-decoration: none;
-  transition: color 0.25s ease; position: relative; padding: 4px 0;
-}
-.nav-link:hover { color: var(--text-primary); }
-.nav-link::after {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
-  background: var(--accent-cyan); transition: width 0.3s var(--ease-out-expo);
-  border-radius: 2px;
-}
-.nav-link:hover::after { width: 100%; }
-
-.navbar-actions { display: flex; align-items: center; gap: 16px; }
-.btn-nav { padding: 9px 20px; font-size: 0.84rem; }
-
-.mobile-toggle {
-  display: none; background: none; border: none; color: var(--text-primary);
-  cursor: pointer; padding: 6px; z-index: 1001;
+.logo-accent {
+  color: #ec4899;
 }
 
-/* Mobile Drawer */
-.mobile-menu {
-  position: fixed; inset: 0; z-index: 999;
-  background: rgba(5, 6, 10, 0.96); backdrop-filter: blur(24px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.35s var(--ease-out-expo);
-  padding: 80px 24px 40px;
+/* Floating Precision Nav Dock with Clean Satoshi / Space Mono Typography */
+.spatial-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
-.mobile-menu.open { opacity: 1; pointer-events: auto; }
-.mobile-menu-inner {
-  display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 400px;
-}
-.mobile-link {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 18px; border-radius: var(--radius-md);
-  background: var(--bg-surface); border: 1px solid var(--border-subtle);
-  color: var(--text-primary); text-decoration: none;
-  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
-}
-.mobile-cta { width: 100%; justify-content: center; margin-top: 10px; }
 
-@media (max-width: 900px) {
-  .navbar-links { display: none; }
-  .mobile-toggle { display: block; }
+.spatial-link {
+  background: transparent;
+  border: none;
+  color: #e2e8f0 !important;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 7px 16px;
+  border-radius: 9999px;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.spatial-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.spatial-link.active {
+  color: #ffffff !important;
+  background: #ec4899 !important;
+  box-shadow: 0 0 16px rgba(236, 72, 153, 0.6);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.spatial-cta-btn {
+  padding: 10px 24px !important;
+  font-size: 0.8rem !important;
+  font-family: var(--font-mono) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+}
+
+.mobile-toggle-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Mobile Spatial Drawer */
+.mobile-spatial-drawer {
+  position: fixed;
+  inset: 0;
+  top: 70px;
+  background: #04010a;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 999;
+}
+
+.mobile-spatial-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-spatial-links button {
+  background: transparent;
+  border: none;
+  color: #ffffff !important;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mobile-cta {
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .spatial-navbar-wrapper {
+    padding: 16px 20px;
+  }
+  .spatial-nav-links, .spatial-cta-wrapper {
+    display: none;
+  }
+  .mobile-toggle-btn {
+    display: block;
+  }
 }

@@ -1,0 +1,49 @@
+.orbiting-results-section {
+  position: relative;
+  padding: 60px 0;
+}
+
+.spatial-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.spatial-result-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border-line);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.spatial-result-card:hover {
+  border-top-color: #ffffff;
+  transform: translateY(-4px);
+}
+
+.result-number {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.result-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.15em;
+}
+
+.result-detail {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}

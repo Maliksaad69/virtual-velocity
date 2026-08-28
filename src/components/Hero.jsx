@@ -1,209 +1,117 @@
-import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, ChevronDown, Sparkles, TrendingUp, Cpu, Award } from 'lucide-react';
-import { useCounter } from '../hooks/useScrollReveal';
-import ThreeHeroCanvas from './ThreeHeroCanvas';
-import Text3DFlip from './Text3DFlip';
-import SplineScene from './SplineScene';
+import { useEffect, useState } from 'react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
+import { scrollStore } from '../utils/scrollStore';
 import './Hero.css';
 
-const STATS = [
-  { value: 250, suffix: '+', label: 'Projects Completed' },
-  { value: 100, suffix: '+', label: 'Happy Clients' },
-  { value: 10, suffix: '+', label: 'Years Experience' },
-  { value: 50, suffix: 'M+', label: 'Social Reach' },
-];
-
 export default function Hero() {
-  const mockupRef = useRef(null);
-  const heroRef = useRef(null);
-  const [transform3D, setTransform3D] = useState('perspective(1000px) rotateX(0deg) rotateY(0deg)');
+  const [heroOpacity, setHeroOpacity] = useState(1);
+  const [heroScale, setHeroScale] = useState(1);
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
+  useEffect(() => {
+    const unsubscribe = scrollStore.subscribe((state) => {
+      // As you move inside the black hole (0.0 to 0.25 scroll), colors and opacity fade to dark void
+      const p = Math.min(state.progress / 0.25, 1.0);
+      setHeroOpacity(Math.max(0, 1 - p * 1.35));
+      setHeroScale(1 - p * 0.18);
+    });
+    return unsubscribe;
+  }, []);
 
-  const mockupRotateX = useTransform(scrollYProgress, [0, 1], [0, 25]);
-  const mockupScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
-  const mockupOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
-
-  // 3D Perspective Tilt on MouseMove
-  const handleMouseMoveMockup = (e) => {
-    if (!mockupRef.current) return;
-    const rect = mockupRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -12;
-    const rotateY = ((x - centerX) / centerX) * 12;
-    setTransform3D(`perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`);
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
-  const handleMouseLeaveMockup = () => {
-    setTransform3D('perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)');
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <section className="hero" id="home" ref={heroRef}>
-      <ThreeHeroCanvas />
-      <SplineScene className="hero-spline-bg" sceneUrl="https://prod.spline.design/6Wnt13KfuhiStPhG/scene.splinecode" />
-
-      {/* Dynamic Glow Orbs */}
-      <div className="hero-orb hero-orb-1" />
-      <div className="hero-orb hero-orb-2" />
-      <div className="hero-orb hero-orb-3" />
-      <div className="hero-grid-overlay" />
-
-      <div className="hero-content container">
-        <motion.div
-          className="hero-badge"
-          initial={{ opacity: 0, scale: 0.8, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="hero-badge-dot" />
-          <Sparkles size={13} style={{ marginRight: 4 }} />
-          <span>innovative. inspire. impact</span>
-        </motion.div>
-
-        <motion.h1
-          className="heading-xl hero-title"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        >
-          We Build Brands<br />
-          <Text3DFlip words={['That Grow & Scale.', 'That Innovate & Disrupt.', 'That Outperform & Win.']} />
-        </motion.h1>
-
-        <motion.p
-          className="text-lg hero-subtitle"
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        >
-          We help businesses grow through Digital Marketing, Creative Production,
-          AI&nbsp;Solutions, CRM&nbsp;Development, Web&nbsp;Design, and Influencer&nbsp;Marketing.
-        </motion.p>
-
-        <motion.div
-          className="hero-buttons"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <motion.a
-            href="#portfolio"
-            className="btn btn-primary"
-            whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(0, 212, 170, 0.55)' }}
-            whileTap={{ scale: 0.98 }}
-          >
-            View Our Work <ArrowRight size={18} />
-          </motion.a>
-          <motion.a
-            href="#contact"
-            className="btn btn-secondary"
-            whileHover={{ scale: 1.05, borderColor: 'var(--accent-cyan)' }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Play size={16} fill="currentColor" /> Book Free Consultation
-          </motion.a>
-        </motion.div>
-
-        {/* 3D Interactive Device Mockup with Framer Motion Scroll Parallax */}
-        <motion.div
-          style={{ rotateX: mockupRotateX, scale: mockupScale, opacity: mockupOpacity }}
-          className="hero-mockup-container"
-        >
-          <div
-            className="hero-mockup-wrapper"
-            ref={mockupRef}
-            onMouseMove={handleMouseMoveMockup}
-            onMouseLeave={handleMouseLeaveMockup}
-          >
-            <div className="hero-mockup-glow" />
-
-            {/* Floating 3D Cards with Keyframe Floating Motion */}
-            <motion.div
-              className="floating-card float-card-left"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <div className="float-card-icon"><TrendingUp size={18} /></div>
-              <div>
-                <span className="float-card-title">+340% Revenue</span>
-                <span className="float-card-sub">AI Driven Growth</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="floating-card float-card-right"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-            >
-              <div className="float-card-icon"><Cpu size={18} /></div>
-              <div>
-                <span className="float-card-title">AI Automation</span>
-                <span className="float-card-sub">24/7 Operations</span>
-              </div>
-            </motion.div>
-
-            <div className="hero-mockup-device" style={{ transform: transform3D }}>
-              <div className="mockup-topbar">
-                <div className="mockup-dots"><span /><span /><span /></div>
-                <div className="mockup-url">virtualvelocitymarketing.com</div>
-                <div className="mockup-status"><Award size={13} /> Premium Agency</div>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&q=80"
-                alt="Virtual Velocity Marketing Dashboard"
-                className="mockup-screen"
-                loading="eager"
-              />
-            </div>
-          </div>
-        </motion.div>
+    <section className="hero-section" id="hero">
+      {/* Minimal Technical Spatial Telemetry (Fades as you enter the hole) */}
+      <div
+        className="hero-spatial-telemetry telemetry-left"
+        style={{ opacity: heroOpacity, transform: `scale(${heroScale})` }}
+      >
+        <span className="telemetry-label">[ 01 // CORE SYSTEM ]</span>
+        <span className="telemetry-metric">12.4 MACH</span>
+        <span className="telemetry-sub">VELOCITY VECTOR</span>
       </div>
 
-      {/* Stats Bar */}
-      <motion.div
-        className="hero-stats"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+      <div
+        className="hero-spatial-telemetry telemetry-right"
+        style={{ opacity: heroOpacity, transform: `scale(${heroScale})` }}
       >
-        <div className="container hero-stats-grid">
-          {STATS.map((stat, i) => (
-            <StatItem key={i} stat={stat} index={i} />
-          ))}
+        <span className="telemetry-label">[ 02 // ENGINE STATUS ]</span>
+        <span className="telemetry-metric">ONLINE</span>
+        <span className="telemetry-sub">3.8× EXPONENTIAL</span>
+      </div>
+
+      {/* Main Spatial Hero Composition */}
+      <div className="container hero-container">
+        <div
+          className="hero-spatial-content"
+          style={{
+            opacity: heroOpacity,
+            transform: `scale(${heroScale}) translateY(${(1 - heroOpacity) * 40}px)`,
+            transition: 'opacity 0.1s linear, transform 0.1s linear'
+          }}
+        >
+          {/* Spatial Technical Tag */}
+          <div className="spatial-tag">
+            <span className="tag-number">01</span>
+            <span className="tag-text">VIRTUAL VELOCITY / ACCELERATION ENGINE</span>
+          </div>
+
+          {/* Creative Hot Pink / White Gradient Headline */}
+          <h1 className="hero-spatial-title">
+            <span className="hero-title-main">TURN ATTENTION</span>
+            <br />
+            <span className="hero-accent-text">INTO VELOCITY.</span>
+          </h1>
+
+          {/* Supporting Copy */}
+          <p className="hero-spatial-lead">
+            We build digital growth systems for ambitious brands moving at full speed.
+          </p>
+
+          {/* Bold Editorial Physical Controls */}
+          <div className="hero-editorial-actions">
+            <button
+              onClick={scrollToContact}
+              className="btn-editorial-primary"
+              data-cursor="LAUNCH"
+            >
+              <span>START A PROJECT</span>
+              <ArrowRight size={18} />
+            </button>
+
+            <button
+              onClick={scrollToServices}
+              className="btn-editorial-secondary"
+              data-cursor="ENTER"
+            >
+              <span>EXPLORE SERVICES</span>
+              <ArrowDown size={16} />
+            </button>
+          </div>
         </div>
-      </motion.div>
+      </div>
 
-      <a href="#about" className="hero-scroll-indicator">
-        <span>Scroll to explore</span>
-        <ChevronDown size={16} />
-      </a>
+      {/* Minimal Scroll Prompt */}
+      <div
+        className="hero-scroll-indicator"
+        onClick={scrollToServices}
+        style={{ opacity: heroOpacity }}
+      >
+        <span className="scroll-indicator-text">SCROLL TO ENTER SINGULARITY</span>
+        <ArrowDown size={14} className="scroll-indicator-arrow" />
+      </div>
     </section>
-  );
-}
-
-function StatItem({ stat, index }) {
-  const count = useCounter(stat.value, 2000, true);
-  return (
-    <motion.div
-      className="hero-stat"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      <span className="hero-stat-value">
-        {count}{stat.suffix}
-      </span>
-      <span className="hero-stat-label">{stat.label}</span>
-    </motion.div>
   );
 }

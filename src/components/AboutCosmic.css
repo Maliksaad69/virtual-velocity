@@ -1,0 +1,68 @@
+.about-cosmic-section {
+  position: relative;
+  padding: 60px 0;
+  display: flex;
+  align-items: center;
+}
+
+.about-spatial-composition {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+  margin-top: 16px;
+}
+
+.about-editorial-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3.2rem, 8vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: #ffffff !important;
+}
+
+.hero-line-momentum {
+  color: #ffffff !important;
+}
+
+.about-editorial-divider {
+  width: 180px;
+  height: 2px;
+  background: var(--accent-cyan);
+  margin: 12px 0;
+}
+
+.about-spatial-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+  margin: 24px 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-line);
+}
+
+.spatial-point {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.point-num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.spatial-point p {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.about-spatial-cta {
+  margin-top: 12px;
+}

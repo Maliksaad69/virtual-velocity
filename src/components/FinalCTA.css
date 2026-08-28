@@ -1,0 +1,142 @@
+.final-cta-section {
+  position: relative;
+  padding: 80px 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spatial-cta-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.spatial-cta-title {
+  margin-top: 16px;
+  font-size: clamp(3.5rem, 10vw, 8.5rem) !important;
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.spatial-cta-title .heading-main {
+  color: #ffffff !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98);
+}
+
+.spatial-cta-title .heading-accent {
+  color: #e879f9 !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98), 0 0 25px rgba(232, 121, 249, 0.5);
+}
+
+.final-cta-section .label {
+  color: #e879f9 !important;
+  border-bottom-color: rgba(232, 121, 249, 0.3);
+}
+
+.final-cta-section .label-icon {
+  color: #e879f9;
+}
+
+.spatial-cta-lead {
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem) !important;
+  color: var(--text-secondary) !important;
+  margin-bottom: 36px;
+}
+
+.spatial-cta-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Form Modal Overlay */
+.spatial-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.spatial-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  background: #000000;
+  border: 1px solid var(--border-line-bright);
+  padding: 48px 40px;
+  border-radius: 4px;
+}
+
+.spatial-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.spatial-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #e879f9;
+  letter-spacing: 0.15em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: #050914;
+  border: 1px solid var(--border-line);
+  color: #ffffff;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #e879f9;
+}
+
+.modal-submit-btn {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.modal-success-state {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.success-icon {
+  color: #e879f9;
+}
