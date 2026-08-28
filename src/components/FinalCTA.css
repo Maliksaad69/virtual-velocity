@@ -37,16 +37,16 @@
 }
 
 .cta-label {
-  color: #00f0ff !important;
-  border-bottom-color: rgba(0, 240, 255, 0.4);
+  color: #ec4899 !important;
+  border-bottom-color: rgba(236, 72, 153, 0.4);
   margin-bottom: 24px;
 }
 
 .cta-label .label-icon {
-  color: #00f0ff;
+  color: #ec4899;
 }
 
-/* Oversized Dynamic Changing Color Satoshi Headline */
+/* Crisp Executive Satoshi Headline */
 .spatial-cta-title {
   font-family: var(--font-display);
   font-weight: 900;
@@ -63,24 +63,8 @@
 }
 
 .heading-line-move {
-  background: linear-gradient(135deg, #00f0ff 0%, #ec4899 50%, #fbbf24 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 30px rgba(0, 240, 255, 0.5));
-  animation: ctaColorShift 6s ease infinite alternate;
-}
-
-@keyframes ctaColorShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  color: #ec4899 !important;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.98), 0 0 35px rgba(236, 72, 153, 0.6);
 }
 
 .spatial-cta-lead {
@@ -109,12 +93,12 @@
   max-width: 100%;
 }
 
-/* Multi-Color Energy Orbit Rings */
+/* Energy Orbit Rings */
 .aura-orbit-ring {
   position: absolute;
   inset: -14px;
   border-radius: 8px;
-  border: 1.5px dashed #00f0ff;
+  border: 1.5px dashed rgba(236, 72, 153, 0.5);
   pointer-events: none;
   transition: all 0.5s var(--ease-out-expo);
   opacity: 0.6;
@@ -124,7 +108,7 @@
   position: absolute;
   inset: -6px;
   border-radius: 6px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, rgba(0, 240, 255, 0.15) 50%, transparent 75%);
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, transparent 75%);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -153,7 +137,7 @@
   }
 }
 
-/* MULTI-COLOR ANIMATED HERO CTA BUTTON */
+/* HERO CTA BUTTON */
 .btn-hero-physical-cta {
   display: inline-flex;
   align-items: center;
