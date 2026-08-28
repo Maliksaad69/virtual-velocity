@@ -1,13 +1,11 @@
 .agency-contact-section {
   position: relative;
-  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.45) 30%, rgba(7, 8, 11, 0.45) 70%, var(--bg-black) 100%),
-              url('/images/bg_creative_statement.png') center/cover no-repeat;
 }
 
 .contact-main-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: clamp(40px, 6vw, 80px);
+  gap: clamp(32px, 6vw, 80px);
   margin-top: 48px;
 }
 
@@ -16,20 +14,20 @@
   backdrop-filter: blur(14px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
-  padding: clamp(32px, 5vw, 56px);
+  padding: clamp(24px, 5vw, 56px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .minimal-inquiry-form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .form-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 16px;
 }
 
 .form-group {
@@ -40,7 +38,7 @@
 
 .form-group label {
   font-family: var(--font-display);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 800;
   color: var(--text-secondary);
   letter-spacing: 0.12em;
@@ -53,13 +51,14 @@
   background: rgba(9, 11, 16, 0.9);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-sm);
-  padding: 16px 20px;
+  padding: 14px 18px;
   color: #ffffff;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 16px; /* 16px prevents iOS auto-zoom on input focus */
   font-weight: 500;
   outline: none;
   transition: all 0.3s var(--ease-smooth);
+  width: 100%;
 }
 
 .form-group input::placeholder,
@@ -85,7 +84,7 @@
 }
 
 .form-submit-btn {
-  margin-top: 12px;
+  margin-top: 8px;
   width: 100%;
 }
 
@@ -95,12 +94,12 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 40px 20px;
+  padding: 30px 16px;
 }
 
 .form-success-message h3 {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
   font-weight: 900;
 }
 
@@ -113,22 +112,22 @@
 .offices-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .offices-sub {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .offices-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .office-location-card {
@@ -136,7 +135,7 @@
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
-  padding: 24px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -155,36 +154,38 @@
 }
 
 .office-flag {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .office-city {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--text-primary);
 }
 
 .office-hub-title {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--accent-coral);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .office-address {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
+  line-height: 1.4;
 }
 
 .office-email {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.3s ease;
-  margin-top: 6px;
+  margin-top: 4px;
+  word-break: break-all;
 }
 
 .office-email:hover {
@@ -200,5 +201,8 @@
 @media (max-width: 576px) {
   .form-grid-2 {
     grid-template-columns: 1fr;
+  }
+  .contact-form-card {
+    padding: 20px 16px;
   }
 }

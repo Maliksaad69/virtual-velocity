@@ -1,23 +1,21 @@
 .agency-testimonials-section {
   position: relative;
-  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.45) 30%, rgba(7, 8, 11, 0.45) 70%, var(--bg-black) 100%),
-              url('/images/bg_testimonials.png') center/cover no-repeat;
 }
 
 .cinematic-testimonial-showcase {
-  margin-top: 48px;
+  margin-top: 40px;
   position: relative;
 }
 
 .editorial-testimonial-card {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: clamp(32px, 5vw, 64px);
+  gap: clamp(24px, 5vw, 64px);
   background: rgba(14, 16, 23, 0.82);
   backdrop-filter: blur(14px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
-  padding: clamp(32px, 5vw, 60px);
+  padding: clamp(24px, 5vw, 56px);
   align-items: center;
   position: relative;
 }
@@ -29,17 +27,17 @@
 
 .editorial-quote-mark {
   color: var(--accent-coral);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   opacity: 0.85;
 }
 
 .giant-quote-text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.4rem, 2.5vw, 2.4rem);
-  line-height: 1.25;
+  font-size: clamp(1.15rem, 2.5vw, 2.2rem);
+  line-height: 1.3;
   color: var(--text-primary);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   letter-spacing: -0.01em;
 }
 
@@ -52,7 +50,7 @@
 .author-name {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   letter-spacing: 0.08em;
   color: var(--accent-coral);
   text-transform: uppercase;
@@ -60,7 +58,7 @@
 
 .author-role {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -71,6 +69,7 @@
   overflow: hidden;
   border: 1px solid var(--border-subtle);
   aspect-ratio: 4 / 3;
+  width: 100%;
 }
 
 .campaign-visual-col img {
@@ -82,8 +81,8 @@
 .testimonial-controls {
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-top: 24px;
+  gap: 16px;
+  margin-top: 20px;
   justify-content: flex-end;
 }
 
@@ -109,12 +108,18 @@
 
 .slider-counter {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
 }
 
 @media (max-width: 992px) {
   .editorial-testimonial-card {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .editorial-testimonial-card {
+    padding: 24px 18px;
   }
 }

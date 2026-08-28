@@ -1,14 +1,12 @@
 .creative-vs-performance-section {
   position: relative;
-  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.45) 30%, rgba(7, 8, 11, 0.45) 70%, var(--bg-black) 100%),
-              url('/images/bg_creative_vs_performance.png') center/cover no-repeat;
 }
 
 .split-agency-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-bottom: 40px;
+  gap: 28px;
+  margin-bottom: 32px;
 }
 
 .split-card {
@@ -16,7 +14,7 @@
   backdrop-filter: blur(14px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
-  padding: clamp(32px, 5vw, 60px);
+  padding: clamp(24px, 4vw, 56px);
   position: relative;
   overflow: hidden;
 }
@@ -26,39 +24,39 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .split-title {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-size: clamp(1.8rem, 5vw, 4.2rem);
   line-height: 1.02;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--text-primary);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .split-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .split-list li {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   color: var(--text-secondary);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .split-list li::before {
@@ -66,6 +64,7 @@
   color: var(--accent-coral);
   font-family: var(--font-mono);
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 /* Synthesis Center Banner */
@@ -74,21 +73,22 @@
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
-  padding: 32px;
+  padding: 24px;
   text-align: center;
 }
 
 .synthesis-text {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(1.2rem, 2.4vw, 2.2rem);
+  font-size: clamp(1rem, 2.4vw, 2rem);
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--text-primary);
   margin: 0;
+  line-height: 1.2;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 868px) {
   .split-agency-grid {
     grid-template-columns: 1fr;
   }

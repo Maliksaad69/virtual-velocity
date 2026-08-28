@@ -1,7 +1,5 @@
 .agency-final-cta-section {
-  padding: clamp(100px, 14vw, 180px) 0;
-  background: linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.42) 30%, rgba(7, 8, 11, 0.42) 70%, var(--bg-black) 100%),
-              url('/images/hero_cinematic_nature.png') center/cover no-repeat;
+  padding: clamp(80px, 12vw, 180px) 0;
   border-top: 1px solid var(--border-medium);
   border-bottom: 1px solid var(--border-medium);
   position: relative;
@@ -13,8 +11,8 @@
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
+  width: min(500px, 80vw);
+  height: min(500px, 80vw);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 59, 25, 0.35) 0%, transparent 70%);
   filter: blur(80px);
@@ -24,28 +22,38 @@
 .cta-giant-headline {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(3rem, 7.5vw, 6.8rem);
-  line-height: 1;
+  font-size: clamp(2.2rem, 7.5vw, 6.8rem);
+  line-height: 1.05;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   color: var(--text-primary);
   margin-top: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-shadow: 0 10px 40px rgba(0, 0, 0, 0.95), 0 2px 10px rgba(0,0,0,0.9);
 }
 
 .cta-supporting-text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
   color: var(--text-secondary);
-  margin-bottom: 44px;
+  margin-bottom: 36px;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
 }
 
 .cta-buttons-wrap {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 576px) {
+  .cta-buttons-wrap {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cta-buttons-wrap .btn-primary {
+    width: 100%;
+  }
 }
