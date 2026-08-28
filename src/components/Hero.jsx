@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { AnimatedSectionBackground } from './PresentationSection';
 import './Hero.css';
 
 const CLIENT_LOGOS = [
@@ -46,18 +47,12 @@ export default function Hero() {
 
   return (
     <section className="agency-hero-section" id="hero">
-      {/* Visual Treatment: Cinematic Natural Background Layer */}
-      <div className="hero-cinematic-bg-container">
-        <motion.img
-          src="/images/hero_cinematic_nature.png"
-          alt="Cinematic volcanic peak landscape"
-          className="hero-cinematic-img"
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.85 }}
-          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        />
-        <div className="hero-cinematic-overlay" />
-      </div>
+      {/* Visual Treatment: Animated Cinematic Background Layer */}
+      <AnimatedSectionBackground
+        imageSrc="/images/hero_cinematic_nature.png"
+        overlayGradient="linear-gradient(180deg, rgba(7, 8, 11, 0.35) 0%, rgba(7, 8, 11, 0.45) 50%, var(--bg-black) 100%)"
+        alt="Cinematic volcanic peak landscape"
+      />
 
       {/* Floating Animated Coral/Ember Glow Orbs */}
       <motion.div

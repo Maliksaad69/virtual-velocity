@@ -9,7 +9,7 @@ export function PresentationSection({ children, className = '', id, sectionNumbe
     offset: ['start end', 'end start']
   });
 
-  // Pure linear smooth fade & slight vertical rise without spring recoil/earthquake shaking
+  // Pure linear smooth fade & subtle vertical float
   const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.4, 1, 1, 0.4]);
   const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [30, 0, 0, -15]);
 
@@ -43,25 +43,33 @@ export function AnimatedSectionBackground({ imageSrc, overlayGradient, alt = 'Ba
     offset: ['start end', 'end start']
   });
 
-  // Steady, subtle linear parallax without shake
-  const y = useTransform(scrollYProgress, [0, 1], ['-3%', '3%']);
+  // Scroll parallax offset
+  const scrollY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
 
   return (
     <div ref={bgRef} className="animated-section-bg-container">
-      <motion.img
-        src={imageSrc}
-        alt={alt}
-        className="animated-section-bg-img"
-        style={{ y }}
-        initial={{ scale: 1.03 }}
-        animate={{ scale: 1.05 }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          repeatType: 'mirror',
-          ease: 'easeInOut'
-        }}
-      />
+      <motion.div
+        className="animated-section-bg-motion-wrapper"
+        style={{ y: scrollY }}
+      >
+        <motion.img
+          src={imageSrc}
+          alt={alt}
+          className="animated-section-bg-img"
+          initial={{ scale: 1.05 }}
+          animate={{
+            scale: [1, 1.12, 1],
+            y: ['-3%', '3%', '-3%'],
+            rotate: [0, 0.5, 0]
+          }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'easeInOut'
+          }}
+        />
+      </motion.div>
       {overlayGradient && (
         <div className="animated-section-bg-overlay" style={{ background: overlayGradient }} />
       )}
@@ -86,7 +94,7 @@ export function AnimatedImageCard({ src, alt, className = '', aspect = '16/9' })
         className="animated-card-img"
         variants={{
           hover: {
-            scale: 1.04,
+            scale: 1.06,
             transition: { duration: 0.4, ease: 'easeOut' }
           }
         }}
