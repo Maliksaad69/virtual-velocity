@@ -3,10 +3,10 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  will-change: transform, opacity;
+  will-change: opacity;
 }
 
-/* Animated Background Component */
+/* ── ANIMATED BACKGROUND ── */
 .animated-section-bg-container {
   position: absolute;
   top: 0;
@@ -22,13 +22,12 @@
 
 .animated-section-bg-motion-wrapper {
   position: absolute;
-  top: -10%;
-  left: -5%;
-  width: 110%;
-  height: 120%;
+  top: -8%;
+  left: -4%;
+  width: 108%;
+  height: 116%;
   z-index: 0;
   pointer-events: none;
-  display: block;
 }
 
 .animated-section-bg-img {
@@ -36,8 +35,8 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.65;
-  filter: contrast(1.15) saturate(1.2) brightness(1.05);
+  opacity: 0.7;
+  filter: contrast(1.12) saturate(1.18) brightness(1.04);
   display: block;
   will-change: transform;
 }
@@ -54,13 +53,13 @@
   pointer-events: none;
 }
 
-/* Animated Image Card */
+/* ── IMAGE CARD ── */
 .animated-image-card-wrap {
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border-medium);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.55);
 }
 
 .animated-card-img {
@@ -73,38 +72,12 @@
 .animated-card-shine {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 55%);
   pointer-events: none;
 }
 
-/* Word Reveal Mask Styling */
-.word-reveal-container {
-  overflow: hidden;
-  display: block;
-}
-
-.word-reveal-inner {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.word-mask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-
-.word-inline {
-  display: inline-block;
-  will-change: transform, opacity;
-}
-
-/* Interactive 3D Card Physics */
-.motion-card-interactive {
-  transition: border-color 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
-}
-
-.motion-card-interactive:hover {
-  border-color: var(--accent-coral) !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-coral-glow) !important;
-}
+/* ── WORD REVEAL ── */
+.word-reveal-container { overflow: hidden; display: block; }
+.word-reveal-inner { display: flex; flex-wrap: wrap; }
+.word-mask { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.word-inline { display: inline-block; will-change: transform, opacity; }

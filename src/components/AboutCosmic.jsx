@@ -11,12 +11,11 @@ export default function AboutCosmic() {
     <section className="section agency-about-section" id="agency">
       <AnimatedSectionBackground
         imageSrc="/images/bg_about.png"
-        overlayGradient="linear-gradient(180deg, var(--bg-black) 0%, rgba(7, 8, 11, 0.42) 30%, rgba(7, 8, 11, 0.42) 70%, var(--bg-black) 100%)"
+        overlayGradient="linear-gradient(180deg, var(--bg-black) 0%, rgba(6, 7, 10, 0.42) 30%, rgba(6, 7, 10, 0.42) 70%, var(--bg-black) 100%)"
       />
 
       <div className="container relative-z">
         <div className="about-editorial-grid">
-          {/* Text Left Column */}
           <motion.div
             className="about-text-col"
             initial={{ opacity: 0, x: -50 }}
@@ -25,7 +24,7 @@ export default function AboutCosmic() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="label-tag">
-              <span className="dot"></span>
+              <span className="dot" />
               <span>WHO WE ARE</span>
             </div>
 
@@ -40,7 +39,7 @@ export default function AboutCosmic() {
             </p>
 
             <p className="about-secondary-text">
-              We operate at the intersection of high fashion editorial design, viral content creation, custom digital experiences, and high-ROAS performance marketing. Every campaign we launch has one objective: turning attention into real growth.
+              We operate at the intersection of high-fashion editorial design, viral content creation, custom digital experiences, and high-ROAS performance marketing. Every campaign has one objective: turning attention into real growth.
             </p>
 
             <div className="about-pillars-box">
@@ -56,17 +55,16 @@ export default function AboutCosmic() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginTop: '30px' }}>
+            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginTop: '32px' }}>
               <motion.button
                 onClick={() => navigate('/about')}
                 className="btn-primary"
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.96 }}
               >
-                <span>MORE ABOUT OUR CULTURE</span>
-                <ArrowRight size={16} className="btn-icon-arrow" />
+                <span>OUR STORY</span>
+                <ArrowRight size={15} className="btn-icon-arrow" />
               </motion.button>
-
               <motion.button
                 onClick={() => navigate('/contact')}
                 className="btn-secondary"
@@ -78,19 +76,15 @@ export default function AboutCosmic() {
             </div>
           </motion.div>
 
-          {/* Visual Right Column */}
           <motion.div
             className="about-visual-col"
             initial={{ opacity: 0, x: 50, scale: 0.95 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="about-image-card">
-              <img
-                src="/images/work_brand_showcase.png"
-                alt="Virtual Velocity Agency Studio"
-              />
+              <img src="/images/work_brand.png" alt="Virtual Velocity Agency Studio" />
               <div className="about-image-overlay">
                 <span className="studio-badge">CREATIVE DIRECTORS & PERFORMANCE STRATEGISTS</span>
               </div>

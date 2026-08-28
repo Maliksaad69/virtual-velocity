@@ -1,38 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
 import { AnimatedSectionBackground } from './PresentationSection';
 import './Hero.css';
 
 const CLIENT_LOGOS = [
-  { name: 'SAMSUNG', category: 'Tech Giant' },
-  { name: 'KFC', category: 'Global QSR' },
-  { name: 'KIKO MILANO', category: 'Beauty & Cosmetics' },
-  { name: "DOMINO'S", category: 'Global Brand' },
-  { name: 'DAILY DELI CO', category: 'Food & Beverage' },
-  { name: 'SAMAD GROUP', category: 'Enterprise Industry' },
-  { name: 'LAKE CITY', category: 'Real Estate' },
-  { name: 'DYNAMITE GEAR', category: 'Fitness & Apparel' },
+  { name: 'SAMSUNG' }, { name: 'KFC' }, { name: 'KIKO MILANO' },
+  { name: "DOMINO'S" }, { name: 'DAILY DELI CO' }, { name: 'SAMAD GROUP' },
+  { name: 'LAKE CITY' }, { name: 'DYNAMITE GEAR' }, { name: 'CLOSE-KNIT' },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.13, delayChildren: 0.15 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 35 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.215, 0.61, 0.355, 1] },
-  },
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export default function Hero() {
@@ -40,31 +25,21 @@ export default function Hero() {
 
   return (
     <section className="agency-hero-section" id="hero">
-      {/* Visual Treatment: Animated Cinematic Background Layer */}
+      {/* Cinematic Full-Bleed Background */}
       <AnimatedSectionBackground
         imageSrc="/images/hero_cinematic_nature.png"
-        overlayGradient="linear-gradient(180deg, rgba(7, 8, 11, 0.35) 0%, rgba(7, 8, 11, 0.45) 50%, var(--bg-black) 100%)"
-        alt="Cinematic volcanic peak landscape"
+        overlayGradient="linear-gradient(160deg, rgba(6, 7, 10, 0.55) 0%, rgba(6, 7, 10, 0.28) 50%, var(--bg-black) 100%)"
+        alt="Cinematic agency landscape"
       />
 
-      {/* Floating Animated Coral/Ember Glow Orbs */}
-      <motion.div
-        className="hero-glow-orb orb-1"
-        animate={{
-          y: [0, -25, 0],
-          x: [0, 15, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+      {/* Floating Glow Orbs */}
+      <motion.div className="hero-glow-orb orb-1"
+        animate={{ y: [0, -30, 0], x: [0, 18, 0], scale: [1, 1.12, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="hero-glow-orb orb-2"
-        animate={{
-          y: [0, 20, 0],
-          x: [0, -20, 0],
-          scale: [1, 1.15, 1],
-        }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+      <motion.div className="hero-glow-orb orb-2"
+        animate={{ y: [0, 22, 0], x: [0, -18, 0], scale: [1, 1.15, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <div className="container relative-z">
@@ -74,88 +49,82 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
-          {/* Animated Category Label */}
           <motion.div className="label-tag hero-badge" variants={itemVariants}>
-            <span className="dot"></span>
-            <span>CREATIVE / DIGITAL / PERFORMANCE</span>
+            <span className="dot" />
+            <span>CREATIVE / DIGITAL / PERFORMANCE AGENCY</span>
           </motion.div>
 
-          {/* Master Redesign Headline */}
           <motion.h1 className="heading-hero editorial-title" variants={itemVariants}>
-            WE MAKE BRANDS <br />
+            WE MAKE BRANDS<br />
             <span className="accent-text">IMPOSSIBLE TO IGNORE.</span>
           </motion.h1>
 
-          {/* Master Redesign Supporting Copy */}
-          <motion.p className="text-sub hero-description" variants={itemVariants}>
-            Creative strategy, campaigns, content, digital experiences and performance marketing built to turn attention into revenue.
+          <motion.p className="hero-description" variants={itemVariants}>
+            Creative strategy, viral campaigns, digital experiences and precision performance marketing — built to turn attention into measurable revenue.
           </motion.p>
 
-          {/* Master Hero Action Buttons */}
           <motion.div className="hero-actions" variants={itemVariants}>
             <motion.button
               onClick={() => navigate('/work')}
-              className="btn-primary hero-btn-main"
-              data-cursor="EXPLORE"
+              className="btn-primary"
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
             >
               <span>EXPLORE OUR WORK</span>
-              <ArrowRight size={16} className="btn-icon-arrow" />
+              <ArrowRight size={15} className="btn-icon-arrow" />
             </motion.button>
 
             <motion.button
               onClick={() => navigate('/contact')}
-              className="btn-secondary hero-btn-sub"
-              data-cursor="START"
+              className="btn-secondary"
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
             >
               <span>START A PROJECT</span>
+              <ArrowUpRight size={15} />
             </motion.button>
           </motion.div>
 
-          {/* Minimal Editorial Metric Strip */}
-          <motion.div className="hero-quick-stats editorial-metrics-strip" variants={itemVariants}>
-            <motion.div className="stat-pill" whileHover={{ y: -4, scale: 1.03 }}>
-              <span className="stat-num">4.2×</span>
-              <span className="stat-lbl">Average ROAS</span>
-            </motion.div>
-            <div className="stat-divider">/</div>
-            <motion.div className="stat-pill" whileHover={{ y: -4, scale: 1.03 }}>
-              <span className="stat-num">+240%</span>
-              <span className="stat-lbl">Organic Lead Growth</span>
-            </motion.div>
-            <div className="stat-divider">/</div>
-            <motion.div className="stat-pill" whileHover={{ y: -4, scale: 1.03 }}>
-              <span className="stat-num">150+</span>
-              <span className="stat-lbl">Campaigns Launched</span>
-            </motion.div>
-            <div className="stat-divider">/</div>
-            <motion.div className="stat-pill" whileHover={{ y: -4, scale: 1.03 }}>
-              <span className="stat-num">94%</span>
-              <span className="stat-lbl">Client Retention</span>
-            </motion.div>
+          <motion.div className="hero-quick-stats" variants={itemVariants}>
+            {[
+              { num: '4.2×', lbl: 'Average ROAS' },
+              { num: '+240%', lbl: 'Lead Growth YoY' },
+              { num: '150+', lbl: 'Campaigns Launched' },
+              { num: '94%', lbl: 'Client Retention' },
+            ].map((stat, i) => (
+              <>
+                {i > 0 && <div key={`div-${i}`} className="stat-divider">/</div>}
+                <motion.div
+                  key={stat.num}
+                  className="stat-pill"
+                  whileHover={{ y: -4, scale: 1.04 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="stat-num">{stat.num}</span>
+                  <span className="stat-lbl">{stat.lbl}</span>
+                </motion.div>
+              </>
+            ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Client Marquee Section */}
+      {/* Client Marquee */}
       <motion.div
         className="hero-marquee-wrapper"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
+        transition={{ delay: 1, duration: 0.6 }}
       >
         <div className="marquee-label">
           <Sparkles size={12} className="marquee-sparkle" />
-          <span>TRUSTED BY BRANDS THAT WANT TO MOVE FASTER.</span>
+          <span>TRUSTED BY BRANDS THAT WANT TO MOVE FASTER</span>
         </div>
         <div className="marquee-track">
           <div className="marquee-content">
-            {CLIENT_LOGOS.concat(CLIENT_LOGOS).map((client, idx) => (
+            {CLIENT_LOGOS.concat(CLIENT_LOGOS).map((c, idx) => (
               <div key={idx} className="client-logo-item">
-                <span className="client-name">{client.name}</span>
+                <span className="client-name">{c.name}</span>
                 <span className="client-dot">•</span>
               </div>
             ))}
