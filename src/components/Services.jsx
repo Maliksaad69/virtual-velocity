@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Sparkles, ArrowRight } from 'lucide-react';
 import { AnimatedSectionBackground } from './PresentationSection';
 import './Services.css';
 
@@ -54,6 +55,7 @@ const SERVICES_DATA = [
 
 export default function Services() {
   const [activeId, setActiveId] = useState('brand');
+  const navigate = useNavigate();
 
   return (
     <section id="capabilities" className="section agency-services-section">
@@ -154,6 +156,24 @@ export default function Services() {
             );
           })}
         </div>
+
+        {/* View Full Services CTA */}
+        <motion.div
+          style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <motion.button
+            onClick={() => navigate('/services')}
+            className="btn-primary"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            <span>EXPLORE FULL CAPABILITIES & WORKFLOW</span>
+            <ArrowRight size={16} className="btn-icon-arrow" />
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

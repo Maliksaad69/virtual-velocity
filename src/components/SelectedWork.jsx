@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, X, Sparkles, TrendingUp } from 'lucide-react';
+import { ArrowUpRight, X, Sparkles, TrendingUp, ArrowRight } from 'lucide-react';
 import './SelectedWork.css';
 
 const PROJECTS = [
@@ -68,6 +69,7 @@ const PROJECTS = [
 
 export default function SelectedWork() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <section id="work" className="section agency-work-section">
@@ -89,7 +91,7 @@ export default function SelectedWork() {
             <span className="accent-text">MOVES PEOPLE.</span>
           </h2>
           <p className="text-sub">
-            We don't just make things look good. We create campaigns, identities and digital experiences designed to change what people notice, feel and do.
+            We don&apos;t just make things look good. We create campaigns, identities and digital experiences designed to change what people notice, feel and do.
           </p>
         </motion.div>
 
@@ -138,6 +140,24 @@ export default function SelectedWork() {
             </motion.div>
           ))}
         </div>
+
+        {/* Explore All Work CTA */}
+        <motion.div
+          style={{ display: 'flex', justifyContent: 'center', marginTop: '60px' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <motion.button
+            onClick={() => navigate('/work')}
+            className="btn-primary"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            <span>SEE ALL CASE STUDIES & PORTFOLIO</span>
+            <ArrowRight size={16} className="btn-icon-arrow" />
+          </motion.button>
+        </motion.div>
       </div>
 
       {/* Case Study Full Modal Drawer */}

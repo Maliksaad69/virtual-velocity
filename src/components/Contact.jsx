@@ -49,6 +49,18 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleReset = () => {
+    setSubmitted(false);
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      service: 'Creative & Performance',
+      budget: '$5k - $15k',
+      message: ''
+    });
+  };
+
   return (
     <section className="section agency-contact-section" id="contact">
       <AnimatedSectionBackground
@@ -69,11 +81,11 @@ export default function Contact() {
             <span>INITIATE DISCUSSIONS</span>
           </div>
           <h2 className="heading-xl editorial-section-title">
-            LET'S MAKE SOMETHING <br />
+            LET&apos;S MAKE SOMETHING <br />
             <span className="accent-text">MATTER.</span>
           </h2>
           <p className="text-sub">
-            Tell us about your brand goals. We'll outline a high-impact creative and performance strategy within 24 hours.
+            Tell us about your brand goals. We&apos;ll outline a high-impact creative and performance strategy within 24 hours.
           </p>
         </motion.div>
 
@@ -91,10 +103,16 @@ export default function Contact() {
                 className="form-success-message"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
+                style={{ textAlign: 'center', padding: '40px 20px' }}
               >
-                <CheckCircle size={48} className="accent-text" />
-                <h3>PROJECT INQUIRY RECEIVED.</h3>
-                <p>Thank you, {formData.name}. One of our creative directors will reach out to {formData.email} within 24 hours.</p>
+                <CheckCircle size={56} className="accent-text" style={{ marginBottom: '16px' }} />
+                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '1.6rem', color: '#ffffff', marginBottom: '12px' }}>PROJECT INQUIRY RECEIVED.</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: 1.6 }}>
+                  Thank you, <strong>{formData.name}</strong>. One of our creative directors will reach out to <strong>{formData.email}</strong> within 24 hours.
+                </p>
+                <button onClick={handleReset} className="btn-secondary" style={{ padding: '10px 20px', fontSize: '0.82rem' }}>
+                  SEND ANOTHER BRIEF
+                </button>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="minimal-inquiry-form">
@@ -199,10 +217,16 @@ export default function Contact() {
                   <div className="office-top">
                     <span className="office-flag">{office.flag}</span>
                     <span className="office-city">{office.city}</span>
+                    <span className="office-hub-tag">{office.hub}</span>
                   </div>
-                  <span className="office-hub-title">{office.hub}</span>
-                  <span className="office-address">{office.address}</span>
-                  <a href={`mailto:${office.email}`} className="office-email">{office.email}</a>
+                  <p className="office-addr">
+                    <MapPin size={14} style={{ color: 'var(--accent-coral)', flexShrink: 0 }} />
+                    <span>{office.address}</span>
+                  </p>
+                  <p className="office-email">
+                    <Mail size={14} style={{ color: 'var(--accent-coral)', flexShrink: 0 }} />
+                    <a href={`mailto:${office.email}`}>{office.email}</a>
+                  </p>
                 </motion.div>
               ))}
             </div>

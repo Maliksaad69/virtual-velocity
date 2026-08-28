@@ -1,13 +1,11 @@
+import { useNavigate } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { AnimatedSectionBackground } from './PresentationSection';
 import './AboutCosmic.css';
 
 export default function AboutCosmic() {
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  const navigate = useNavigate();
 
   return (
     <section className="section agency-about-section" id="agency">
@@ -32,7 +30,7 @@ export default function AboutCosmic() {
             </div>
 
             <h2 className="heading-xl editorial-section-title">
-              WE'RE NOT A <br />
+              WE&apos;RE NOT A <br />
               POST-AND-PRAY <br />
               <span className="accent-text">AGENCY.</span>
             </h2>
@@ -58,15 +56,26 @@ export default function AboutCosmic() {
               </div>
             </div>
 
-            <motion.button
-              onClick={scrollToContact}
-              className="btn-primary"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.96 }}
-            >
-              <span>WORK WITH US</span>
-              <ArrowRight size={16} className="btn-icon-arrow" />
-            </motion.button>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginTop: '30px' }}>
+              <motion.button
+                onClick={() => navigate('/about')}
+                className="btn-primary"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                <span>MORE ABOUT OUR CULTURE</span>
+                <ArrowRight size={16} className="btn-icon-arrow" />
+              </motion.button>
+
+              <motion.button
+                onClick={() => navigate('/contact')}
+                className="btn-secondary"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                <span>WORK WITH US</span>
+              </motion.button>
+            </div>
           </motion.div>
 
           {/* Visual Right Column */}
