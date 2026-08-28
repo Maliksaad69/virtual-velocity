@@ -17,9 +17,9 @@ export function PresentationSection({ children, className = '', id, sectionNumbe
   });
 
   // Presentation scale & Y translation
-  const scale = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0.92, 1, 1, 0.95]);
-  const opacity = useTransform(smoothProgress, [0, 0.25, 0.75, 1], [0.2, 1, 1, 0.3]);
-  const y = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [80, 0, 0, -40]);
+  const scale = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0.94, 1, 1, 0.96]);
+  const opacity = useTransform(smoothProgress, [0, 0.25, 0.75, 1], [0.3, 1, 1, 0.4]);
+  const y = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [60, 0, 0, -30]);
 
   return (
     <motion.div
@@ -41,6 +41,70 @@ export function PresentationSection({ children, className = '', id, sectionNumbe
         </div>
       )}
       {children}
+    </motion.div>
+  );
+}
+
+export function AnimatedSectionBackground({ imageSrc, overlayGradient, alt = 'Background visual' }) {
+  const bgRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: bgRef,
+    offset: ['start end', 'end start']
+  });
+
+  // Parallax Y offset & slight zoom scale
+  const y = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1.02, 1.08]);
+
+  return (
+    <div ref={bgRef} className="animated-section-bg-container">
+      <motion.img
+        src={imageSrc}
+        alt={alt}
+        className="animated-section-bg-img"
+        style={{ y, scale }}
+        animate={{
+          scale: [1.04, 1.08, 1.04],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          repeatType: 'mirror',
+          ease: 'easeInOut'
+        }}
+      />
+      {overlayGradient && (
+        <div className="animated-section-bg-overlay" style={{ background: overlayGradient }} />
+      )}
+    </div>
+  );
+}
+
+export function AnimatedImageCard({ src, alt, className = '', aspect = '16/9' }) {
+  return (
+    <motion.div
+      className={`animated-image-card-wrap ${className}`}
+      style={{ aspectRatio: aspect }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      whileHover="hover"
+    >
+      <motion.img
+        src={src}
+        alt={alt}
+        className="animated-card-img"
+        variants={{
+          hover: {
+            scale: 1.06,
+            rotate: 0.5,
+            transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+          }
+        }}
+      />
+      <div className="animated-card-shine" />
     </motion.div>
   );
 }

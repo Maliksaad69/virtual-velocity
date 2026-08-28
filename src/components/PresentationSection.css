@@ -36,6 +36,53 @@
   letter-spacing: 0.12em;
 }
 
+/* Animated Background Component */
+.animated-section-bg-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.animated-section-bg-img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.12) saturate(1.15) brightness(1.02);
+  will-change: transform;
+}
+
+.animated-section-bg-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Animated Image Card */
+.animated-image-card-wrap {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.animated-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.animated-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
 /* Word Reveal Mask Styling */
 .word-reveal-container {
   overflow: hidden;
