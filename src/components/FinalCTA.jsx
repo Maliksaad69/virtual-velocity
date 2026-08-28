@@ -1,13 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { AnimatedSectionBackground } from './PresentationSection';
 import './FinalCTA.css';
 
 export default function FinalCTA() {
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  const navigate = useNavigate();
 
   return (
     <section className="section agency-final-cta-section" id="final-cta">
@@ -28,7 +26,7 @@ export default function FinalCTA() {
         >
           <div className="label-tag justify-center">
             <Sparkles size={12} className="accent-text" />
-            <span>LET'S BUILD SOMETHING EXTRAORDINARY</span>
+            <span>LET&apos;S BUILD SOMETHING EXTRAORDINARY</span>
           </div>
 
           <h2 className="cta-giant-headline">
@@ -38,12 +36,12 @@ export default function FinalCTA() {
           </h2>
 
           <p className="cta-supporting-text">
-            Let's create campaigns, content, and digital experiences that turn attention into market dominance.
+            Let&apos;s create campaigns, content, and digital experiences that turn attention into market dominance.
           </p>
 
           <div className="cta-buttons-wrap justify-center">
             <motion.button
-              onClick={scrollToContact}
+              onClick={() => navigate('/contact')}
               className="btn-primary hero-btn-main"
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}

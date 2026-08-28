@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { AnimatedSectionBackground } from './PresentationSection';
@@ -35,15 +36,7 @@ const itemVariants = {
 };
 
 export default function Hero() {
-  const scrollToWork = () => {
-    const el = document.getElementById('work');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  const navigate = useNavigate();
 
   return (
     <section className="agency-hero-section" id="hero">
@@ -101,7 +94,7 @@ export default function Hero() {
           {/* Master Hero Action Buttons */}
           <motion.div className="hero-actions" variants={itemVariants}>
             <motion.button
-              onClick={scrollToWork}
+              onClick={() => navigate('/work')}
               className="btn-primary hero-btn-main"
               data-cursor="EXPLORE"
               whileHover={{ scale: 1.04, y: -2 }}
@@ -112,7 +105,7 @@ export default function Hero() {
             </motion.button>
 
             <motion.button
-              onClick={scrollToContact}
+              onClick={() => navigate('/contact')}
               className="btn-secondary hero-btn-sub"
               data-cursor="START"
               whileHover={{ scale: 1.04, y: -2 }}
