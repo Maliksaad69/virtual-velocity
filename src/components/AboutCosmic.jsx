@@ -18,18 +18,18 @@ export default function AboutCosmic() {
           </div>
         </div>
 
-        {/* Huge Spatial Editorial Headline */}
+        {/* Huge Spatial Editorial Headline with Dynamic Shifting Colors */}
         <div className="about-spatial-composition">
           <h2 className="about-editorial-title">
-            <span className="heading-main">WE DON'T</span> <br />
-            <span className="heading-accent">CHASE TRENDS.</span>
+            <span className="heading-line-1">WE DON'T</span> <br />
+            <span className="heading-line-2">CHASE TRENDS.</span>
           </h2>
 
           <div className="about-editorial-divider" />
 
           <h2 className="about-editorial-title hero-line-momentum">
-            <span className="heading-main">WE BUILD</span> <br />
-            <span className="heading-accent">MOMENTUM.</span>
+            <span className="heading-line-3">WE BUILD</span> <br />
+            <span className="heading-line-4">MOMENTUM.</span>
           </h2>
 
           {/* Minimal Story Points */}
