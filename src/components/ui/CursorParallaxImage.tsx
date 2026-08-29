@@ -1,0 +1,132 @@
+"use client";
+
+import { useRef, useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface CursorParallaxImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallaxImageProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const revealRef = useRef<HTMLDivElement>(null);
+
+  // —— Scroll-triggered distortion reveal via GSAP ——
+  useEffect(() => {
+    const container = containerRef.current;
+    const inner = innerRef.current;
+    const reveal = revealRef.current;
+    if (!container || !inner || !reveal) return;
+
+    const ctx = gsap.context(() => {
+      // Clip-path circle reveal on wrapper
+      gsap.fromTo(
+        reveal,
+        { clipPath: "circle(0%)" },
+        {
+          clipPath: "circle(150%)",
+          duration: 1.4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      // Inner image scales up & blurs in
+      gsap.fromTo(
+        inner,
+        { filter: "blur(8px)", scale: 1.15 },
+        {
+          filter: "blur(0px)",
+          scale: 1.05,
+          duration: 1.6,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+
+    const currentX = (e.clientX - rect.left) / width - 0.5;
+    const currentY = (e.clientY - rect.top) / height - 0.5;
+
+    mouseX.set(currentX);
+    mouseY.set(currentY);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        perspective: "1000px",
+      }}
+      className={`relative overflow-hidden rounded-2xl border border-white/10 bg-surface ${className}`}
+    >
+      {/* Distortion Reveal Layer */}
+      <div
+        ref={revealRef}
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          clipPath: "circle(0%)",
+          background: "rgba(255,255,255,0.02)",
+        }}
+      />
+      <motion.div
+        ref={innerRef}
+        style={{
+          rotateX,
+          rotateY,
+          scale: 1.15,
+          filter: "blur(8px)",
+        }}
+        className="w-full h-full transform-gpu"
+      >
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      </motion.div>
+    </motion.div>
+  );
+};
