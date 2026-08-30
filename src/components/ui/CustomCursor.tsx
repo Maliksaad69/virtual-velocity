@@ -12,14 +12,14 @@ export const CustomCursor = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 28, stiffness: 350, mass: 0.5 };
+  // Responsive spring tuning for zero-latency, natural mouse movement
+  const springConfig = { damping: 32, stiffness: 450, mass: 0.2 };
   const smoothX = useSpring(cursorX, springConfig);
   const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Check touch device
     if (typeof window !== "undefined") {
-      if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
         setIsTouchDevice(true);
         return;
       }
@@ -55,8 +55,8 @@ export const CustomCursor = () => {
       setIsVisible(false);
     };
 
-    window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mousemove", moveCursor, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
@@ -81,16 +81,16 @@ export const CustomCursor = () => {
         width: cursorText ? 100 : isHovered ? 54 : 14,
         height: cursorText ? 100 : isHovered ? 54 : 14,
         backgroundColor: cursorText ? "#00f0ff" : isHovered ? "rgba(255, 255, 255, 0.9)" : "#00f0ff",
-        mixBlendMode: cursorText ? "normal" : isHovered ? "difference" : "difference",
+        mixBlendMode: cursorText ? "normal" : "difference",
       }}
-      transition={{ type: "spring", damping: 25, stiffness: 300, mass: 0.4 }}
+      transition={{ type: "spring", damping: 28, stiffness: 350, mass: 0.3 }}
     >
       {cursorText && (
         <motion.span
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.6 }}
-          className="text-center font-bold px-2 leading-tight text-[11px] text-black tracking-wider uppercase font-sans"
+          className="text-center font-outfit font-extrabold px-2 leading-tight text-[11px] text-black tracking-wider uppercase"
         >
           {cursorText}
         </motion.span>
