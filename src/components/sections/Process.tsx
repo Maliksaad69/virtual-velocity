@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -12,7 +13,6 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 export const Process = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const cardContainerRef = useRef<HTMLDivElement>(null);
   const laserBeamRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -56,8 +56,8 @@ export const Process = () => {
         trigger: section,
         pin: true,
         start: "top top",
-        end: () => `+=${totalSteps * 320}`,
-        scrub: 0.4,
+        end: () => `+=${totalSteps * 250}`,
+        scrub: 0.2,
         onUpdate: (self) => {
           const rawProgress = self.progress;
           const stepIndex = Math.min(
@@ -66,7 +66,6 @@ export const Process = () => {
           );
 
           if (stepIndex !== activeStep) {
-            triggerHolographicTransition(stepIndex);
             setActiveStep(stepIndex);
           }
 
@@ -83,61 +82,8 @@ export const Process = () => {
     { scope: sectionRef }
   );
 
-  const triggerHolographicTransition = (nextIndex: number) => {
-    const card = cardContainerRef.current;
-    if (!card) return;
-
-    // Fast, ultra-snappy 3D card transition timeline
-    const tl = gsap.timeline();
-
-    tl.to(".gsap-laser-wipe", {
-      x: "150%",
-      duration: 0.15,
-      ease: "power2.inOut",
-    });
-
-    tl.to(
-      card,
-      {
-        rotationY: 45,
-        scale: 0.96,
-        opacity: 0.2,
-        duration: 0.12,
-        ease: "power2.in",
-        transformOrigin: "center left",
-      },
-      "-=0.12"
-    );
-
-    tl.set(card, { rotationY: -45, scale: 0.96, opacity: 0.2 });
-    tl.set(".gsap-laser-wipe", { x: "-100%" });
-
-    tl.to(card, {
-      rotationY: 0,
-      scale: 1,
-      opacity: 1,
-      duration: 0.2,
-      ease: "power3.out",
-    });
-
-    tl.fromTo(
-      ".gsap-stage-item",
-      { opacity: 0, x: -12, scale: 0.97 },
-      {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        stagger: 0.03,
-        duration: 0.18,
-        ease: "power2.out",
-      },
-      "-=0.1"
-    );
-  };
-
   const handleStepClick = (index: number) => {
     if (index === activeStep) return;
-    triggerHolographicTransition(index);
     setActiveStep(index);
   };
 
@@ -166,7 +112,7 @@ export const Process = () => {
           </h2>
         </div>
         <p className="mt-4 md:mt-0 text-sm sm:text-base text-white/75 font-light leading-relaxed max-w-md">
-          Scroll through to experience our 3D Matrix stage transition across each milestone from audit to aggressive revenue scaling.
+          Inspect our 5-stage strategy pipeline across each milestone from audit to aggressive revenue scaling.
         </p>
       </div>
 
@@ -194,7 +140,7 @@ export const Process = () => {
                 <button
                   key={step.number}
                   onClick={() => handleStepClick(idx)}
-                  className={`gsap-process-step-btn w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-500 flex items-center justify-between group relative overflow-hidden ${
+                  className={`gsap-process-step-btn w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between group relative overflow-hidden ${
                     isActive
                       ? "bg-gradient-to-r from-[#00f0ff]/15 via-surface/90 to-surface border-[#00f0ff] shadow-[0_0_30px_rgba(0,240,255,0.25)]"
                       : "bg-surface/50 border-white/10 hover:border-white/25 hover:bg-surface/80"
@@ -241,69 +187,75 @@ export const Process = () => {
           </div>
         </div>
 
-        {/* Right Column: 3D Holographic Display */}
-        <div className="lg:col-span-7" style={{ perspective: "1200px" }}>
-          <div
-            ref={cardContainerRef}
-            className="relative p-8 sm:p-14 rounded-3xl bg-surface/90 border-2 border-white/15 shadow-2xl backdrop-blur-2xl space-y-8 overflow-hidden transition-all duration-300 group hover:border-[#00f0ff]/60"
-          >
-            {/* Holographic Laser Grid Wipe Layer */}
-            <div className="gsap-laser-wipe absolute inset-0 bg-gradient-to-r from-transparent via-[#00f0ff]/40 to-transparent w-full h-full -translate-x-full pointer-events-none z-30" />
-
+        {/* Right Column: Stationary Display Card with Instant Content Fade */}
+        <div className="lg:col-span-7">
+          <div className="relative min-h-[460px] sm:min-h-[490px] p-8 sm:p-14 rounded-3xl bg-surface/90 border-2 border-white/15 shadow-2xl backdrop-blur-2xl flex flex-col justify-between overflow-hidden transition-colors duration-300 hover:border-[#00f0ff]/60">
             {/* Stage Number Background Watermark */}
             <span className="absolute top-4 right-8 text-[140px] sm:text-[200px] font-outfit font-black text-white/[0.03] pointer-events-none select-none leading-none z-0">
               {currentStep.number}
             </span>
 
-            {/* Panel Top Header */}
-            <div className="relative z-10 flex items-center justify-between border-b border-white/10 pb-4">
-              <span className="text-sm font-outfit font-extrabold text-[#00f0ff] tracking-wider flex items-center gap-2">
-                <Zap className="w-4 h-4 text-[#00f0ff]" />
-                STAGE {currentStep.number} OF 05
-              </span>
-              <span className="text-xs font-outfit font-bold text-white/80 bg-white/10 px-3.5 py-1 rounded-full border border-white/10 uppercase">
-                {currentStep.subtitle}
-              </span>
-            </div>
+            {/* In-Place Content Fade */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentStep.number}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="relative z-10 space-y-8 flex-1 flex flex-col justify-between"
+              >
+                {/* Panel Top Header */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <span className="text-sm font-outfit font-extrabold text-[#00f0ff] tracking-wider flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-[#00f0ff]" />
+                    STAGE {currentStep.number} OF 05
+                  </span>
+                  <span className="text-xs font-outfit font-bold text-white/80 bg-white/10 px-3.5 py-1 rounded-full border border-white/10 uppercase">
+                    {currentStep.subtitle}
+                  </span>
+                </div>
 
-            {/* Title & Description */}
-            <div className="relative z-10 space-y-3">
-              <h3 className="text-3xl sm:text-5xl font-outfit font-black text-white uppercase tracking-tight leading-tight">
-                {currentStep.title}
-              </h3>
-              <p className="text-base sm:text-lg text-white/80 font-light leading-relaxed max-w-xl">
-                {currentStep.description}
-              </p>
-            </div>
+                {/* Title & Description */}
+                <div className="space-y-3">
+                  <h3 className="text-3xl sm:text-5xl font-outfit font-black text-white uppercase tracking-tight leading-tight">
+                    {currentStep.title}
+                  </h3>
+                  <p className="text-base sm:text-lg text-white/80 font-light leading-relaxed max-w-xl">
+                    {currentStep.description}
+                  </p>
+                </div>
 
-            {/* Deliverables List */}
-            <div className="relative z-10 space-y-4 border-t border-white/10 pt-6">
-              <span className="text-xs font-outfit font-extrabold text-white/60 block tracking-wider uppercase">
-                STAGE MILESTONES & DELIVERABLES:
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                {currentStep.deliverables.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="gsap-stage-item p-4 rounded-xl bg-black/40 border border-white/10 flex items-center gap-3 text-sm font-outfit font-bold text-white/95 shadow-md"
-                  >
-                    <div className="p-1 rounded-full bg-[#00f0ff]/15 text-[#00f0ff] flex-shrink-0">
-                      <CheckCircle2 className="w-4 h-4 text-[#00f0ff]" />
-                    </div>
-                    <span>{item}</span>
+                {/* Deliverables List */}
+                <div className="space-y-4 border-t border-white/10 pt-6">
+                  <span className="text-xs font-outfit font-extrabold text-white/60 block tracking-wider uppercase">
+                    STAGE MILESTONES & DELIVERABLES:
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    {currentStep.deliverables.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-4 rounded-xl bg-black/40 border border-white/10 flex items-center gap-3 text-sm font-outfit font-bold text-white/95 shadow-md"
+                      >
+                        <div className="p-1 rounded-full bg-[#00f0ff]/15 text-[#00f0ff] flex-shrink-0">
+                          <CheckCircle2 className="w-4 h-4 text-[#00f0ff]" />
+                        </div>
+                        <span>{item}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
 
-            {/* Panel Bottom Footer */}
-            <div className="relative z-10 flex items-center justify-between border-t border-white/10 pt-4 text-xs font-outfit font-medium text-white/50">
-              <div className="flex items-center gap-2 text-[#00f0ff] font-bold">
-                <ShieldCheck className="w-4 h-4" />
-                <span>GUARANTEED DELIVERABLE EXECUTION</span>
-              </div>
-              <span className="hidden sm:inline-block">VIRTUAL VELOCITY ENGINE</span>
-            </div>
+                {/* Panel Bottom Footer */}
+                <div className="flex items-center justify-between border-t border-white/10 pt-4 text-xs font-outfit font-medium text-white/50">
+                  <div className="flex items-center gap-2 text-[#00f0ff] font-bold">
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>GUARANTEED DELIVERABLE EXECUTION</span>
+                  </div>
+                  <span className="hidden sm:inline-block">VIRTUAL VELOCITY ENGINE</span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
@@ -311,7 +263,7 @@ export const Process = () => {
       {/* Footer Bar */}
       <div className="flex items-center justify-between border-t border-white/10 pt-3 z-10 text-xs font-outfit font-medium text-white/50">
         <span>STRATEGY PIPELINE ACTIVE</span>
-        <span className="hidden sm:inline-block">SCROLL OR SELECT STAGES TO ANIMATE</span>
+        <span className="hidden sm:inline-block">SCROLL OR SELECT STAGES TO INSPECT</span>
       </div>
     </section>
   );
