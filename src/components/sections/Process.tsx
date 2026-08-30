@@ -56,8 +56,8 @@ export const Process = () => {
         trigger: section,
         pin: true,
         start: "top top",
-        end: () => `+=${totalSteps * 450}`,
-        scrub: 0.8,
+        end: () => `+=${totalSteps * 320}`,
+        scrub: 0.4,
         onUpdate: (self) => {
           const rawProgress = self.progress;
           const stepIndex = Math.min(
@@ -73,7 +73,7 @@ export const Process = () => {
           if (laserBeamRef.current) {
             gsap.to(laserBeamRef.current, {
               height: `${rawProgress * 100}%`,
-              duration: 0.2,
+              duration: 0.1,
               ease: "none",
             });
           }
@@ -87,50 +87,51 @@ export const Process = () => {
     const card = cardContainerRef.current;
     if (!card) return;
 
+    // Fast, ultra-snappy 3D card transition timeline
     const tl = gsap.timeline();
 
     tl.to(".gsap-laser-wipe", {
       x: "150%",
-      duration: 0.35,
+      duration: 0.15,
       ease: "power2.inOut",
     });
 
     tl.to(
       card,
       {
-        rotationY: 75,
-        scale: 0.92,
-        opacity: 0.1,
-        duration: 0.25,
+        rotationY: 45,
+        scale: 0.96,
+        opacity: 0.2,
+        duration: 0.12,
         ease: "power2.in",
         transformOrigin: "center left",
       },
-      "-=0.3"
+      "-=0.12"
     );
 
-    tl.set(card, { rotationY: -75, scale: 0.92, opacity: 0.1 });
+    tl.set(card, { rotationY: -45, scale: 0.96, opacity: 0.2 });
     tl.set(".gsap-laser-wipe", { x: "-100%" });
 
     tl.to(card, {
       rotationY: 0,
       scale: 1,
       opacity: 1,
-      duration: 0.45,
-      ease: "power4.out",
+      duration: 0.2,
+      ease: "power3.out",
     });
 
     tl.fromTo(
       ".gsap-stage-item",
-      { opacity: 0, x: -20, scale: 0.95 },
+      { opacity: 0, x: -12, scale: 0.97 },
       {
         opacity: 1,
         x: 0,
         scale: 1,
-        stagger: 0.08,
-        duration: 0.4,
-        ease: "back.out(1.5)",
+        stagger: 0.03,
+        duration: 0.18,
+        ease: "power2.out",
       },
-      "-=0.2"
+      "-=0.1"
     );
   };
 
