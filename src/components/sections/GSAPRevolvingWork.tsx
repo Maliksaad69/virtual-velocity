@@ -158,10 +158,10 @@ export const GSAPRevolvingWork = () => {
           <div>
             <div className="flex items-center gap-3 text-xs font-mono text-[#00f0ff] uppercase tracking-[0.25em] font-bold mb-2">
               <Trophy className="w-4 h-4 text-[#00f0ff]" />
-              <span>// GSAP 3D REVOLVING PORTFOLIO SHOWCASE</span>
+              <span>// 3D PORTFOLIO SHOWCASE</span>
             </div>
             <h2 className="text-4xl sm:text-6xl font-outfit font-black uppercase text-white tracking-tighter leading-none">
-              REVOLVING <span className="text-[#00f0ff] italic font-light">CASE STUDIES</span>
+              FEATURED <span className="text-[#00f0ff] italic font-light">CASE STUDIES</span>
             </h2>
           </div>
 
@@ -352,7 +352,7 @@ export const GSAPRevolvingWork = () => {
             />
           ))}
         </div>
-        <span>USE SCROLL OR CONTROLS TO REVOLVE 3D PORTFOLIO</span>
+        <span>USE SCROLL OR CONTROLS TO EXPLORE 3D PORTFOLIO</span>
       </div>
     </section>
   );

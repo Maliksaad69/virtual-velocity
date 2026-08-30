@@ -175,10 +175,10 @@ export const GSAPRevolvingServices = () => {
         <div>
           <div className="flex items-center gap-3 text-xs font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider mb-2">
             <RotateCw className="w-4 h-4 animate-spin-slow" />
-            <span>3D REVOLVING SERVICE SPECTRUM</span>
+            <span>3D SERVICE SPECTRUM</span>
           </div>
           <h2 className="text-4xl sm:text-6xl font-outfit font-black uppercase text-white tracking-tighter leading-none">
-            REVOLVING <span className="text-[#00f0ff]">SERVICES</span>
+            AGENCY <span className="text-[#00f0ff]">SERVICES</span>
           </h2>
         </div>
 
@@ -192,7 +192,7 @@ export const GSAPRevolvingServices = () => {
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
-            <span>{isAutoRotating ? "AUTO-REVOLVE ON" : "AUTO-REVOLVE OFF"}</span>
+            <span>{isAutoRotating ? "AUTO-ROTATING" : "AUTO OFF"}</span>
           </button>
 
           <div className="flex items-center gap-2">
@@ -265,7 +265,7 @@ export const GSAPRevolvingServices = () => {
                   </p>
 
                   <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-white/10 text-xs font-outfit font-bold">
-                    <span className="text-[#00f0ff]">{isActive ? "ACTIVE DISCIPLINE" : "REVOLVE TO VIEW"}</span>
+                    <span className="text-[#00f0ff]">{isActive ? "ACTIVE DISCIPLINE" : "SELECT TO VIEW"}</span>
                     <ArrowUpRight className={`w-4 h-4 ${isActive ? "text-[#00f0ff]" : "text-white/40"}`} />
                   </div>
                 </div>
@@ -352,7 +352,7 @@ export const GSAPRevolvingServices = () => {
             />
           ))}
         </div>
-        <span>SCROLL OR CLICK TO REVOLVE 3D SPECTRUM</span>
+        <span>SCROLL OR CLICK TO EXPLORE 3D SPECTRUM</span>
       </div>
     </section>
   );
