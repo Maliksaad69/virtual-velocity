@@ -17,7 +17,7 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-border: var(--surface-border);
-  --color-accent: var(--accent);
+  --color-[#00f0ff]: var(--accent);
   --color-accent-secondary: var(--accent-secondary);
   --color-muted: var(--muted);
   --font-display: var(--font-outfit), sans-serif;
@@ -25,11 +25,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: #08080a;
   color: #f4f4f2;
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -38,11 +40,25 @@ body {
   overflow-x: hidden;
   selection-background-color: var(--accent);
   selection-color: #000;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
   background: #00f0ff;
   color: #000;
+}
+
+/* GPU Hardware Acceleration Utilities */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+.gpu-transform {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 /* Custom Scrollbar */
@@ -60,7 +76,7 @@ body {
   background: #00f0ff;
 }
 
-/* Fluid Typography Utilities (Optimized for 100vh Laptop Viewports) */
+/* Fluid Typography Utilities */
 .text-hero {
   font-size: clamp(2.2rem, 5.2vw, 6.2rem);
   line-height: 0.95;
@@ -94,25 +110,27 @@ body {
 
 /* Marquee Keyframes */
 @keyframes marquee-left {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0%, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 @keyframes marquee-right {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0%, 0, 0); }
 }
 
 .animate-marquee-left {
   display: flex;
   width: max-content;
   animation: marquee-left 35s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
   animation: marquee-right 35s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-fast {
