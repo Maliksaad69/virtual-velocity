@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TESTIMONIALS } from "@/data/agencyData";
 import { ArrowLeft, ArrowRight, Quote, Pause, Play } from "lucide-react";
 
-const AUTO_ROTATE_INTERVAL = 5000;
+const AUTO_ROTATE_INTERVAL = 2000; // 2 seconds per review
 
 export const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);

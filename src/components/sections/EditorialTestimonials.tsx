@@ -11,7 +11,7 @@ import { Magnetic } from "@/components/ui/Magnetic";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const AUTO_ROTATE_INTERVAL = 5000; // 5 seconds per review
+const AUTO_ROTATE_INTERVAL = 2000; // 2 seconds per review
 
 export const EditorialTestimonials = () => {
   const [activeIdx, setActiveIdx] = useState(0);
