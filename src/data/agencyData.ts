@@ -56,7 +56,7 @@ export interface BlogPost {
 }
 
 export const AGENCY_INFO = {
-  name: "AURA LABS",
+  name: "VIRTUAL VELOCITY",
   tagline: "FULL-SERVICE DIGITAL MARKETING & CREATIVE BRAND STRATEGY AGENCY",
   subTagline: "We scale business revenue through high-converting Google Ads PPC, Technical SEO, Social Media Marketing, Brand Positioning, Content Creation, and Conversion Rate Optimization (CRO).",
   offices: [
@@ -64,14 +64,14 @@ export const AGENCY_INFO = {
       city: "WILMINGTON, DE (USA)",
       address: "1209 North Orange St, Suite 400, Wilmington, DE 19801",
       phone: "+1 (800) 555-0199",
-      email: "us@auralabs.agency",
+      email: "us@virtualvelocity.agency",
       timezone: "America/New_York",
     },
     {
       city: "LAHORE, PK",
       address: "Commercial Zone, Phase 5 DHA, Lahore 54000",
       phone: "+92 (42) 3555-0199",
-      email: "pk@auralabs.agency",
+      email: "pk@virtualvelocity.agency",
       timezone: "Asia/Karachi",
     },
   ],
@@ -297,7 +297,7 @@ export const CAPABILITIES = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: "t1",
-    quote: "AURA LABS completely transformed our e-commerce marketing strategy. Our conversion rate surged by 185% in the first 90 days across Google Shopping and Meta Ads.",
+    quote: "VIRTUAL VELOCITY completely transformed our e-commerce marketing strategy. Our conversion rate surged by 185% in the first 90 days across Google Shopping and Meta Ads.",
     author: "MARCUS CHEN",
     role: "VP OF MARKETING",
     company: "NEXUS GLOBAL RETAIL",
@@ -317,7 +317,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: "t3",
-    quote: "The global digital launch campaign AURA LABS executed for Solaris generated $48M in pre-orders. Their video ad creation and influencer strategy were flawless.",
+    quote: "The global digital launch campaign VIRTUAL VELOCITY executed for Solaris generated $48M in pre-orders. Their video ad creation and influencer strategy were flawless.",
     author: "DAVID KAISER",
     role: "HEAD OF BRAND MARKETING",
     company: "SOLARIS MOTORS",

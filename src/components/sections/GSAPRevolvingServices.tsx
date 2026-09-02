@@ -159,26 +159,20 @@ export const GSAPRevolvingServices = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-[#050507] text-[#f4f4f2] overflow-hidden flex flex-col justify-between py-12 px-4 sm:px-8 lg:px-16 selection:bg-[#00f0ff] selection:text-black font-outfit"
+      className="relative min-h-screen bg-white text-zinc-900 overflow-hidden flex flex-col justify-between py-12 px-4 sm:px-8 lg:px-16 selection:bg-zinc-900 selection:text-white font-outfit border-t border-zinc-200"
     >
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[140px] pointer-events-none opacity-25 transition-all duration-1000"
-        style={{
-          background:
-            activeIndex % 2 === 0
-              ? "radial-gradient(circle, #00f0ff 0%, #7000ff 60%, transparent 100%)"
-              : "radial-gradient(circle, #ff2a6d 0%, #00f0ff 60%, transparent 100%)",
-        }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[140px] pointer-events-none opacity-20 bg-zinc-200/50 transition-all duration-1000"
       />
 
-      <div className="gsap-revolve-header max-w-[1700px] w-full mx-auto flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 z-10 gap-6">
+      <div className="gsap-revolve-header max-w-[1700px] w-full mx-auto flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 z-10 gap-6">
         <div>
-          <div className="flex items-center gap-3 text-xs font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider mb-2">
-            <RotateCw className="w-4 h-4 animate-spin-slow" />
+          <div className="flex items-center gap-3 text-xs font-outfit font-extrabold text-emerald-600 uppercase tracking-wider mb-2">
+            <RotateCw className="w-4 h-4 animate-spin-slow text-emerald-600" />
             <span>3D SERVICE SPECTRUM</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-outfit font-black uppercase text-white tracking-tighter leading-none">
-            AGENCY <span className="text-[#00f0ff]">SERVICES</span>
+          <h2 className="text-4xl sm:text-6xl font-outfit font-black uppercase text-zinc-950 tracking-tighter leading-none">
+            AGENCY <span className="text-emerald-600 font-black">SERVICES</span>
           </h2>
         </div>
 
@@ -187,8 +181,8 @@ export const GSAPRevolvingServices = () => {
             onClick={() => setIsAutoRotating(!isAutoRotating)}
             className={`text-xs font-outfit font-bold px-4 py-2 rounded-full border transition-all duration-300 flex items-center gap-2 ${
               isAutoRotating
-                ? "bg-[#00f0ff] text-black border-[#00f0ff] font-bold shadow-[0_0_20px_rgba(0,240,255,0.4)]"
-                : "bg-surface text-white/70 border-white/10 hover:border-white/30"
+                ? "bg-emerald-600 text-white border-emerald-600 font-bold shadow-sm"
+                : "bg-emerald-50 text-emerald-800 border-emerald-200 hover:border-emerald-400"
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
@@ -198,14 +192,14 @@ export const GSAPRevolvingServices = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={prevService}
-              className="p-3 rounded-full bg-surface border border-white/10 hover:border-[#00f0ff] hover:text-[#00f0ff] text-white transition-colors"
+              className="p-3 rounded-full bg-white border border-zinc-300 hover:bg-emerald-600 hover:text-white text-zinc-950 transition-colors shadow-xs"
               aria-label="Previous Service"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextService}
-              className="p-3 rounded-full bg-surface border border-white/10 hover:border-[#00f0ff] hover:text-[#00f0ff] text-white transition-colors"
+              className="p-3 rounded-full bg-white border border-zinc-300 hover:bg-emerald-600 hover:text-white text-zinc-950 transition-colors shadow-xs"
               aria-label="Next Service"
             >
               <ChevronRight className="w-5 h-5" />
@@ -238,8 +232,8 @@ export const GSAPRevolvingServices = () => {
                   onClick={() => revolveToIndex(idx)}
                   className={`absolute w-[230px] sm:w-[340px] p-5 sm:p-8 rounded-3xl cursor-pointer transition-all duration-700 select-none ${
                     isActive
-                      ? "bg-surface border-2 border-[#00f0ff] shadow-[0_0_50px_rgba(0,240,255,0.3)] z-30 opacity-100 scale-105"
-                      : "bg-surface/60 border border-white/10 hover:border-white/30 z-10 opacity-40 hover:opacity-75 scale-90 blur-[0.5px]"
+                      ? "bg-white border-2 border-emerald-600 shadow-xl shadow-emerald-500/10 z-30 opacity-100 scale-105"
+                      : "bg-zinc-50 border-2 border-emerald-500/30 hover:border-emerald-600 z-10 opacity-75 hover:opacity-95 scale-90"
                   }`}
                   style={{
                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
@@ -248,25 +242,27 @@ export const GSAPRevolvingServices = () => {
                   }}
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl sm:text-3xl font-outfit font-black text-[#00f0ff]">
+                    <span className="text-2xl sm:text-3xl font-outfit font-black text-zinc-950">
                       {service.number}
                     </span>
-                    <span className="text-[10px] sm:text-xs font-outfit font-bold text-white/60 border border-white/10 px-3 py-1 rounded-full uppercase">
+                    <span className={`text-[10px] sm:text-xs font-outfit font-bold border px-3 py-1 rounded-full uppercase ${
+                      isActive ? "bg-emerald-50 text-emerald-800 border-emerald-200" : "bg-white text-zinc-600 border-zinc-200"
+                    }`}>
                       {service.category}
                     </span>
                   </div>
 
-                  <h3 className="text-lg sm:text-2xl font-outfit font-black uppercase text-white mb-2 sm:mb-3 tracking-tight">
+                  <h3 className="text-lg sm:text-2xl font-outfit font-black uppercase text-zinc-950 mb-2 sm:mb-3 tracking-tight">
                     {service.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-white/70 font-light line-clamp-3 leading-relaxed mb-4 sm:mb-6">
+                  <p className="text-xs sm:text-sm text-zinc-600 font-light line-clamp-3 leading-relaxed mb-4 sm:mb-6">
                     {service.shortDescription}
                   </p>
 
-                  <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-white/10 text-xs font-outfit font-bold">
-                    <span className="text-[#00f0ff]">{isActive ? "ACTIVE DISCIPLINE" : "SELECT TO VIEW"}</span>
-                    <ArrowUpRight className={`w-4 h-4 ${isActive ? "text-[#00f0ff]" : "text-white/40"}`} />
+                  <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-zinc-200 text-xs font-outfit font-bold">
+                    <span className={isActive ? "text-emerald-600 font-extrabold" : "text-zinc-700"}>{isActive ? "ACTIVE DISCIPLINE" : "SELECT TO VIEW"}</span>
+                    <ArrowUpRight className={`w-4 h-4 ${isActive ? "text-emerald-600" : "text-zinc-400"}`} />
                   </div>
                 </div>
               );
@@ -274,37 +270,37 @@ export const GSAPRevolvingServices = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-5 space-y-6 bg-surface/80 border border-white/10 p-6 sm:p-10 rounded-3xl backdrop-blur-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
-            <Layers className="w-32 h-32 text-white" />
+        <div className="lg:col-span-5 space-y-6 bg-white border border-zinc-200 p-6 sm:p-10 rounded-3xl shadow-lg relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
+            <Layers className="w-32 h-32 text-emerald-600" />
           </div>
 
-          <div className="flex items-center justify-between text-xs font-outfit text-white/60 border-b border-white/10 pb-4">
-            <span className="text-[#00f0ff] uppercase tracking-wider font-extrabold">
+          <div className="flex items-center justify-between text-xs font-outfit text-zinc-500 border-b border-zinc-200 pb-4">
+            <span className="text-emerald-600 uppercase tracking-wider font-extrabold">
               ACTIVE DISCIPLINE [0{activeIndex + 1} / 0{totalItems}]
             </span>
-            <span className="font-bold">{activeService.category}</span>
+            <span className="font-bold text-zinc-800">{activeService.category}</span>
           </div>
 
           <h3
             ref={titleScrambleRef}
-            className="text-2xl sm:text-4xl font-outfit font-black text-white uppercase tracking-tight leading-tight min-h-[56px]"
+            className="text-2xl sm:text-4xl font-outfit font-black text-zinc-950 uppercase tracking-tight leading-tight min-h-[56px]"
           >
             {activeService.title}
           </h3>
 
-          <p className="text-sm sm:text-base text-white/75 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-600 font-light leading-relaxed">
             {activeService.description}
           </p>
 
           <div className="space-y-3 pt-2">
-            <span className="text-xs font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider block">
+            <span className="text-xs font-outfit font-extrabold text-zinc-950 uppercase tracking-wider block">
               KEY CAMPAIGN DELIVERABLES
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {activeService.deliverables.map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs sm:text-sm font-outfit font-bold text-white/90">
-                  <CheckCircle2 className="w-4 h-4 text-[#00f0ff] flex-shrink-0" />
+                <div key={i} className="flex items-center gap-2 text-xs sm:text-sm font-outfit font-bold text-zinc-800">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -312,14 +308,14 @@ export const GSAPRevolvingServices = () => {
           </div>
 
           <div className="space-y-2 pt-2">
-            <span className="text-xs font-outfit font-bold text-white/50 uppercase tracking-wider block">
+            <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider block">
               PLATFORMS & TOOLING
             </span>
             <div className="flex flex-wrap gap-2">
               {activeService.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs font-outfit font-bold bg-white/5 text-white/80 border border-white/10 px-3 py-1 rounded-full uppercase"
+                  className="text-xs font-outfit font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full uppercase"
                 >
                   {tech}
                 </span>
@@ -327,10 +323,10 @@ export const GSAPRevolvingServices = () => {
             </div>
           </div>
 
-          <div className="pt-4 flex items-center justify-between border-t border-white/10">
+          <div className="pt-4 flex items-center justify-between border-t border-zinc-200">
             <Link
               href="/contact"
-              className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#00f0ff] text-black font-outfit font-extrabold text-xs sm:text-sm tracking-wider uppercase hover:bg-white transition-colors duration-300 shadow-[0_0_25px_rgba(0,240,255,0.3)]"
+              className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 text-white font-outfit font-extrabold text-xs sm:text-sm tracking-wider uppercase hover:bg-emerald-700 transition-colors duration-300 shadow-md"
             >
               <span>BOOK DISCIPLINE STRATEGY</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -339,20 +335,20 @@ export const GSAPRevolvingServices = () => {
         </div>
       </div>
 
-      <div className="max-w-[1700px] w-full mx-auto flex items-center justify-between border-t border-white/10 pt-4 z-10 text-xs font-outfit font-medium text-white/50">
+      <div className="max-w-[1700px] w-full mx-auto flex items-center justify-between border-t border-zinc-200 pt-4 z-10 text-xs font-outfit font-medium text-zinc-500">
         <div className="flex items-center gap-2">
           {SERVICES.map((_, idx) => (
             <button
               key={idx}
               onClick={() => revolveToIndex(idx)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                idx === activeIndex ? "w-8 bg-[#00f0ff]" : "w-2 bg-white/20 hover:bg-white/50"
+                idx === activeIndex ? "w-8 bg-emerald-600" : "w-2 bg-zinc-300 hover:bg-emerald-400"
               }`}
               aria-label={`Go to service ${idx + 1}`}
             />
           ))}
         </div>
-        <span>SCROLL OR CLICK TO EXPLORE 3D SPECTRUM</span>
+        <span className="font-bold text-zinc-600">SCROLL OR CLICK TO EXPLORE 3D SPECTRUM</span>
       </div>
     </section>
   );

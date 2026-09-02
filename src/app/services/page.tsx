@@ -81,21 +81,21 @@ export default function ServicesPage() {
 
   return (
     <SmoothScrollProvider>
-      <main ref={scopeRef} className="min-h-screen bg-[#08080a] text-[#f4f4f2] relative selection:bg-[#00f0ff] selection:text-black font-outfit">
+      <main ref={scopeRef} className="min-h-screen bg-white text-zinc-900 relative selection:bg-zinc-900 selection:text-white font-outfit">
         <CustomCursor />
         <Navigation />
 
         <div className="pt-32 sm:pt-40 pb-12 px-6 sm:px-12 max-w-[1700px] mx-auto">
           {/* Header */}
-          <div className="gsap-services-header space-y-6 border-b border-white/10 pb-12">
-            <span className="text-sm font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#00f0ff]" />
+          <div className="gsap-services-header space-y-6 border-b border-zinc-200 pb-12">
+            <span className="text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider flex items-center gap-2">
+              <Zap className="w-4 h-4 text-zinc-900" />
               DIGITAL MARKETING DISCIPLINES
             </span>
-            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-white tracking-tight uppercase leading-[0.9]">
-              <SplitTextReveal text="MARKETING SERVICES" highlightWords={["SERVICES"]} accentColor="#00f0ff" />
+            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.9]">
+              <SplitTextReveal text="MARKETING SERVICES" highlightWords={["SERVICES"]} accentColor="#059669" />
             </h1>
-            <p className="text-base sm:text-2xl text-white/75 max-w-3xl font-light leading-relaxed">
+            <p className="text-base sm:text-2xl text-zinc-600 max-w-3xl font-light leading-relaxed">
               We execute high-converting Google Ads PPC, Technical SEO audits, Social Media marketing, and Conversion Rate Optimization (CRO) designed to scale business revenue.
             </p>
           </div>
@@ -106,29 +106,29 @@ export default function ServicesPage() {
 
         <div className="py-20 sm:py-28 px-6 sm:px-12 max-w-[1700px] mx-auto space-y-20">
           {/* FAQ Section */}
-          <div className="space-y-10 border-t border-white/10 pt-16">
+          <div className="space-y-10 border-t border-zinc-200 pt-16">
             <div className="space-y-2">
-              <span className="text-sm font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider">FREQUENTLY ASKED QUESTIONS</span>
-              <h2 className="text-3xl sm:text-5xl font-outfit font-black text-white uppercase tracking-tight">
+              <span className="text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider">FREQUENTLY ASKED QUESTIONS</span>
+              <h2 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
                 CLEAR & TRANSPARENT ANSWERS
               </h2>
             </div>
 
             <div className="gsap-faq-grid grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               {FAQS.map((faq, idx) => (
-                <div key={idx} className="gsap-faq-card p-6 sm:p-8 rounded-2xl bg-surface/50 border border-white/10 space-y-3 hover:border-[#00f0ff]/50 transition-all duration-500 shadow-md">
-                  <h3 className="font-outfit font-extrabold text-white text-base sm:text-xl uppercase tracking-tight">{faq.q}</h3>
-                  <p className="text-sm sm:text-base text-white/75 font-light leading-relaxed">{faq.a}</p>
+                <div key={idx} className="gsap-faq-card p-6 sm:p-8 rounded-2xl bg-white border border-zinc-200 space-y-3 hover:border-zinc-900 transition-all duration-500 shadow-sm">
+                  <h3 className="font-outfit font-extrabold text-zinc-900 text-base sm:text-xl uppercase tracking-tight">{faq.q}</h3>
+                  <p className="text-sm sm:text-base text-zinc-600 font-light leading-relaxed">{faq.a}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Creative CTA Box */}
-          <div className="gsap-cta-box p-8 sm:p-16 rounded-3xl bg-surface border-2 border-white/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+          <div className="gsap-cta-box p-8 sm:p-16 rounded-3xl bg-white border-2 border-zinc-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-xl relative overflow-hidden">
             <div className="space-y-3 z-10">
-              <span className="text-sm font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider">HAVE QUESTIONS?</span>
-              <h3 className="text-3xl sm:text-5xl font-outfit font-black text-white uppercase tracking-tight">
+              <span className="text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider">HAVE QUESTIONS?</span>
+              <h3 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
                 LET'S DISCUSS YOUR GROWTH GOALS
               </h3>
             </div>

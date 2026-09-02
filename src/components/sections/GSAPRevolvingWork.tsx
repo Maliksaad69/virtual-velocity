@@ -147,35 +147,35 @@ export const GSAPRevolvingWork = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-[#08080a] text-[#f4f4f2] overflow-hidden flex flex-col justify-between py-12 px-4 sm:px-8 lg:px-16 selection:bg-[#00f0ff] selection:text-black"
+      className="relative min-h-screen bg-white text-zinc-900 overflow-hidden flex flex-col justify-between py-12 px-4 sm:px-8 lg:px-16 selection:bg-zinc-900 selection:text-white border-t border-zinc-200"
     >
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-radial from-[#00f0ff]/15 via-[#7000ff]/10 to-transparent blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-zinc-200/40 blur-[160px] pointer-events-none" />
 
       {/* Section Header & Filters */}
-      <div className="gsap-revolve-work-title max-w-[1700px] w-full mx-auto space-y-6 border-b border-white/10 pb-6 z-10">
+      <div className="gsap-revolve-work-title max-w-[1700px] w-full mx-auto space-y-6 border-b border-zinc-200 pb-6 z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <div className="flex items-center gap-3 text-xs font-mono text-[#00f0ff] uppercase tracking-[0.25em] font-bold mb-2">
-              <Trophy className="w-4 h-4 text-[#00f0ff]" />
-              <span>// 3D PORTFOLIO SHOWCASE</span>
+            <div className="flex items-center gap-2 text-xs font-mono text-emerald-600 uppercase tracking-[0.25em] font-extrabold mb-2">
+              <Trophy className="w-4 h-4 text-emerald-600" />
+              <span>PORTFOLIO SHOWCASE</span>
             </div>
-            <h2 className="text-4xl sm:text-6xl font-outfit font-black uppercase text-white tracking-tighter leading-none">
-              FEATURED <span className="text-[#00f0ff] italic font-light">CASE STUDIES</span>
+            <h2 className="text-4xl sm:text-6xl font-outfit font-black uppercase text-zinc-900 tracking-tighter leading-none">
+              FEATURED <span className="text-emerald-600 font-black">CASE STUDIES</span>
             </h2>
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={prevProject}
-              className="p-3 rounded-full bg-surface border border-white/10 hover:border-[#00f0ff] hover:text-[#00f0ff] text-white transition-colors"
+              className="p-3 rounded-full bg-zinc-100 border border-zinc-200 hover:bg-zinc-900 hover:text-white text-zinc-900 transition-colors"
               aria-label="Previous Case Study"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextProject}
-              className="p-3 rounded-full bg-surface border border-white/10 hover:border-[#00f0ff] hover:text-[#00f0ff] text-white transition-colors"
+              className="p-3 rounded-full bg-zinc-100 border border-zinc-200 hover:bg-zinc-900 hover:text-white text-zinc-900 transition-colors"
               aria-label="Next Case Study"
             >
               <ChevronRight className="w-5 h-5" />
@@ -185,8 +185,8 @@ export const GSAPRevolvingWork = () => {
 
         {/* Filter Pills Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-          <div className="flex items-center gap-2 text-xs font-mono text-white/40">
-            <Filter className="w-3.5 h-3.5 text-[#00f0ff]" />
+          <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
+            <Filter className="w-3.5 h-3.5 text-zinc-900" />
             <span>FILTER BY INDUSTRY:</span>
           </div>
 
@@ -197,8 +197,8 @@ export const GSAPRevolvingWork = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`text-[11px] font-mono px-4 py-1.5 rounded-full border transition-all duration-300 ${
                   activeCategory === cat
-                    ? "bg-[#00f0ff] border-[#00f0ff] text-black font-extrabold shadow-[0_0_20px_rgba(0,240,255,0.4)]"
-                    : "bg-surface border-white/10 text-white/60 hover:border-white/30"
+                    ? "bg-zinc-900 border-zinc-900 text-white font-extrabold shadow-sm"
+                    : "bg-zinc-100 border-zinc-200 text-zinc-700 hover:border-zinc-400"
                 }`}
               >
                 {cat}
@@ -233,29 +233,29 @@ export const GSAPRevolvingWork = () => {
                   onClick={() => revolveToIndex(idx)}
                   className={`absolute w-[300px] sm:w-[380px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-700 select-none ${
                     isActive
-                      ? "border-2 border-[#00f0ff] shadow-[0_0_60px_rgba(0,240,255,0.35)] z-30 opacity-100 scale-105"
-                      : "border border-white/10 hover:border-white/30 z-10 opacity-35 hover:opacity-75 scale-90 blur-[0.5px]"
+                      ? "border-2 border-zinc-900 shadow-xl z-30 opacity-100 scale-105"
+                      : "border border-zinc-200 hover:border-zinc-400 z-10 opacity-60 hover:opacity-85 scale-90"
                   }`}
                   style={{
                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                     transformStyle: "preserve-3d",
                   }}
                 >
-                  <div className="relative aspect-[16/11] bg-surface overflow-hidden">
+                  <div className="relative aspect-[16/11] bg-zinc-100 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
 
-                    <div className="absolute top-4 left-4 flex items-center gap-2 text-[10px] font-mono text-white/90 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                      <span className="text-[#00f0ff] font-bold">{project.number}</span>
-                      <span>// {project.year}</span>
+                    <div className="absolute top-4 left-4 flex items-center gap-2 text-[10px] font-mono text-white bg-zinc-900/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-zinc-700">
+                      <span className="text-white font-bold">{project.number}</span>
+                      <span>• {project.year}</span>
                     </div>
 
                     <div className="absolute bottom-4 left-6 right-6 space-y-1">
-                      <span className="text-[10px] font-mono text-[#00f0ff] uppercase tracking-wider block">
+                      <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-wider block font-semibold">
                         {project.industry}
                       </span>
                       <h3 className="text-xl font-outfit font-black text-white uppercase tracking-tight line-clamp-1">
@@ -271,37 +271,37 @@ export const GSAPRevolvingWork = () => {
 
         {/* Right Active Spotlight Panel (5 Cols) */}
         {activeProject && (
-          <div className="lg:col-span-5 space-y-6 bg-surface/80 border border-white/10 p-8 sm:p-10 rounded-3xl backdrop-blur-xl relative overflow-hidden">
-            <div className="flex items-center justify-between text-xs font-mono text-white/50 border-b border-white/10 pb-4">
-              <span className="text-[#00f0ff] uppercase tracking-wider font-bold">
-                // FEATURED CASE STUDY [{activeProject.number} / 0{totalItems}]
+          <div className="lg:col-span-5 space-y-6 bg-white border border-zinc-200 p-8 sm:p-10 rounded-3xl shadow-lg relative overflow-hidden">
+            <div className="flex items-center justify-between text-xs font-mono text-zinc-500 border-b border-zinc-200 pb-4">
+              <span className="text-zinc-900 uppercase tracking-wider font-bold">
+                FEATURED CASE STUDY [{activeProject.number} / 0{totalItems}]
               </span>
-              <span>{activeProject.client}</span>
+              <span className="font-semibold text-zinc-700">{activeProject.client}</span>
             </div>
 
             {/* Active Title */}
             <h3
               ref={titleRef}
-              className="text-2xl sm:text-4xl font-outfit font-black text-white uppercase tracking-tight leading-tight min-h-[64px]"
+              className="text-2xl sm:text-4xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-tight min-h-[64px]"
             >
               {activeProject.title}
             </h3>
 
-            <p className="text-sm text-white/70 font-light leading-relaxed">
+            <p className="text-sm text-zinc-600 font-light leading-relaxed">
               {activeProject.description}
             </p>
 
             {/* Campaign Key Metric Results */}
             <div className="space-y-3 pt-2">
-              <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-widest block font-bold flex items-center gap-2">
-                <TrendingUp className="w-3.5 h-3.5" />
-                // CAMPAIGN GROWTH IMPACT
+              <span className="text-xs font-mono text-zinc-900 uppercase tracking-widest block font-bold flex items-center gap-2">
+                <TrendingUp className="w-3.5 h-3.5 text-zinc-900" />
+                CAMPAIGN GROWTH IMPACT
               </span>
               <div className="space-y-2">
                 {activeProject.results.map((res, i) => (
-                  <div key={i} className="p-3 rounded-2xl bg-white/5 border border-white/10 text-xs font-mono text-white font-bold flex items-center justify-between">
+                  <div key={i} className="p-3 rounded-2xl bg-zinc-50 border border-zinc-200 text-xs font-mono text-zinc-900 font-bold flex items-center justify-between">
                     <span>{res}</span>
-                    <span className="text-[#00f0ff]">✓ VERIFIED</span>
+                    <span className="text-zinc-900 font-black">✓ VERIFIED</span>
                   </div>
                 ))}
               </div>
@@ -309,14 +309,14 @@ export const GSAPRevolvingWork = () => {
 
             {/* Services Delivered Pills */}
             <div className="space-y-2 pt-2">
-              <span className="text-xs font-mono text-white/40 uppercase tracking-widest block">
-                // DISCIPLINES EXECUTED
+              <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest block font-semibold">
+                DISCIPLINES EXECUTED
               </span>
               <div className="flex flex-wrap gap-2">
                 {activeProject.services.map((s, i) => (
                   <span
                     key={i}
-                    className="text-[10px] font-mono bg-white/5 text-white/80 border border-white/10 px-3 py-1 rounded-full uppercase"
+                    className="text-[10px] font-mono bg-zinc-100 text-zinc-800 border border-zinc-200 px-3 py-1 rounded-full uppercase"
                   >
                     {s}
                   </span>
@@ -325,10 +325,10 @@ export const GSAPRevolvingWork = () => {
             </div>
 
             {/* Link to Case Study */}
-            <div className="pt-4 border-t border-white/10">
+            <div className="pt-4 border-t border-zinc-200">
               <Link
                 href={`/work/${activeProject.id}`}
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#00f0ff] text-black font-outfit font-black text-xs tracking-[0.2em] uppercase hover:bg-white transition-colors duration-300 shadow-[0_0_25px_rgba(0,240,255,0.3)]"
+                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 text-white font-outfit font-black text-xs tracking-[0.2em] uppercase hover:bg-emerald-700 transition-colors duration-300 shadow-md shadow-emerald-600/20"
               >
                 <span>EXPLORE CASE STUDY</span>
                 <ExternalLink className="w-4 h-4" />
@@ -339,14 +339,14 @@ export const GSAPRevolvingWork = () => {
       </div>
 
       {/* Bottom Footer Control Bar */}
-      <div className="max-w-[1700px] w-full mx-auto flex items-center justify-between border-t border-white/10 pt-4 z-10 text-xs font-mono text-white/40">
+      <div className="max-w-[1700px] w-full mx-auto flex items-center justify-between border-t border-zinc-200 pt-4 z-10 text-xs font-mono text-zinc-500">
         <div className="flex items-center gap-2">
           {filteredProjects.map((_, idx) => (
             <button
               key={idx}
               onClick={() => revolveToIndex(idx)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                idx === activeIndex ? "w-8 bg-[#00f0ff]" : "w-2 bg-white/20 hover:bg-white/50"
+                idx === activeIndex ? "w-8 bg-emerald-600" : "w-2 bg-zinc-300 hover:bg-zinc-500"
               }`}
               aria-label={`Go to project ${idx + 1}`}
             />

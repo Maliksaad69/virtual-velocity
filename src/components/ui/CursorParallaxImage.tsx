@@ -42,10 +42,10 @@ export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallax
         }
       );
 
-      // Inner image scales up & blurs in
+      // Inner image scales up smoothly
       gsap.fromTo(
         inner,
-        { filter: "blur(8px)", scale: 1.15 },
+        { filter: "blur(0px)", scale: 1.15 },
         {
           filter: "blur(0px)",
           scale: 1.05,
@@ -99,7 +99,7 @@ export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallax
       style={{
         perspective: "1000px",
       }}
-      className={`relative overflow-hidden rounded-2xl border border-white/10 bg-surface ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 ${className}`}
     >
       {/* Distortion Reveal Layer */}
       <div
@@ -107,7 +107,7 @@ export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallax
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           clipPath: "circle(0%)",
-          background: "rgba(255,255,255,0.02)",
+          background: "rgba(0,0,0,0.02)",
         }}
       />
       <motion.div
@@ -116,7 +116,7 @@ export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallax
           rotateX,
           rotateY,
           scale: 1.15,
-          filter: "blur(8px)",
+          filter: "blur(0px)",
         }}
         className="w-full h-full transform-gpu"
       >
@@ -125,7 +125,7 @@ export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallax
           alt={alt}
           className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/60 via-zinc-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </motion.div>
     </motion.div>
   );

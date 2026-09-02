@@ -23,16 +23,16 @@ const MARQUEE_ITEMS_2 = [
 
 export const Marquee = () => {
   return (
-    <section className="py-16 md:py-24 border-y border-white/10 bg-[#08080a] overflow-hidden select-none space-y-6">
+    <section className="py-16 md:py-24 border-y border-zinc-200 bg-zinc-50 overflow-hidden select-none space-y-6">
       {/* Marquee Row 1 - Left to Right */}
       <div className="hover-marquee flex whitespace-nowrap overflow-hidden">
         <div className="animate-marquee-left flex items-center gap-8">
           {[...MARQUEE_ITEMS_1, ...MARQUEE_ITEMS_1].map((item, idx) => (
             <div key={idx} className="flex items-center gap-8">
-              <span className="text-3xl sm:text-5xl md:text-7xl font-outfit font-black tracking-tight text-white/90 uppercase hover:text-[#00f0ff] transition-colors duration-300">
+              <span className="text-3xl sm:text-5xl md:text-7xl font-outfit font-black tracking-tight text-zinc-950 uppercase hover:text-emerald-600 transition-colors duration-300">
                 {item}
               </span>
-              <span className="text-xl sm:text-3xl text-[#00f0ff] font-mono">✦</span>
+              <span className="text-xl sm:text-3xl text-emerald-600 font-mono">✦</span>
             </div>
           ))}
         </div>
@@ -43,11 +43,11 @@ export const Marquee = () => {
         <div className="animate-marquee-right animate-marquee-fast flex items-center gap-8">
           {[...MARQUEE_ITEMS_2, ...MARQUEE_ITEMS_2].map((item, idx) => (
             <div key={idx} className="flex items-center gap-8">
-              <span className="text-3xl sm:text-5xl md:text-7xl font-outfit font-black tracking-tight text-transparent uppercase stroke-text hover:text-[#ff2a6d] transition-colors duration-300"
-                    style={{ WebkitTextStroke: "1.5px rgba(255, 255, 255, 0.4)" }}>
+              <span className="text-3xl sm:text-5xl md:text-7xl font-outfit font-black tracking-tight text-transparent uppercase stroke-text hover:text-emerald-600 transition-colors duration-300"
+                    style={{ WebkitTextStroke: "1.5px rgba(24, 24, 27, 0.3)" }}>
                 {item}
               </span>
-              <span className="text-xl sm:text-3xl text-[#ff2a6d] font-mono">/</span>
+              <span className="text-xl sm:text-3xl text-emerald-600 font-mono">/</span>
             </div>
           ))}
         </div>

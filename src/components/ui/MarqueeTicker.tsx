@@ -21,8 +21,8 @@ export const MarqueeTicker = ({
     <div
       className={`relative overflow-hidden whitespace-nowrap py-6 border-y ${
         lightMode
-          ? "bg-white text-black border-black/10"
-          : "bg-[#08080a] text-white border-white/10"
+          ? "bg-white text-zinc-950 border-zinc-200"
+          : "bg-zinc-50 text-zinc-950 border-zinc-200"
       }`}
     >
       <motion.div
@@ -38,13 +38,11 @@ export const MarqueeTicker = ({
       >
         {repeatedItems.map((item, idx) => (
           <div key={idx} className="flex items-center gap-12">
-            <span className="font-outfit font-black text-2xl sm:text-5xl uppercase tracking-tighter">
+            <span className="font-outfit font-black text-2xl sm:text-4xl uppercase tracking-tighter text-zinc-950">
               {item}
             </span>
             <span
-              className={`w-3 h-3 rounded-full ${
-                lightMode ? "bg-black" : "bg-[#00f0ff]"
-              }`}
+              className="w-2.5 h-2.5 rounded-full bg-emerald-600"
             />
           </div>
         ))}

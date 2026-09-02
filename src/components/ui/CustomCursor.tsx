@@ -70,7 +70,7 @@ export const CustomCursor = () => {
 
   return (
     <motion.div
-      className="pointer-events-none fixed top-0 left-0 z-50 flex items-center justify-center rounded-full text-black font-semibold text-[10px] tracking-widest uppercase transition-colors duration-200"
+      className="pointer-events-none fixed top-0 left-0 z-50 flex items-center justify-center rounded-full text-white font-semibold text-[10px] tracking-widest uppercase transition-colors duration-200"
       style={{
         x: smoothX,
         y: smoothY,
@@ -80,8 +80,8 @@ export const CustomCursor = () => {
       animate={{
         width: cursorText ? 100 : isHovered ? 54 : 14,
         height: cursorText ? 100 : isHovered ? 54 : 14,
-        backgroundColor: cursorText ? "#00f0ff" : isHovered ? "rgba(255, 255, 255, 0.9)" : "#00f0ff",
-        mixBlendMode: cursorText ? "normal" : "difference",
+        backgroundColor: cursorText ? "#059669" : isHovered ? "rgba(5, 150, 105, 0.9)" : "#059669",
+        mixBlendMode: "normal",
       }}
       transition={{ type: "spring", damping: 28, stiffness: 350, mass: 0.3 }}
     >
@@ -90,7 +90,7 @@ export const CustomCursor = () => {
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.6 }}
-          className="text-center font-outfit font-extrabold px-2 leading-tight text-[11px] text-black tracking-wider uppercase"
+          className="text-center font-outfit font-extrabold px-2 leading-tight text-[11px] text-white tracking-wider uppercase"
         >
           {cursorText}
         </motion.span>

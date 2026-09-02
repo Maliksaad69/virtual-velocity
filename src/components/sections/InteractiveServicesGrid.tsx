@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SERVICES } from "@/data/agencyData";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Zap } from "lucide-react";
 import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -171,11 +171,11 @@ export const InteractiveServicesGrid = () => {
           start: "left 75%",
           end: "left 5%",
           onEnter: () => {
-            // Image: blur-to-clear + clip-path circle reveal
+            // Image: clip-path circle reveal without blur
             if (img) {
               gsap.fromTo(
                 img,
-                { clipPath: "circle(0%)", filter: "blur(12px)", scale: 1.2 },
+                { clipPath: "circle(0%)", filter: "blur(0px)", scale: 1.2 },
                 { clipPath: "circle(150%)", filter: "blur(0px)", scale: 1, duration: 1.2, ease: "power3.out" }
               );
             }
@@ -229,7 +229,7 @@ export const InteractiveServicesGrid = () => {
             }
           },
           onLeaveBack: () => {
-            if (img) gsap.set(img, { clipPath: "circle(0%)", filter: "blur(12px)", scale: 1.2 });
+            if (img) gsap.set(img, { clipPath: "circle(0%)", filter: "blur(0px)", scale: 1.2 });
             if (label) gsap.set(label, { opacity: 0, x: -20, skewX: 8 });
             if (title) gsap.set(title, { opacity: 0, y: 30, rotateX: 15 });
             if (desc) gsap.set(desc, { opacity: 0, y: 20 });
@@ -247,17 +247,17 @@ export const InteractiveServicesGrid = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#050507] overflow-hidden"
+      className="relative bg-white text-zinc-900 overflow-hidden border-t border-zinc-200"
       style={{ height: "100vh" }}
     >
       {/* Section meta bar */}
-      <div className="fixed top-24 left-0 right-0 z-20 flex items-center justify-between px-6 sm:px-12 py-4 pointer-events-none mix-blend-difference">
-        <span className="text-meta text-white/70 uppercase tracking-widest font-bold">
+      <div className="fixed top-24 left-0 right-0 z-20 flex items-center justify-between px-6 sm:px-12 py-4 pointer-events-none">
+        <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest font-bold">
           FULL-SERVICE CAPABILITIES
         </span>
-        <div className="flex items-center gap-4 text-xs font-mono text-white/60">
+        <div className="flex items-center gap-4 text-xs font-mono text-zinc-600">
           <span>DISCIPLINES</span>
-          <span className="text-[#00f0ff] w-16 text-right" ref={progressRef}>
+          <span className="text-zinc-900 font-extrabold w-16 text-right" ref={progressRef}>
             01 / 06
           </span>
         </div>
@@ -272,30 +272,30 @@ export const InteractiveServicesGrid = () => {
         {/* — INTRO CARD — */}
         <div className="gsap-service-panel h-screen w-screen flex-shrink-0 flex flex-col justify-center px-6 sm:px-12 lg:px-24 select-none">
           <div className="gsap-services-headline max-w-3xl space-y-8">
-            <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-[0.3em] font-bold">
-              // EVERY DISCIPLINE, EXPLORED
+            <span className="text-xs font-mono text-emerald-600 uppercase tracking-[0.3em] font-extrabold flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-emerald-600" /> EVERY DISCIPLINE, EXPLORED
             </span>
-            <h2 className="text-5xl sm:text-8xl font-outfit font-black text-white uppercase tracking-tighter leading-[0.88]">
+            <h2 className="text-5xl sm:text-8xl font-outfit font-black text-zinc-900 uppercase tracking-tighter leading-[0.88]">
               OUR SERVICE <br />
-              <span className="text-[#ff2a6d] italic font-light">SPECTRUM</span>
+              <span className="text-emerald-600 font-black">SPECTRUM</span>
             </h2>
-            <p className="text-base sm:text-xl text-white/70 max-w-xl font-light leading-relaxed">
+            <p className="text-base sm:text-xl text-zinc-700 max-w-xl font-light leading-relaxed">
               Each discipline descends into view like a stair — the current service stands tall while past capabilities step down behind it.
             </p>
 
             {/* Pill indicators */}
-            <div className="flex items-center gap-3 text-xs font-mono text-white/40">
-              <span className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-[#00f0ff]" /> SEO
+            <div className="flex items-center gap-3 text-xs font-mono text-zinc-500">
+              <span className="flex items-center gap-1 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-zinc-900" /> SEO
               </span>
-              <span className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-[#ff2a6d]" /> PPC
+              <span className="flex items-center gap-1 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-zinc-700" /> PPC
               </span>
-              <span className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-[#7000ff]" /> SOCIAL
+              <span className="flex items-center gap-1 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-zinc-500" /> SOCIAL
               </span>
-              <span className="flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-[#00ff88]" /> CRO
+              <span className="flex items-center gap-1 font-semibold">
+                <span className="w-2 h-2 rounded-full bg-zinc-400" /> CRO
               </span>
             </div>
           </div>
@@ -314,36 +314,36 @@ export const InteractiveServicesGrid = () => {
               <div className="w-full lg:w-3/5 space-y-6 lg:pr-12 lg:pl-12">
                 {/* Number & Category Tag */}
                 <div className="flex items-center gap-4">
-                  <span className="gsap-panel-number text-2xl font-outfit font-black text-[#00f0ff]">
+                  <span className="gsap-panel-number text-2xl font-outfit font-black text-zinc-900">
                     0{idx + 1}
                   </span>
-                  <span className="gsap-panel-label text-[10px] font-mono text-white/40 border border-white/10 px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span className="gsap-panel-label text-[10px] font-mono text-zinc-600 border border-zinc-200 px-3 py-1 rounded-full uppercase tracking-wider bg-zinc-50">
                     {service.category}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="gsap-panel-title text-3xl sm:text-5xl lg:text-6xl font-outfit font-black text-white uppercase tracking-tight leading-[0.95]">
+                <h3 className="gsap-panel-title text-3xl sm:text-5xl lg:text-6xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-[0.95]">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="gsap-panel-desc text-sm sm:text-base text-white/70 max-w-lg font-light leading-relaxed">
+                <p className="gsap-panel-desc text-sm sm:text-base text-zinc-600 max-w-lg font-light leading-relaxed">
                   {service.description}
                 </p>
 
                 {/* Deliverables */}
                 <div className="pt-4 space-y-3">
-                  <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-widest font-bold block">
+                  <span className="text-xs font-mono text-zinc-900 uppercase tracking-widest font-bold block">
                     KEY DELIVERABLES
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {service.deliverables.map((item, dIdx) => (
                       <div
                         key={dIdx}
-                        className="gsap-panel-deliverable flex items-center gap-2 text-xs font-mono text-white/80"
+                        className="gsap-panel-deliverable flex items-center gap-2 text-xs font-mono text-zinc-800 font-medium"
                       >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#00f0ff] flex-shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-zinc-900 flex-shrink-0" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -355,7 +355,7 @@ export const InteractiveServicesGrid = () => {
                   {service.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="gsap-panel-tech text-[10px] font-mono bg-white/5 text-white/80 border border-white/10 px-3 py-1.5 rounded-full uppercase tracking-wider"
+                      className="gsap-panel-tech text-[10px] font-mono bg-zinc-100 text-zinc-800 border border-zinc-200 px-3 py-1.5 rounded-full uppercase tracking-wider"
                     >
                       {tech}
                     </span>
@@ -365,12 +365,12 @@ export const InteractiveServicesGrid = () => {
 
               {/* Right visual panel — image reveal */}
               <div className="hidden lg:block w-full lg:w-2/5 h-3/4 relative">
-                <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/10 bg-surface shadow-2xl">
+                <div className="absolute inset-0 rounded-3xl overflow-hidden border border-zinc-200 bg-zinc-50 shadow-lg">
                   <div
                     className="gsap-panel-image w-full h-full"
                     style={{
                       clipPath: "circle(0%)",
-                      filter: "blur(12px)",
+                      filter: "blur(0px)",
                       transform: "scale(1.2)",
                     }}
                   >
@@ -381,16 +381,16 @@ export const InteractiveServicesGrid = () => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#00f0ff]/20 to-[#ff2a6d]/20 flex items-center justify-center">
-                        <span className="text-6xl font-outfit font-black text-white/20">
+                      <div className="w-full h-full bg-zinc-100 flex items-center justify-center">
+                        <span className="text-6xl font-outfit font-black text-zinc-300">
                           0{idx + 1}
                         </span>
                       </div>
                     )}
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-8 left-8 right-8 space-y-1">
-                    <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-wider">
+                    <span className="text-xs font-mono text-zinc-200 uppercase tracking-wider">
                       // SERVICE PREVIEW
                     </span>
                     <h4 className="text-lg font-outfit font-bold text-white uppercase">
@@ -404,17 +404,17 @@ export const InteractiveServicesGrid = () => {
         })}
 
         {/* — OUTRO CTA — */}
-        <div className="h-screen w-screen flex-shrink-0 flex flex-col justify-center items-center px-6 sm:px-12 text-center space-y-8">
-          <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-[0.3em] font-bold">
+        <div className="h-screen w-screen flex-shrink-0 flex flex-col justify-center items-center px-6 sm:px-12 text-center space-y-8 bg-white">
+          <span className="text-xs font-mono text-zinc-500 uppercase tracking-[0.3em] font-bold">
             // EXPLORE FULL CAPABILITIES
           </span>
-          <h2 className="text-4xl sm:text-7xl font-outfit font-black text-white uppercase tracking-tighter leading-[0.9]">
+          <h2 className="text-4xl sm:text-7xl font-outfit font-black text-zinc-950 uppercase tracking-tighter leading-[0.9]">
             READY TO SCALE <br />
-            <span className="text-[#ff2a6d]">YOUR REVENUE?</span>
+            <span className="text-emerald-600">YOUR REVENUE?</span>
           </h2>
           <Link
             href="/services"
-            className="group inline-flex items-center gap-4 px-10 py-5 rounded-full bg-[#00f0ff] text-black font-outfit font-black text-xs tracking-[0.2em] uppercase hover:bg-white transition-all duration-300 shadow-[0_0_35px_rgba(0,240,255,0.4)]"
+            className="group inline-flex items-center gap-4 px-10 py-5 rounded-full bg-emerald-600 text-white font-outfit font-black text-xs tracking-[0.2em] uppercase hover:bg-emerald-700 transition-all duration-300 shadow-md shadow-emerald-600/20"
           >
             <span>EXPLORE ALL SERVICES</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

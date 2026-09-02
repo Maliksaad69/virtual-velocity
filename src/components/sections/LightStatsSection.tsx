@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { STATS } from "@/data/agencyData";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, TrendingUp } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -104,20 +104,20 @@ export const LightStatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 sm:py-36 px-6 sm:px-12 bg-white text-black border-y border-black/10 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 sm:py-36 px-6 sm:px-12 bg-white text-gray-900 border-y border-gray-200 relative overflow-hidden">
       <div className="max-w-[1700px] mx-auto space-y-16">
         {/* Header */}
-        <div className="gsap-stats-header flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-black/15 pb-12">
+        <div className="gsap-stats-header flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-gray-300 pb-12">
           <div className="space-y-3">
-            <span className="text-xs font-mono text-black/60 uppercase tracking-widest font-bold block">
-              // MEASURABLE AGENCY IMPACT
+            <span className="text-xs font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-1.5">
+              <TrendingUp className="w-3.5 h-3.5 text-emerald-600" /> MEASURABLE AGENCY IMPACT
             </span>
             <h2 className="text-4xl sm:text-7xl font-outfit font-black uppercase tracking-tighter leading-[0.9]">
-              PROVEN RESULTS <span className="text-black/30 font-light">& METRICS</span>
+              PROVEN RESULTS <span className="text-emerald-600 font-black">& METRICS</span>
             </h2>
           </div>
 
-          <p className="text-sm text-black/70 max-w-md font-light leading-relaxed">
+          <p className="text-sm text-gray-700 max-w-md font-light leading-relaxed">
             We deliver data-backed outcomes across e-commerce growth, technical SEO scaling, paid search return, and custom web engineering.
           </p>
         </div>
@@ -127,22 +127,22 @@ export const LightStatsSection = () => {
           {STATS.map((stat, idx) => (
             <div
               key={idx}
-              className="gsap-stats-card p-8 rounded-3xl bg-[#f8f9fa] border border-black/10 space-y-4 hover:border-black transition-colors"
+              className="gsap-stats-card p-8 rounded-3xl bg-[#f8f9fa] border border-gray-200 space-y-4 hover:border-gray-900 transition-colors"
             >
-              <div className="flex items-center justify-between font-mono text-xs text-black/40">
+              <div className="flex items-center justify-between font-mono text-xs text-gray-500">
                 <span>0{idx + 1} // METRIC</span>
-                <ArrowUpRight className="w-4 h-4 text-black" />
+                <ArrowUpRight className="w-4 h-4 text-gray-900" />
               </div>
 
-              <div className="text-5xl sm:text-7xl font-outfit font-black tracking-tighter text-black">
+              <div className="text-5xl sm:text-7xl font-outfit font-black tracking-tighter text-gray-900">
                 <AnimatedCounter rawValue={stat.value} />
               </div>
 
-              <div className="space-y-1 pt-4 border-t border-black/10">
-                <h3 className="font-outfit font-extrabold text-sm uppercase text-black">
+              <div className="space-y-1 pt-4 border-t border-gray-200">
+                <h3 className="font-outfit font-extrabold text-sm uppercase text-gray-900">
                   {stat.label}
                 </h3>
-                <p className="text-xs text-black/60 font-light leading-snug">
+                <p className="text-xs text-gray-600 font-light leading-snug">
                   {stat.detail}
                 </p>
               </div>

@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { PROJECTS, Project } from "@/data/agencyData";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Briefcase } from "lucide-react";
 import { CursorParallaxImage } from "@/components/ui/CursorParallaxImage";
 import { SplitTextReveal } from "@/components/ui/SplitTextReveal";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -38,16 +38,16 @@ export const SelectedWork = () => {
   return (
     <section ref={sectionRef} id="work" className="pt-8 sm:pt-12 pb-24 sm:pb-36 px-6 sm:px-12 max-w-[1700px] mx-auto">
       {/* Section Header */}
-      <div className="gsap-work-header flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-12 mb-20">
+      <div className="gsap-work-header flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-12 mb-20">
         <div>
-          <span className="text-meta text-[#00f0ff] uppercase tracking-widest block mb-2">
-            // FEATURED CASE STUDIES
+          <span className="text-xs font-mono text-emerald-600 uppercase tracking-widest mb-2 font-extrabold flex items-center gap-1.5">
+            <Briefcase className="w-3.5 h-3.5 text-emerald-600" /> FEATURED CASE STUDIES
           </span>
-          <h2 className="text-section-title font-outfit text-white">
-            <SplitTextReveal text="SELECTED WORK" highlightWords={["WORK"]} accentColor="rgba(255,255,255,0.4)" />
+          <h2 className="text-4xl sm:text-6xl font-outfit font-black text-zinc-950 uppercase tracking-tight">
+            <SplitTextReveal text="SELECTED WORK" highlightWords={["WORK"]} accentColor="#059669" />
           </h2>
         </div>
-        <p className="mt-6 md:mt-0 text-sm sm:text-base text-white/60 max-w-md font-light">
+        <p className="mt-6 md:mt-0 text-sm sm:text-base text-zinc-600 max-w-md font-light leading-relaxed">
           An editorial archive of high-converting Google Ads PPC campaigns, Technical SEO growth benchmarks, and ROI-driven digital marketing launches.
         </p>
       </div>
@@ -95,17 +95,17 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       >
         {/* Left Project Info */}
         <div className="md:col-span-5 space-y-6 order-2 md:order-1">
-          <div className="flex items-center gap-4 text-xs font-mono text-white/40">
-            <span className="text-2xl font-outfit font-extrabold text-[#00f0ff]">{project.number}</span>
-            <span className="w-8 h-px bg-white/20"></span>
+          <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-500">
+            <span className="text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
+            <span className="w-8 h-px bg-zinc-300"></span>
             <span>{project.year}</span>
           </div>
 
-          <h3 className="text-3xl sm:text-5xl font-outfit font-black text-white group-hover:text-[#00f0ff] transition-colors duration-500 uppercase tracking-tight">
+          <h3 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-950 group-hover:text-emerald-600 transition-colors duration-500 uppercase tracking-tight">
             {project.title}
           </h3>
 
-          <p className="text-sm sm:text-base text-white/70 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-600 font-light leading-relaxed">
             {project.description}
           </p>
 
@@ -113,7 +113,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {project.services.map((service, i) => (
               <span
                 key={i}
-                className="text-[10px] font-mono tracking-wider px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/80"
+                className="text-xs font-outfit font-bold tracking-wider px-3.5 py-1.5 rounded-full border border-zinc-200 bg-zinc-100 text-zinc-700"
               >
                 {service}
               </span>
@@ -121,7 +121,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           </div>
 
           <Magnetic strength={0.3}>
-            <div className="pt-4 flex items-center gap-2 text-xs font-bold font-outfit tracking-widest text-[#00f0ff] group-hover:translate-x-2 transition-transform duration-300">
+            <div className="pt-4 flex items-center gap-2 text-xs font-extrabold font-outfit tracking-widest text-emerald-600 group-hover:translate-x-2 transition-transform duration-300">
               <span>EXPLORE PROJECT</span>
               <ArrowUpRight className="w-4 h-4" />
             </div>
@@ -158,17 +158,17 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
         {/* Right Project Info */}
         <div className="md:col-span-5 space-y-6">
-          <div className="flex items-center gap-4 text-xs font-mono text-white/40">
-            <span className="text-2xl font-outfit font-extrabold text-[#ff2a6d]">{project.number}</span>
-            <span className="w-8 h-px bg-white/20"></span>
+          <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-500">
+            <span className="text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
+            <span className="w-8 h-px bg-zinc-300"></span>
             <span>{project.year}</span>
           </div>
 
-          <h3 className="text-3xl sm:text-5xl font-outfit font-black text-white group-hover:text-[#ff2a6d] transition-colors duration-500 uppercase tracking-tight">
+          <h3 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-950 group-hover:text-emerald-600 transition-colors duration-500 uppercase tracking-tight">
             {project.title}
           </h3>
 
-          <p className="text-sm sm:text-base text-white/70 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-600 font-light leading-relaxed">
             {project.description}
           </p>
 
@@ -176,7 +176,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {project.services.map((service, i) => (
               <span
                 key={i}
-                className="text-[10px] font-mono tracking-wider px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/80"
+                className="text-xs font-outfit font-bold tracking-wider px-3.5 py-1.5 rounded-full border border-zinc-200 bg-zinc-100 text-zinc-700"
               >
                 {service}
               </span>
@@ -184,7 +184,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           </div>
 
           <Magnetic strength={0.3}>
-            <div className="pt-4 flex items-center gap-2 text-xs font-bold font-outfit tracking-widest text-[#ff2a6d] group-hover:translate-x-2 transition-transform duration-300">
+            <div className="pt-4 flex items-center gap-2 text-xs font-extrabold font-outfit tracking-widest text-emerald-600 group-hover:translate-x-2 transition-transform duration-300">
               <span>EXPLORE PROJECT</span>
               <ArrowUpRight className="w-4 h-4" />
             </div>
@@ -209,16 +209,16 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 px-4">
           <div>
-            <div className="flex items-center gap-4 text-xs font-mono text-white/60 mb-1">
-              <span className="text-2xl font-outfit font-extrabold text-[#7000ff]">{project.number}</span>
+            <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-500 mb-1">
+              <span className="text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
               <span>// {project.industry}</span>
             </div>
-            <h3 className="text-3xl sm:text-5xl font-outfit font-black text-white group-hover:text-[#00f0ff] transition-colors duration-300 uppercase tracking-tighter">
+            <h3 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-950 group-hover:text-emerald-600 transition-colors duration-300 uppercase tracking-tighter">
               {project.title}
             </h3>
           </div>
           <Magnetic strength={0.3}>
-            <div className="flex items-center gap-2 text-xs font-bold font-outfit tracking-widest text-white group-hover:text-[#00f0ff] transition-colors">
+            <div className="flex items-center gap-2 text-xs font-extrabold font-outfit tracking-widest text-emerald-600 group-hover:text-emerald-700 transition-colors">
               <span>EXPLORE FULL CASE STUDY</span>
               <ArrowUpRight className="w-4 h-4" />
             </div>
@@ -243,22 +243,22 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         />
       </div>
 
-      <div className="md:col-span-6 md:-ml-24 relative z-20 p-8 sm:p-12 rounded-2xl bg-[#121216]/90 backdrop-blur-xl border border-white/15 shadow-2xl space-y-6">
-        <div className="flex items-center gap-4 text-xs font-mono text-white/40">
-          <span className="text-2xl font-outfit font-extrabold text-[#00ff88]">{project.number}</span>
+      <div className="md:col-span-6 md:-ml-24 relative z-20 p-8 sm:p-12 rounded-3xl bg-zinc-50 border-2 border-zinc-300 shadow-xl space-y-6">
+        <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-500">
+          <span className="text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
           <span>{project.year}</span>
         </div>
 
-        <h3 className="text-3xl sm:text-4xl font-outfit font-black text-[#00ff88] group-hover:text-white transition-colors duration-300 uppercase tracking-tight">
+        <h3 className="text-3xl sm:text-4xl font-outfit font-black text-zinc-950 group-hover:text-emerald-600 transition-colors duration-300 uppercase tracking-tight">
           {project.title}
         </h3>
 
-        <p className="text-sm text-white/70 font-light leading-relaxed">
+        <p className="text-sm text-zinc-600 font-light leading-relaxed">
           {project.description}
         </p>
 
         <Magnetic strength={0.3}>
-          <div className="flex items-center gap-2 text-xs font-bold font-outfit tracking-widest text-[#00ff88] group-hover:translate-x-2 transition-transform">
+          <div className="flex items-center gap-2 text-xs font-extrabold font-outfit tracking-widest text-emerald-600 group-hover:translate-x-2 transition-transform">
             <span>VIEW CASE STUDY</span>
             <ArrowUpRight className="w-4 h-4" />
           </div>

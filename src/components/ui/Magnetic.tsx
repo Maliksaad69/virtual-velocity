@@ -9,7 +9,7 @@ interface MagneticProps {
   className?: string;
 }
 
-export const Magnetic = ({ children, strength = 0.35, className = "" }: MagneticProps) => {
+export const Magnetic = ({ children, strength = 0.05, className = "" }: MagneticProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const springConfig = { damping: 15, stiffness: 150, mass: 0.1 };

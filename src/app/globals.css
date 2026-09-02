@@ -2,13 +2,13 @@
 
 @layer base {
   :root {
-    --background: #08080a;
-    --foreground: #f4f4f2;
-    --surface: #121216;
-    --surface-border: rgba(255, 255, 255, 0.08);
-    --accent: #00f0ff;
-    --accent-secondary: #ff2a6d;
-    --muted: #888890;
+    --background: #fafafa;
+    --foreground: #18181b;
+    --surface: #ffffff;
+    --surface-border: rgba(24, 24, 27, 0.1);
+    --accent: #09090b;
+    --accent-secondary: #71717a;
+    --muted: #71717a;
   }
 }
 
@@ -25,8 +25,8 @@
 }
 
 html {
-  background-color: #08080a;
-  color: #f4f4f2;
+  background-color: #fafafa;
+  color: #18181b;
   font-family: var(--font-inter), sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -38,14 +38,14 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
-  selection-background-color: var(--accent);
-  selection-color: #000;
+  selection-background-color: #18181b;
+  selection-color: #ffffff;
   -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
-  background: #00f0ff;
-  color: #000;
+  background: #18181b;
+  color: #ffffff;
 }
 
 /* GPU Hardware Acceleration Utilities */
@@ -66,14 +66,14 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #08080a;
+  background: #f4f4f5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #22222a;
+  background: #d4d4d8;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00f0ff;
+  background: #a1a1aa;
 }
 
 /* Fluid Typography Utilities */

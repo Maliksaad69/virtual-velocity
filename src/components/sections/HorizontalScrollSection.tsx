@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { PROJECTS } from "@/data/agencyData";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FolderGit2 } from "lucide-react";
 import Link from "next/link";
 import { Magnetic } from "@/components/ui/Magnetic";
 
@@ -53,26 +53,26 @@ export const HorizontalScrollSection = () => {
   }, [smoothProgress]);
 
   return (
-    <section ref={targetRef} className="relative h-[160vh] bg-[#050507]">
+    <section ref={targetRef} className="relative h-[160vh] bg-white">
       {/* Sticky Fullscreen Viewport */}
       <div className="sticky top-0 flex h-screen flex-col justify-between overflow-hidden py-10 px-6 sm:px-12">
         {/* Top Header & Progress Bar */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-4 z-10">
+        <div className="flex items-center justify-between border-b border-zinc-200 pb-4 z-10">
           <div className="flex items-center gap-4">
-            <span className="text-meta text-[#00f0ff] uppercase tracking-widest">
+            <span className="text-meta text-emerald-600 uppercase tracking-widest font-extrabold">
               // CURATED PORTFOLIO
             </span>
-            <span className="text-xs font-mono text-white/40">
+            <span className="text-xs font-outfit font-bold text-zinc-500">
               [PROJECT 0{Math.min(activeIndex, PROJECTS.length)} OF 0{PROJECTS.length}]
             </span>
           </div>
 
           <div className="hidden sm:flex items-center gap-4">
-            <span className="text-xs font-mono text-white/40">SCROLL EXPLORATION</span>
-            <div className="w-32 h-1 bg-white/10 rounded-full overflow-hidden">
+            <span className="text-xs font-outfit font-bold text-zinc-500">SCROLL EXPLORATION</span>
+            <div className="w-32 h-1 bg-zinc-200 rounded-full overflow-hidden">
               <motion.div
                 style={{ scaleX: smoothProgress }}
-                className="h-full bg-[#00f0ff] origin-left"
+                className="h-full bg-emerald-600 origin-left"
               />
             </div>
           </div>
@@ -86,23 +86,23 @@ export const HorizontalScrollSection = () => {
             className="flex gap-8 sm:gap-12 items-center w-max"
           >
             {/* Introductory Card */}
-            <div className="w-[85vw] sm:w-[42vw] lg:w-[30vw] flex-shrink-0 flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-surface/60 border border-white/10 space-y-6 select-none">
+            <div className="w-[85vw] sm:w-[42vw] lg:w-[30vw] flex-shrink-0 flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-zinc-50 border-2 border-zinc-300 space-y-6 select-none shadow-md">
               <div className="space-y-3">
-                <span className="text-meta text-[#00f0ff] uppercase tracking-widest block">
-                  // PORTFOLIO GALLERY
+                <span className="text-meta text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-1.5">
+                  <FolderGit2 className="w-3.5 h-3.5 text-emerald-600" /> PORTFOLIO GALLERY
                 </span>
-                <h2 className="text-3xl sm:text-5xl font-outfit font-black text-white uppercase tracking-tighter leading-[0.9]">
+                <h2 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-950 uppercase tracking-tighter leading-[0.9]">
                   CURATED <br />
-                  <span className="text-[#00f0ff] font-extrabold">GALLERY</span> <br />
-                  <span className="text-white/40 italic font-light">ARCHIVE</span>
+                  <span className="text-emerald-600 font-extrabold">GALLERY</span> <br />
+                  <span className="text-emerald-600 font-extrabold">ARCHIVE</span>
                 </h2>
               </div>
 
-              <p className="text-sm text-white/70 font-light leading-relaxed">
-                Scroll down to slide through our WebGL configurators, spatial brand platforms, and mobile apps.
+              <p className="text-sm text-zinc-600 font-light leading-relaxed">
+                Scroll down to slide through our high-converting PPC campaigns, SEO strategies, and custom digital platforms.
               </p>
 
-              <div className="flex items-center gap-3 text-xs font-mono text-[#00f0ff] border-t border-white/10 pt-4">
+              <div className="flex items-center gap-3 text-xs font-outfit font-extrabold text-emerald-600 border-t border-zinc-200 pt-4">
                 <span className="animate-pulse">●</span>
                 <span>SCROLL TO EXPLORE →</span>
               </div>
@@ -116,31 +116,31 @@ export const HorizontalScrollSection = () => {
                 data-cursor-text="VIEW"
               >
                 <Link href={`/work/${project.id}`} className="block space-y-4">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-white/15 bg-surface shadow-2xl">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border-2 border-zinc-300 bg-zinc-100 shadow-xl group-hover:border-emerald-600 transition-all duration-500">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 group-hover:opacity-40 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/30 to-transparent opacity-80 group-hover:opacity-50 transition-opacity duration-500" />
 
-                    <div className="absolute top-6 left-6 flex items-center gap-3 text-xs font-mono text-white/80 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
-                      <span className="text-[#00f0ff] font-bold">0{idx + 1}</span>
-                      <span>// {project.year}</span>
+                    <div className="absolute top-6 left-6 flex items-center gap-3 text-xs font-outfit text-white bg-emerald-600/90 backdrop-blur-md px-4 py-2 rounded-full border border-emerald-500 shadow-sm">
+                      <span className="text-white font-bold">0{idx + 1}</span>
+                      <span>• {project.year}</span>
                     </div>
 
                     <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between">
                       <div className="space-y-1">
-                        <span className="text-xs font-mono text-[#00f0ff] block uppercase tracking-wider">
+                        <span className="text-xs font-outfit text-emerald-300 font-extrabold block uppercase tracking-wider">
                           {project.industry}
                         </span>
-                        <h3 className="text-2xl sm:text-3xl font-outfit font-black text-white group-hover:text-[#00f0ff] transition-colors uppercase tracking-tight">
+                        <h3 className="text-2xl sm:text-3xl font-outfit font-black text-white group-hover:text-emerald-200 transition-colors uppercase tracking-tight">
                           {project.title}
                         </h3>
                       </div>
 
                       <Magnetic strength={0.3}>
-                        <div className="p-3.5 rounded-full bg-[#00f0ff] text-black group-hover:bg-white transition-colors shadow-lg">
+                        <div className="p-3.5 rounded-full bg-emerald-600 text-white group-hover:bg-emerald-700 transition-colors shadow-lg">
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
                       </Magnetic>
@@ -153,9 +153,9 @@ export const HorizontalScrollSection = () => {
         </div>
 
         {/* Bottom Helper Bar */}
-        <div className="flex items-center justify-between border-t border-white/10 pt-3 z-10 text-xs font-mono text-white/40">
+        <div className="flex items-center justify-between border-t border-zinc-200 pt-3 z-10 text-xs font-outfit font-bold text-zinc-500">
           <span>EXPLORE CASE STUDIES</span>
-          <span className="hidden sm:inline-block">// AURA LABS STUDIO</span>
+          <span className="hidden sm:inline-block">VIRTUAL VELOCITY STUDIO</span>
         </div>
       </div>
     </section>

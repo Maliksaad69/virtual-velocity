@@ -29,10 +29,10 @@ export const HeroCanvas3D = () => {
     // 3. Create Complex 3D Geometry (Wireframe Icosahedron + Inner Core)
     const group = new THREE.Group();
 
-    // Outer Wireframe Torus Knot
+    // Outer Wireframe Torus Knot (Emerald Accent)
     const outerGeo = new THREE.TorusKnotGeometry(1.2, 0.35, 128, 32);
     const outerMat = new THREE.MeshBasicMaterial({
-      color: 0x00f0ff,
+      color: 0x059669,
       wireframe: true,
       transparent: true,
       opacity: 0.35,
@@ -40,10 +40,10 @@ export const HeroCanvas3D = () => {
     const outerMesh = new THREE.Mesh(outerGeo, outerMat);
     group.add(outerMesh);
 
-    // Inner Glowing Core
+    // Inner Glowing Core (Vibrant Emerald)
     const innerGeo = new THREE.IcosahedronGeometry(0.8, 2);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: 0xff2a6d,
+      color: 0x10b981,
       wireframe: true,
       transparent: true,
       opacity: 0.5,
@@ -51,8 +51,8 @@ export const HeroCanvas3D = () => {
     const innerMesh = new THREE.Mesh(innerGeo, innerMat);
     group.add(innerMesh);
 
-    // Floating Particles Array
-    const particleCount = 200;
+    // Floating Emerald Particles Array
+    const particleCount = 250;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
 
@@ -64,10 +64,10 @@ export const HeroCanvas3D = () => {
 
     particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     const particleMat = new THREE.PointsMaterial({
-      color: 0x00f0ff,
-      size: 0.04,
+      color: 0x10b981,
+      size: 0.05,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.65,
     });
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
@@ -110,9 +110,9 @@ export const HeroCanvas3D = () => {
 
       particles.rotation.y = elapsedTime * 0.05;
 
-      // Mouse displacement lerp
-      group.position.x += (targetX * 0.8 - group.position.x) * 0.05;
-      group.position.y += (-targetY * 0.8 - group.position.y) * 0.05;
+      // Mouse displacement lerp (controlled small offset to stay within right bounds)
+      group.position.x += (targetX * 0.25 - group.position.x) * 0.05;
+      group.position.y += (-targetY * 0.25 - group.position.y) * 0.05;
 
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(animate);
@@ -134,7 +134,7 @@ export const HeroCanvas3D = () => {
   return (
     <div
       ref={containerRef}
-      className="absolute top-0 right-0 w-full lg:w-1/2 h-full pointer-events-none z-0 opacity-80"
+      className="absolute top-1/2 -translate-y-1/2 right-2 lg:right-8 xl:right-16 w-[360px] sm:w-[460px] lg:w-[500px] xl:w-[580px] h-[480px] lg:h-[580px] pointer-events-none z-0 opacity-85 hidden lg:block overflow-hidden"
     />
   );
 };

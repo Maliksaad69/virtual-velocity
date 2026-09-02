@@ -17,8 +17,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Digital Agency",
-  description: "Award‑winning creative studio",
+  title: "Virtual Velocity | Digital Marketing & Growth Agency",
+  description: "Full-service digital marketing agency scaling business revenue through Google Ads PPC, Technical SEO, Social Media, and CRO.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${outfit.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-inter" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-background text-foreground font-inter relative" suppressHydrationWarning>
         {children}
       </body>
     </html>

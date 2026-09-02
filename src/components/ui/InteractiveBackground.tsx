@@ -59,16 +59,16 @@ export const InteractiveBackground = () => {
         mouseY,
         500
       );
-      gradient.addColorStop(0, "rgba(0, 240, 255, 0.06)");
-      gradient.addColorStop(0.5, "rgba(255, 42, 109, 0.02)");
-      gradient.addColorStop(1, "rgba(8, 8, 10, 0)");
+      gradient.addColorStop(0, "rgba(24, 24, 27, 0.04)");
+      gradient.addColorStop(0.5, "rgba(113, 113, 122, 0.02)");
+      gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
       // Draw nodes and connective mesh
-      ctx.fillStyle = "rgba(0, 240, 255, 0.25)";
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
+      ctx.fillStyle = "rgba(24, 24, 27, 0.15)";
+      ctx.strokeStyle = "rgba(24, 24, 27, 0.04)";
 
       nodes.forEach((node, i) => {
         node.x += node.vx;

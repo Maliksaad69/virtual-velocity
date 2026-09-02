@@ -12,8 +12,8 @@ interface GradientDividerProps {
 }
 
 export const GradientDivider = ({
-  fromColor = "#050507",
-  toColor = "#ffffff",
+  fromColor = "#ffffff",
+  toColor = "#f4f4f5",
   heightRem = 8,
 }: GradientDividerProps) => (
   <div

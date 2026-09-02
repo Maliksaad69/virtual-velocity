@@ -37,21 +37,21 @@ const JOBS = [
 export default function CareersPage() {
   return (
     <SmoothScrollProvider>
-      <main className="min-h-screen bg-[#08080a] text-[#f4f4f2] relative selection:bg-[#00f0ff] selection:text-black font-outfit">
+      <main className="min-h-screen bg-white text-zinc-900 relative selection:bg-zinc-900 selection:text-white font-outfit">
         <CustomCursor />
         <Navigation />
 
         <div className="pt-32 sm:pt-40 pb-20 sm:pb-32 px-6 sm:px-12 max-w-[1700px] mx-auto space-y-20">
           {/* Header */}
-          <div className="space-y-6 border-b border-white/10 pb-12">
-            <span className="text-sm font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#00f0ff]" />
+          <div className="space-y-6 border-b border-zinc-200 pb-12">
+            <span className="text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider flex items-center gap-2">
+              <Zap className="w-4 h-4 text-zinc-900" />
               JOIN OUR TALENT NETWORK
             </span>
-            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-white tracking-tight uppercase leading-[0.9]">
-              CAREERS AT <span className="text-[#00f0ff]">VIRTUAL VELOCITY</span>
+            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.9]">
+              CAREERS AT <span className="text-zinc-500">VIRTUAL VELOCITY</span>
             </h1>
-            <p className="text-base sm:text-2xl text-white/75 max-w-3xl font-light leading-relaxed">
+            <p className="text-base sm:text-2xl text-zinc-600 max-w-3xl font-light leading-relaxed">
               We are hiring world-class web developers, performance marketers, UI/UX designers, and shader engineers across our Wilmington, USA and Lahore, Pakistan hubs.
             </p>
           </div>
@@ -61,22 +61,22 @@ export default function CareersPage() {
             {JOBS.map((job, idx) => (
               <div
                 key={idx}
-                className="p-6 sm:p-10 rounded-3xl bg-surface border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-[#00f0ff] transition-all duration-300 shadow-xl"
+                className="p-6 sm:p-10 rounded-3xl bg-white border border-zinc-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-zinc-900 transition-all duration-300 shadow-sm"
               >
                 <div className="space-y-2">
-                  <div className="flex items-center gap-3 text-xs font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider">
+                  <div className="flex items-center gap-3 text-xs font-outfit font-extrabold text-zinc-900 uppercase tracking-wider">
                     <span>{job.dept}</span>
                     <span>• {job.type}</span>
                   </div>
-                  <h3 className="text-xl sm:text-3xl font-outfit font-black text-white uppercase tracking-tight">
+                  <h3 className="text-xl sm:text-3xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
                     {job.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-white/75 font-light max-w-2xl leading-relaxed">{job.desc}</p>
+                  <p className="text-sm sm:text-base text-zinc-600 font-light max-w-2xl leading-relaxed">{job.desc}</p>
                 </div>
 
                 <Link
                   href="/contact"
-                  className="px-8 py-4 rounded-full bg-[#00f0ff] text-black font-outfit font-extrabold text-xs tracking-wider uppercase hover:bg-white transition-colors flex items-center gap-2 whitespace-nowrap shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+                  className="px-8 py-4 rounded-full bg-emerald-600 text-white font-outfit font-extrabold text-xs tracking-wider uppercase hover:bg-emerald-700 transition-colors flex items-center gap-2 whitespace-nowrap shadow-md shadow-emerald-600/20"
                 >
                   <span>APPLY FOR POSITION</span>
                   <ArrowUpRight className="w-4 h-4" />

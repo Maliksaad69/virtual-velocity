@@ -31,21 +31,21 @@ export default function WorkPage() {
 
   return (
     <SmoothScrollProvider>
-      <main ref={scopeRef} className="min-h-screen bg-[#08080a] text-[#f4f4f2] relative selection:bg-[#00f0ff] selection:text-black font-outfit">
+      <main ref={scopeRef} className="min-h-screen bg-white text-zinc-900 relative selection:bg-zinc-900 selection:text-white font-outfit">
         <CustomCursor />
         <Navigation />
 
         <div className="pt-32 sm:pt-40 pb-12 px-6 sm:px-12 max-w-[1700px] mx-auto">
           {/* Header */}
-          <div className="gsap-work-title space-y-6 border-b border-white/10 pb-12">
-            <span className="text-sm font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#00f0ff]" />
+          <div className="gsap-work-title space-y-6 border-b border-zinc-200 pb-12">
+            <span className="text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider flex items-center gap-2">
+              <Zap className="w-4 h-4 text-zinc-900" />
               PORTFOLIO & CASE STUDY GALLERY
             </span>
-            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-white tracking-tight uppercase leading-[0.9]">
-              <SplitTextReveal text="FEATURED WORK" highlightWords={["WORK"]} accentColor="#00f0ff" />
+            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.9]">
+              <SplitTextReveal text="FEATURED WORK" highlightWords={["WORK"]} accentColor="#059669" />
             </h1>
-            <p className="text-base sm:text-2xl text-white/75 max-w-2xl font-light leading-relaxed">
+            <p className="text-base sm:text-2xl text-zinc-600 max-w-2xl font-light leading-relaxed">
               Walk through our portfolio of ROI-driven digital marketing campaigns, Technical SEO growth benchmarks, Google Ads PPC overhauls, and paid social activations.
             </p>
           </div>
@@ -56,10 +56,10 @@ export default function WorkPage() {
 
         <div className="py-20 px-6 sm:px-12 max-w-[1700px] mx-auto">
           {/* Proposal CTA Box */}
-          <div className="p-8 sm:p-16 rounded-3xl bg-surface border-2 border-white/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 sm:p-16 rounded-3xl bg-white border-2 border-zinc-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-xl relative overflow-hidden">
             <div className="space-y-3 z-10">
-              <span className="text-sm font-outfit font-extrabold text-[#00f0ff] uppercase tracking-wider">NEXT STEPS</span>
-              <h3 className="text-3xl sm:text-5xl font-outfit font-black text-white uppercase tracking-tight">
+              <span className="text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider">NEXT STEPS</span>
+              <h3 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
                 READY TO SCALE YOUR CAMPAIGN REVENUE?
               </h3>
             </div>

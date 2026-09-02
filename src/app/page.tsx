@@ -27,7 +27,7 @@ const MARQUEE_ITEMS = [
 export default function Home() {
   return (
     <SmoothScrollProvider>
-      <main className="min-h-screen bg-[#08080a] text-[#f4f4f2] relative selection:bg-[#00f0ff] selection:text-black">
+      <main className="min-h-screen bg-white text-zinc-900 relative selection:bg-zinc-900 selection:text-white font-outfit">
         {/* Custom Award-Style Dynamic Cursor */}
         <CustomCursor />
 
@@ -44,31 +44,31 @@ export default function Home() {
         <MarqueeTicker items={MARQUEE_ITEMS} lightMode={true} speed={30} />
 
         {/* ── Marquee → Services transition ── */}
-        <GradientDivider fromColor="#ffffff" toColor="#050507" heightRem={6} />
+        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
         {/* 3. GSAP 3D Revolving Services Spectrum */}
         <GSAPRevolvingServices />
 
         {/* ── Services → Case Studies transition ── */}
-        <GradientDivider fromColor="#050507" toColor="#08080a" heightRem={6} />
+        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
         {/* 4. GSAP Down Stair-case Effect Case Studies Walkthrough */}
         <GSAPScrollGallery />
 
         {/* ── Case Studies → Metrics transition ── */}
-        <GradientDivider fromColor="#08080a" toColor="#ffffff" heightRem={6} />
+        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
         {/* 5. Proven Impact & Metrics */}
         <LightStatsSection />
 
         {/* ── Metrics → Testimonials transition ── */}
-        <GradientDivider fromColor="#ffffff" toColor="#f4f4f6" heightRem={6} />
+        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
         {/* 6. Client Testimonials */}
         <EditorialTestimonials />
 
         {/* ── Testimonials → Process transition ── */}
-        <GradientDivider fromColor="#f4f4f6" toColor="#08080a" heightRem={6} />
+        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
         {/* 7. Agency Execution Process */}
         <Process />

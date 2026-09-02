@@ -17,7 +17,7 @@ export const SplitTextReveal = ({
   delay = 0,
   stagger = 0.04,
   highlightWords = [],
-  accentColor = "#00f0ff",
+  accentColor = "#059669",
 }: SplitTextRevealProps) => {
   const words = text.split(" ");
 
@@ -68,7 +68,7 @@ export const SplitTextReveal = ({
             <motion.span
               variants={wordVariants}
               className={`inline-block transform-gpu ${
-                isHighlighted ? "italic font-light" : ""
+                isHighlighted ? "font-black" : ""
               }`}
               style={{ color: isHighlighted ? accentColor : undefined }}
             >

@@ -20,7 +20,7 @@ interface Particle {
   alpha: number;
 }
 
-const COLORS = ["#00f0ff", "#ff2a6d", "#ffffff", "#7000ff"];
+const COLORS = ["#059669", "#10b981", "#34d399", "#047857"];
 const PARTICLE_COUNT = 40;
 
 export const ParticleBurst = () => {
@@ -132,7 +132,7 @@ export const ParticleBurst = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-[9999]"
-      style={{ mixBlendMode: "screen" }}
+      style={{ mixBlendMode: "multiply" }}
     />
   );
 };
