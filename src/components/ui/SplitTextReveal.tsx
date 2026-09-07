@@ -17,7 +17,7 @@ export const SplitTextReveal = ({
   delay = 0,
   stagger = 0.04,
   highlightWords = [],
-  accentColor = "#059669",
+  accentColor = "#00aeac",
 }: SplitTextRevealProps) => {
   const words = text.split(" ");
 

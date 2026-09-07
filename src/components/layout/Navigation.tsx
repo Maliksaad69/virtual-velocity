@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Compass } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Magnetic } from "@/components/ui/Magnetic";
 
 const NAV_LINKS = [
-  { label: "WORK", href: "/work", id: "01" },
-  { label: "SERVICES", href: "/services", id: "02" },
-  { label: "ABOUT", href: "/about", id: "03" },
+  { label: "ABOUT", href: "/about", id: "01" },
+  { label: "BLOG", href: "/blog", id: "02" },
   { label: "CONTACT", href: "/contact", id: "04" },
 ];
 
@@ -46,10 +46,14 @@ export const Navigation = () => {
               href="/"
               className="group flex items-center gap-3 font-outfit font-extrabold text-xl sm:text-2xl tracking-tighter text-zinc-950 uppercase"
             >
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-600 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-600"></span>
-              </span>
+              <Image
+                src="/VV png.png"
+                alt="Virtual Velocity Logo"
+                width={44}
+                height={44}
+                className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                priority
+              />
               <span className="group-hover:text-emerald-600 transition-colors duration-300 font-extrabold">
                 VIRTUAL <span className="text-emerald-600 font-extrabold">•</span> VELOCITY
               </span>
@@ -91,7 +95,7 @@ export const Navigation = () => {
                 className="group relative inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-emerald-600 bg-emerald-600 text-xs font-extrabold tracking-[0.15em] text-white uppercase overflow-hidden hover:bg-emerald-700 hover:border-emerald-700 transition-all duration-200 shadow-sm shadow-emerald-600/20 active:scale-[0.98]"
               >
                 <span className="relative z-10">
-                  LET'S TALK
+                  LET&apos;S TALK
                 </span>
                 <ArrowUpRight className="relative z-10 w-4 h-4 text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
               </Link>

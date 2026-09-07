@@ -1,0 +1,14 @@
+{
+  "name": "Virtual Velocity Digital Agency",
+  "short_name": "Virtual Velocity",
+  "icons": [
+    {
+      "src": "/VV png.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#00aeac",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

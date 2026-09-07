@@ -13,7 +13,20 @@ export default <Config>{
         foreground: 'var(--color-foreground)',
         primary: '#111111', // near‑black
         secondary: '#F5F5F0', // warm off‑white
-        accent: '#00E5FF', // electric teal
+        accent: '#00aeac', // brand green/teal accent
+        emerald: {
+          50: '#e6f7f7',
+          100: '#c2eff0',
+          200: '#99e5e4',
+          300: '#66d7d5',
+          400: '#33c9c6',
+          500: '#00aeac',
+          600: '#00aeac',
+          700: '#00a29f',
+          800: '#008280',
+          900: '#006160',
+          950: '#003b3a',
+        },
       },
       fontFamily: {
         sans: ['var(--font-outfit)', ...defaultTheme.fontFamily.sans],

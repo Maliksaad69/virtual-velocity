@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Virtual Velocity Privacy Policy and Data Protection Framework across US & PK hubs.",
+};
 
 export default function PrivacyPolicyPage() {
   return (

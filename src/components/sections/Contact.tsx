@@ -116,9 +116,9 @@ export const Contact = () => {
       {/* Background Lighting */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-zinc-200/40 blur-[180px] pointer-events-none" />
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
         {/* Left Column - Headline & Offices */}
-        <div className="lg:col-span-5 space-y-12">
+        <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
           <div className="gsap-contact-headline space-y-4">
             <span className="text-sm font-outfit font-extrabold text-emerald-600 flex items-center gap-2 uppercase tracking-wider">
               <Zap className="w-4 h-4 text-emerald-600" />
@@ -179,14 +179,13 @@ export const Contact = () => {
           </div>
         </div>
 
-        {/* Right Form */}
-        {/* Right Form - Compact & High-Density */}
-        <div className="lg:col-span-7 bg-white border border-zinc-200 p-6 sm:p-8 rounded-3xl shadow-lg relative">
+        {/* Right Form - Exact Match Height */}
+        <div className="lg:col-span-7 bg-white border border-zinc-200 p-6 sm:p-8 rounded-3xl shadow-lg relative flex flex-col justify-between h-full">
           {submitted ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="py-12 text-center space-y-4"
+              className="py-12 my-auto text-center space-y-4"
             >
               <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto animate-bounce" />
               <h3 className="text-2xl sm:text-3xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
@@ -203,7 +202,7 @@ export const Contact = () => {
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="h-full flex flex-col justify-between space-y-4 sm:space-y-5">
               {/* Service Pills Grid - Compact */}
               <div className="gsap-form-field space-y-2">
                 <label className="text-xs font-outfit font-extrabold text-zinc-800 block uppercase tracking-wider">
@@ -306,8 +305,8 @@ export const Contact = () => {
                       key={b}
                       className={`py-2 px-3 rounded-xl border text-center text-xs font-outfit font-extrabold uppercase tracking-wide cursor-pointer transition-all duration-200 ${
                         formData.budget === b
-                          ? "bg-zinc-900 border-zinc-900 text-white shadow-xs"
-                          : "bg-zinc-50 border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:text-zinc-900"
+                          ? "bg-emerald-600 border-emerald-600 text-white shadow-xs"
+                          : "bg-zinc-50 border-zinc-200 text-zinc-700 hover:border-emerald-300 hover:text-zinc-900"
                       }`}
                     >
                       <input

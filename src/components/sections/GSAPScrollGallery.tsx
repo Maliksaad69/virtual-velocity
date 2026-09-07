@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { PROJECTS, Project } from "@/data/agencyData";
 import { ArrowUpRight, TrendingUp, Layers, Filter, ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { Magnetic } from "@/components/ui/Magnetic";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -112,6 +111,7 @@ export const GSAPScrollGallery = () => {
   return (
     <section
       ref={sectionRef}
+      id="work"
       className="relative min-h-screen h-screen bg-white text-zinc-900 overflow-hidden flex flex-col justify-between py-6 px-4 sm:px-10 selection:bg-zinc-900 selection:text-white font-outfit border-t border-zinc-200"
     >
 
@@ -179,11 +179,9 @@ export const GSAPScrollGallery = () => {
           {filteredProjects.map((project, idx) => (
             <div
               key={project.id}
-              className="gsap-gallery-card w-[88vw] sm:w-[68vw] lg:w-[56vw] h-[60vh] sm:h-[72vh] flex-shrink-0 group cursor-pointer transition-all duration-300"
-              data-cursor-text="INSPECT"
+              className="gsap-gallery-card w-[88vw] sm:w-[68vw] lg:w-[56vw] h-[60vh] sm:h-[72vh] flex-shrink-0 group transition-all duration-300"
             >
-              <Link href={`/work/${project.id}`} className="block h-full">
-                <div className="relative h-full overflow-hidden rounded-3xl border-2 border-zinc-300 bg-zinc-100 shadow-xl transition-all duration-500 group-hover:border-emerald-600">
+              <div className="relative h-full overflow-hidden rounded-3xl border-2 border-zinc-300 bg-zinc-100 shadow-xl transition-all duration-500 group-hover:border-emerald-600">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -227,16 +225,15 @@ export const GSAPScrollGallery = () => {
                       </div>
 
                       <Magnetic strength={0.3}>
-                        <div className="px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-emerald-600 text-white font-outfit font-extrabold text-xs tracking-wider uppercase group-hover:bg-emerald-700 transition-all shadow-md flex items-center gap-2 whitespace-nowrap flex-shrink-0">
-                          <span>INSPECT CASE STUDY</span>
+                        <div className="px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-emerald-600 text-white font-outfit font-extrabold text-xs tracking-wider uppercase group-hover:bg-emerald-700 transition-all shadow-md flex items-center gap-2 whitespace-nowrap flex-shrink-0" data-cursor-pointer>
+                          <span>FEATURED CASE STUDY</span>
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
                       </Magnetic>
                     </div>
                   </div>
                 </div>
-              </Link>
-            </div>
+              </div>
           ))}
         </div>
       </div>

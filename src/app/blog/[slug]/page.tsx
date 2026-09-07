@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import { BLOG_POSTS } from "@/data/agencyData";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -11,6 +12,35 @@ export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
     slug: post.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
+
+  if (!post) {
+    return { title: "Post Not Found" };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: `${post.title} | Virtual Velocity Journal`,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.date,
+      authors: [post.author.name],
+      tags: [post.category],
+      images: [{ url: "/VV png.png", alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: ["/VV png.png"],
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

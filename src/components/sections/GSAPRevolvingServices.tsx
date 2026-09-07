@@ -1,84 +1,90 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useGSAP } from "@gsap/react";
-import { SERVICES, Service } from "@/data/agencyData";
-import { ChevronLeft, ChevronRight, ArrowUpRight, CheckCircle2, RotateCw, Sparkles, Layers } from "lucide-react";
-import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { SERVICES } from "@/data/agencyData";
+import { RotateCw, Sparkles, ChevronLeft, ChevronRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
-/* ─── Text Scramble Helper ─── */
-function scrambleText(element: HTMLElement | null, text: string, duration = 0.8) {
-  if (!element) return;
-  const chars = "!@#$%^&*()_+-=[]{}|;':\",./<>?~";
-  const length = text.length;
-  gsap.to(
-    {},
-    {
-      duration: duration * 0.4,
-      onUpdate: () => {
-        let res = "";
-        for (let i = 0; i < length; i++) res += chars[Math.floor(Math.random() * chars.length)];
-        element.textContent = res;
-      },
-      onComplete: () => {
-        gsap.to(
-          {},
-          {
-            duration: duration * 0.6,
-            ease: "power2.out",
-            onUpdate: function () {
-              const settled = Math.floor(this.progress() * length);
-              let res = "";
-              for (let i = 0; i < length; i++) {
-                res += i < settled ? text[i] : chars[Math.floor(Math.random() * chars.length)];
-              }
-              element.textContent = res;
-            },
-            onComplete: () => {
-              element.textContent = text;
-            },
-          }
-        );
-      },
-    }
-  );
-}
+// Single emerald/white theme - consistent with rest of website
+const THEME = {
+  glow: "rgba(0, 174, 172, 0.35)",
+  border: "border-emerald-500/60",
+  badge: "bg-emerald-500 text-white border-emerald-400",
+  badgeInactive: "bg-white/10 text-white border-white/20",
+  accent: "#00aeac",
+  accentSoft: "rgba(0, 174, 172, 0.12)",
+};
+// Per-card accent shades (different green/teal color on each card) - same family as theme
+const CARD_ACCENTS = [
+  { tint: "rgba(0, 166, 159,,  0.30)",  accent: "#00a69f",  glowSoft: "rgba(0, 166,,  159,,  0.45)" },
+  { tint: "rgba(22, 163,,  74,,  0.28)",   accent: "#16a34a",  glowSoft: "rgba(22,  163,,  74,,  0.42)" },
+  { tint: "rgba(0,,  130,,  122,,  0.30)",  accent:"#00827a",  glowSoft:"rgba(0,,  130,,  122,,  0.45)" },
+  { tint:"rgba(56,,  189,,  145,,  0.32)",  accent:"#38bd91",  glowSoft:"rgba(56,,  189,,  145,,  0.5)" },
+];
+
+// Soft HD abstract background images (bright/light, not dark)
+const BACKDROPS = [
+  "https://images.unsplash.com/photo-1557683316-973673baf926?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682260-96773eb01377?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557683316-973673baf926?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682260-96773eb01377?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557683316-973673baf926?q=85&w=1600&auto=format&fit=crop",
+];
 
 export const GSAPRevolvingServices = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const titleScrambleRef = useRef<HTMLHeadingElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoRotating, setIsAutoRotating] = useState(false);
-  const [radius, setRadius] = useState(420);
+  const [radius, setRadius] = useState(450);
+
   const rotationObj = useRef({ angle: 0 });
   const totalItems = SERVICES.length;
-  const stepAngle = 360 / totalItems;
+  const stepAngle = useMemo(() => 360 / Math.max(totalItems, 1), [totalItems]);
 
+  // Larger radius + smaller cards to prevent overlap with header
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
-      if (w < 640) {
-        setRadius(210);
+      let cardWidth = 360;
+
+      if (w < 480) {
+        cardWidth = 230;
+      } else if (w < 640) {
+        cardWidth = 270;
+      } else if (w < 768) {
+        cardWidth = 300;
       } else if (w < 1024) {
-        setRadius(310);
-      } else {
-        setRadius(420);
+        cardWidth = 330;
       }
+
+      const extraPadding = w < 768 ? 130 : 80;
+      const computedRadius = Math.round(
+        (cardWidth / 2) / Math.tan(Math.PI / Math.max(totalItems, 3)) + extraPadding
+      );
+
+      const minRadius = w < 480 ? 320 : w < 640 ? 380 : w < 768 ? 435 : 530;
+      setRadius(Math.max(computedRadius, minRadius));
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [totalItems]);
 
   const revolveToIndex = useCallback(
-    (index: number, duration = 0.9) => {
-      const normalizedIndex = (index + totalItems) % totalItems;
+    (index: number, duration = 0.8) => {
+      const normalizedIndex = (index % totalItems + totalItems) % totalItems;
       setActiveIndex(normalizedIndex);
 
       const targetAngle = -normalizedIndex * stepAngle;
@@ -86,7 +92,7 @@ export const GSAPRevolvingServices = () => {
       gsap.to(rotationObj.current, {
         angle: targetAngle,
         duration,
-        ease: "power3.out",
+        ease: "power2.out",
         onUpdate: () => {
           if (carouselRef.current) {
             gsap.set(carouselRef.current, {
@@ -95,10 +101,6 @@ export const GSAPRevolvingServices = () => {
           }
         },
       });
-
-      if (titleScrambleRef.current) {
-        scrambleText(titleScrambleRef.current, SERVICES[normalizedIndex].title, 0.7);
-      }
     },
     [stepAngle, totalItems]
   );
@@ -114,13 +116,13 @@ export const GSAPRevolvingServices = () => {
 
       gsap.fromTo(
         ".gsap-revolve-header",
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: container, start: "top 80%" },
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: { trigger: container, start: "top 85%" },
         }
       );
 
@@ -129,11 +131,10 @@ export const GSAPRevolvingServices = () => {
         pin: true,
         pinSpacing: true,
         start: "top top",
-        end: `+=1800`,
+        end: `+=${1400 + totalItems * 110}`,
         scrub: 1,
         onUpdate: (self) => {
-          const progress = self.progress;
-          const totalRotation = -360 * progress;
+          const totalRotation = -360 * self.progress;
           rotationObj.current.angle = totalRotation;
           gsap.set(carousel, { rotationY: totalRotation });
 
@@ -143,213 +144,235 @@ export const GSAPRevolvingServices = () => {
         },
       });
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [stepAngle, totalItems] }
   );
 
   useEffect(() => {
     if (!isAutoRotating) return;
     const interval = setInterval(() => {
-      revolveToIndex(activeIndex + 1, 1.2);
-    }, 3500);
+      revolveToIndex(activeIndex + 1, 1);
+    }, 4000);
     return () => clearInterval(interval);
   }, [isAutoRotating, activeIndex, revolveToIndex]);
-
-  const activeService: Service = SERVICES[activeIndex] || SERVICES[0];
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-white text-zinc-900 overflow-hidden flex flex-col justify-between py-12 px-4 sm:px-8 lg:px-16 selection:bg-zinc-900 selection:text-white font-outfit border-t border-zinc-200"
+      id="services"
+      className="relative min-h-screen w-full bg-white text-zinc-900 overflow-hidden flex flex-col justify-between py-6 sm:py-8 md:py-10 lg:py-12 px-3 sm:px-6 lg:px-12 selection:bg-zinc-900 selection:text-white border-t border-zinc-200"
     >
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[140px] pointer-events-none opacity-20 bg-zinc-200/50 transition-all duration-1000"
-      />
-
-      <div className="gsap-revolve-header max-w-[1700px] w-full mx-auto flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 z-10 gap-6">
+      {/* Header Controls - generous padding to prevent overlap */}
+      <header className="gsap-revolve-header max-w-7xl w-full mx-auto flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-4 sm:pb-6 z-20 gap-3 sm:gap-4 relative">
         <div>
-          <div className="flex items-center gap-3 text-xs font-outfit font-extrabold text-emerald-600 uppercase tracking-wider mb-2">
-            <RotateCw className="w-4 h-4 animate-spin-slow text-emerald-600" />
-            <span>3D SERVICE SPECTRUM</span>
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold text-emerald-600 uppercase tracking-widest mb-1 sm:mb-1.5">
+            <RotateCw className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isAutoRotating ? "animate-spin" : ""}`} />
+            <span>3D Service Spectrum</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-outfit font-black uppercase text-zinc-950 tracking-tighter leading-none">
-            AGENCY <span className="text-emerald-600 font-black">SERVICES</span>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-zinc-900 leading-none">
+            Agency <span className="text-emerald-600">Services</span>
           </h2>
         </div>
 
-        <div className="flex items-center gap-4 flex-wrap">
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
           <button
-            onClick={() => setIsAutoRotating(!isAutoRotating)}
-            className={`text-xs font-outfit font-bold px-4 py-2 rounded-full border transition-all duration-300 flex items-center gap-2 ${
-              isAutoRotating
-                ? "bg-emerald-600 text-white border-emerald-600 font-bold shadow-sm"
-                : "bg-emerald-50 text-emerald-800 border-emerald-200 hover:border-emerald-400"
-            }`}
+            type="button"
+            onClick={() => setIsAutoRotating((prev) => !prev)}
+            className={`text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-2 sm:py-2.5 rounded-full border transition-all duration-300 flex items-center gap-1.5 sm:gap-2 ${isAutoRotating
+                ? "bg-emerald-600 text-white border-emerald-600 shadow-md shadow-emerald-600/20"
+                : "bg-white text-zinc-700 border-zinc-300 hover:border-emerald-500 hover:text-emerald-700"
+              }`}
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             <span>{isAutoRotating ? "AUTO-ROTATING" : "AUTO OFF"}</span>
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-1.5 bg-white p-1 rounded-full border border-zinc-200 shadow-sm">
             <button
+              type="button"
               onClick={prevService}
-              className="p-3 rounded-full bg-white border border-zinc-300 hover:bg-emerald-600 hover:text-white text-zinc-950 transition-colors shadow-xs"
+              className="p-1.5 sm:p-2 rounded-full text-zinc-500 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
               aria-label="Previous Service"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <button
+              type="button"
               onClick={nextService}
-              className="p-3 rounded-full bg-white border border-zinc-300 hover:bg-emerald-600 hover:text-white text-zinc-950 transition-colors shadow-xs"
+              className="p-1.5 sm:p-2 rounded-full text-zinc-500 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
               aria-label="Next Service"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      <div className="max-w-[1700px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto py-8 z-10">
+      {/* 3D Carousel Stage - extra padding below header to prevent overlap */}
+      <main className="max-w-7xl w-full mx-auto flex items-end sm:items-center justify-center my-auto pt-10 sm:pt-12 md:pt-16 lg:pt-20 pb-2 sm:pb-4 md:pb-6 z-10">
         <div
           ref={stageRef}
-          className="lg:col-span-7 h-[360px] sm:h-[520px] relative flex items-center justify-center overflow-visible"
-          style={{ perspective: "1200px" }}
+          className="w-full h-[380px] sm:h-[430px] md:h-[460px] lg:h-[500px] relative flex items-end sm:items-center justify-center overflow-visible"
+          style={{ perspective: "1400px" }}
         >
           <div
             ref={carouselRef}
-            className="w-full h-full relative flex items-center justify-center"
-            style={{
-              transformStyle: "preserve-3d",
-              transition: "transform 0.1s ease-out",
-            }}
+            className="w-full h-full relative flex items-end sm:items-center justify-center"
+            style={{ transformStyle: "preserve-3d" }}
           >
             {SERVICES.map((service, idx) => {
               const angle = idx * stepAngle;
               const isActive = idx === activeIndex;
+              const backdrop = BACKDROPS[idx % BACKDROPS.length];
+              const acc = CARD_ACCENTS[idx % CARD_ACCENTS.length];
+              const isVideography = service.id === "videography";
 
               return (
-                <div
+                <article
                   key={service.id}
                   onClick={() => revolveToIndex(idx)}
-                  className={`absolute w-[230px] sm:w-[340px] p-5 sm:p-8 rounded-3xl cursor-pointer transition-all duration-700 select-none ${
-                    isActive
-                      ? "bg-white border-2 border-emerald-600 shadow-xl shadow-emerald-500/10 z-30 opacity-100 scale-105"
-                      : "bg-zinc-50 border-2 border-emerald-500/30 hover:border-emerald-600 z-10 opacity-75 hover:opacity-95 scale-90"
-                  }`}
+                  className={`absolute w-[220px] sm:w-[270px] md:w-[310px] lg:w-[350px] rounded-2xl sm:rounded-3xl cursor-pointer select-none flex flex-col overflow-hidden transition-all duration-500 border h-[300px] sm:h-[340px] md:h-[380px] lg:h-[430px] ${isActive
+                      ? `${THEME.border} shadow-[0_20px_60px_rgba(0,0,0,0.1)] scale-100 opacity-100 z-30 ring-1 ring-white/50`
+                      : "border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.06)] scale-92 sm:scale-95 opacity-70 hover:opacity-90 hover:border-emerald-300 z-10"
+                    }`}
                   style={{
                     transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                     transformStyle: "preserve-3d",
-                    backfaceVisibility: "visible",
+                    backfaceVisibility: "hidden",
                   }}
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl sm:text-3xl font-outfit font-black text-zinc-950">
-                      {service.number}
-                    </span>
-                    <span className={`text-[10px] sm:text-xs font-outfit font-bold border px-3 py-1 rounded-full uppercase ${
-                      isActive ? "bg-emerald-50 text-emerald-800 border-emerald-200" : "bg-white text-zinc-600 border-zinc-200"
-                    }`}>
-                      {service.category}
-                    </span>
+                  {/* Card background - very blurred full-bleed image */}
+                  <div className="absolute inset-0 z-0">
+                    <img
+                      src={service.previewImage || backdrop}
+                      alt=""
+                      className="w-full h-full object-cover scale-125 filter blur-xl brightness-105 saturate-110 transition-transform duration-1000 ease-out"
+                    />
+                    {isVideography ? (
+                      <>
+                        {/* Darker shade for videography card */}
+                        <div
+                          className="absolute inset-0 mix-blend-multiply"
+                          style={{ background: "linear-gradient(160deg, rgba(0, 66, 62, 0.55) 0%, rgba(0, 50, 47, 0.6) 55%, rgba(0, 40, 38, 0.55) 100%)" }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/60 to-zinc-900/35" />
+                      </>
+                    ) : (
+                      <>
+                        {/* Per-card accent color shade - color lives ON the card */}
+                        <div
+                          className="absolute inset-0 mix-blend-multiply"
+                          style={{ background: `linear-gradient(160deg, ${acc.tint} 0%, ${acc.glowSoft} 55%, transparent 100%)` }}
+                        />
+                        {/* Subtle dark overlay so white/green text stays readable (no pure white card) */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/85 via-zinc-900/45 to-zinc-900/20" />
+                      </>
+                    )}
+                    {/* Per-card accent ring glow on active state */}
+                    <div
+                      className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}
+                      style={{ boxShadow: `inset 0 0 0 2px ${isVideography ? "rgba(0,174,172,0.8)" : `${acc.accent}66`}, inset 0 0 30px ${acc.glowSoft}` }}
+                    />
                   </div>
 
-                  <h3 className="text-lg sm:text-2xl font-outfit font-black uppercase text-zinc-950 mb-2 sm:mb-3 tracking-tight">
-                    {service.title}
-                  </h3>
+                  {/* Content */}
+                  <div className="relative z-10 p-3 sm:p-3.5 md:p-4 lg:p-5 h-full flex flex-col">
+                    <div>
+                      {/* Number + Category Badge */}
+                      <div className="flex items-center justify-between gap-2 mb-1.5 sm:mb-2 md:mb-2.5">
+                        <span
+                          className="text-base sm:text-lg md:text-xl font-black font-mono tracking-tighter"
+                          style={{ color: isVideography ? "#79e6e2" : acc.accent }}
+                        >
+                          {service.number}
+                        </span>
+                        <span
+                          className={`text-[7px] sm:text-[8px] md:text-[9px] font-bold tracking-wider uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full border transition-colors ${isActive ? THEME.badge : THEME.badgeInactive
+                            }`}
+                        >
+                          {service.category}
+                        </span>
+                      </div>
 
-                  <p className="text-xs sm:text-sm text-zinc-600 font-light line-clamp-3 leading-relaxed mb-4 sm:mb-6">
-                    {service.shortDescription}
-                  </p>
+                      {/* Title */}
+                      <h3 className="text-xs sm:text-sm md:text-[15px] font-black uppercase tracking-tight text-white mb-0.5 sm:mb-1 leading-tight drop-shadow-sm">
+                        {service.title}
+                      </h3>
 
-                  <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-zinc-200 text-xs font-outfit font-bold">
-                    <span className={isActive ? "text-emerald-600 font-extrabold" : "text-zinc-700"}>{isActive ? "ACTIVE DISCIPLINE" : "SELECT TO VIEW"}</span>
-                    <ArrowUpRight className={`w-4 h-4 ${isActive ? "text-emerald-600" : "text-zinc-400"}`} />
+                      {/* Short Description */}
+                      <p className="text-[10px] sm:text-[11px] md:text-xs text-emerald-100/90 font-normal leading-snug line-clamp-2 mb-1 sm:mb-1.5 md:mb-2">
+                        {service.shortDescription}
+                      </p>
+
+                      {/* Deliverables - smallest screens hidden */}
+                      {service.deliverables && service.deliverables.length > 0 && (
+                        <div className="hidden sm:grid grid-cols-2 gap-1 sm:gap-1 pt-1">
+                          {service.deliverables.slice(0, 4).map((deliv, dIdx) => (
+                            <div
+                              key={dIdx}
+                              className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-[11px] text-white/90 font-medium truncate"
+                            >
+                              <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0 text-emerald-300" />
+                              <span className="truncate">{deliv}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Distinct featured image - fills flexible space, different per card */}
+                    <div className="relative flex-1 min-h-0 w-full rounded-xl sm:rounded-2xl overflow-hidden mt-2 sm:mt-3 md:mt-4 border border-white/15">
+                      <img
+                        src={service.previewImage || backdrop}
+                        alt={service.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-transparent to-transparent" />
+                    </div>
+
+                    {/* Card Footer - compact */}
+                    <div className="pt-1 sm:pt-1.5 md:pt-2 mt-1 sm:mt-1.5 md:mt-2 border-t border-white/20 flex items-center justify-between text-[9px] sm:text-[10px] md:text-[11px] font-bold">
+                      <span className={isActive ? "text-emerald-300 tracking-wide" : "text-white/80"}>
+                        {isActive ? (typeof window !== "undefined" && window.innerWidth < 640 ? "TAP" : "EXPLORE") : (typeof window !== "undefined" && window.innerWidth < 640 ? "VIEW" : "SELECT")}
+                      </span>
+                      <div
+                        className={`p-1 sm:p-1.5 rounded-full border transition-colors ${isActive
+                            ? "border-emerald-300 text-emerald-300"
+                            : "bg-white/10 border-white/20 text-white"
+                          }`}
+                        style={isActive ? { backgroundColor: `${isVideography ? "#79e6e2" : acc.accent}2a`, color: isVideography ? "#79e6e2" : acc.accent } : undefined}
+                      >
+                        <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </article>
               );
             })}
           </div>
         </div>
+      </main>
 
-        <div className="lg:col-span-5 space-y-6 bg-white border border-zinc-200 p-6 sm:p-10 rounded-3xl shadow-lg relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
-            <Layers className="w-32 h-32 text-emerald-600" />
-          </div>
-
-          <div className="flex items-center justify-between text-xs font-outfit text-zinc-500 border-b border-zinc-200 pb-4">
-            <span className="text-emerald-600 uppercase tracking-wider font-extrabold">
-              ACTIVE DISCIPLINE [0{activeIndex + 1} / 0{totalItems}]
-            </span>
-            <span className="font-bold text-zinc-800">{activeService.category}</span>
-          </div>
-
-          <h3
-            ref={titleScrambleRef}
-            className="text-2xl sm:text-4xl font-outfit font-black text-zinc-950 uppercase tracking-tight leading-tight min-h-[56px]"
-          >
-            {activeService.title}
-          </h3>
-
-          <p className="text-sm sm:text-base text-zinc-600 font-light leading-relaxed">
-            {activeService.description}
-          </p>
-
-          <div className="space-y-3 pt-2">
-            <span className="text-xs font-outfit font-extrabold text-zinc-950 uppercase tracking-wider block">
-              KEY CAMPAIGN DELIVERABLES
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {activeService.deliverables.map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs sm:text-sm font-outfit font-bold text-zinc-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-2 pt-2">
-            <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider block">
-              PLATFORMS & TOOLING
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {activeService.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-xs font-outfit font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full uppercase"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-4 flex items-center justify-between border-t border-zinc-200">
-            <Link
-              href="/contact"
-              className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 text-white font-outfit font-extrabold text-xs sm:text-sm tracking-wider uppercase hover:bg-emerald-700 transition-colors duration-300 shadow-md"
-            >
-              <span>BOOK DISCIPLINE STRATEGY</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-[1700px] w-full mx-auto flex items-center justify-between border-t border-zinc-200 pt-4 z-10 text-xs font-outfit font-medium text-zinc-500">
-        <div className="flex items-center gap-2">
+      {/* Footer Progress Dots */}
+      <footer className="max-w-7xl w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 border-t border-zinc-200 pt-3 sm:pt-4 z-20 text-[9px] sm:text-[10px] md:text-xs text-zinc-500">
+        <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap justify-center">
           {SERVICES.map((_, idx) => (
             <button
               key={idx}
+              type="button"
               onClick={() => revolveToIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                idx === activeIndex ? "w-8 bg-emerald-600" : "w-2 bg-zinc-300 hover:bg-emerald-400"
-              }`}
-              aria-label={`Go to service ${idx + 1}`}
+              className={`h-1 sm:h-1.5 rounded-full transition-all duration-300 ${idx === activeIndex
+                  ? "w-6 sm:w-8 bg-emerald-500 shadow-sm shadow-emerald-500/40"
+                  : "w-1.5 sm:w-2 bg-zinc-300 hover:bg-zinc-400"
+                }`}
+              aria-label={`Jump to slide ${idx + 1}`}
             />
           ))}
         </div>
-        <span className="font-bold text-zinc-600">SCROLL OR CLICK TO EXPLORE 3D SPECTRUM</span>
-      </div>
+        <p className="tracking-wider uppercase font-mono text-center text-zinc-500">
+          Scroll or tap to explore
+        </p>
+      </footer>
     </section>
   );
 };

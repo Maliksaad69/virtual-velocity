@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import { Navigation } from "@/components/layout/Navigation";
 import { GSAPHeroTimeline } from "@/components/sections/GSAPHeroTimeline";
-import { MarqueeTicker } from "@/components/ui/MarqueeTicker";
+
+export const metadata: Metadata = {
+  title: "Virtual Velocity | Digital Marketing & Growth Agency",
+  description: "Scale your brand revenue with ROI-driven Google Ads PPC, Technical SEO, Paid Social, CRO, and Custom App Engineering.",
+  openGraph: {
+    title: "Virtual Velocity | Digital Marketing & Growth Agency",
+    description: "Full-service performance marketing & tech agency scaling business revenue through Google Ads PPC, SEO, CRO, and Paid Social.",
+  },
+};
 import { GSAPRevolvingServices } from "@/components/sections/GSAPRevolvingServices";
 import { GSAPScrollGallery } from "@/components/sections/GSAPScrollGallery";
 import { LightStatsSection } from "@/components/sections/LightStatsSection";
@@ -13,16 +22,9 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SoundToggle } from "@/components/ui/SoundToggle";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { GradientDivider } from "@/components/ui/GradientDivider";
-
-const MARQUEE_ITEMS = [
-  "FULL-SERVICE DIGITAL MARKETING AGENCY",
-  "GOOGLE ADS PPC & SEM",
-  "TECHNICAL SEO & ORGANIC GROWTH",
-  "NATIVE MOBILE APP DEVELOPMENT",
-  "SHOPIFY PLUS E-COMMERCE",
-  "3D WEBGL BRAND CAMPAIGNS",
-  "SOCIAL MEDIA MARKETING & CONTENT",
-];
+import { ClientLogosMarquee } from "@/components/sections/ClientLogosMarquee";
+import { About } from "@/components/sections/About";
+import { CreativePunchline } from "@/components/sections/CreativePunchline";
 
 export default function Home() {
   return (
@@ -40,43 +42,49 @@ export default function Home() {
         {/* 1. GSAP Timeline Powered Hero Entrance */}
         <GSAPHeroTimeline />
 
-        {/* 2. Kinetic Marquee Ticker */}
-        <MarqueeTicker items={MARQUEE_ITEMS} lightMode={true} speed={30} />
+        {/* 2. About Virtual Velocity Agency Section */}
+        <About />
 
-        {/* ── Marquee → Services transition ── */}
+        {/* ── About → Services transition ── */}
         <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
         {/* 3. GSAP 3D Revolving Services Spectrum */}
         <GSAPRevolvingServices />
 
-        {/* ── Services → Case Studies transition ── */}
+        {/* 4. Creative Punchline Section */}
+        <CreativePunchline />
+
+        {/* ── Punchline → Case Studies transition ── */}
         <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
-        {/* 4. GSAP Down Stair-case Effect Case Studies Walkthrough */}
+        {/* 5. GSAP Down Stair-case Effect Case Studies Walkthrough */}
         <GSAPScrollGallery />
 
         {/* ── Case Studies → Metrics transition ── */}
         <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
-        {/* 5. Proven Impact & Metrics */}
+        {/* 6. Proven Impact & Metrics */}
         <LightStatsSection />
 
-        {/* ── Metrics → Testimonials transition ── */}
+        {/* 7. Featured Client Logos - Two rows with opposite directions */}
+        <ClientLogosMarquee />
+
+        {/* ── Logos → Testimonials transition ── */}
         <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
-        {/* 6. Client Testimonials */}
+        {/* 8. Client Testimonials */}
         <EditorialTestimonials />
 
         {/* ── Testimonials → Process transition ── */}
         <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
 
-        {/* 7. Agency Execution Process */}
+        {/* 9. Agency Execution Process */}
         <Process />
 
-        {/* 8. High-Impact Interactive ROI Estimator CTA Banner */}
+        {/* 10. High-Impact Interactive ROI Estimator CTA Banner */}
         <InteractiveCTABanner />
 
-        {/* 9. Project Estimator & Contact Form */}
+        {/* 11. Project Estimator & Contact Form */}
         <Contact />
 
         {/* Global Studio Footer */}

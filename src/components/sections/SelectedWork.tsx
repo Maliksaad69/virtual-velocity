@@ -44,7 +44,7 @@ export const SelectedWork = () => {
             <Briefcase className="w-3.5 h-3.5 text-emerald-600" /> FEATURED CASE STUDIES
           </span>
           <h2 className="text-4xl sm:text-6xl font-outfit font-black text-zinc-950 uppercase tracking-tight">
-            <SplitTextReveal text="SELECTED WORK" highlightWords={["WORK"]} accentColor="#059669" />
+            <SplitTextReveal text="SELECTED WORK" highlightWords={["WORK"]} accentColor="#00aeac" />
           </h2>
         </div>
         <p className="mt-6 md:mt-0 text-sm sm:text-base text-zinc-600 max-w-md font-light leading-relaxed">

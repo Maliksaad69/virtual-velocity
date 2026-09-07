@@ -32,7 +32,7 @@ export const HeroCanvas3D = () => {
     // Outer Wireframe Torus Knot (Emerald Accent)
     const outerGeo = new THREE.TorusKnotGeometry(1.2, 0.35, 128, 32);
     const outerMat = new THREE.MeshBasicMaterial({
-      color: 0x059669,
+      color: 0x00aeac,
       wireframe: true,
       transparent: true,
       opacity: 0.35,
@@ -43,7 +43,7 @@ export const HeroCanvas3D = () => {
     // Inner Glowing Core (Vibrant Emerald)
     const innerGeo = new THREE.IcosahedronGeometry(0.8, 2);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: 0x10b981,
+      color: 0x00a29f,
       wireframe: true,
       transparent: true,
       opacity: 0.5,
@@ -64,7 +64,7 @@ export const HeroCanvas3D = () => {
 
     particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     const particleMat = new THREE.PointsMaterial({
-      color: 0x10b981,
+      color: 0x00aeac,
       size: 0.05,
       transparent: true,
       opacity: 0.65,
