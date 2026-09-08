@@ -1,6 +1,14 @@
 "use client";
 
-const CLIENT_LOGOS_ROW_1 = [
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+// All featured client logos (in order: tree widest-row to tip).
+const CLIENT_LOGOS = [
   { src: "/VV LOGOS/VV LOGOS/Anta logo/Anta logo.png", alt: "Anta" },
   { src: "/VV LOGOS/VV LOGOS/Blue world city/Blue world city.png", alt: "Blue World City" },
   { src: "/VV LOGOS/VV LOGOS/Glamar/Glamar.png", alt: "Glamar" },
@@ -16,9 +24,6 @@ const CLIENT_LOGOS_ROW_1 = [
   { src: "/VV LOGOS/VV LOGOS/capital arena/capital arena.png", alt: "Capital Arena" },
   { src: "/VV LOGOS/VV LOGOS/chaaye khana/chaaye khana.png", alt: "Chaaye Khana" },
   { src: "/VV LOGOS/VV LOGOS/chinaar/chinaar.png", alt: "Chinaar" },
-];
-
-const CLIENT_LOGOS_ROW_2 = [
   { src: "/VV LOGOS/VV LOGOS/cresto/cresto.png", alt: "Cresto" },
   { src: "/VV LOGOS/VV LOGOS/de asthethic/de asthethic transparent.png", alt: "De Aesthetic" },
   { src: "/VV LOGOS/VV LOGOS/desi chapter/desi chapter.png", alt: "Desi Chapter" },
@@ -36,14 +41,21 @@ const CLIENT_LOGOS_ROW_2 = [
   { src: "/VV LOGOS/VV LOGOS/wild wings/wild wings logo.png", alt: "Wild Wings" },
 ];
 
+/* Tree layout: logos stack into rows that start wide at the base and taper to
+   a single point at the top - forming a tree wedged inside a semicircle. */
+const TREE_ROWS = [8, 7, 6, 5, 4]; // bottom to top
+
 interface LogoTileProps {
   src: string;
   name: string;
+  className?: string;
 }
 
-const LogoTile = ({ src, name }: LogoTileProps) => {
+const LogoTile = ({ src, name, className }: LogoTileProps) => {
   return (
-    <div className="flex items-center justify-center w-44 h-24 sm:w-56 sm:h-32 md:w-64 md:h-36 lg:w-72 lg:h-40 shrink-0 rounded-2xl bg-zinc-900 border border-zinc-800">
+    <div
+      className={`flex items-center justify-center w-24 h-12 sm:w-32 sm:h-16 md:w-36 md:h-20 shrink-0 rounded-xl bg-zinc-900 ${className ?? ""}`}
+    >
       {/* Logo: sharp grayscale (colorless) at rest; full original color on hover/press */}
       <img
         src={src}
@@ -56,8 +68,37 @@ const LogoTile = ({ src, name }: LogoTileProps) => {
 };
 
 export const ClientLogosMarquee = () => {
+  const treeRef = useRef<HTMLDivElement>(null);
+
+  // Build the tree rows from top (tip) to bottom (base).
+  let cursor = 0;
+  const rows: { logos: typeof CLIENT_LOGOS }[] = [];
+  for (const count of [...TREE_ROWS].reverse()) {
+    rows.push({ logos: CLIENT_LOGOS.slice(cursor, cursor + count) });
+    cursor += count;
+  }
+
+  // Scroll-reveal the tree: logos cascade in from the base up to the tip.
+  useGSAP(
+    () => {
+      const tree = treeRef.current;
+      if (!tree) return;
+
+      gsap.from(".logo-tree-tile", {
+        scrollTrigger: { trigger: tree, start: "top 80%" },
+        y: 50,
+        opacity: 0,
+        scale: 0.85,
+        duration: 0.7,
+        stagger: 0.04,
+        ease: "power3.out",
+      });
+    },
+    { scope: treeRef }
+  );
+
   return (
-    <section className="py-12 sm:py-16 md:py-20 border-y border-zinc-800 bg-zinc-950 overflow-hidden select-none space-y-8 sm:space-y-10">
+    <section className="py-12 sm:py-16 md:py-20 border-y border-zinc-800 bg-zinc-950 overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-2">
         <p className="text-xs sm:text-sm font-bold text-emerald-400 uppercase tracking-[0.25em] text-center mb-2">
           Proven Track Record • Featured Clients
@@ -67,22 +108,15 @@ export const ClientLogosMarquee = () => {
         </h3>
       </div>
 
-      {/* Row 1 — Left → Right */}
-      <div className="hover-marquee whitespace-nowrap overflow-hidden py-2">
-        <div className="animate-marquee-left animate-marquee-slow inline-flex items-center gap-8 sm:gap-12 md:gap-14 px-4 sm:px-8 align-middle">
-          {[...CLIENT_LOGOS_ROW_1, ...CLIENT_LOGOS_ROW_1, ...CLIENT_LOGOS_ROW_1].map((logo, idx) => (
-            <LogoTile key={`r1-${idx}`} src={logo.src} name={logo.alt} />
-          ))}
-        </div>
-      </div>
-
-      {/* Row 2 — Right → Left */}
-      <div className="hover-marquee whitespace-nowrap overflow-hidden py-2">
-        <div className="animate-marquee-right animate-marquee-slow inline-flex items-center gap-8 sm:gap-12 md:gap-14 px-4 sm:px-8 align-middle">
-          {[...CLIENT_LOGOS_ROW_2, ...CLIENT_LOGOS_ROW_2, ...CLIENT_LOGOS_ROW_2].map((logo, idx) => (
-            <LogoTile key={`r2-${idx}`} src={logo.src} name={logo.alt} />
-          ))}
-        </div>
+      {/* Tree of logos - wide base tapering to a point, centered like a semicircle */}
+      <div ref={treeRef} className="max-w-7xl mx-auto flex flex-col items-center gap-2.5 sm:gap-3.5 md:gap-4 mt-4">
+        {rows.map((row, rIdx) => (
+          <div key={rIdx} className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4">
+            {row.logos.map((logo, i) => (
+              <LogoTile key={i} src={logo.src} name={logo.alt} className="logo-tree-tile" />
+            ))}
+          </div>
+        ))}
       </div>
     </section>
   );

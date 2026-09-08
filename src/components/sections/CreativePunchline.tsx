@@ -45,11 +45,11 @@ export const CreativePunchline = () => {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.95] sm:leading-none">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[0.95] sm:leading-none">
             We are <span className="text-emerald-400">not</span> your usual
             <br className="hidden sm:block" /> marketing agency.
           </h2>
-          <p className="mt-4 sm:mt-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-outfit font-light italic text-zinc-300 tracking-tight">
+          <p className="mt-4 sm:mt-6 text-lg sm:text-xl md:text-2xl lg:text-3xl font-outfit font-light italic text-zinc-300 tracking-tight">
             Don&apos;t treat us like <span className="text-white font-semibold not-italic">one.</span>
           </p>
         </motion.div>
@@ -71,7 +71,7 @@ export const CreativePunchline = () => {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
           className="max-w-4xl mx-auto space-y-6 sm:space-y-8"
         >
-          <p className="text-base sm:text-xl md:text-2xl text-zinc-200 font-light leading-relaxed sm:leading-[1.7] text-center">
+          <p className="text-sm sm:text-base md:text-lg text-zinc-200 font-light leading-relaxed sm:leading-[1.7] text-center">
             We are a <span className="text-emerald-400 font-bold not-italic">creative house</span> built for brands that want to be{" "}
             <span className="inline-flex items-center gap-1.5">
               <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
@@ -89,7 +89,7 @@ export const CreativePunchline = () => {
             </span>
           </p>
 
-          <p className="text-sm sm:text-lg md:text-xl text-zinc-300 font-light leading-relaxed sm:leading-[1.8] text-center">
+          <p className="text-xs sm:text-sm md:text-base text-zinc-300 font-light leading-relaxed sm:leading-[1.8] text-center">
             From strategy and creative direction to content, social media, campaigns, and brand storytelling, we bring every element together to build brands with a{" "}
             <span className="text-emerald-400 font-semibold">distinct voice</span> and{" "}
             <span className="text-emerald-400 font-semibold">presence.</span>
@@ -97,7 +97,7 @@ export const CreativePunchline = () => {
 
           <div className="w-20 sm:w-24 h-px mx-auto bg-emerald-500/50 my-4 sm:my-6" />
 
-          <p className="text-sm sm:text-lg md:text-xl text-zinc-300 font-light leading-relaxed sm:leading-[1.8] text-center">
+          <p className="text-xs sm:text-sm md:text-base text-zinc-300 font-light leading-relaxed sm:leading-[1.8] text-center">
             We don&apos;t believe in simply{" "}
             <span className="text-zinc-400 line-through decoration-zinc-500/60">filling content calendars.</span>{" "}
             We <span className="text-white font-semibold">create ideas</span>,{" "}

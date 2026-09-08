@@ -12,14 +12,16 @@ import { CreativeCTA } from "@/components/ui/CreativeCTA";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const SERVICE_OPTIONS = [
-  "Google Ads PPC",
-  "Technical SEO Audits",
-  "Meta & TikTok Paid Social",
-  "Conversion Rate Optimization (CRO)",
-  "Brand Strategy & Positioning",
-  "Email Marketing & Klaviyo",
-  "Video Reel Production",
-  "Landing Page Copywriting",
+  "Branding",
+  "Social Media",
+  "Photography",
+  "Videography",
+  "Shopify Store",
+  "Influencer Marketing",
+  "Search Engine Optimization",
+  "Meta Advertising",
+  "Google Advertising",
+  "Software Development",
 ];
 
 const BUDGET_OPTIONS = ["$5k - $15k", "$15k - $50k", "$50k - $100k", "$100k+"];
@@ -34,7 +36,7 @@ const HEAR_ABOUT_OPTIONS = [
 
 export const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
-  const [selectedServices, setSelectedServices] = useState<string[]>(["Google Ads PPC"]);
+  const [selectedServices, setSelectedServices] = useState<string[]>(["Google Advertising"]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     name: "",
