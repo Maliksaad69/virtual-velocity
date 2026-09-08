@@ -240,12 +240,12 @@ export const GSAPRevolvingServices = () => {
                     backfaceVisibility: "hidden",
                   }}
                 >
-                  {/* Card background - very blurred full-bleed image */}
+                  {/* Card background - visible blurred image */}
                   <div className="absolute inset-0 z-0">
                     <img
                       src={service.previewImage || backdrop}
                       alt=""
-                      className="w-full h-full object-cover scale-125 filter blur-xl brightness-105 saturate-110 transition-transform duration-1000 ease-out"
+                      className="w-full h-full object-cover object-center scale-125 filter blur-lg brightness-90 saturate-110 transition-transform duration-1000 ease-out"
                     />
                     {isVideography ? (
                       <>
@@ -254,7 +254,7 @@ export const GSAPRevolvingServices = () => {
                           className="absolute inset-0 mix-blend-multiply"
                           style={{ background: "linear-gradient(160deg, rgba(0, 66, 62, 0.55) 0%, rgba(0, 50, 47, 0.6) 55%, rgba(0, 40, 38, 0.55) 100%)" }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/60 to-zinc-900/35" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/45 to-zinc-900/20" />
                       </>
                     ) : (
                       <>
@@ -263,8 +263,8 @@ export const GSAPRevolvingServices = () => {
                           className="absolute inset-0 mix-blend-multiply"
                           style={{ background: `linear-gradient(160deg, ${acc.tint} 0%, ${acc.glowSoft} 55%, transparent 100%)` }}
                         />
-                        {/* Subtle dark overlay so white/green text stays readable (no pure white card) */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/85 via-zinc-900/45 to-zinc-900/20" />
+                        {/* Bottom-heavy dark scrim - text stays readable at the bottom, image stays visible above */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/35 to-zinc-900/10" />
                       </>
                     )}
                     {/* Per-card accent ring glow on active state */}
