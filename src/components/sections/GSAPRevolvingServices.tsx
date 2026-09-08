@@ -20,10 +20,10 @@ const THEME = {
 };
 // Per-card accent shades (different green/teal color on each card) - same family as theme
 const CARD_ACCENTS = [
-  { tint: "rgba(0, 166, 159,,  0.30)",  accent: "#00a69f",  glowSoft: "rgba(0, 166,,  159,,  0.45)" },
-  { tint: "rgba(22, 163,,  74,,  0.28)",   accent: "#16a34a",  glowSoft: "rgba(22,  163,,  74,,  0.42)" },
-  { tint: "rgba(0,,  130,,  122,,  0.30)",  accent:"#00827a",  glowSoft:"rgba(0,,  130,,  122,,  0.45)" },
-  { tint:"rgba(56,,  189,,  145,,  0.32)",  accent:"#38bd91",  glowSoft:"rgba(56,,  189,,  145,,  0.5)" },
+  { tint: "rgba(0, 166, 159, 0.30)", accent: "#00a69f", glowSoft: "rgba(0, 166, 159, 0.45)" },
+  { tint: "rgba(22, 163, 74, 0.28)", accent: "#16a34a", glowSoft: "rgba(22, 163, 74, 0.42)" },
+  { tint: "rgba(0, 130, 122, 0.30)", accent: "#00827a", glowSoft: "rgba(0, 130, 122, 0.45)" },
+  { tint: "rgba(56, 189, 145, 0.32)", accent: "#38bd91", glowSoft: "rgba(56, 189, 145, 0.5)" },
 ];
 
 // Soft HD abstract background images (bright/light, not dark)
@@ -240,8 +240,9 @@ export const GSAPRevolvingServices = () => {
                     backfaceVisibility: "hidden",
                   }}
                 >
-                  {/* Card background - visible blurred image */}
+                  {/* Card background: clear image region on top, blurred/dark zone at bottom for text */}
                   <div className="absolute inset-0 z-0">
+                    {/* Base layer: blurred, tinted image (only visible behind the bottom text zone) */}
                     <img
                       src={service.previewImage || backdrop}
                       alt=""
@@ -267,6 +268,20 @@ export const GSAPRevolvingServices = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/35 to-zinc-900/10" />
                       </>
                     )}
+
+                    {/* Clear visible region: sharp, un-blurred image revealed across the top portion
+                        of the card. A mask fades it out before the text zone, blending into the
+                        blurred base layer below (tilt-shift style focus falloff). */}
+                    <img
+                      src={service.previewImage || backdrop}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover object-center brightness-105 saturate-110"
+                      style={{
+                        WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 42%, transparent 70%)",
+                        maskImage: "linear-gradient(to bottom, black 0%, black 42%, transparent 70%)",
+                      }}
+                    />
+
                     {/* Per-card accent ring glow on active state */}
                     <div
                       className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}
