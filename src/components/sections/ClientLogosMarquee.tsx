@@ -43,13 +43,13 @@ interface LogoTileProps {
 
 const LogoTile = ({ src, name }: LogoTileProps) => {
   return (
-    <div className="flex items-center justify-center w-44 h-24 sm:w-56 sm:h-32 md:w-64 md:h-36 lg:w-72 lg:h-40 shrink-0">
-      {/* Logo renders white by default; shows its original colors while pressed */}
+    <div className="flex items-center justify-center w-44 h-24 sm:w-56 sm:h-32 md:w-64 md:h-36 lg:w-72 lg:h-40 shrink-0 rounded-2xl bg-zinc-900 border border-zinc-800">
+      {/* Logo: white + blurred by default; sharp + original colors while pressed */}
       <img
         src={src}
         alt={name}
         loading="lazy"
-        className="max-h-full max-w-full object-contain brightness-0 invert opacity-90 hover:opacity-100 hover:scale-110 active:brightness-100 active:invert-0 active:scale-105 transition-all duration-300 cursor-pointer"
+        className="max-h-[75%] max-w-[75%] object-contain brightness-0 invert opacity-80 blur-[2px] hover:opacity-100 hover:scale-110 active:brightness-100 active:invert-0 active:blur-none active:scale-105 transition-all duration-300 cursor-pointer"
       />
     </div>
   );
