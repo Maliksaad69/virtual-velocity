@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { SERVICES } from "@/data/agencyData";
-import { RotateCw, Sparkles, ChevronLeft, ChevronRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { RotateCw, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,16 +56,16 @@ export const GSAPRevolvingServices = () => {
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
-      let cardWidth = 360;
+      let cardWidth = 260;
 
       if (w < 480) {
-        cardWidth = 230;
+        cardWidth = 170;
       } else if (w < 640) {
-        cardWidth = 270;
+        cardWidth = 200;
       } else if (w < 768) {
-        cardWidth = 300;
+        cardWidth = 230;
       } else if (w < 1024) {
-        cardWidth = 330;
+        cardWidth = 250;
       }
 
       const extraPadding = w < 768 ? 130 : 80;
@@ -73,7 +73,7 @@ export const GSAPRevolvingServices = () => {
         (cardWidth / 2) / Math.tan(Math.PI / Math.max(totalItems, 3)) + extraPadding
       );
 
-      const minRadius = w < 480 ? 320 : w < 640 ? 380 : w < 768 ? 435 : 530;
+      const minRadius = w < 480 ? 300 : w < 640 ? 350 : w < 768 ? 400 : 470;
       setRadius(Math.max(computedRadius, minRadius));
     };
 
@@ -211,7 +211,7 @@ export const GSAPRevolvingServices = () => {
       <main className="max-w-7xl w-full mx-auto flex items-end sm:items-center justify-center my-auto pt-10 sm:pt-12 md:pt-16 lg:pt-20 pb-2 sm:pb-4 md:pb-6 z-10">
         <div
           ref={stageRef}
-          className="w-full h-[380px] sm:h-[430px] md:h-[460px] lg:h-[500px] relative flex items-end sm:items-center justify-center overflow-visible"
+          className="w-full h-[300px] sm:h-[330px] md:h-[350px] lg:h-[380px] relative flex items-end sm:items-center justify-center overflow-visible"
           style={{ perspective: "1400px" }}
         >
           <div
@@ -230,7 +230,7 @@ export const GSAPRevolvingServices = () => {
                 <article
                   key={service.id}
                   onClick={() => revolveToIndex(idx)}
-                  className={`absolute w-[220px] sm:w-[270px] md:w-[310px] lg:w-[350px] rounded-2xl sm:rounded-3xl cursor-pointer select-none flex flex-col overflow-hidden transition-all duration-500 border h-[300px] sm:h-[340px] md:h-[380px] lg:h-[430px] ${isActive
+                  className={`absolute w-[170px] sm:w-[210px] md:w-[240px] lg:w-[260px] rounded-xl sm:rounded-2xl cursor-pointer select-none flex flex-col overflow-hidden transition-all duration-500 border h-[170px] sm:h-[190px] md:h-[210px] lg:h-[230px] ${isActive
                       ? `${THEME.border} shadow-[0_20px_60px_rgba(0,0,0,0.1)] scale-100 opacity-100 z-30 ring-1 ring-white/50`
                       : "border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.06)] scale-92 sm:scale-95 opacity-70 hover:opacity-90 hover:border-emerald-300 z-10"
                     }`}
@@ -274,77 +274,24 @@ export const GSAPRevolvingServices = () => {
                     />
                   </div>
 
-                  {/* Content */}
-                  <div className="relative z-10 p-3 sm:p-3.5 md:p-4 lg:p-5 h-full flex flex-col">
-                    <div>
-                      {/* Number + Category Badge */}
-                      <div className="flex items-center justify-between gap-2 mb-1.5 sm:mb-2 md:mb-2.5">
-                        <span
-                          className="text-base sm:text-lg md:text-xl font-black font-mono tracking-tighter"
-                          style={{ color: isVideography ? "#79e6e2" : acc.accent }}
-                        >
-                          {service.number}
-                        </span>
-                        <span
-                          className={`text-[7px] sm:text-[8px] md:text-[9px] font-bold tracking-wider uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full border transition-colors ${isActive ? THEME.badge : THEME.badgeInactive
-                            }`}
-                        >
-                          {service.category}
-                        </span>
-                      </div>
+                  {/* Content - minimal: number, service name, one-line explanation */}
+                  <div className="relative z-10 p-3 sm:p-3.5 md:p-4 h-full flex flex-col justify-end">
+                    <span
+                      className="text-xs font-black font-mono tracking-tighter"
+                      style={{ color: acc.accent }}
+                    >
+                      {service.number}
+                    </span>
 
-                      {/* Title */}
-                      <h3 className="text-xs sm:text-sm md:text-[15px] font-black uppercase tracking-tight text-white mb-0.5 sm:mb-1 leading-tight drop-shadow-sm">
-                        {service.title}
-                      </h3>
+                    {/* Service Name */}
+                    <h3 className="text-sm sm:text-base md:text-lg font-black uppercase tracking-tight text-white mt-1 leading-tight drop-shadow-sm">
+                      {service.title}
+                    </h3>
 
-                      {/* Short Description */}
-                      <p className="text-[10px] sm:text-[11px] md:text-xs text-emerald-100/90 font-normal leading-snug line-clamp-2 mb-1 sm:mb-1.5 md:mb-2">
-                        {service.shortDescription}
-                      </p>
-
-                      {/* Deliverables - smallest screens hidden */}
-                      {service.deliverables && service.deliverables.length > 0 && (
-                        <div className="hidden sm:grid grid-cols-2 gap-1 sm:gap-1 pt-1">
-                          {service.deliverables.slice(0, 4).map((deliv, dIdx) => (
-                            <div
-                              key={dIdx}
-                              className="flex items-center gap-1 text-[9px] sm:text-[10px] md:text-[11px] text-white/90 font-medium truncate"
-                            >
-                              <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0 text-emerald-300" />
-                              <span className="truncate">{deliv}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Distinct featured image - fills flexible space, different per card */}
-                    <div className="relative flex-1 min-h-0 w-full rounded-xl sm:rounded-2xl overflow-hidden mt-2 sm:mt-3 md:mt-4 border border-white/15">
-                      <img
-                        src={service.previewImage || backdrop}
-                        alt={service.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/40 via-transparent to-transparent" />
-                    </div>
-
-                    {/* Card Footer - compact */}
-                    <div className="pt-1 sm:pt-1.5 md:pt-2 mt-1 sm:mt-1.5 md:mt-2 border-t border-white/20 flex items-center justify-between text-[9px] sm:text-[10px] md:text-[11px] font-bold">
-                      <span className={isActive ? "text-emerald-300 tracking-wide" : "text-white/80"}>
-                        {isActive ? (typeof window !== "undefined" && window.innerWidth < 640 ? "TAP" : "EXPLORE") : (typeof window !== "undefined" && window.innerWidth < 640 ? "VIEW" : "SELECT")}
-                      </span>
-                      <div
-                        className={`p-1 sm:p-1.5 rounded-full border transition-colors ${isActive
-                            ? "border-emerald-300 text-emerald-300"
-                            : "bg-white/10 border-white/20 text-white"
-                          }`}
-                        style={isActive ? { backgroundColor: `${isVideography ? "#79e6e2" : acc.accent}2a`, color: isVideography ? "#79e6e2" : acc.accent } : undefined}
-                      >
-                        <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                      </div>
-                    </div>
+                    {/* One-line short explanation */}
+                    <p className="text-[10px] sm:text-[11px] md:text-xs text-white/85 font-normal leading-snug line-clamp-2 mt-1">
+                      {service.shortDescription}
+                    </p>
                   </div>
                 </article>
               );
