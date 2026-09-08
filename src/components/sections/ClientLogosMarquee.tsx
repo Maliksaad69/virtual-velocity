@@ -20,7 +20,7 @@ const CLIENT_LOGOS_ROW_1 = [
 
 const CLIENT_LOGOS_ROW_2 = [
   { src: "/VV LOGOS/VV LOGOS/cresto/cresto.png", alt: "Cresto" },
-  { src: "/VV LOGOS/VV LOGOS/de asthethic/de asthethic.png", alt: "De Aesthetic" },
+  { src: "/VV LOGOS/VV LOGOS/de asthethic/de asthethic transparent.png", alt: "De Aesthetic" },
   { src: "/VV LOGOS/VV LOGOS/desi chapter/desi chapter.png", alt: "Desi Chapter" },
   { src: "/VV LOGOS/VV LOGOS/galaxy hayatabad/Untitled-1.png", alt: "Galaxy Hayatabad" },
   { src: "/VV LOGOS/VV LOGOS/iplexmarketing/iplexmarketing.png", alt: "IPlex Marketing" },
@@ -32,7 +32,7 @@ const CLIENT_LOGOS_ROW_2 = [
   { src: "/VV LOGOS/VV LOGOS/pizza hut/pizza hut.png", alt: "Pizza Hut" },
   { src: "/VV LOGOS/VV LOGOS/revival/revival.png", alt: "Revival" },
   { src: "/VV LOGOS/VV LOGOS/shake wake/shake wake.png", alt: "Shake Wake" },
-  { src: "/VV LOGOS/VV LOGOS/slice and cone/slice and cone.png", alt: "Slice and Cone" },
+  { src: "/VV LOGOS/VV LOGOS/slice and cone/slice and cone transparent.png", alt: "Slice and Cone" },
   { src: "/VV LOGOS/VV LOGOS/wild wings/wild wings logo.png", alt: "Wild Wings" },
 ];
 
@@ -43,13 +43,13 @@ interface LogoTileProps {
 
 const LogoTile = ({ src, name }: LogoTileProps) => {
   return (
-    <div className="flex items-center justify-center w-36 h-20 sm:w-44 sm:h-24 md:w-48 md:h-26 lg:w-52 lg:h-28 shrink-0">
-      {/* Plain colored logo — larger, no grayscale */}
+    <div className="flex items-center justify-center w-44 h-24 sm:w-56 sm:h-32 md:w-64 md:h-36 lg:w-72 lg:h-40 shrink-0">
+      {/* Logo renders white by default; shows its original colors while pressed */}
       <img
         src={src}
         alt={name}
         loading="lazy"
-        className="max-h-full max-w-full object-contain hover:scale-110 transition-transform duration-300"
+        className="max-h-full max-w-full object-contain brightness-0 invert opacity-90 hover:opacity-100 hover:scale-110 active:brightness-100 active:invert-0 active:scale-105 transition-all duration-300 cursor-pointer"
       />
     </div>
   );
@@ -57,13 +57,13 @@ const LogoTile = ({ src, name }: LogoTileProps) => {
 
 export const ClientLogosMarquee = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 border-y border-zinc-200 bg-gradient-to-b from-zinc-50 via-white to-zinc-50 overflow-hidden select-none space-y-8 sm:space-y-10">
+    <section className="py-12 sm:py-16 md:py-20 border-y border-zinc-800 bg-zinc-950 overflow-hidden select-none space-y-8 sm:space-y-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-2">
-        <p className="text-xs sm:text-sm font-bold text-emerald-600 uppercase tracking-[0.25em] text-center mb-2">
+        <p className="text-xs sm:text-sm font-bold text-emerald-400 uppercase tracking-[0.25em] text-center mb-2">
           Proven Track Record • Featured Clients
         </p>
-        <h3 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-zinc-900 text-center leading-none">
-          Brands We&apos;ve <span className="text-emerald-600">Powered</span>
+        <h3 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-zinc-50 text-center leading-none">
+          Brands We&apos;ve <span className="text-emerald-400">Powered</span>
         </h3>
       </div>
 

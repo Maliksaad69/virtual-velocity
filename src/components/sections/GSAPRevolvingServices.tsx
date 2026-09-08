@@ -56,16 +56,16 @@ export const GSAPRevolvingServices = () => {
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
-      let cardWidth = 260;
+      let cardWidth = 320;
 
       if (w < 480) {
-        cardWidth = 170;
-      } else if (w < 640) {
         cardWidth = 200;
-      } else if (w < 768) {
+      } else if (w < 640) {
         cardWidth = 230;
+      } else if (w < 768) {
+        cardWidth = 260;
       } else if (w < 1024) {
-        cardWidth = 250;
+        cardWidth = 290;
       }
 
       const extraPadding = w < 768 ? 130 : 80;
@@ -73,7 +73,7 @@ export const GSAPRevolvingServices = () => {
         (cardWidth / 2) / Math.tan(Math.PI / Math.max(totalItems, 3)) + extraPadding
       );
 
-      const minRadius = w < 480 ? 300 : w < 640 ? 350 : w < 768 ? 400 : 470;
+      const minRadius = w < 480 ? 330 : w < 640 ? 380 : w < 768 ? 430 : 500;
       setRadius(Math.max(computedRadius, minRadius));
     };
 
@@ -211,7 +211,7 @@ export const GSAPRevolvingServices = () => {
       <main className="max-w-7xl w-full mx-auto flex items-end sm:items-center justify-center my-auto pt-10 sm:pt-12 md:pt-16 lg:pt-20 pb-2 sm:pb-4 md:pb-6 z-10">
         <div
           ref={stageRef}
-          className="w-full h-[300px] sm:h-[330px] md:h-[350px] lg:h-[380px] relative flex items-end sm:items-center justify-center overflow-visible"
+          className="w-full h-[340px] sm:h-[370px] md:h-[400px] lg:h-[440px] relative flex items-end sm:items-center justify-center overflow-visible"
           style={{ perspective: "1400px" }}
         >
           <div
@@ -230,7 +230,7 @@ export const GSAPRevolvingServices = () => {
                 <article
                   key={service.id}
                   onClick={() => revolveToIndex(idx)}
-                  className={`absolute w-[170px] sm:w-[210px] md:w-[240px] lg:w-[260px] rounded-xl sm:rounded-2xl cursor-pointer select-none flex flex-col overflow-hidden transition-all duration-500 border h-[170px] sm:h-[190px] md:h-[210px] lg:h-[230px] ${isActive
+                  className={`absolute w-[190px] sm:w-[230px] md:w-[270px] lg:w-[300px] rounded-xl sm:rounded-2xl cursor-pointer select-none flex flex-col overflow-hidden transition-all duration-500 border h-[190px] sm:h-[220px] md:h-[250px] lg:h-[280px] ${isActive
                       ? `${THEME.border} shadow-[0_20px_60px_rgba(0,0,0,0.1)] scale-100 opacity-100 z-30 ring-1 ring-white/50`
                       : "border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.06)] scale-92 sm:scale-95 opacity-70 hover:opacity-90 hover:border-emerald-300 z-10"
                     }`}
