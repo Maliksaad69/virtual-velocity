@@ -49,9 +49,9 @@ export function CareersClient() {
               JOIN OUR TALENT NETWORK
             </span>
             <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.9]">
-              CAREERS AT <span className="text-zinc-500">VIRTUAL VELOCITY</span>
+              CAREERS AT <span className="text-zinc-700">VIRTUAL VELOCITY</span>
             </h1>
-            <p className="text-base sm:text-2xl text-zinc-600 max-w-3xl font-light leading-relaxed">
+            <p className="text-base sm:text-2xl text-zinc-700 max-w-3xl font-light leading-relaxed">
               We are hiring world-class web developers, performance marketers, UI/UX designers, and shader engineers across our Wilmington, USA and Lahore, Pakistan hubs.
             </p>
           </div>
@@ -71,7 +71,7 @@ export function CareersClient() {
                   <h3 className="text-xl sm:text-3xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
                     {job.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-zinc-600 font-light max-w-2xl leading-relaxed">{job.desc}</p>
+                  <p className="text-sm sm:text-base text-zinc-700 font-light max-w-2xl leading-relaxed">{job.desc}</p>
                 </div>
 
                 <Link

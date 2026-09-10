@@ -170,7 +170,7 @@ export function AboutClient() {
             <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.9]">
               <SplitTextReveal text="WE ARE VIRTUAL VELOCITY" highlightWords={["VELOCITY"]} accentColor="#00aeac" />
             </h1>
-            <p className="text-base sm:text-2xl text-zinc-600 max-w-3xl font-light leading-relaxed">
+            <p className="text-base sm:text-2xl text-zinc-700 max-w-3xl font-light leading-relaxed">
               A full-service digital marketing & creative strategy agency scaling client revenue through Google Ads PPC, Technical SEO, Social Media, and Conversion Rate Optimization.
             </p>
           </div>
@@ -178,22 +178,22 @@ export function AboutClient() {
           {/* Live Operational Hub Clocks Grid */}
           <div className="gsap-clocks-panel grid grid-cols-1 md:grid-cols-3 gap-8 p-6 sm:p-12 rounded-3xl bg-white border border-zinc-200 shadow-xl">
             <div className="gsap-clock-hub space-y-2">
-              <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider">HQ HUB 01</span>
+              <span className="text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider">HQ HUB 01</span>
               <h3 className="text-xl font-outfit font-extrabold text-zinc-900">WILMINGTON, DE (USA)</h3>
               <div className="text-3xl sm:text-4xl font-outfit font-black text-zinc-900">{times.delaware || "00:00"}</div>
-              <p className="text-xs font-outfit font-medium text-zinc-500">EASTERN STANDARD TIME (EST)</p>
+              <p className="text-xs font-outfit font-medium text-zinc-700">EASTERN STANDARD TIME (EST)</p>
             </div>
             <div className="gsap-clock-hub space-y-2 border-y md:border-y-0 md:border-x border-zinc-200 py-6 md:py-0 md:px-8">
-              <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider">HQ HUB 02</span>
+              <span className="text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider">HQ HUB 02</span>
               <h3 className="text-xl font-outfit font-extrabold text-zinc-900">LAHORE, PK</h3>
               <div className="text-3xl sm:text-4xl font-outfit font-black text-zinc-900">{times.lahore || "00:00"}</div>
-              <p className="text-xs font-outfit font-medium text-zinc-500">PAKISTAN STANDARD TIME (PKT)</p>
+              <p className="text-xs font-outfit font-medium text-zinc-700">PAKISTAN STANDARD TIME (PKT)</p>
             </div>
             <div className="gsap-clock-hub space-y-2 md:pl-4">
-              <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider">HUB 03</span>
+              <span className="text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider">HUB 03</span>
               <h3 className="text-xl font-outfit font-extrabold text-zinc-900">LONDON, UK</h3>
               <div className="text-3xl sm:text-4xl font-outfit font-black text-zinc-900">{times.london || "00:00"}</div>
-              <p className="text-xs font-outfit font-medium text-zinc-500">GREENWICH MEAN TIME (GMT)</p>
+              <p className="text-xs font-outfit font-medium text-zinc-700">GREENWICH MEAN TIME (GMT)</p>
             </div>
           </div>
 
@@ -219,7 +219,7 @@ export function AboutClient() {
                       {member.name}
                     </h3>
                     <p className="text-xs font-outfit font-extrabold text-zinc-900 uppercase tracking-wider">{member.role}</p>
-                    <p className="text-sm text-zinc-600 font-light leading-relaxed pt-1">{member.bio}</p>
+                    <p className="text-sm text-zinc-700 font-light leading-relaxed pt-1">{member.bio}</p>
                   </div>
                 </TiltCard>
               ))}
@@ -240,7 +240,7 @@ export function AboutClient() {
                 <div key={idx} className="gsap-award-row p-6 sm:p-8 rounded-2xl bg-white border border-zinc-200 flex items-center justify-between hover:border-zinc-900 transition-all duration-500 shadow-sm">
                   <div className="space-y-1">
                     <h3 className="text-lg sm:text-xl font-outfit font-extrabold text-zinc-900 uppercase">{award.title}</h3>
-                    <p className="text-xs font-outfit text-zinc-500">{award.org}</p>
+                    <p className="text-xs font-outfit text-zinc-700">{award.org}</p>
                   </div>
                   <span className="text-xs font-outfit font-extrabold text-zinc-900 border border-zinc-200 px-3 py-1 rounded-full bg-zinc-100">
                     {award.year}

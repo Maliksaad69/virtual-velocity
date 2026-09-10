@@ -39,7 +39,7 @@ export const Stats = () => {
                 <h3 className="text-xs font-outfit font-extrabold tracking-widest text-zinc-900 uppercase">
                   {stat.label}
                 </h3>
-                <p className="text-xs text-zinc-600 font-light">
+                <p className="text-xs text-zinc-700 font-light">
                   {stat.detail}
                 </p>
               </div>

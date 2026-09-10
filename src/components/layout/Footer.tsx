@@ -45,35 +45,35 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-zinc-950 text-white pt-20 pb-10 px-6 sm:px-12 overflow-hidden">
-      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-emerald-600/20 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[360px] h-[360px] rounded-full bg-emerald-500/10 blur-[120px] pointer-events-none" />
+    <footer className="relative font-calibri bg-gradient-to-b from-emerald-600 via-emerald-700 to-emerald-800 text-white pt-20 pb-10 px-6 sm:px-12 overflow-hidden">
+      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-white/15 blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[360px] h-[360px] rounded-full bg-emerald-300/15 blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-[1700px] mx-auto space-y-16">
         {/* Top CTA Band */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-800 border border-emerald-400/30 shadow-xl shadow-emerald-900/30 overflow-hidden relative">
           <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
           <div className="space-y-3 relative z-10">
-            <span className="inline-flex items-center gap-2 text-sm font-outfit font-semibold text-emerald-100 tracking-wide">
+            <span className="inline-flex items-center gap-2 text-sm font-outfit font-semibold text-white font-bold tracking-wide">
               <Zap className="w-4 h-4" /> Ready to scale?
             </span>
             <h3 className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black uppercase tracking-tight leading-[0.95]">
-              Let&apos;s build your <span className="text-white/90">revenue engine</span>
+              Let&apos;s build your <span className="text-white">revenue engine</span>
             </h3>
-            <p className="text-sm sm:text-base text-emerald-50/80 font-light max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-base text-white font-bold max-w-xl leading-relaxed">
               Get a personalized growth roadmap and guaranteed 12-hour campaign proposal.
             </p>
           </div>
           <div className="relative z-10 flex flex-col sm:flex-row items-stretch gap-3">
             <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 w-full sm:w-auto">
-              <Mail className="w-5 h-5 text-emerald-100 flex-shrink-0" />
+              <Mail className="w-5 h-5 text-white flex-shrink-0" />
               <input
                 type="email"
                 placeholder="YOUR@EMAIL.COM"
-                className="bg-transparent text-white text-sm font-outfit font-semibold uppercase placeholder:text-emerald-100/60 focus:outline-none w-full"
+                className="bg-transparent text-white text-sm font-outfit font-semibold uppercase placeholder:text-white/70 focus:outline-none w-full"
               />
               <span className="hidden sm:block h-5 w-px bg-white/25" />
-              <Send className="w-5 h-5 text-emerald-100 flex-shrink-0 cursor-pointer" />
+              <Send className="w-5 h-5 text-white flex-shrink-0 cursor-pointer" />
             </div>
             <Magnetic strength={0.2}>
               <Link
@@ -105,11 +105,11 @@ export const Footer = () => {
               <span>VIRTUAL VELOCITY</span>
             </Link>
 
-            <p className="text-sm text-zinc-400 font-light max-w-md leading-relaxed">
+            <p className="text-sm text-white font-bold max-w-md leading-relaxed">
               {AGENCY_INFO.tagline}. We combine strategic performance marketing, web app engineering, and creative direction to fuel business growth.
             </p>
 
-            <div className="flex items-center gap-3 text-sm font-outfit font-semibold text-emerald-300 tracking-wide">
+            <div className="flex items-center gap-3 text-sm font-bold text-white tracking-wide">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>US &amp; PK full-service offices</span>
             </div>
@@ -121,7 +121,7 @@ export const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-emerald-500 hover:border-emerald-400 text-xs font-outfit font-bold uppercase tracking-wider text-zinc-300 hover:text-white transition-all"
+                  className="group inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-emerald-500 hover:border-emerald-400 text-xs font-outfit font-bold uppercase tracking-wider text-white hover:text-white transition-all"
                 >
                   {social.label}
                   <ArrowUpRight className="w-3 h-3" />
@@ -132,14 +132,14 @@ export const Footer = () => {
 
           {/* Col 2: Navigation */}
           <div className="md:col-span-3 space-y-4">
-            <span className="text-meta text-emerald-400 font-extrabold uppercase tracking-widest flex items-center gap-1.5">
-              <Compass className="w-3.5 h-3.5 text-emerald-400" /> EXPLORE
+            <span className="text-meta text-white font-extrabold uppercase tracking-widest flex items-center gap-1.5">
+              <Compass className="w-3.5 h-3.5 text-white" /> EXPLORE
             </span>
-            <ul className="space-y-2.5 text-sm font-outfit text-zinc-400">
+            <ul className="space-y-2.5 text-sm font-bold text-white">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="group inline-flex items-center gap-2 hover:text-white transition-colors">
-                    <span className="text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                     <span className="uppercase">{link.label}</span>
                   </Link>
                 </li>
@@ -149,20 +149,20 @@ export const Footer = () => {
 
           {/* Col 3: Services Highlights */}
           <div className="md:col-span-4 space-y-4">
-            <span className="text-meta text-emerald-400 font-extrabold uppercase tracking-widest flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400" /> OUR DISCIPLINES
+            <span className="text-meta text-white font-extrabold uppercase tracking-widest flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-white" /> OUR DISCIPLINES
             </span>
-            <ul className="space-y-2.5 text-sm font-outfit text-zinc-400">
+            <ul className="space-y-2.5 text-sm font-bold text-white">
               {SERVICES_ANCHORS.map((service) => (
                 <li key={service}>
                   <Link href="/#services" className="group inline-flex items-center gap-2 hover:text-white transition-colors">
-                    <MessageCircle className="w-3.5 h-3.5 text-emerald-500 group-hover:text-emerald-300 transition-colors" />
+                    <MessageCircle className="w-3.5 h-3.5 text-white group-hover:text-white transition-colors" />
                     <span className="uppercase">{service}</span>
                   </Link>
                 </li>
               ))}
               <li className="pt-1">
-                <Link href="/#services" className="inline-flex items-center gap-2 text-emerald-400 font-extrabold uppercase tracking-wider hover:text-emerald-300 transition-colors">
+                <Link href="/#services" className="inline-flex items-center gap-2 text-white font-extrabold uppercase tracking-wider hover:text-white transition-colors">
                   View All Services <ArrowRight className="w-4 h-4" />
                 </Link>
               </li>
@@ -173,20 +173,20 @@ export const Footer = () => {
         {/* Offices */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10 border-b border-white/10">
           {AGENCY_INFO.offices.map((office, idx) => (
-            <div key={idx} className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3 text-xs font-mono">
+            <div key={idx} className="p-6 rounded-2xl bg-white/10 border border-white/25 space-y-3 text-xs font-bold">
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2 text-white font-bold">
-                    <MapPin className="w-4 h-4 text-emerald-400" />
+                    <MapPin className="w-4 h-4 text-white" />
                     <span className="uppercase">{office.city}</span>
                   </div>
-                  <p className="text-zinc-400 font-light">{office.address}</p>
+                  <p className="text-white font-bold">{office.address}</p>
                 </div>
-                <span className="flex items-center gap-1.5 text-emerald-300 whitespace-nowrap">
+                <span className="flex items-center gap-1.5 text-white whitespace-nowrap">
                   <Phone className="w-3.5 h-3.5" /> {office.phone}
                 </span>
               </div>
-              <a href={`mailto:${office.email}`} className="flex items-center gap-2 text-emerald-300 hover:text-white transition-colors pt-1 font-semibold">
+              <a href={`mailto:${office.email}`} className="flex items-center gap-2 text-white hover:text-white transition-colors pt-1 font-bold">
                 <Mail className="w-3.5 h-3.5" /> {office.email}
               </a>
             </div>
@@ -194,9 +194,9 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-5 text-xs font-mono text-zinc-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-5 text-xs font-bold text-white">
           <div className="flex items-center gap-2">
-            <Globe className="w-3.5 h-3.5 text-emerald-500" />
+            <Globe className="w-3.5 h-3.5 text-white" />
             <span>© {currentYear} VIRTUAL VELOCITY DIGITAL AGENCY. ALL RIGHTS RESERVED.</span>
           </div>
 
@@ -204,12 +204,12 @@ export const Footer = () => {
             <Link href="/privacy-policy" className="hover:text-white transition-colors uppercase tracking-wide">
               Privacy Policy
             </Link>
-            <span className="text-zinc-700">•</span>
+            <span className="text-white/70">•</span>
             <Link href="/terms-of-use" className="hover:text-white transition-colors uppercase tracking-wide">
               Terms of Use
             </Link>
-            <span className="text-zinc-700">•</span>
-            <span className="text-emerald-400 font-semibold uppercase tracking-wide">
+            <span className="text-white/70">•</span>
+            <span className="text-white font-extrabold uppercase tracking-wide">
               Powered by Virtual Velocity Engine
             </span>
           </div>

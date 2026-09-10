@@ -151,7 +151,7 @@ export const Navigation = () => {
             </div>
 
             <div className="space-y-4 pt-8 border-t border-zinc-200">
-              <span className="text-meta text-zinc-500 font-bold block">INQUIRIES</span>
+              <span className="text-meta text-zinc-700 font-bold block">INQUIRIES</span>
               <a
                 href="mailto:hello@virtualvelocity.agency"
                 className="text-lg font-outfit text-zinc-950 hover:text-emerald-600 transition-colors font-bold"

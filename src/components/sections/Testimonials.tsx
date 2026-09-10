@@ -69,7 +69,7 @@ export const Testimonials = () => {
             >
               <ArrowLeft className="w-4 h-4" />
             </button>
-            <span className="text-xs font-outfit font-bold text-zinc-500 px-1">
+            <span className="text-xs font-outfit font-bold text-zinc-700 px-1">
               0{currentIndex + 1} / 0{TESTIMONIALS.length}
             </span>
             <button
@@ -119,7 +119,7 @@ export const Testimonials = () => {
                 <h3 className="text-lg font-outfit font-extrabold text-emerald-600 uppercase tracking-wider">
                   {current.author}
                 </h3>
-                <p className="text-xs font-outfit font-bold text-zinc-600">
+                <p className="text-xs font-outfit font-bold text-zinc-700">
                   {current.role} • <span className="text-zinc-950 font-extrabold">{current.company}</span>
                 </p>
               </div>

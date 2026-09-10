@@ -190,7 +190,7 @@ export const GSAPRevolvingServices = () => {
             <button
               type="button"
               onClick={prevService}
-              className="p-1.5 sm:p-2 rounded-full text-zinc-500 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
+              className="p-1.5 sm:p-2 rounded-full text-zinc-700 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
               aria-label="Previous Service"
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -198,7 +198,7 @@ export const GSAPRevolvingServices = () => {
             <button
               type="button"
               onClick={nextService}
-              className="p-1.5 sm:p-2 rounded-full text-zinc-500 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
+              className="p-1.5 sm:p-2 rounded-full text-zinc-700 hover:text-emerald-600 hover:bg-emerald-50 transition-colors"
               aria-label="Next Service"
             >
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -316,7 +316,7 @@ export const GSAPRevolvingServices = () => {
       </main>
 
       {/* Footer Progress Dots */}
-      <footer className="max-w-7xl w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 border-t border-zinc-200 pt-3 sm:pt-4 z-20 text-[9px] sm:text-[10px] md:text-xs text-zinc-500">
+      <footer className="max-w-7xl w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 border-t border-zinc-200 pt-3 sm:pt-4 z-20 text-[9px] sm:text-[10px] md:text-xs text-zinc-700">
         <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap justify-center">
           {SERVICES.map((_, idx) => (
             <button
@@ -331,7 +331,7 @@ export const GSAPRevolvingServices = () => {
             />
           ))}
         </div>
-        <p className="tracking-wider uppercase font-mono text-center text-zinc-500">
+        <p className="tracking-wider uppercase font-mono text-center text-zinc-700">
           Scroll or tap to explore
         </p>
       </footer>

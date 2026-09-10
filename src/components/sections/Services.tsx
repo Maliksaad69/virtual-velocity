@@ -21,7 +21,7 @@ export const Services = () => {
             <span className="text-emerald-600 font-extrabold">MARKETING SERVICES</span>
           </h2>
         </div>
-        <p className="mt-6 md:mt-0 text-sm sm:text-base text-zinc-600 max-w-md font-light leading-relaxed">
+        <p className="mt-6 md:mt-0 text-sm sm:text-base text-zinc-700 max-w-md font-light leading-relaxed">
           We operate at the precise intersection of high-converting PPC campaign management, technical search optimization, and AI-driven growth analytics.
         </p>
       </div>
@@ -55,7 +55,7 @@ export const Services = () => {
 
                 {/* Right Meta Indicator */}
                 <div className="flex items-center gap-6 self-end md:self-auto">
-                  <span className="hidden sm:inline-block text-xs font-outfit font-bold text-zinc-600 border border-zinc-200 px-3 py-1 rounded-full uppercase bg-white">
+                  <span className="hidden sm:inline-block text-xs font-outfit font-bold text-zinc-700 border border-zinc-200 px-3 py-1 rounded-full uppercase bg-white">
                     {service.category}
                   </span>
                   <div className="p-3 rounded-full border border-zinc-300 group-hover:border-emerald-600 group-hover:bg-emerald-600 group-hover:text-white text-zinc-950 transition-all duration-300 shadow-xs">

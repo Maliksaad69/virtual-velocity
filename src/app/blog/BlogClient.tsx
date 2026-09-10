@@ -58,9 +58,9 @@ export function BlogClient() {
               THOUGHT LEADERSHIP & ARTICLES
             </span>
             <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.9]">
-              THE DIGITAL <span className="text-zinc-500">JOURNAL</span>
+              THE DIGITAL <span className="text-zinc-700">JOURNAL</span>
             </h1>
-            <p className="text-base sm:text-2xl text-zinc-600 max-w-3xl font-light leading-relaxed">
+            <p className="text-base sm:text-2xl text-zinc-700 max-w-3xl font-light leading-relaxed">
               Insights on Google Search PPC, Technical SEO audits, paid social conversion rates, and brand positioning strategies.
             </p>
           </div>
@@ -73,7 +73,7 @@ export function BlogClient() {
                 className="gsap-blog-card group p-6 sm:p-8 rounded-3xl bg-white border border-zinc-200 flex flex-col justify-between space-y-8 hover:border-zinc-900 transition-all duration-500 shadow-xl"
               >
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between text-xs font-outfit font-bold text-zinc-500">
+                  <div className="flex items-center justify-between text-xs font-outfit font-bold text-zinc-700">
                     <span className="text-zinc-900 font-extrabold uppercase">{post.category}</span>
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-zinc-900" />
@@ -85,7 +85,7 @@ export function BlogClient() {
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h2>
 
-                  <p className="text-sm text-zinc-600 font-light leading-relaxed">
+                  <p className="text-sm text-zinc-700 font-light leading-relaxed">
                     {post.excerpt}
                   </p>
                 </div>
@@ -99,7 +99,7 @@ export function BlogClient() {
                     />
                     <div className="text-xs font-outfit">
                       <span className="text-zinc-900 font-extrabold block">{post.author.name}</span>
-                      <span className="text-zinc-500">{post.date}</span>
+                      <span className="text-zinc-700">{post.date}</span>
                     </div>
                   </div>
 

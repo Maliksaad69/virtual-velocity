@@ -24,10 +24,10 @@ export default function PrivacyPolicyPage() {
             <h1 className="text-4xl sm:text-6xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
               PRIVACY POLICY
             </h1>
-            <p className="text-xs font-mono text-zinc-500">LAST REVISED: AUGUST 29, 2026</p>
+            <p className="text-xs font-mono text-zinc-700">LAST REVISED: AUGUST 29, 2026</p>
           </div>
 
-          <div className="space-y-8 text-sm sm:text-base text-zinc-600 font-light leading-relaxed">
+          <div className="space-y-8 text-sm sm:text-base text-zinc-700 font-light leading-relaxed">
             <section className="space-y-3">
               <h2 className="text-xl font-outfit font-bold text-zinc-900 uppercase">1. INFORMATION WE COLLECT</h2>
               <p>

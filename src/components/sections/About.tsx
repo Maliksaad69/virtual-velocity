@@ -31,7 +31,7 @@ export const About = () => {
       icon: TrendingUp,
       label: "Organic SEO Growth",
       desc: "Technical SEO, authority building, and content pipelines that compound traffic.",
-      accent: "text-teal-600",
+      accent: "text-emerald-500",
     },
     {
       icon: Megaphone,
@@ -43,15 +43,15 @@ export const About = () => {
       icon: Palette,
       label: "Brand & Creative Direction",
       desc: "Identity systems, visual language, and art direction that build recognition.",
-      accent: "text-teal-500",
+      accent: "text-emerald-400",
     },
   ];
 
   return (
-    <section id="about" className="py-20 sm:py-28 md:py-32 px-5 sm:px-10 md:px-16 max-w-[1700px] mx-auto relative overflow-hidden bg-white">
+    <section id="about" className="py-16 sm:py-20 md:py-24 px-5 sm:px-10 md:px-16 max-w-[1700px] mx-auto relative overflow-hidden bg-white">
       {/* Multi-layer blurred background accents */}
       <div className="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-40 w-[520px] h-[520px] rounded-full bg-blue-100/50 blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -left-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[160px] pointer-events-none" />
       <div className="absolute top-10 left-1/3 w-96 h-96 rounded-full bg-zinc-100 blur-[120px] pointer-events-none" />
 
       <div className="space-y-16 sm:space-y-20 relative z-10">
@@ -61,13 +61,13 @@ export const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-between gap-4 text-[11px] sm:text-xs font-mono uppercase tracking-[0.28em] text-zinc-500"
+          className="flex flex-wrap items-center justify-between gap-4 text-[11px] sm:text-xs font-mono uppercase tracking-[0.28em] text-zinc-700"
         >
           <div className="flex items-center gap-2 text-emerald-600 font-extrabold">
             <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span>About Virtual Velocity</span>
           </div>
-          <div className="flex items-center gap-4 sm:gap-6 text-zinc-600">
+          <div className="flex items-center gap-4 sm:gap-6 text-zinc-700">
             <span>Est. 2026</span>
             <span className="w-px h-4 bg-zinc-300" />
             <span className="flex items-center gap-2">
@@ -113,23 +113,23 @@ export const About = () => {
               is a full-stack digital marketing & creative technology agency specializing in performance-driven growth for ambitious brands. We engineer revenue pipelines through high-converting Google Ads PPC campaigns, razor-sharp technical SEO, emotionally resonant creative content, and always-on paid social machines.
             </p>
 
-            <p className="text-base sm:text-lg text-zinc-600 font-normal leading-relaxed sm:leading-[1.85]">
+            <p className="text-base sm:text-lg text-zinc-700 font-normal leading-relaxed sm:leading-[1.85]">
               We operate as an embedded extension of your growth team — not a detached vendor. Every dollar of media spend is accounted for, every keyword is audited, and every creative iteration is measured against a clear north-star metric. Our clients see measurable, compounding returns because our work is rooted in engineering, not guesswork.
             </p>
 
-            <p className="text-base sm:text-lg text-zinc-600 font-normal leading-relaxed sm:leading-[1.85]">
+            <p className="text-base sm:text-lg text-zinc-700 font-normal leading-relaxed sm:leading-[1.85]">
               From direct-to-consumer e-commerce and real estate to QSR chains, fintech platforms, and premium hospitality — our playbooks adapt, our creatives iterate, and our performance compounds.
             </p>
 
             <div className="pt-3 flex flex-wrap items-center gap-4 sm:gap-6">
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl sm:text-4xl font-black text-emerald-600 font-mono">140+</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 pb-1">Campaigns Launched</span>
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-700 pb-1">Campaigns Launched</span>
               </div>
               <div className="w-px h-10 bg-zinc-200" />
               <div className="flex items-baseline gap-2">
                 <span className="text-3xl sm:text-4xl font-black text-zinc-900 font-mono">4.8x</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 pb-1">Avg. Client ROAS</span>
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-700 pb-1">Avg. Client ROAS</span>
               </div>
             </div>
           </div>
@@ -152,7 +152,7 @@ export const About = () => {
                   <h4 className="text-sm sm:text-[15px] font-bold text-zinc-900 mb-1 tracking-tight leading-snug">
                     {p.label}
                   </h4>
-                  <p className="text-[12px] sm:text-[13px] text-zinc-500 leading-relaxed">
+                  <p className="text-[12px] sm:text-[13px] text-zinc-700 leading-relaxed">
                     {p.desc}
                   </p>
                 </motion.div>

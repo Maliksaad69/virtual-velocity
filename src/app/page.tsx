@@ -21,11 +21,8 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SoundToggle } from "@/components/ui/SoundToggle";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { GradientDivider } from "@/components/ui/GradientDivider";
-import { ClientLogosMarquee } from "@/components/sections/ClientLogosMarquee";
+import { ClientPartners } from "@/components/sections/ClientPartners";
 import { About } from "@/components/sections/About";
-import { CreativePunchline } from "@/components/sections/CreativePunchline";
-
 export default function Home() {
   return (
     <SmoothScrollProvider>
@@ -45,46 +42,28 @@ export default function Home() {
         {/* 2. About Virtual Velocity Agency Section */}
         <About />
 
-        {/* ── About → Services transition ── */}
-        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
-
         {/* 3. GSAP 3D Revolving Services Spectrum */}
         <GSAPRevolvingServices />
 
-        {/* 4. Creative Punchline Section */}
-        <CreativePunchline />
-
-        {/* ── Punchline → Case Studies transition ── */}
-        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
-
-        {/* 5. GSAP Down Stair-case Effect Case Studies Walkthrough */}
+        {/* 4. Case Studies Walkthrough */}
         <GSAPScrollGallery />
 
-        {/* ── Case Studies → Metrics transition ── */}
-        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
-
-        {/* 6. Proven Impact & Metrics */}
+        {/* 5. Proven Impact & Metrics */}
         <LightStatsSection />
 
-        {/* 7. Featured Client Logos - Two rows with opposite directions */}
-        <ClientLogosMarquee />
+        {/* 6. Our Clients & Partners - central anchor with surrounding hexagon logos */}
+        <ClientPartners />
 
-        {/* ── Logos → Testimonials transition ── */}
-        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
-
-        {/* 8. Client Testimonials */}
+        {/* 7. Client Testimonials */}
         <EditorialTestimonials />
 
-        {/* ── Testimonials → Process transition ── */}
-        <GradientDivider fromColor="#ffffff" toColor="#ffffff" heightRem={4} />
-
-        {/* 9. Agency Execution Process */}
+        {/* 8. Agency Execution Process */}
         <Process />
 
-        {/* 10. High-Impact Interactive ROI Estimator CTA Banner */}
+        {/* 9. High-Impact Interactive ROI Estimator CTA Banner */}
         <InteractiveCTABanner />
 
-        {/* 11. Project Estimator & Contact Form */}
+        {/* 10. Project Estimator & Contact Form */}
         <Contact />
 
         {/* Global Studio Footer */}

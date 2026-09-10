@@ -163,7 +163,7 @@ export const SERVICES: Service[] = [
     description: "Create a distinctive brand identity that resonates with your target audience and differentiates you from competitors.",
     deliverables: ["Brand Identity System", "Logo Design", "Visual Guidelines", "Brand Positioning Strategy"],
     techStack: ["Adobe Creative Suite", "Figma", "Canva"],
-    previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1763705857736-2b4f16a33758?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "social-media",
@@ -174,7 +174,7 @@ export const SERVICES: Service[] = [
     description: "Engage your audience and build brand awareness through strategic social media content and campaigns.",
     deliverables: ["Content Calendar", "Post Creation", "Community Management", "Social Media Strategy"],
     techStack: ["Meta Business Suite", "Hootsuite", "Canva", "Adobe Creative Suite"],
-    previewImage: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "photography",
@@ -185,7 +185,7 @@ export const SERVICES: Service[] = [
     description: "Capture stunning visuals that showcase your products and brand story effectively.",
     deliverables: ["Professional Photo Shoot", "Photo Editing", "Image Library", "Brand Photography"],
     techStack: ["Canon/Nikon DSLR", "Adobe Lightroom", "Photoshop"],
-    previewImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "videography",
@@ -207,7 +207,7 @@ export const SERVICES: Service[] = [
     description: "Build a high-converting e-commerce store tailored to your brand and customer experience goals.",
     deliverables: ["Store Design", "Development", "Payment Setup", "Optimization"],
     techStack: ["Shopify", "Liquid", "HTML/CSS", "JavaScript"],
-    previewImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1763872011479-aa293bf083a8?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "influencer-marketing",
@@ -218,7 +218,7 @@ export const SERVICES: Service[] = [
     description: "Amplify your brand reach and credibility through strategic influencer collaborations.",
     deliverables: ["Influencer Identification", "Partnership Management", "Campaign Tracking", "ROI Analysis"],
     techStack: ["AspireIQ", "Upfluence", "Social Blade", "Google Analytics"],
-    previewImage: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1522860747050-bb0c1af38ae9?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "seo",
@@ -229,7 +229,7 @@ export const SERVICES: Service[] = [
     description: "Increase organic visibility and drive qualified traffic through comprehensive SEO strategies.",
     deliverables: ["SEO Audit", "Keyword Research", "Content Strategy", "Technical Implementation"],
     techStack: ["Google Search Console", "Ahrefs", "SEMrush", "Google Analytics"],
-    previewImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "meta-advertising",
@@ -240,7 +240,7 @@ export const SERVICES: Service[] = [
     description: "Reach your ideal customers on Facebook and Instagram with targeted advertising campaigns.",
     deliverables: ["Ad Campaign Setup", "Creative Assets", "Audience Targeting", "Performance Optimization"],
     techStack: ["Meta Ads Manager", "Facebook Pixel", "Instagram Insights"],
-    previewImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "google-advertising",
@@ -251,7 +251,7 @@ export const SERVICES: Service[] = [
     description: "Drive immediate traffic and conversions with strategic Google Ads campaigns.",
     deliverables: ["Campaign Architecture", "Keyword Strategy", "Landing Page Optimization", "Conversion Tracking"],
     techStack: ["Google Ads", "Google Analytics", "Google Merchant Center"],
-    previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1654277041042-8927699fcfd2?q=80&w=800&auto=format&fit=crop",
   },
   {
     id: "software-development",
@@ -262,7 +262,7 @@ export const SERVICES: Service[] = [
     description: "Develop custom software solutions to streamline operations and enhance customer experiences.",
     deliverables: ["Requirement Analysis", "UI/UX Design", "Development", "Testing & Deployment"],
     techStack: ["React", "Node.js", "Python", "AWS"],
-    previewImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+    previewImage: "https://images.unsplash.com/photo-1537731121640-bc1c4aba9b80?q=80&w=800&auto=format&fit=crop",
   },
 ];
 

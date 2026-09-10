@@ -22,7 +22,7 @@ export const Hero = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.1 }}
-        className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-200 pb-6 text-xs font-mono text-zinc-600"
+        className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-zinc-200 pb-6 text-xs font-mono text-zinc-700"
       >
         <div className="flex items-center gap-3">
           <Globe className="w-4 h-4 text-emerald-600 animate-pulse" />
@@ -34,7 +34,7 @@ export const Hero = () => {
           <span className="uppercase tracking-widest">{AGENCY_INFO.tagline}</span>
         </div>
 
-        <div className="flex items-center gap-4 text-zinc-600">
+        <div className="flex items-center gap-4 text-zinc-700">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-extrabold text-[11px] border border-emerald-200">
             <span className="w-2 h-2 rounded-full bg-emerald-600 animate-ping" />
             ACCEPTING NEW CLIENTS
@@ -80,21 +80,21 @@ export const Hero = () => {
           <p className="text-xs font-outfit font-extrabold text-emerald-600 tracking-wider flex items-center gap-1.5 uppercase">
             <Zap className="w-3.5 h-3.5 text-emerald-600" /> PRACTICAL DELIVERABLE OUTCOMES
           </p>
-          <p className="text-base sm:text-lg text-zinc-600 max-w-2xl font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-zinc-700 max-w-2xl font-normal leading-relaxed">
             {AGENCY_INFO.subTagline}
           </p>
         </div>
 
         <div className="md:col-span-5 flex flex-col sm:flex-row items-start sm:items-center justify-between md:justify-end gap-6">
-          <div className="flex items-center gap-8 text-xs font-mono tracking-widest text-zinc-500">
+          <div className="flex items-center gap-8 text-xs font-mono tracking-widest text-zinc-700">
             <div>
               <span className="block text-zinc-900 font-black text-xl">140+</span>
-              <span className="text-[10px] uppercase font-bold text-zinc-500">PROJECTS DELIVERED</span>
+              <span className="text-[10px] uppercase font-bold text-zinc-700">PROJECTS DELIVERED</span>
             </div>
             <div className="w-px h-8 bg-zinc-200" />
             <div>
               <span className="block text-emerald-600 font-black text-xl">4.8x</span>
-              <span className="text-[10px] uppercase font-bold text-zinc-500">AVG CLIENT ROAS</span>
+              <span className="text-[10px] uppercase font-bold text-zinc-700">AVG CLIENT ROAS</span>
             </div>
           </div>
 

@@ -60,14 +60,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <article className="pt-36 pb-24 px-6 sm:px-12 max-w-4xl mx-auto space-y-12">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-xs font-outfit font-extrabold text-zinc-500 hover:text-zinc-900 transition-colors uppercase tracking-widest"
+            className="inline-flex items-center gap-2 text-xs font-outfit font-extrabold text-zinc-700 hover:text-zinc-900 transition-colors uppercase tracking-widest"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>BACK TO JOURNAL</span>
           </Link>
 
           <div className="space-y-6 border-b border-zinc-200 pb-12">
-            <div className="flex flex-wrap items-center gap-4 text-xs font-outfit text-zinc-500">
+            <div className="flex flex-wrap items-center gap-4 text-xs font-outfit text-zinc-700">
               <span className="text-zinc-900 font-extrabold">{post.category}</span>
               <span>// {post.date}</span>
               <span>// {post.readTime}</span>
@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <span className="text-zinc-900 font-outfit font-bold uppercase text-base block">
                   {post.author.name}
                 </span>
-                <span className="text-xs font-outfit text-zinc-500">{post.author.role}</span>
+                <span className="text-xs font-outfit text-zinc-700">{post.author.role}</span>
               </div>
             </div>
           </div>

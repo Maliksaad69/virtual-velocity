@@ -47,7 +47,7 @@ export const SelectedWork = () => {
             <SplitTextReveal text="SELECTED WORK" highlightWords={["WORK"]} accentColor="#00aeac" />
           </h2>
         </div>
-        <p className="mt-6 md:mt-0 text-sm sm:text-base text-zinc-600 max-w-md font-light leading-relaxed">
+        <p className="mt-6 md:mt-0 text-sm sm:text-base text-zinc-700 max-w-md font-light leading-relaxed">
           An editorial archive of high-converting Google Ads PPC campaigns, Technical SEO growth benchmarks, and ROI-driven digital marketing launches.
         </p>
       </div>
@@ -95,7 +95,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       >
         {/* Left Project Info */}
         <div className="md:col-span-5 space-y-6 order-2 md:order-1">
-          <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-500">
+          <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-700">
             <span className="text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
             <span className="w-8 h-px bg-zinc-300"></span>
             <span>{project.year}</span>
@@ -105,7 +105,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {project.title}
           </h3>
 
-          <p className="text-sm sm:text-base text-zinc-600 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-700 font-light leading-relaxed">
             {project.description}
           </p>
 
@@ -158,7 +158,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
         {/* Right Project Info */}
         <div className="md:col-span-5 space-y-6">
-          <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-500">
+          <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-700">
             <span className="text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
             <span className="w-8 h-px bg-zinc-300"></span>
             <span>{project.year}</span>
@@ -168,7 +168,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {project.title}
           </h3>
 
-          <p className="text-sm sm:text-base text-zinc-600 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-zinc-700 font-light leading-relaxed">
             {project.description}
           </p>
 
@@ -209,7 +209,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 px-4">
           <div>
-            <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-500 mb-1">
+            <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-700 mb-1">
               <span className="text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
               <span>// {project.industry}</span>
             </div>
@@ -244,7 +244,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       </div>
 
       <div className="md:col-span-6 md:-ml-24 relative z-20 p-8 sm:p-12 rounded-3xl bg-zinc-50 border-2 border-zinc-300 shadow-xl space-y-6">
-        <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-500">
+        <div className="flex items-center gap-4 text-xs font-outfit font-bold text-zinc-700">
           <span className="text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
           <span>{project.year}</span>
         </div>
@@ -253,7 +253,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           {project.title}
         </h3>
 
-        <p className="text-sm text-zinc-600 font-light leading-relaxed">
+        <p className="text-sm text-zinc-700 font-light leading-relaxed">
           {project.description}
         </p>
 

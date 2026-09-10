@@ -105,12 +105,12 @@ export const Process = () => {
             <Activity className="w-4 h-4 text-zinc-900 animate-pulse" />
             FIVE-STAGE STRATEGY METHODOLOGY
           </span>
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-[0.9] mt-2">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-outfit font-black text-emerald-600 uppercase tracking-tight leading-[0.9] mt-2">
             THE FIVE-STAGE <br />
             <span className="text-emerald-600 font-black">STRATEGY PIPELINE</span>
           </h2>
         </div>
-        <p className="mt-4 md:mt-0 text-sm sm:text-base text-zinc-600 font-light leading-relaxed max-w-md">
+        <p className="mt-4 md:mt-0 text-sm sm:text-base text-zinc-700 font-light leading-relaxed max-w-md">
           Inspect our 5-stage strategy pipeline across each milestone from audit to aggressive revenue scaling.
         </p>
       </div>
@@ -129,7 +129,7 @@ export const Process = () => {
           </div>
 
           <div className="pl-6 space-y-3">
-            <span className="text-xs font-outfit font-bold text-zinc-500 block tracking-wider uppercase">
+            <span className="text-xs font-outfit font-bold text-zinc-700 block tracking-wider uppercase">
               SELECT STAGE TO INSPECT
             </span>
 
@@ -149,7 +149,7 @@ export const Process = () => {
                   <div className="flex items-center gap-4">
                     <span
                       className={`text-2xl font-outfit font-black transition-colors ${
-                        isActive ? "text-zinc-900" : "text-zinc-400 group-hover:text-zinc-900"
+                        isActive ? "text-zinc-900" : "text-zinc-600 group-hover:text-zinc-900"
                       }`}
                     >
                       {step.number}
@@ -162,7 +162,7 @@ export const Process = () => {
                       >
                         {step.title}
                       </h3>
-                      <span className="text-xs font-outfit font-medium text-zinc-500 block uppercase">
+                      <span className="text-xs font-outfit font-medium text-zinc-700 block uppercase">
                         {step.subtitle}
                       </span>
                     </div>
@@ -220,14 +220,14 @@ export const Process = () => {
                   <h3 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-tight">
                     {currentStep.title}
                   </h3>
-                  <p className="text-base sm:text-lg text-zinc-600 font-light leading-relaxed max-w-xl">
+                  <p className="text-base sm:text-lg text-zinc-700 font-light leading-relaxed max-w-xl">
                     {currentStep.description}
                   </p>
                 </div>
 
                 {/* Deliverables List */}
                 <div className="space-y-4 border-t border-zinc-200 pt-6">
-                  <span className="text-xs font-outfit font-extrabold text-zinc-500 block tracking-wider uppercase">
+                  <span className="text-xs font-outfit font-extrabold text-zinc-700 block tracking-wider uppercase">
                     STAGE MILESTONES & DELIVERABLES:
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -246,7 +246,7 @@ export const Process = () => {
                 </div>
 
                 {/* Panel Bottom Footer */}
-                <div className="flex items-center justify-between border-t border-zinc-200 pt-4 text-xs font-outfit font-medium text-zinc-500">
+                <div className="flex items-center justify-between border-t border-zinc-200 pt-4 text-xs font-outfit font-medium text-zinc-700">
                   <div className="flex items-center gap-2 text-zinc-900 font-bold">
                     <ShieldCheck className="w-4 h-4" />
                     <span>GUARANTEED DELIVERABLE EXECUTION</span>
@@ -260,7 +260,7 @@ export const Process = () => {
       </div>
 
       {/* Footer Bar */}
-      <div className="flex items-center justify-between border-t border-zinc-200 pt-3 z-10 text-xs font-outfit font-medium text-zinc-500">
+      <div className="flex items-center justify-between border-t border-zinc-200 pt-3 z-10 text-xs font-outfit font-medium text-zinc-700">
         <span>STRATEGY PIPELINE ACTIVE</span>
         <span className="hidden sm:inline-block">SCROLL OR SELECT STAGES TO INSPECT</span>
       </div>

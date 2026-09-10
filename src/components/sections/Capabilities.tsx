@@ -19,7 +19,7 @@ export const Capabilities = () => {
             <span className="text-emerald-600 font-extrabold">CAPABILITIES</span>
           </h2>
         </div>
-        <p className="mt-6 md:mt-0 text-sm sm:text-base text-zinc-600 max-w-md font-light">
+        <p className="mt-6 md:mt-0 text-sm sm:text-base text-zinc-700 max-w-md font-light">
           An exploratory matrix of visual engineering, shader development, and intelligent software primitives.
         </p>
       </div>
@@ -44,7 +44,7 @@ export const Capabilities = () => {
                 <div className="p-3 rounded-2xl bg-white border border-zinc-200 group-hover:bg-zinc-900 group-hover:text-white text-zinc-900 transition-colors duration-300 shadow-xs">
                   <Icon className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-mono text-zinc-500 border border-zinc-200 px-3 py-1 rounded-full bg-white">
+                <span className="text-[10px] font-mono text-zinc-700 border border-zinc-200 px-3 py-1 rounded-full bg-white">
                   {cap.category}
                 </span>
               </div>
@@ -54,13 +54,13 @@ export const Capabilities = () => {
                 <h3 className="text-2xl font-outfit font-extrabold text-zinc-900 group-hover:text-zinc-700 transition-colors uppercase tracking-tight">
                   {cap.title}
                 </h3>
-                <p className="text-sm text-zinc-600 font-light leading-relaxed">
+                <p className="text-sm text-zinc-700 font-light leading-relaxed">
                   {cap.desc}
                 </p>
               </div>
 
               {/* Bottom Interactive Bar */}
-              <div className="pt-4 border-t border-zinc-200 flex items-center justify-between text-[11px] font-mono text-zinc-400 group-hover:text-zinc-800 transition-colors">
+              <div className="pt-4 border-t border-zinc-200 flex items-center justify-between text-[11px] font-mono text-zinc-600 group-hover:text-zinc-800 transition-colors">
                 <span>MODULE 0{idx + 1}</span>
                 <span className="text-zinc-900 opacity-0 group-hover:opacity-100 transition-opacity font-bold">● ACTIVE</span>
               </div>

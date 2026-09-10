@@ -47,7 +47,7 @@ export const InteractiveCTABanner = () => {
   const activeTier = BUDGET_TIERS[activeTierIndex];
 
   return (
-    <section ref={containerRef} className="py-20 sm:py-32 px-6 sm:px-12 max-w-[1700px] mx-auto relative overflow-hidden select-none selection:bg-zinc-900 selection:text-white">
+    <section ref={containerRef} className="py-16 sm:py-20 lg:py-24 px-6 sm:px-12 max-w-[1700px] mx-auto relative overflow-hidden select-none selection:bg-zinc-900 selection:text-white">
       {/* Background Soft Orbs */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-zinc-200/40 blur-[200px] pointer-events-none rounded-full" />
 
@@ -70,7 +70,7 @@ export const InteractiveCTABanner = () => {
             <ShieldCheck className="w-6 h-6 text-emerald-600 flex-shrink-0" />
             <div className="text-left font-outfit">
               <span className="block text-sm font-extrabold text-zinc-900">100% DATA ATTRIBUTION</span>
-              <span className="text-xs text-zinc-500 font-medium">NO CONTRACT LOCK-IN</span>
+              <span className="text-xs text-zinc-700 font-medium">NO CONTRACT LOCK-IN</span>
             </div>
           </div>
         </div>
@@ -108,21 +108,21 @@ export const InteractiveCTABanner = () => {
           {/* Right: Real-time Projected ROI Display */}
           <div className="lg:col-span-6 grid grid-cols-3 gap-4 border-t lg:border-t-0 lg:border-l border-zinc-200 pt-6 lg:pt-0 lg:pl-8">
             <div className="space-y-1">
-              <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider block">EST. REVENUE</span>
+              <span className="text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider block">EST. REVENUE</span>
               <span className="text-2xl sm:text-4xl font-outfit font-black text-emerald-600 tracking-tight block">
                 {activeTier.estRevenue}
               </span>
             </div>
 
             <div className="space-y-1">
-              <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider block">TARGET ROAS</span>
+              <span className="text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider block">TARGET ROAS</span>
               <span className="text-2xl sm:text-4xl font-outfit font-black text-zinc-900 tracking-tight block">
                 {activeTier.roas}
               </span>
             </div>
 
             <div className="space-y-1">
-              <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider block">EST. LEADS</span>
+              <span className="text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider block">EST. LEADS</span>
               <span className="text-2xl sm:text-4xl font-outfit font-black text-zinc-900 tracking-tight block">
                 {activeTier.leads}
               </span>
@@ -137,7 +137,7 @@ export const InteractiveCTABanner = () => {
               <CheckCircle2 className="w-5 h-5 text-emerald-600" />
               <span>GUARANTEED 12-HOUR CAMPAIGN PROPOSAL DELIVERY</span>
             </div>
-            <p className="text-sm text-zinc-600 font-light">
+            <p className="text-sm text-zinc-700 font-light">
               Submit your project objectives for a personalized growth roadmap & channel breakdown.
             </p>
           </div>

@@ -114,7 +114,7 @@ export const Contact = () => {
   };
 
   return (
-    <section ref={sectionRef} id="contact" className="relative py-24 sm:py-36 px-6 sm:px-12 max-w-[1700px] mx-auto border-t border-zinc-200 overflow-hidden bg-white selection:bg-zinc-900 selection:text-white">
+    <section ref={sectionRef} id="contact" className="relative py-16 sm:py-20 lg:py-24 px-6 sm:px-12 max-w-[1700px] mx-auto border-t border-zinc-200 overflow-hidden bg-white selection:bg-zinc-900 selection:text-white">
       {/* Background Lighting */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-zinc-200/40 blur-[180px] pointer-events-none" />
 
@@ -130,7 +130,7 @@ export const Contact = () => {
               LET'S SCALE <br />
               <span className="text-emerald-600 font-black">YOUR REVENUE</span>
             </h2>
-            <p className="text-base sm:text-lg text-zinc-600 font-light leading-relaxed">
+            <p className="text-base sm:text-lg text-zinc-700 font-light leading-relaxed">
               Have a PPC campaign, Technical SEO project, Paid Social launch, or CRO overhaul in mind? Submit your goals for a guaranteed response within 12 hours.
             </p>
           </div>
@@ -140,14 +140,14 @@ export const Contact = () => {
               <Clock className="w-6 h-6 text-emerald-600 flex-shrink-0" />
               <div>
                 <span className="block text-sm font-outfit font-black text-zinc-900 uppercase tracking-wider">12-HOUR RESPONSE</span>
-                <span className="text-xs font-outfit font-medium text-zinc-500">DIRECT PROPOSAL</span>
+                <span className="text-xs font-outfit font-medium text-zinc-700">DIRECT PROPOSAL</span>
               </div>
             </div>
             <div className="p-5 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center gap-3.5 shadow-xs">
               <ShieldCheck className="w-6 h-6 text-emerald-600 flex-shrink-0" />
               <div>
                 <span className="block text-sm font-outfit font-black text-zinc-900 uppercase tracking-wider">NDA GUARANTEED</span>
-                <span className="text-xs font-outfit font-medium text-zinc-500">CONFIDENTIALITY</span>
+                <span className="text-xs font-outfit font-medium text-zinc-700">CONFIDENTIALITY</span>
               </div>
             </div>
           </div>
@@ -165,8 +165,8 @@ export const Contact = () => {
                     OPERATIONAL HUB
                   </span>
                 </div>
-                <p className="text-sm text-zinc-600 font-light">{office.address}</p>
-                <div className="flex flex-wrap gap-5 text-sm font-outfit font-medium text-zinc-600 pt-2 border-t border-zinc-200">
+                <p className="text-sm text-zinc-700 font-light">{office.address}</p>
+                <div className="flex flex-wrap gap-5 text-sm font-outfit font-medium text-zinc-700 pt-2 border-t border-zinc-200">
                   <a href={`tel:${office.phone}`} className="hover:text-emerald-600 flex items-center gap-2 transition-colors">
                     <Phone className="w-4 h-4 text-emerald-600" />
                     <span>{office.phone}</span>
@@ -193,7 +193,7 @@ export const Contact = () => {
               <h3 className="text-2xl sm:text-3xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
                 INQUIRY TRANSMITTED
               </h3>
-              <p className="text-zinc-600 max-w-md mx-auto text-sm font-light leading-relaxed">
+              <p className="text-zinc-700 max-w-md mx-auto text-sm font-light leading-relaxed">
                 Thank you {formData.name}. Our team in Wilmington & Lahore has received your request and will respond within 12 hours.
               </p>
               <button
@@ -235,26 +235,26 @@ export const Contact = () => {
               {/* Personal Details - Compact 2-Column */}
               <div className="gsap-form-field grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1 border-b border-zinc-200 pb-2 focus-within:border-emerald-600 transition-colors">
-                  <label className="text-[10px] font-outfit font-extrabold text-zinc-500 block uppercase tracking-wider">FULL NAME *</label>
+                  <label className="text-[10px] font-outfit font-extrabold text-zinc-700 block uppercase tracking-wider">FULL NAME *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Sarah Jennings"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-400 placeholder:font-light"
+                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-600 placeholder:font-light"
                   />
                 </div>
 
                 <div className="space-y-1 border-b border-zinc-200 pb-2 focus-within:border-emerald-600 transition-colors">
-                  <label className="text-[10px] font-outfit font-extrabold text-zinc-500 block uppercase tracking-wider">WORK EMAIL *</label>
+                  <label className="text-[10px] font-outfit font-extrabold text-zinc-700 block uppercase tracking-wider">WORK EMAIL *</label>
                   <input
                     type="email"
                     required
                     placeholder="sarah@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-400 placeholder:font-light"
+                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-600 placeholder:font-light"
                   />
                 </div>
               </div>
@@ -262,36 +262,36 @@ export const Contact = () => {
               {/* Contact Info - Compact 3-Column */}
               <div className="gsap-form-field grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="space-y-1 border-b border-zinc-200 pb-2 focus-within:border-emerald-600 transition-colors">
-                  <label className="text-[10px] font-outfit font-extrabold text-zinc-500 block uppercase tracking-wider">PHONE NUMBER *</label>
+                  <label className="text-[10px] font-outfit font-extrabold text-zinc-700 block uppercase tracking-wider">PHONE NUMBER *</label>
                   <input
                     type="tel"
                     required
                     placeholder="+1 (555) 000-0000"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-400 placeholder:font-light"
+                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-600 placeholder:font-light"
                   />
                 </div>
 
                 <div className="space-y-1 border-b border-zinc-200 pb-2 focus-within:border-emerald-600 transition-colors">
-                  <label className="text-[10px] font-outfit font-extrabold text-zinc-500 block uppercase tracking-wider">COMPANY NAME</label>
+                  <label className="text-[10px] font-outfit font-extrabold text-zinc-700 block uppercase tracking-wider">COMPANY NAME</label>
                   <input
                     type="text"
                     placeholder="Nexus Retail"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-400 placeholder:font-light"
+                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-600 placeholder:font-light"
                   />
                 </div>
 
                 <div className="space-y-1 border-b border-zinc-200 pb-2 focus-within:border-emerald-600 transition-colors">
-                  <label className="text-[10px] font-outfit font-extrabold text-zinc-500 block uppercase tracking-wider">JOB TITLE</label>
+                  <label className="text-[10px] font-outfit font-extrabold text-zinc-700 block uppercase tracking-wider">JOB TITLE</label>
                   <input
                     type="text"
                     placeholder="VP of Marketing"
                     value={formData.designation}
                     onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-400 placeholder:font-light"
+                    className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-600 placeholder:font-light"
                   />
                 </div>
               </div>
@@ -327,7 +327,7 @@ export const Contact = () => {
 
               {/* Beautiful Custom Dropdown Menu */}
               <div className="gsap-form-field space-y-1">
-                <label className="text-[10px] font-outfit font-extrabold text-zinc-500 block uppercase tracking-wider">HOW DID YOU HEAR ABOUT US?</label>
+                <label className="text-[10px] font-outfit font-extrabold text-zinc-700 block uppercase tracking-wider">HOW DID YOU HEAR ABOUT US?</label>
                 <div className="relative">
                   <select
                     value={formData.hearAbout}
@@ -346,14 +346,14 @@ export const Contact = () => {
 
               {/* Message Brief - Compact */}
               <div className="gsap-form-field space-y-1 border-b border-zinc-200 pb-2 focus-within:border-emerald-600 transition-colors">
-                <label className="text-[10px] font-outfit font-extrabold text-zinc-500 block uppercase tracking-wider">CAMPAIGN OBJECTIVES & GOALS *</label>
+                <label className="text-[10px] font-outfit font-extrabold text-zinc-700 block uppercase tracking-wider">CAMPAIGN OBJECTIVES & GOALS *</label>
                 <textarea
                   rows={2}
                   required
                   placeholder="Outline your targets, monthly ad budget, website URL..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-400 placeholder:font-light resize-none"
+                  className="w-full bg-transparent text-zinc-900 font-outfit font-medium text-sm focus:outline-none placeholder:text-zinc-600 placeholder:font-light resize-none"
                 />
               </div>
 

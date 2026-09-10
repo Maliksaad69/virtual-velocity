@@ -44,7 +44,7 @@ export function ContactClient() {
             <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.9]">
               <SplitTextReveal text="INITIATE PROJECT" highlightWords={["PROJECT"]} accentColor="#00aeac" />
             </h1>
-            <p className="text-base sm:text-2xl text-zinc-600 max-w-3xl font-light leading-relaxed">
+            <p className="text-base sm:text-2xl text-zinc-700 max-w-3xl font-light leading-relaxed">
               We collaborate with visionary brands globally. Select your campaign goals and budget below for a guaranteed response within 12 hours.
             </p>
           </div>
