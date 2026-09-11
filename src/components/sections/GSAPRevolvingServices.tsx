@@ -47,6 +47,14 @@ export const GSAPRevolvingServices = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoRotating, setIsAutoRotating] = useState(false);
   const [radius, setRadius] = useState(450);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const rotationObj = useRef({ angle: 0 });
   const totalItems = SERVICES.length;
@@ -126,6 +134,8 @@ export const GSAPRevolvingServices = () => {
         }
       );
 
+      if (isMobile) return;
+
       ScrollTrigger.create({
         trigger: container,
         pin: true,
@@ -144,7 +154,7 @@ export const GSAPRevolvingServices = () => {
         },
       });
     },
-    { scope: containerRef, dependencies: [stepAngle, totalItems] }
+    { scope: containerRef, dependencies: [stepAngle, totalItems, isMobile] }
   );
 
   useEffect(() => {
@@ -159,7 +169,7 @@ export const GSAPRevolvingServices = () => {
     <section
       ref={containerRef}
       id="services"
-      className="relative min-h-screen w-full bg-white text-zinc-900 overflow-hidden flex flex-col justify-between py-6 sm:py-8 md:py-10 lg:py-12 px-3 sm:px-6 lg:px-12 selection:bg-zinc-900 selection:text-white border-t border-zinc-200"
+      className={`relative w-full bg-white text-zinc-900 overflow-hidden flex flex-col justify-between py-6 sm:py-8 md:py-10 lg:py-12 px-3 sm:px-6 lg:px-12 selection:bg-zinc-900 selection:text-white border-t border-zinc-200 ${isMobile ? "min-h-auto" : "min-h-screen"}`}
     >
       {/* Header Controls - generous padding to prevent overlap */}
       <header className="gsap-revolve-header max-w-7xl w-full mx-auto flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-4 sm:pb-6 z-20 gap-3 sm:gap-4 relative">
@@ -173,7 +183,7 @@ export const GSAPRevolvingServices = () => {
           </h2>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <div className="hidden md:flex items-center gap-2 sm:gap-3 flex-wrap">
           <button
             type="button"
             onClick={() => setIsAutoRotating((prev) => !prev)}
@@ -207,116 +217,182 @@ export const GSAPRevolvingServices = () => {
         </div>
       </header>
 
-      {/* 3D Carousel Stage - extra padding below header to prevent overlap */}
-      <main className="max-w-7xl w-full mx-auto flex items-end sm:items-center justify-center my-auto pt-10 sm:pt-12 md:pt-16 lg:pt-20 pb-2 sm:pb-4 md:pb-6 z-10">
-        <div
-          ref={stageRef}
-          className="w-full h-[340px] sm:h-[370px] md:h-[400px] lg:h-[440px] relative flex items-end sm:items-center justify-center overflow-visible"
-          style={{ perspective: "1400px" }}
-        >
-          <div
-            ref={carouselRef}
-            className="w-full h-full relative flex items-end sm:items-center justify-center"
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {SERVICES.map((service, idx) => {
-              const angle = idx * stepAngle;
-              const isActive = idx === activeIndex;
-              const backdrop = BACKDROPS[idx % BACKDROPS.length];
-              const acc = CARD_ACCENTS[idx % CARD_ACCENTS.length];
-              const isVideography = service.id === "videography";
+      {isMobile ? (
+        // Mobile: Static horizontal scrollable cards (no animations, no interactions)
+        <main className="max-w-7xl w-full mx-auto flex items-center justify-center my-auto pt-8 pb-4 z-10">
+          <div className="w-full">
+            <div className="flex gap-4 overflow-x-auto pb-6 snap-x scrollbar-hide -ml-3 pr-3" style={{ scrollSnapType: "x mandatory" }}>
+              {SERVICES.map((service, idx) => {
+                const backdrop = BACKDROPS[idx % BACKDROPS.length];
+                const acc = CARD_ACCENTS[idx % CARD_ACCENTS.length];
+                const isVideography = service.id === "videography";
 
-              return (
-                <article
-                  key={service.id}
-                  onClick={() => revolveToIndex(idx)}
-                  className={`absolute w-[190px] sm:w-[230px] md:w-[270px] lg:w-[300px] rounded-xl sm:rounded-2xl cursor-pointer select-none flex flex-col overflow-hidden transition-all duration-500 border h-[190px] sm:h-[220px] md:h-[250px] lg:h-[280px] ${isActive
-                      ? `${THEME.border} shadow-[0_20px_60px_rgba(0,0,0,0.1)] scale-100 opacity-100 z-30 ring-1 ring-white/50`
-                      : "border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.06)] scale-92 sm:scale-95 opacity-70 hover:opacity-90 hover:border-emerald-300 z-10"
-                    }`}
-                  style={{
-                    transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                    transformStyle: "preserve-3d",
-                    backfaceVisibility: "hidden",
-                  }}
-                >
-                  {/* Card background: clear image region on top, blurred/dark zone at bottom for text */}
-                  <div className="absolute inset-0 z-0">
-                    {/* Base layer: blurred, tinted image (only visible behind the bottom text zone) */}
-                    <img
-                      src={service.previewImage || backdrop}
-                      alt=""
-                      className="w-full h-full object-cover object-center scale-125 filter blur-lg brightness-90 saturate-110 transition-transform duration-1000 ease-out"
-                    />
-                    {isVideography ? (
-                      <>
-                        {/* Darker shade for videography card */}
-                        <div
-                          className="absolute inset-0 mix-blend-multiply"
-                          style={{ background: "linear-gradient(160deg, rgba(0, 66, 62, 0.55) 0%, rgba(0, 50, 47, 0.6) 55%, rgba(0, 40, 38, 0.55) 100%)" }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/45 to-zinc-900/20" />
-                      </>
-                    ) : (
-                      <>
-                        {/* Per-card accent color shade - color lives ON the card */}
-                        <div
-                          className="absolute inset-0 mix-blend-multiply"
-                          style={{ background: `linear-gradient(160deg, ${acc.tint} 0%, ${acc.glowSoft} 55%, transparent 100%)` }}
-                        />
-                        {/* Bottom-heavy dark scrim - text stays readable at the bottom, image stays visible above */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/35 to-zinc-900/10" />
-                      </>
-                    )}
+                return (
+                  <article
+                    key={service.id}
+                    className="flex-shrink-0 min-w-[260px] max-w-[90vw] sm:min-w-[280px] sm:max-w-[320px] rounded-2xl select-none flex flex-col overflow-hidden border border-zinc-200 shadow-lg snap-center"
+                  >
+                    {/* Card background */}
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <img
+                        src={service.previewImage || backdrop}
+                        alt=""
+                        className="w-full h-full object-cover object-center"
+                      />
+                      {isVideography ? (
+                        <>
+                          <div
+                            className="absolute inset-0 mix-blend-multiply"
+                            style={{ background: "linear-gradient(160deg, rgba(0, 66, 62, 0.55) 0%, rgba(0, 50, 47, 0.6) 55%, rgba(0, 40, 38, 0.55) 100%)" }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/45 to-zinc-900/20" />
+                        </>
+                      ) : (
+                        <>
+                          <div
+                            className="absolute inset-0 mix-blend-multiply"
+                            style={{ background: `linear-gradient(160deg, ${acc.tint} 0%, ${acc.glowSoft} 55%, transparent 100%)` }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/35 to-zinc-900/10" />
+                        </>
+                      )}
+                    </div>
 
-                    {/* Clear visible region: sharp, un-blurred image revealed across the top portion
-                        of the card. A mask fades it out before the text zone, blending into the
-                        blurred base layer below (tilt-shift style focus falloff). */}
-                    <img
-                      src={service.previewImage || backdrop}
-                      alt=""
-                      className="absolute inset-0 w-full h-full object-cover object-center brightness-105 saturate-110"
-                      style={{
-                        WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 42%, transparent 70%)",
-                        maskImage: "linear-gradient(to bottom, black 0%, black 42%, transparent 70%)",
-                      }}
-                    />
+                    {/* Content */}
+                    <div className="relative z-10 p-4 h-auto min-h-[120px] flex flex-col justify-end bg-white">
+                      <span
+                        className="text-xs font-black font-mono tracking-tighter"
+                        style={{ color: acc.accent }}
+                      >
+                        {service.number}
+                      </span>
 
-                    {/* Per-card accent ring glow on active state */}
-                    <div
-                      className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}
-                      style={{ boxShadow: `inset 0 0 0 2px ${isVideography ? "rgba(0,174,172,0.8)" : `${acc.accent}66`}, inset 0 0 30px ${acc.glowSoft}` }}
-                    />
-                  </div>
+                      <h3 className="text-base font-black uppercase tracking-tight text-zinc-950 mt-1 leading-tight">
+                        {service.title}
+                      </h3>
 
-                  {/* Content - minimal: number, service name, one-line explanation */}
-                  <div className="relative z-10 p-3 sm:p-3.5 md:p-4 h-full flex flex-col justify-end">
-                    <span
-                      className="text-xs font-black font-mono tracking-tighter"
-                      style={{ color: acc.accent }}
-                    >
-                      {service.number}
-                    </span>
-
-                    {/* Service Name */}
-                    <h3 className="text-sm sm:text-base md:text-lg font-black uppercase tracking-tight text-white mt-1 leading-tight drop-shadow-sm">
-                      {service.title}
-                    </h3>
-
-                    {/* One-line short explanation */}
-                    <p className="text-[10px] sm:text-[11px] md:text-xs text-white/85 font-normal leading-snug line-clamp-2 mt-1">
-                      {service.shortDescription}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
+                      <p className="text-[11px] text-zinc-700 font-normal leading-snug line-clamp-2 mt-1">
+                        {service.shortDescription}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      ) : (
+        // Desktop: 3D Carousel Stage
+        <main className="max-w-7xl w-full mx-auto flex items-end sm:items-center justify-center my-auto pt-10 sm:pt-12 md:pt-16 lg:pt-20 pb-2 sm:pb-4 md:pb-6 z-10">
+          <div
+            ref={stageRef}
+            className="w-full h-[340px] sm:h-[370px] md:h-[400px] lg:h-[440px] relative flex items-end sm:items-center justify-center overflow-visible"
+            style={{ perspective: "1400px" }}
+          >
+            <div
+              ref={carouselRef}
+              className="w-full h-full relative flex items-end sm:items-center justify-center"
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              {SERVICES.map((service, idx) => {
+                const angle = idx * stepAngle;
+                const isActive = idx === activeIndex;
+                const backdrop = BACKDROPS[idx % BACKDROPS.length];
+                const acc = CARD_ACCENTS[idx % CARD_ACCENTS.length];
+                const isVideography = service.id === "videography";
 
-      {/* Footer Progress Dots */}
-      <footer className="max-w-7xl w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 border-t border-zinc-200 pt-3 sm:pt-4 z-20 text-[9px] sm:text-[10px] md:text-xs text-zinc-700">
+                return (
+                  <article
+                    key={service.id}
+                    onClick={() => revolveToIndex(idx)}
+                    className={`absolute w-[190px] sm:w-[230px] md:w-[270px] lg:w-[300px] rounded-xl sm:rounded-2xl cursor-pointer select-none flex flex-col overflow-hidden transition-all duration-500 border h-[190px] sm:h-[220px] md:h-[250px] lg:h-[280px] ${isActive
+                        ? `${THEME.border} shadow-[0_20px_60px_rgba(0,0,0,0.1)] scale-100 opacity-100 z-30 ring-1 ring-white/50`
+                        : "border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.06)] scale-92 sm:scale-95 opacity-70 hover:opacity-90 hover:border-emerald-300 z-10"
+                      }`}
+                    style={{
+                      transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                      transformStyle: "preserve-3d",
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+                    {/* Card background: clear image region on top, blurred/dark zone at bottom for text */}
+                    <div className="absolute inset-0 z-0">
+                      {/* Base layer: blurred, tinted image (only visible behind the bottom text zone) */}
+                      <img
+                        src={service.previewImage || backdrop}
+                        alt=""
+                        className="w-full h-full object-cover object-center scale-125 filter blur-lg brightness-90 saturate-110 transition-transform duration-1000 ease-out"
+                      />
+                      {isVideography ? (
+                        <>
+                          {/* Darker shade for videography card */}
+                          <div
+                            className="absolute inset-0 mix-blend-multiply"
+                            style={{ background: "linear-gradient(160deg, rgba(0, 66, 62, 0.55) 0%, rgba(0, 50, 47, 0.6) 55%, rgba(0, 40, 38, 0.55) 100%)" }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/45 to-zinc-900/20" />
+                        </>
+                      ) : (
+                        <>
+                          {/* Per-card accent color shade - color lives ON the card */}
+                          <div
+                            className="absolute inset-0 mix-blend-multiply"
+                            style={{ background: `linear-gradient(160deg, ${acc.tint} 0%, ${acc.glowSoft} 55%, transparent 100%)` }}
+                          />
+                          {/* Bottom-heavy dark scrim - text stays readable at the bottom, image stays visible above */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-900/35 to-zinc-900/10" />
+                        </>
+                      )}
+
+                      {/* Clear visible region: sharp, un-blurred image revealed across the top portion
+                          of the card. A mask fades it out before the text zone, blending into the
+                          blurred base layer below (tilt-shift style focus falloff). */}
+                      <img
+                        src={service.previewImage || backdrop}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover object-center brightness-105 saturate-110"
+                        style={{
+                          WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 42%, transparent 70%)",
+                          maskImage: "linear-gradient(to bottom, black 0%, black 42%, transparent 70%)",
+                        }}
+                      />
+
+                      {/* Per-card accent ring glow on active state */}
+                      <div
+                        className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}
+                        style={{ boxShadow: `inset 0 0 0 2px ${isVideography ? "rgba(0,174,172,0.8)" : `${acc.accent}66`}, inset 0 0 30px ${acc.glowSoft}` }}
+                      />
+                    </div>
+
+                    {/* Content - minimal: number, service name, one-line explanation */}
+                    <div className="relative z-10 p-3 sm:p-3.5 md:p-4 h-full flex flex-col justify-end">
+                      <span
+                        className="text-xs font-black font-mono tracking-tighter"
+                        style={{ color: acc.accent }}
+                      >
+                        {service.number}
+                      </span>
+
+                      {/* Service Name */}
+                      <h3 className="text-sm sm:text-base md:text-lg font-black uppercase tracking-tight text-white mt-1 leading-tight drop-shadow-sm">
+                        {service.title}
+                      </h3>
+
+                      {/* One-line short explanation */}
+                      <p className="text-[10px] sm:text-[11px] md:text-xs text-white/85 font-normal leading-snug line-clamp-2 mt-1">
+                        {service.shortDescription}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </main>
+      )}
+
+      {/* Footer Progress Dots - Desktop only */}
+      <footer className="hidden md:flex md:flex-col md:sm:flex-row md:items-center md:justify-between gap-2 sm:gap-3 border-t border-zinc-200 pt-3 sm:pt-4 z-20 text-[9px] sm:text-[10px] md:text-xs text-zinc-700">
         <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap justify-center">
           {SERVICES.map((_, idx) => (
             <button

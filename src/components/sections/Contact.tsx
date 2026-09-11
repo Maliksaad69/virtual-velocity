@@ -121,20 +121,6 @@ export const Contact = () => {
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
         {/* Left Column - Headline & Offices */}
         <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
-          <div className="gsap-contact-headline space-y-4">
-            <span className="text-sm font-outfit font-extrabold text-emerald-600 flex items-center gap-2 uppercase tracking-wider">
-              <Zap className="w-4 h-4 text-emerald-600" />
-              START A CONVERSATION
-            </span>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-[0.92]">
-              LET'S SCALE <br />
-              <span className="text-emerald-600 font-black">YOUR REVENUE</span>
-            </h2>
-            <p className="text-base sm:text-lg text-zinc-700 font-light leading-relaxed">
-              Have a PPC campaign, Technical SEO project, Paid Social launch, or CRO overhaul in mind? Submit your goals for a guaranteed response within 12 hours.
-            </p>
-          </div>
-
           <div className="gsap-contact-badges grid grid-cols-2 gap-4">
             <div className="p-5 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center gap-3.5 shadow-xs">
               <Clock className="w-6 h-6 text-emerald-600 flex-shrink-0" />

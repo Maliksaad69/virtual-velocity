@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,12 +11,21 @@ interface CursorParallaxImageProps {
   src: string;
   alt: string;
   className?: string;
+  disableParallax?: boolean;
 }
 
-export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallaxImageProps) => {
+export const CursorParallaxImage = ({ src, alt, className = "", disableParallax = false }: CursorParallaxImageProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const revealRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // —— Scroll-triggered distortion reveal via GSAP ——
   useEffect(() => {
@@ -74,7 +83,7 @@ export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallax
   const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-10deg", "10deg"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || disableParallax || isMobile) return;
     const rect = containerRef.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -87,6 +96,7 @@ export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallax
   };
 
   const handleMouseLeave = () => {
+    if (disableParallax || isMobile) return;
     mouseX.set(0);
     mouseY.set(0);
   };
@@ -113,8 +123,8 @@ export const CursorParallaxImage = ({ src, alt, className = "" }: CursorParallax
       <motion.div
         ref={innerRef}
         style={{
-          rotateX,
-          rotateY,
+          rotateX: disableParallax || isMobile ? 0 : rotateX,
+          rotateY: disableParallax || isMobile ? 0 : rotateY,
           scale: 1.15,
           filter: "blur(0px)",
         }}

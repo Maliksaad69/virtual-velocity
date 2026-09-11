@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitTextReveal } from "@/components/ui/SplitTextReveal";
-import { TiltCard } from "@/components/ui/TiltCard";
 import { CursorParallaxImage } from "@/components/ui/CursorParallaxImage";
 import { CreativeCTA } from "@/components/ui/CreativeCTA";
 import { Navigation } from "@/components/layout/Navigation";
@@ -15,27 +14,6 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 import { Zap } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const TEAM = [
-  {
-    name: "MARCUS CHEN",
-    role: "VP OF DIGITAL MARKETING",
-    bio: "Pioneered Google Ads search structuring and omnichannel e-commerce PPC scaling for global brands.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    name: "SARAH JENNINGS",
-    role: "HEAD OF TECHNICAL SEO",
-    bio: "Ex-Enterprise search engineer specializing in schema markup, Core Web Vitals, and B2B topic hubs.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    name: "KAI HARADA",
-    role: "CREATIVE & BRAND DIRECTOR",
-    bio: "Crafted brand positioning, visual identity systems, and conversion-optimized ad creatives.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
-  },
-];
 
 const AWARDS = [
   { title: "TOP PPC DIGITAL AGENCY", org: "CLUTCH LEADERS", year: "2024-2026" },
@@ -97,23 +75,6 @@ export function AboutClient() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".gsap-clocks-panel",
-            start: "top 80%",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".gsap-team-card",
-        { opacity: 0, y: 40, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          stagger: 0.15,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".gsap-team-grid",
             start: "top 80%",
           },
         }
@@ -194,35 +155,6 @@ export function AboutClient() {
               <h3 className="text-xl font-outfit font-extrabold text-zinc-900">LONDON, UK</h3>
               <div className="text-3xl sm:text-4xl font-outfit font-black text-zinc-900">{times.london || "00:00"}</div>
               <p className="text-xs font-outfit font-medium text-zinc-700">GREENWICH MEAN TIME (GMT)</p>
-            </div>
-          </div>
-
-          {/* Core Team Grid */}
-          <div className="space-y-10 border-t border-zinc-200 pt-16">
-            <div className="space-y-2">
-              <span className="text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider">LEADERSHIP & CRAFT</span>
-              <h2 className="text-3xl sm:text-5xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
-                MEET THE MARKETING STRATEGISTS
-              </h2>
-            </div>
-
-            <div className="gsap-team-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {TEAM.map((member, idx) => (
-                <TiltCard key={idx} className="gsap-team-card group space-y-6" maxTilt={4} scale={1.005}>
-                  <CursorParallaxImage
-                    src={member.image}
-                    alt={member.name}
-                    className="aspect-[3/4]"
-                  />
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-outfit font-black text-zinc-900 uppercase group-hover:text-emerald-600 transition-colors">
-                      {member.name}
-                    </h3>
-                    <p className="text-xs font-outfit font-extrabold text-zinc-900 uppercase tracking-wider">{member.role}</p>
-                    <p className="text-sm text-zinc-700 font-light leading-relaxed pt-1">{member.bio}</p>
-                  </div>
-                </TiltCard>
-              ))}
             </div>
           </div>
 

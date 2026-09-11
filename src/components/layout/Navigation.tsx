@@ -44,19 +44,35 @@ export const Navigation = () => {
           <Magnetic strength={0.25}>
             <Link
               href="/"
-              className="group flex items-center gap-3 font-outfit font-extrabold text-xl sm:text-2xl tracking-tighter text-zinc-950 uppercase"
+              className="group relative flex items-center font-outfit font-extrabold text-xl sm:text-2xl tracking-tighter text-zinc-950 uppercase"
             >
-              <Image
-                src="/VV png.png"
-                alt="Virtual Velocity Logo"
-                width={44}
-                height={44}
-                className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                priority
+              {/* Emerald glow that pops in behind the logo on hover */}
+              <span
+                aria-hidden="true"
+                className="absolute -inset-3 -z-10 rounded-2xl bg-emerald-400/30 blur-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 pointer-events-none"
               />
-              <span className="group-hover:text-emerald-600 transition-colors duration-300 font-extrabold">
-                VIRTUAL <span className="text-emerald-600 font-extrabold">•</span> VELOCITY
-              </span>
+              {/* Springy pop: the whole logo (mark + wordmark) lifts, scales and tilts */}
+              <motion.span
+                whileHover={{ scale: 1.14, rotate: -2.5, y: -3 }}
+                transition={{ type: "spring", stiffness: 380, damping: 13 }}
+                className="flex items-center gap-3 origin-left"
+              >
+                <Image
+                  src="/VV png.png"
+                  alt="Virtual Velocity Logo"
+                  width={44}
+                  height={44}
+                  className="h-8 sm:h-9 w-auto object-contain drop-shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_6px_16px_rgba(0,174,172,0.5)] mix-blend-multiply"
+                  priority
+                />
+                <span className="group-hover:text-emerald-600 transition-colors duration-300 font-extrabold">
+                  VIRTUAL{" "}
+                  <span className="text-emerald-600 font-extrabold inline-block transition-transform duration-500 group-hover:rotate-180">
+                    •
+                  </span>{" "}
+                  VELOCITY
+                </span>
+              </motion.span>
             </Link>
           </Magnetic>
 

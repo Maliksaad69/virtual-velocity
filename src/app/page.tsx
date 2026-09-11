@@ -14,7 +14,6 @@ import { GSAPRevolvingServices } from "@/components/sections/GSAPRevolvingServic
 import { GSAPScrollGallery } from "@/components/sections/GSAPScrollGallery";
 import { LightStatsSection } from "@/components/sections/LightStatsSection";
 import { EditorialTestimonials } from "@/components/sections/EditorialTestimonials";
-import { Process } from "@/components/sections/Process";
 import { InteractiveCTABanner } from "@/components/sections/InteractiveCTABanner";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
@@ -23,6 +22,7 @@ import { SoundToggle } from "@/components/ui/SoundToggle";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { ClientPartners } from "@/components/sections/ClientPartners";
 import { About } from "@/components/sections/About";
+import { WhoWeAre } from "@/components/sections/WhoWeAre";
 export default function Home() {
   return (
     <SmoothScrollProvider>
@@ -45,6 +45,9 @@ export default function Home() {
         {/* 3. GSAP 3D Revolving Services Spectrum */}
         <GSAPRevolvingServices />
 
+        {/* 3.5 Who We Are — Creative House Manifesto */}
+        <WhoWeAre />
+
         {/* 4. Case Studies Walkthrough */}
         <GSAPScrollGallery />
 
@@ -57,10 +60,7 @@ export default function Home() {
         {/* 7. Client Testimonials */}
         <EditorialTestimonials />
 
-        {/* 8. Agency Execution Process */}
-        <Process />
-
-        {/* 9. High-Impact Interactive ROI Estimator CTA Banner */}
+        {/* 8. High-Impact Interactive ROI Estimator CTA Banner */}
         <InteractiveCTABanner />
 
         {/* 10. Project Estimator & Contact Form */}

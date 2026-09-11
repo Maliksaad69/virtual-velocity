@@ -4,9 +4,6 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Sparkles } from "lucide-react";
 
-// Rounded-flat honeycomb hexagon silhouette, built in pure CSS.
-const HEX = "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)";
-
 interface LogoAsset {
   src: string;
   alt: string;
@@ -57,18 +54,25 @@ const OUTER_LOGOS: LogoAsset[] = [
 
 const ALL_LOGOS = [...INNER_LOGOS, ...OUTER_LOGOS];
 
-const INNER_RADIUS = 240;
-const OUTER_RADIUS = 372;
-const CARD = 66; // hexagon card size (px)
-const INNER_CARD = 88;
-const OUTER_CARD = 92;
+// Semicircle arrangement: inner ring forms the LEFT half-circle (180°) around
+// the middle logo, outer ring forms the RIGHT half-circle (180°). Angles are
+// offset so no logo sits directly behind the center anchor.
+const SEMICIRCLE_SPAN = Math.PI; // 180 degrees
+const LEFT_START = Math.PI * 0.5; // starts at 90° → sweeps left side
+const RIGHT_START = -Math.PI * 0.5; // starts at -90° → sweeps right side
 
-// Inner / outer hexagon card visuals (no borders).
+const BASE_INNER_RADIUS = 260;
+const BASE_OUTER_RADIUS = 400;
+const BASE_INNER_CARD = 110;
+const BASE_OUTER_CARD = 110;
+const BASE_CENTER_LOGO = 280;
+const BASE_CENTER_IMG = 220;
+
+// Logo card visuals - simple rounded container, no clipping.
 const innerCard = (hovering: boolean) =>
   ({
-    clipPath: HEX,
-    background:
-      "linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.88) 100%)",
+    background: "transparent",
+    borderRadius: "16px",
     filter: hovering
       ? "drop-shadow(0 2px 4px rgba(24,24,27,0.10)) drop-shadow(0 10px 22px rgba(0,174,172,0.16))"
       : "drop-shadow(0 1px 2px rgba(24,24,27,0.06)) drop-shadow(0 5px 12px rgba(24,24,27,0.08))",
@@ -86,18 +90,80 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
+// Responsive radii: scale semicircle sizes with the viewport width so the
+// arrangement stays clean on lg (1024px) through ultrawide displays.
+function useResponsiveRadii() {
+  const compute = () => {
+    const w = typeof window === "undefined" ? 1440 : window.innerWidth;
+    // Scale factor grows 1024px → 1920px+, clamped to [0.72, 1.1]
+    const factor = Math.min(1.1, Math.max(0.72, (w - 1024) / 896 + 0.72));
+    return {
+      innerRadius: Math.round(BASE_INNER_RADIUS * factor),
+      outerRadius: Math.round(BASE_OUTER_RADIUS * factor),
+      innerCard: Math.round(BASE_INNER_CARD * factor),
+      outerCard: Math.round(BASE_OUTER_CARD * factor),
+      centerLogo: Math.round(BASE_CENTER_LOGO * factor),
+      centerImg: Math.round(BASE_CENTER_IMG * factor),
+    };
+  };
+  const [dims, setDims] = useState(compute);
+  useEffect(() => {
+    let raf = 0;
+    const onResize = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setDims(compute()));
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+  return dims;
+}
+
+// ── Logo card: pops up (scale + lift + glow) when hovered ──
+function LogoCard({ logo, cardSize, isMobile = false }: { logo: LogoAsset; cardSize: number; isMobile?: boolean }) {
+  const [hovering, setHovering] = useState(false);
+  return (
+    <motion.div
+      onHoverStart={() => !isMobile && setHovering(true)}
+      onHoverEnd={() => setHovering(false)}
+      whileHover={isMobile ? undefined : { scale: 1.12, y: -4 }}
+      transition={{ type: "spring", stiffness: 320, damping: 18 }}
+      style={{ width: cardSize, height: cardSize, zIndex: hovering ? 40 : "auto" }}
+      className="pointer-events-auto flex cursor-pointer items-center justify-center"
+    >
+      <div className="flex h-full w-full items-center justify-center p-2" style={innerCard(hovering)}>
+        <img
+          src={logo.src}
+          alt={logo.alt}
+          loading="lazy"
+          className="max-h-[95%] max-w-[95%] object-contain"
+          draggable={false}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
 export const ClientPartners = () => {
   const reduced = usePrefersReducedMotion();
+  const dims = useResponsiveRadii();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const innerRingRef = useRef<HTMLDivElement>(null);
   const outerRingRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="relative w-full overflow-hidden bg-white py-16 sm:py-20 lg:py-24 selection:bg-zinc-900 selection:text-white">
-      {/* Muted blurred background accents (same vocabulary as site About section) */}
-      <div className="pointer-events-none absolute right-0 top-[18%] h-[480px] w-[520px] rounded-full bg-emerald-100/50 blur-[140px]" />
-      <div className="pointer-events-none absolute left-0 bottom-[12%] h-[460px] w-[520px] rounded-full bg-zinc-100 blur-[140px]" />
-
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-12">
         {/* Section header */}
         <motion.div
@@ -121,20 +187,11 @@ export const ClientPartners = () => {
           </p>
         </motion.div>
       </div>
-{/* ── Desktop: revolving logo rings around the central anchor (lg+) ── */}
+{/* ── Desktop: semicircles of logos flanking the central anchor (lg+) ── */}
       <div
         className="relative z-10 mt-16 hidden min-h-[900px] pb-24 lg:block lg:mx-auto lg:max-w-7xl"
+        style={{ minWidth: `${dims.outerRadius * 2 + dims.outerCard}px` }}
       >
-        {/* Soft radial glow behind the central logo */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(255,255,255,0.95) 30%, rgba(0,174,172,0.10) 62%, rgba(255,255,255,0) 100%)",
-          }}
-        />
-
         {/* Center — Virtual Velocity logo (visual anchor, clearly dominant, no border) */}
         <motion.div
           initial={reduced ? false : { opacity: 0, scale: 0.94 }}
@@ -144,11 +201,12 @@ export const ClientPartners = () => {
           className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
         >
           <div
-            className="flex h-[300px] w-[264px] items-center justify-center"
+            className="flex items-center justify-center"
             style={{
-              clipPath: HEX,
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)",
+              width: `${dims.centerLogo}px`,
+              height: `${Math.round(dims.centerLogo * 1.14)}px`,
+              borderRadius: "24px",
+              background: "rgba(255,255,255,0.9)",
               filter:
                 "drop-shadow(0 2px 4px rgba(24,24,27,0.08)) drop-shadow(0 14px 30px rgba(0,174,172,0.12))",
             }}
@@ -157,27 +215,30 @@ export const ClientPartners = () => {
               src="/VV png.png"
               alt="Virtual Velocity — Digital Marketing & Creative Agency"
               loading="lazy"
-              className="h-auto w-[210px] object-contain"
+              style={{ width: `${dims.centerImg}px` }}
+              className="h-auto object-contain"
               draggable={false}
             />
           </div>
         </motion.div>
 
-        {/* Revolving rings (fade in once) */}
+        {/* Semicircle rings (fade in once) */}
         <motion.div
           initial={reduced ? false : { opacity: 0 }}
           whileInView={reduced ? undefined : { opacity: 1 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          {/* Inner ring */}
+          {/* Left semicircle — inner logos sweeping the left side (static, no spin).
+              Container is pointer-events-none so its invisible square canvas
+              doesn't block hover on the logos. */}
           <div
             ref={innerRingRef}
-            className="orbit-ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{ width: `${INNER_RADIUS * 2}px`, height: `${INNER_RADIUS * 2}px` }}
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ width: `${dims.innerRadius * 2}px`, height: `${dims.innerRadius * 2}px` }}
           >
             {INNER_LOGOS.map((logo, i) => {
-              const a = (i / INNER_LOGOS.length) * Math.PI * 2;
+              const a = LEFT_START + (i / (INNER_LOGOS.length - 1)) * SEMICIRCLE_SPAN;
               return (
                 <div
                   key={logo.alt}
@@ -185,38 +246,29 @@ export const ClientPartners = () => {
                   style={{
                     left: "50%",
                     top: "50%",
-                    width: `${INNER_CARD}px`,
-                    height: `${INNER_CARD}px`,
-                    marginLeft: `${-INNER_CARD / 2}px`,
-                    marginTop: `${-INNER_CARD / 2}px`,
-                    transform: `rotate(${a}rad) translateX(${INNER_RADIUS}px) rotate(${-a}rad)`,
+                    width: `${dims.innerCard}px`,
+                    height: `${dims.innerCard}px`,
+                    marginLeft: `${-dims.innerCard / 2}px`,
+                    marginTop: `${-dims.innerCard / 2}px`,
+                    transform: `rotate(${a}rad) translateX(${dims.innerRadius}px) rotate(${-a}rad)`,
                   }}
                 >
-                  <div
-                    className="flex cursor-pointer items-center justify-center"
-                    style={innerCard(false)}
-                  >
-                    <img
-                      src={logo.src}
-                      alt={logo.alt}
-                      loading="lazy"
-                      className="max-h-[92%] max-w-[92%] object-contain"
-                      draggable={false}
-                    />
-                  </div>
+                  <LogoCard logo={logo} cardSize={dims.innerCard} isMobile={isMobile} />
                 </div>
               );
             })}
           </div>
 
-          {/* Outer ring */}
+          {/* Right semicircle — outer logos sweeping the right side (static, no spin).
+              pointer-events-none so the invisible square canvas doesn't block hover
+              on the inner-ring logos behind it (left half of the arrangement). */}
           <div
             ref={outerRingRef}
-            className="orbit-ring orbit-ring-outer absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{ width: `${OUTER_RADIUS * 2}px`, height: `${OUTER_RADIUS * 2}px` }}
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ width: `${dims.outerRadius * 2}px`, height: `${dims.outerRadius * 2}px` }}
           >
             {OUTER_LOGOS.map((logo, i) => {
-              const a = (i / OUTER_LOGOS.length) * Math.PI * 2;
+              const a = RIGHT_START + (i / (OUTER_LOGOS.length - 1)) * SEMICIRCLE_SPAN;
               return (
                 <div
                   key={logo.alt}
@@ -224,25 +276,14 @@ export const ClientPartners = () => {
                   style={{
                     left: "50%",
                     top: "50%",
-                    width: `${OUTER_CARD}px`,
-                    height: `${OUTER_CARD}px`,
-                    marginLeft: `${-OUTER_CARD / 2}px`,
-                    marginTop: `${-OUTER_CARD / 2}px`,
-                    transform: `rotate(${a}rad) translateX(${OUTER_RADIUS}px) rotate(${-a}rad)`,
+                    width: `${dims.outerCard}px`,
+                    height: `${dims.outerCard}px`,
+                    marginLeft: `${-dims.outerCard / 2}px`,
+                    marginTop: `${-dims.outerCard / 2}px`,
+                    transform: `rotate(${a}rad) translateX(${dims.outerRadius}px) rotate(${-a}rad)`,
                   }}
                 >
-                  <div
-                    className="flex cursor-pointer items-center justify-center"
-                    style={innerCard(false)}
-                  >
-                    <img
-                      src={logo.src}
-                      alt={logo.alt}
-                      loading="lazy"
-                      className="max-h-[92%] max-w-[92%] object-contain"
-                      draggable={false}
-                    />
-                  </div>
+                  <LogoCard logo={logo} cardSize={dims.outerCard} isMobile={isMobile} />
                 </div>
               );
             })}
@@ -250,24 +291,19 @@ export const ClientPartners = () => {
         </motion.div>
       </div>
 
-      {/* ── Mobile: static responsive grid of partner logos (below lg) ── */}
+      {/* ── Mobile/Tablet: responsive grid of partner logos (below lg) ── */}
       <div className="relative z-10 mt-16 lg:hidden">
-        <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 sm:gap-6 md:grid-cols-6">
-          {ALL_LOGOS.map((logo) => (
-            <div
-              key={logo.alt}
-              className="flex cursor-pointer items-center justify-center"
-              style={innerCard(false)}
-            >
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                loading="lazy"
-                className="max-h-[84%] max-w-[84%] object-contain"
-                draggable={false}
+        <div className="mx-auto max-w-7xl px-6 sm:px-12">
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+            {ALL_LOGOS.map((logo) => (
+              <LogoCard
+                key={logo.alt}
+                logo={logo}
+                cardSize={100}
+                isMobile={true}
               />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

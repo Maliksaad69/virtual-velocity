@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,6 +14,14 @@ export const Process = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const laserBeamRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useGSAP(
     () => {
@@ -51,6 +59,8 @@ export const Process = () => {
         }
       );
 
+      if (isMobile) return;
+
       const totalSteps = PROCESS_STEPS.length;
       ScrollTrigger.create({
         trigger: section,
@@ -79,7 +89,7 @@ export const Process = () => {
         },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isMobile] }
   );
 
   const handleStepClick = (index: number) => {
@@ -93,97 +103,131 @@ export const Process = () => {
     <section
       ref={sectionRef}
       id="process"
-      className="relative min-h-screen h-screen bg-white text-zinc-900 py-10 px-6 sm:px-12 max-w-[1700px] mx-auto flex flex-col justify-between overflow-hidden selection:bg-zinc-900 selection:text-white font-outfit border-t border-zinc-200"
+      className={`relative bg-white text-zinc-900 py-10 px-6 sm:px-12 max-w-[1700px] mx-auto flex flex-col justify-between overflow-hidden selection:bg-zinc-900 selection:text-white font-outfit border-t border-zinc-200 ${isMobile ? "min-h-auto py-20" : "min-h-screen h-screen"}`}
     >
       {/* Background Soft Ambient Matrix Light */}
       <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-zinc-200/40 blur-[180px] pointer-events-none" />
-
-      {/* Header Bar */}
-      <div className="gsap-process-header flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 z-10">
-        <div>
-          <span className="text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider flex items-center gap-2">
-            <Activity className="w-4 h-4 text-zinc-900 animate-pulse" />
-            FIVE-STAGE STRATEGY METHODOLOGY
-          </span>
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-outfit font-black text-emerald-600 uppercase tracking-tight leading-[0.9] mt-2">
-            THE FIVE-STAGE <br />
-            <span className="text-emerald-600 font-black">STRATEGY PIPELINE</span>
-          </h2>
-        </div>
-        <p className="mt-4 md:mt-0 text-sm sm:text-base text-zinc-700 font-light leading-relaxed max-w-md">
-          Inspect our 5-stage strategy pipeline across each milestone from audit to aggressive revenue scaling.
-        </p>
-      </div>
 
       {/* Main 5-Stage Layout */}
       <div className="my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center z-10">
         {/* Left Column: Selectors */}
         <div className="lg:col-span-5 relative space-y-3">
-          {/* Vertical Laser Line */}
-          <div className="absolute left-0 top-3 bottom-3 w-1 bg-zinc-200 rounded-full overflow-hidden">
-            <div
-              ref={laserBeamRef}
-              className="w-full bg-zinc-900 shadow-sm"
-              style={{ height: `${((activeStep + 1) / 5) * 100}%` }}
-            />
-          </div>
-
-          <div className="pl-6 space-y-3">
-            <span className="text-xs font-outfit font-bold text-zinc-700 block tracking-wider uppercase">
-              SELECT STAGE TO INSPECT
-            </span>
-
-            {PROCESS_STEPS.map((step, idx) => {
-              const isActive = activeStep === idx;
-              return (
-                <button
-                  key={step.number}
-                  onClick={() => handleStepClick(idx)}
-                  className={`gsap-process-step-btn w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between group relative overflow-hidden ${
-                    isActive
-                      ? "bg-white border-2 border-zinc-900 shadow-xl"
-                      : "bg-zinc-50 border border-zinc-200 hover:border-zinc-400 hover:bg-zinc-100"
-                  }`}
-                  data-cursor-pointer
-                >
-                  <div className="flex items-center gap-4">
-                    <span
-                      className={`text-2xl font-outfit font-black transition-colors ${
-                        isActive ? "text-zinc-900" : "text-zinc-600 group-hover:text-zinc-900"
+          {isMobile ? (
+            // Mobile: horizontal scrollable step selector
+            <div className="pl-2 pr-2">
+              <span className="text-xs font-outfit font-bold text-zinc-700 block tracking-wider uppercase mb-4">
+                SELECT STAGE TO INSPECT
+              </span>
+              <div className="flex gap-3 overflow-x-auto pb-4 snap-x scrollbar-hide -ml-2 pr-2" style={{ scrollSnapType: "x mandatory" }}>
+                {PROCESS_STEPS.map((step, idx) => {
+                  const isActive = activeStep === idx;
+                  return (
+                    <button
+                      key={step.number}
+                      onClick={() => handleStepClick(idx)}
+                      className={`flex-shrink-0 w-64 sm:w-72 p-4 rounded-2xl border transition-all duration-300 flex flex-col items-start gap-2 group relative overflow-hidden snap-center ${
+                        isActive
+                          ? "bg-white border-2 border-zinc-900 shadow-xl"
+                          : "bg-zinc-50 border border-zinc-200 hover:border-zinc-400 hover:bg-zinc-100"
                       }`}
+                      data-cursor-pointer
                     >
-                      {step.number}
-                    </span>
-                    <div>
-                      <h3
-                        className={`text-base sm:text-lg font-outfit font-extrabold uppercase tracking-wide transition-colors ${
-                          isActive ? "text-zinc-900" : "text-zinc-700 group-hover:text-zinc-900"
-                        }`}
-                      >
-                        {step.title}
-                      </h3>
-                      <span className="text-xs font-outfit font-medium text-zinc-700 block uppercase">
-                        {step.subtitle}
-                      </span>
-                    </div>
-                  </div>
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`text-xl font-outfit font-black transition-colors ${
+                            isActive ? "text-zinc-900" : "text-zinc-600 group-hover:text-zinc-900"
+                          }`}
+                        >
+                          {step.number}
+                        </span>
+                        <div>
+                          <h3
+                            className={`text-sm font-outfit font-extrabold uppercase tracking-wide transition-colors ${
+                              isActive ? "text-zinc-900" : "text-zinc-700 group-hover:text-zinc-900"
+                            }`}
+                          >
+                            {step.title}
+                          </h3>
+                          <span className="text-xs font-outfit font-medium text-zinc-700 block uppercase">
+                            {step.subtitle}
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            // Desktop: vertical selector with laser line
+            <>
+              {/* Vertical Laser Line */}
+              <div className="absolute left-0 top-3 bottom-3 w-1 bg-zinc-200 rounded-full overflow-hidden">
+                <div
+                  ref={laserBeamRef}
+                  className="w-full bg-zinc-900 shadow-sm"
+                  style={{ height: `${((activeStep + 1) / 5) * 100}%` }}
+                />
+              </div>
 
-                  <div className="flex items-center gap-2">
-                    {isActive && (
-                      <span className="text-xs font-outfit font-extrabold text-zinc-900 tracking-wider">
-                        ACTIVE
-                      </span>
-                    )}
-                    <div
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        isActive ? "bg-zinc-900 scale-125" : "bg-zinc-300"
+              <div className="pl-6 space-y-3">
+                <span className="text-xs font-outfit font-bold text-zinc-700 block tracking-wider uppercase">
+                  SELECT STAGE TO INSPECT
+                </span>
+
+                {PROCESS_STEPS.map((step, idx) => {
+                  const isActive = activeStep === idx;
+                  return (
+                    <button
+                      key={step.number}
+                      onClick={() => handleStepClick(idx)}
+                      className={`gsap-process-step-btn w-full text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-center justify-between group relative overflow-hidden ${
+                        isActive
+                          ? "bg-white border-2 border-zinc-900 shadow-xl"
+                          : "bg-zinc-50 border border-zinc-200 hover:border-zinc-400 hover:bg-zinc-100"
                       }`}
-                    />
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+                      data-cursor-pointer
+                    >
+                      <div className="flex items-center gap-4">
+                        <span
+                          className={`text-2xl font-outfit font-black transition-colors ${
+                            isActive ? "text-zinc-900" : "text-zinc-600 group-hover:text-zinc-900"
+                          }`}
+                        >
+                          {step.number}
+                        </span>
+                        <div>
+                          <h3
+                            className={`text-base sm:text-lg font-outfit font-extrabold uppercase tracking-wide transition-colors ${
+                              isActive ? "text-zinc-900" : "text-zinc-700 group-hover:text-zinc-900"
+                            }`}
+                          >
+                            {step.title}
+                          </h3>
+                          <span className="text-xs font-outfit font-medium text-zinc-700 block uppercase">
+                            {step.subtitle}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        {isActive && (
+                          <span className="text-xs font-outfit font-extrabold text-zinc-900 tracking-wider">
+                            ACTIVE
+                          </span>
+                        )}
+                        <div
+                          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            isActive ? "bg-zinc-900 scale-125" : "bg-zinc-300"
+                          }`}
+                        />
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
 
         {/* Right Column: Display Card */}
@@ -262,7 +306,7 @@ export const Process = () => {
       {/* Footer Bar */}
       <div className="flex items-center justify-between border-t border-zinc-200 pt-3 z-10 text-xs font-outfit font-medium text-zinc-700">
         <span>STRATEGY PIPELINE ACTIVE</span>
-        <span className="hidden sm:inline-block">SCROLL OR SELECT STAGES TO INSPECT</span>
+        <span className="hidden sm:inline-block">{isMobile ? "SELECT A STAGE" : "SCROLL OR SELECT STAGES TO INSPECT"}</span>
       </div>
     </section>
   );

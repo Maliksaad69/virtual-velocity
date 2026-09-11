@@ -25,7 +25,7 @@ export const GSAPHeroTimeline = () => {
   return (
     <section
       ref={scopeRef}
-      className="relative min-h-[90vh] sm:min-h-screen max-h-[1050px] overflow-hidden select-none font-outfit bg-white"
+      className="relative min-h-[80vh] sm:min-h-[90vh] lg:min-h-screen max-h-[900px] sm:max-h-[1050px] overflow-hidden select-none font-outfit bg-white"
     >
       {/* Hero Visual - full-bleed image */}
       <div className="gsap-hero-image absolute inset-0 z-0">
@@ -33,7 +33,7 @@ export const GSAPHeroTimeline = () => {
           src="/hero.jpeg"
           alt="Virtual Velocity"
           fill
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
           preload={true}
           className="object-cover object-center"
         />
