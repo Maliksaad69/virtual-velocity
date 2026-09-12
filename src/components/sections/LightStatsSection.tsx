@@ -1,0 +1,155 @@
+"use client";
+
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { STATS } from "@/data/agencyData";
+import { ArrowUpRight, TrendingUp } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ─── Parse a "240+" or "4.8x" string → { target, suffix, decimals } ─── */
+function parseStatValue(raw: string): { target: number; suffix: string; decimals: number } {
+  const match = raw.match(/^([\d.]+)(.*)$/);
+  if (!match) return { target: 0, suffix: raw, decimals: 0 };
+  return {
+    target: parseFloat(match[1]),
+    suffix: match[2],
+    decimals: match[1].includes(".") ? 1 : 0,
+  };
+}
+
+/* ─── Animated Counter Component ─── */
+const AnimatedCounter = ({ rawValue, className }: { rawValue: string; className?: string }) => {
+  const spanRef = useRef<HTMLSpanElement>(null);
+  const { target, suffix, decimals } = parseStatValue(rawValue);
+  const proxyRef = useRef({ val: 0 });
+
+  useEffect(() => {
+    const el = spanRef.current;
+    const proxy = proxyRef.current;
+    if (!el) return;
+
+    const ctx = gsap.context(() => {
+      gsap.to(proxy, {
+        val: target,
+        duration: 2.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          toggleActions: "play none none none",
+        },
+        onUpdate: () => {
+          const formatted =
+            decimals > 0
+              ? proxy.val.toFixed(decimals)
+              : Math.round(proxy.val);
+          el.textContent = formatted + suffix;
+        },
+      });
+    }, el);
+
+    return () => ctx.revert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <span ref={spanRef} className={className}>
+      0{suffix}
+    </span>
+  );
+};
+
+/* ─── Section ─── */
+export const LightStatsSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".gsap-stats-header",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".gsap-stats-card",
+        { opacity: 0, y: 30, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="py-12 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 border-y border-zinc-200 relative overflow-hidden">
+      <div className="max-w-[1700px] mx-auto space-y-12 sm:space-y-16">
+        {/* Header */}
+        <div className="gsap-stats-header flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 border-b border-zinc-300 pb-8 sm:pb-12">
+          <div className="space-y-3">
+            <span className="text-xs font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-1.5">
+              <TrendingUp className="w-3.5 h-3.5 text-emerald-600" /> MEASURABLE AGENCY IMPACT
+            </span>
+            <h2 className="text-3xl sm:text-6xl lg:text-7xl font-outfit font-black uppercase tracking-tighter leading-[0.9]">
+              PROVEN RESULTS <span className="text-emerald-600 font-black">& METRICS</span>
+            </h2>
+          </div>
+
+          <p className="text-sm text-zinc-700 max-w-md font-light leading-relaxed">
+            We deliver data-backed outcomes across e-commerce growth, technical SEO scaling, paid search return, and custom web engineering.
+          </p>
+        </div>
+
+        {/* Stats 4-Column Grid - Animated Counters */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          {STATS.map((stat, idx) => (
+            <div
+              key={idx}
+              className="gsap-stats-card p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-zinc-50 border border-zinc-200 space-y-4 hover:border-zinc-900 transition-colors"
+            >
+              <div className="flex items-center justify-between font-mono text-xs text-zinc-700">
+                <span>0{idx + 1} {"//"} METRIC</span>
+                <ArrowUpRight className="w-4 h-4 text-zinc-900" />
+              </div>
+
+              <div className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-outfit font-black tracking-tighter text-zinc-900">
+                <AnimatedCounter rawValue={stat.value} />
+              </div>
+
+              <div className="space-y-1 pt-4 border-t border-zinc-200">
+                <h3 className="font-outfit font-extrabold text-sm uppercase text-zinc-900">
+                  {stat.label}
+                </h3>
+                <p className="text-xs text-zinc-700 font-light leading-snug">
+                  {stat.detail}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
