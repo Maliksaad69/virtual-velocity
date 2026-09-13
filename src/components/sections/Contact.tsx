@@ -60,11 +60,31 @@ const REGIONAL_HUBS = [
   },
 ];
 
+const getFormattedTime = (timezone: string) => {
+  try {
+    return new Date().toLocaleTimeString("en-US", {
+      timeZone: timezone,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
+  } catch {
+    return new Date().toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    });
+  }
+};
+
 export const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [selectedServices, setSelectedServices] = useState<string[]>(["Google Advertising"]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hubTimes, setHubTimes] = useState<Record<string, string>>({});
+  const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -77,17 +97,13 @@ export const Contact = () => {
   });
 
   useEffect(() => {
+    setMounted(true);
     const updateClocks = () => {
-      const now = new Date();
       const updated: Record<string, string> = {};
       REGIONAL_HUBS.forEach((hub) => {
-        updated[hub.city] = now.toLocaleTimeString("en-US", {
-          timeZone: hub.timezone,
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        });
+        const time = getFormattedTime(hub.timezone);
+        updated[hub.city] = time;
+        updated[hub.country] = time;
       });
       setHubTimes(updated);
     };
@@ -438,11 +454,12 @@ export const Contact = () => {
 
               {/* Bottom: Live Clock */}
               <div className="pt-2.5 border-t border-zinc-200/80 flex items-center justify-between gap-2">
-                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider font-bold">
+                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider font-bold flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   ACTIVE TIME
                 </span>
-                <span className="font-mono text-xs sm:text-sm font-black text-emerald-600 group-hover:text-emerald-500 transition-colors flex-shrink-0">
-                  {hubTimes[hub.city] || "--:--:--"}
+                <span className="font-mono text-xs sm:text-sm font-black text-emerald-600 group-hover:text-emerald-500 transition-colors flex-shrink-0 tabular-nums">
+                  {mounted ? (hubTimes[hub.city] || hubTimes[hub.country] || getFormattedTime(hub.timezone)) : "--:--:--"}
                 </span>
               </div>
             </div>
