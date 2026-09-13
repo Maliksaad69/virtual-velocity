@@ -48,8 +48,9 @@ export const GSAPHeroTimeline = () => {
     if (!outer || !wrapper) return;
 
     // Initial: clip-path polygon gives the signature slanted/tilted quadrilateral shape
-    // Identical on both PC and mobile
+    // y: "-16vh" pulls the video significantly closer to the hero image, eliminating excessive empty space
     gsap.set(wrapper, {
+      y: "-16vh",
       width: "60%",
       height: "55vh",
       clipPath: "polygon(19.17% 0.96%, 88.5% 38.33%, 99.04% 99.04%, 0% 75.08%)",
@@ -58,14 +59,14 @@ export const GSAPHeroTimeline = () => {
     });
 
     // Pinned scroll timeline:
-    // 1. Video arrives in center and pins to viewport with GSAP pin: true
+    // 1. Video arrives and pins to viewport with GSAP pin: true
     // 2. Starts enlarging and becoming straight only once centered
     // 3. When about to complete, more scroll is required to complete so user stays on video
     // 4. Stays on full-screen straight video, then unpins cleanly with zero blank space
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: outer,
-        start: "top top",      // Pins when section fills viewport (video in center)
+        start: "top top",      // Pins when section fills viewport
         end: "+=120%",         // Scroll depth for the animation & hold
         pin: true,             // GSAP native pin
         pinSpacing: true,      // Automatically manages layout spacing, NO blank space
@@ -75,16 +76,19 @@ export const GSAPHeroTimeline = () => {
       },
     });
 
-    // Phase 1 (0% -> 12% scroll): Video rests in center as tilted quadrilateral before enlarging
+    // Phase 1 (0% -> 14% scroll): Video smoothly settles to y: 0 in center before enlarging
     tl.to(wrapper, {
+      y: 0,
       width: "60%",
       height: "55vh",
       clipPath: "polygon(19.17% 0.96%, 88.5% 38.33%, 99.04% 99.04%, 0% 75.08%)",
-      duration: 0.12,
+      ease: "power1.out",
+      duration: 0.14,
     });
 
-    // Phase 2 (12% -> 42% scroll): Starts enlarging & straightening toward 86% width
+    // Phase 2 (14% -> 44% scroll): Starts enlarging & straightening toward 86% width
     tl.to(wrapper, {
+      y: 0,
       width: "86%",
       height: "82vh",
       clipPath: "polygon(6% 0.3%, 96% 12%, 99.5% 99.5%, 0% 88%)",
@@ -92,14 +96,15 @@ export const GSAPHeroTimeline = () => {
       duration: 0.3,
     });
 
-    // Phase 3 (42% -> 88% scroll — 46% of total scroll distance!):
+    // Phase 3 (44% -> 88% scroll — 44% of total scroll distance!):
     // Stretches to full screen and straightens
     tl.to(wrapper, {
+      y: 0,
       width: "100%",
       height: "100vh",
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       ease: "power2.out",
-      duration: 0.46,
+      duration: 0.44,
     });
 
     // Phase 4 (88% -> 100% scroll): User stays on the video full screen and straight
@@ -121,11 +126,8 @@ export const GSAPHeroTimeline = () => {
   return (
     <section className="relative w-full bg-white select-none font-outfit">
 
-      {/* ─── Hero Banner Slider: Reduced height, complete uncropped photo on mobile, full-bleed on desktop ─── */}
-      <div
-        className="relative w-full overflow-hidden aspect-[16/8.5] sm:aspect-auto sm:h-[62vh] sm:min-h-[440px] sm:max-h-[600px]"
-        style={{ marginTop: "80px" }}
-      >
+      {/* ─── Hero Banner Slider: Full bleed under transparent header, increased internal height ─── */}
+      <div className="relative w-full overflow-hidden h-[50vh] min-h-[360px] sm:h-[64vh] sm:min-h-[480px] sm:max-h-[640px]">
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
             key={sliderIndex}
@@ -146,11 +148,14 @@ export const GSAPHeroTimeline = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Gradient overlay for readability */}
+        {/* Soft top gradient to ensure transparent header is crisp and readable */}
+        <div className="absolute inset-x-0 top-0 h-28 sm:h-32 bg-gradient-to-b from-white/60 via-white/15 to-transparent pointer-events-none z-10" />
+
+        {/* Bottom gradient overlay for headline readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none z-10" />
 
         {/* Hero Content (Badge, Headlines, Ticker, Indicators) - Directly ON the image */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-end px-3 xs:px-4 sm:px-8 lg:px-12 pb-3 xs:pb-4 sm:pb-8 lg:pb-10">
+        <div className="absolute inset-0 z-20 flex flex-col justify-end px-3 xs:px-4 sm:px-8 lg:px-12 pb-5 xs:pb-6 sm:pb-10 lg:pb-12">
           <div className="max-w-[1700px] mx-auto w-full">
             <div className="flex items-center gap-1.5 xs:gap-2 text-[9px] xs:text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400 font-extrabold mb-1 sm:mb-3">
               <Sparkles className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 text-emerald-400 animate-pulse" />
@@ -209,10 +214,11 @@ export const GSAPHeroTimeline = () => {
           ref={videoWrapperRef}
           className="relative overflow-hidden bg-zinc-950 shadow-2xl"
           style={{
+            transform: "translateY(-16vh)",
             width: "60%",
             height: "55vh",
             clipPath: "polygon(19.17% 0.96%, 88.5% 38.33%, 99.04% 99.04%, 0% 75.08%)",
-            willChange: "clip-path, width, height",
+            willChange: "clip-path, width, height, transform",
           }}
         >
           <video

@@ -34,12 +34,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-        className="absolute top-0 left-0 right-0 z-40 py-5 sm:py-7 bg-white border-b border-zinc-100"
-      >
+      <header className="absolute top-0 left-0 right-0 z-40 py-3 sm:py-4 bg-transparent">
         <div className="max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
           {/* Logo */}
           <Magnetic strength={0.25}>
@@ -152,7 +147,7 @@ export const Navigation = () => {
             <Menu className="w-7 h-7" />
           </button>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile & Tablet Editorial Menu Drawer */}
       <AnimatePresence>

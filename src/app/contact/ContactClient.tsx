@@ -34,7 +34,7 @@ export function ContactClient() {
         <CustomCursor />
         <Navigation />
 
-        <div className="pt-28 sm:pt-36 lg:pt-44 pb-6 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto">
+        <div className="pt-20 sm:pt-24 lg:pt-28 pb-6 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto">
           {/* Header */}
           <div className="gsap-contact-page-header space-y-4 sm:space-y-6 border-b border-zinc-200 pb-8 sm:pb-12">
             <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-2">

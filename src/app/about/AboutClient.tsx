@@ -35,7 +35,7 @@ export function AboutClient() {
         <CustomCursor />
         <Navigation />
 
-        <div className="pt-28 sm:pt-36 lg:pt-44 pb-16 sm:pb-28 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto space-y-20 sm:space-y-28">
+        <div className="pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-28 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto space-y-20 sm:space-y-28">
           {/* 1. Hero Header */}
           <div className="gsap-about-title space-y-6 border-b border-zinc-200 pb-10 sm:pb-14">
             <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-2">

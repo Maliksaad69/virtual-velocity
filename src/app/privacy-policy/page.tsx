@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
         <CustomCursor />
         <Navigation />
 
-        <div className="pt-36 pb-24 px-6 sm:px-12 max-w-4xl mx-auto space-y-12">
+        <div className="pt-20 sm:pt-24 pb-24 px-6 sm:px-12 max-w-4xl mx-auto space-y-12">
           <div className="space-y-4 border-b border-zinc-200 pb-8">
             <span className="text-meta text-zinc-900 uppercase tracking-widest block font-bold">
               {"//"} LEGAL COMPLIANCE
