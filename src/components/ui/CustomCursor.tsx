@@ -33,7 +33,6 @@ export const CustomCursor = () => {
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      if (document.body.classList.contains("is-scrolling")) return;
       const target = e.target as HTMLElement | null;
       if (!target) return;
 

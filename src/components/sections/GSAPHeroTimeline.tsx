@@ -54,6 +54,7 @@ export const GSAPHeroTimeline = () => {
       height: "55vh",
       clipPath: "polygon(19.17% 0.96%, 88.5% 38.33%, 99.04% 99.04%, 0% 75.08%)",
       borderRadius: "0px",
+      willChange: "transform, clip-path",
     });
 
     // Pinned scroll timeline:
@@ -69,7 +70,7 @@ export const GSAPHeroTimeline = () => {
         pin: true,             // GSAP native pin
         pinSpacing: true,      // Automatically manages layout spacing, NO blank space
         anticipatePin: 1,      // Prevents jump on fast scroll
-        scrub: 1.2,            // Smooth natural inertia
+        scrub: 0.5,            // Synchronous buttery response with Lenis
         invalidateOnRefresh: true,
       },
     });
@@ -120,9 +121,9 @@ export const GSAPHeroTimeline = () => {
   return (
     <section className="relative w-full bg-white select-none font-outfit">
 
-      {/* ─── Hero Banner Slider: Complete uncropped photo on mobile, full-bleed on desktop ─── */}
+      {/* ─── Hero Banner Slider: Reduced height, complete uncropped photo on mobile, full-bleed on desktop ─── */}
       <div
-        className="relative w-full overflow-hidden aspect-[16/8.5] sm:aspect-auto sm:min-h-[calc(100vh-80px)]"
+        className="relative w-full overflow-hidden aspect-[16/8.5] sm:aspect-auto sm:h-[62vh] sm:min-h-[440px] sm:max-h-[600px]"
         style={{ marginTop: "80px" }}
       >
         <AnimatePresence mode="popLayout" initial={false}>
@@ -149,19 +150,19 @@ export const GSAPHeroTimeline = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none z-10" />
 
         {/* Hero Content (Badge, Headlines, Ticker, Indicators) - Directly ON the image */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-end px-3 xs:px-4 sm:px-8 lg:px-12 pb-3 xs:pb-4 sm:pb-14">
+        <div className="absolute inset-0 z-20 flex flex-col justify-end px-3 xs:px-4 sm:px-8 lg:px-12 pb-3 xs:pb-4 sm:pb-8 lg:pb-10">
           <div className="max-w-[1700px] mx-auto w-full">
-            <div className="flex items-center gap-1.5 xs:gap-2 text-[9px] xs:text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400 font-extrabold mb-1 sm:mb-5">
+            <div className="flex items-center gap-1.5 xs:gap-2 text-[9px] xs:text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400 font-extrabold mb-1 sm:mb-3">
               <Sparkles className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 text-emerald-400 animate-pulse" />
               <span>VIRTUAL VELOCITY • DIGITAL &amp; GROWTH HOUSE</span>
             </div>
 
-            <h1 className="text-xl xs:text-2xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[5.2rem] font-black tracking-tighter text-white uppercase leading-none sm:leading-[0.92] drop-shadow-md sm:drop-shadow-lg">
+            <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter text-white uppercase leading-none sm:leading-[0.92] drop-shadow-md sm:drop-shadow-lg">
               LEADING FULL-SERVICE
             </h1>
 
-            <div className="mt-0.5 sm:mt-1.5 text-xl xs:text-2xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[5.2rem] font-black tracking-tighter uppercase leading-none">
-              <div className="relative h-[24px] xs:h-[28px] sm:h-[60px] md:h-[72px] lg:h-[88px] xl:h-[104px] overflow-hidden">
+            <div className="mt-0.5 sm:mt-1.5 text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter uppercase leading-none">
+              <div className="relative h-[24px] xs:h-[28px] sm:h-[48px] md:h-[60px] lg:h-[72px] xl:h-[84px] overflow-hidden">
                 <div
                   className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
@@ -172,7 +173,7 @@ export const GSAPHeroTimeline = () => {
                   {TICKER_ITEMS.map((item, idx) => (
                     <div
                       key={idx}
-                      className="h-[24px] xs:h-[28px] sm:h-[60px] md:h-[72px] lg:h-[88px] xl:h-[104px] flex items-center whitespace-nowrap"
+                      className="h-[24px] xs:h-[28px] sm:h-[48px] md:h-[60px] lg:h-[72px] xl:h-[84px] flex items-center whitespace-nowrap"
                     >
                       <span className="text-emerald-400 drop-shadow-md sm:drop-shadow-lg">
                         {item}
@@ -183,7 +184,7 @@ export const GSAPHeroTimeline = () => {
               </div>
             </div>
 
-            <div className="mt-2 sm:mt-8 flex items-center gap-1.5 sm:gap-2">
+            <div className="mt-2 sm:mt-4 flex items-center gap-1.5 sm:gap-2">
               {SLIDER_IMAGES.map((_, idx) => (
                 <button
                   key={idx}
