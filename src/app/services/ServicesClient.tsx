@@ -134,7 +134,7 @@ export function ServicesClient() {
 
           {/* Giant Display Title */}
           <div className="gsap-service-hero-title">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[6.5rem] font-black tracking-tighter text-zinc-950 uppercase leading-[0.88] select-none">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.5rem] font-black tracking-tighter text-zinc-950 uppercase leading-[0.88] select-none">
               SERVICES
             </h1>
           </div>

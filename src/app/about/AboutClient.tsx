@@ -42,7 +42,7 @@ export function AboutClient() {
               <Zap className="w-4 h-4 text-emerald-600" />
               AGENCY MANIFESTO &amp; CULTURE
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[6.5rem] font-outfit font-black text-zinc-900 tracking-tighter uppercase leading-[0.88] select-none">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.5rem] font-outfit font-black text-zinc-900 tracking-tighter uppercase leading-[0.88] select-none">
               <SplitTextReveal text="WE ARE VIRTUAL VELOCITY" highlightWords={["VELOCITY"]} accentColor="#00aeac" />
             </h1>
             <p className="text-base sm:text-2xl text-black max-w-3xl font-normal leading-relaxed">
@@ -153,11 +153,19 @@ export function AboutClient() {
                   Driving Attention, Culture &amp; <span className="text-emerald-600">Growth.</span>
                 </h2>
 
-                <p className="text-base sm:text-lg text-black font-normal leading-relaxed">
-                  {FOUNDER.bio}
-                </p>
+                {FOUNDER.bioParagraphs ? (
+                  FOUNDER.bioParagraphs.map((para, i) => (
+                    <p key={i} className="text-base sm:text-lg text-black font-normal leading-relaxed">
+                      {para}
+                    </p>
+                  ))
+                ) : (
+                  <p className="text-base sm:text-lg text-black font-normal leading-relaxed">
+                    {FOUNDER.bio}
+                  </p>
+                )}
 
-                <p className="text-sm sm:text-base text-black font-normal leading-relaxed">
+                <p className="text-base sm:text-lg text-black font-normal leading-relaxed">
                   {FOUNDER.vision}
                 </p>
 

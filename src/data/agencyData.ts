@@ -62,16 +62,22 @@ export interface Founder {
   image: string;
   bio: string;
   vision: string;
+  bioParagraphs?: string[];
   communities: { name: string; followers: string }[];
 }
 
 export const FOUNDER: Founder = {
   name: "Tauseef Alam",
   role: "Founder & Creative Director",
-  experience: "12+ Years",
+  experience: "Almost 12 Years",
   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
-  bio: "Tauseef Alam is a veteran digital brand strategist, publisher, and founder with over 12 years of hands-on experience in creative marketing, digital storytelling, and audience scale. He built and leads major cultural digital communities including Rawalpindians, Islamabad Insider, and Sirf Chai — with a collective reach exceeding 1 Million followers.",
-  vision: "Virtual Velocity was founded to bridge the divide between high-art creative direction and scalable digital performance engineering, helping brands move forward with measurable momentum.",
+  bio: "Tauseef Alam is a digital media and marketing professional with almost 12 years of experience in the industry.\n\nAs the founder of Virtual Velocity, his experience goes beyond traditional digital marketing. He has built and managed some of the most recognized digital communities in the region, including Rawalpindians, Islamabad Insider, and Sirf Chai platforms that have collectively grown to nearly a million followers.\n\nFrom building digital communities and growing brands to content, social media, marketing, strategy, and everything in between, Tauseef brings hands-on experience across the digital landscape.",
+  vision: "His vision for Virtual Velocity is simple: create work that gets noticed, builds brands, and actually moves businesses forward.",
+  bioParagraphs: [
+    "Tauseef Alam is a digital media and marketing professional with almost 12 years of experience in the industry.",
+    "As the founder of Virtual Velocity, his experience goes beyond traditional digital marketing. He has built and managed some of the most recognized digital communities in the region, including Rawalpindians, Islamabad Insider, and Sirf Chai platforms that have collectively grown to nearly a million followers.",
+    "From building digital communities and growing brands to content, social media, marketing, strategy, and everything in between, Tauseef brings hands-on experience across the digital landscape.",
+  ],
   communities: [
     { name: "Rawalpindians", followers: "450K+" },
     { name: "Islamabad Insider", followers: "380K+" },

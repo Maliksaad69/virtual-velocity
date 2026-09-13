@@ -102,9 +102,9 @@ export const GSAPScrollGallery = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`text-[11px] sm:text-xs font-outfit px-3.5 sm:px-4 py-2 rounded-full border transition-all duration-300 whitespace-nowrap min-h-[40px] flex items-center flex-shrink-0 ${
+                className={`text-[11px] sm:text-xs font-outfit font-extrabold px-3.5 sm:px-4 py-2 rounded-full border transition-all duration-300 whitespace-nowrap min-h-[40px] flex items-center flex-shrink-0 ${
                   activeCategory === cat
-                    ? "bg-emerald-600 border-emerald-600 text-white font-extrabold shadow-sm"
+                    ? "bg-emerald-600 border-emerald-600 text-white shadow-sm"
                     : "bg-emerald-50 border-emerald-200 text-zinc-800 hover:border-emerald-400"
                 }`}
               >

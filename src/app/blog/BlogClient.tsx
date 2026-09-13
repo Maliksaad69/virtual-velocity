@@ -63,7 +63,7 @@ export function BlogClient() {
               <Zap className="w-4 h-4 text-emerald-600" />
               THOUGHT LEADERSHIP &amp; ARTICLES
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[6.5rem] font-outfit font-black text-zinc-900 tracking-tighter uppercase leading-[0.88] select-none">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.5rem] font-outfit font-black text-zinc-900 tracking-tighter uppercase leading-[0.88] select-none">
               THE DIGITAL <span className="text-zinc-500">JOURNAL</span>
             </h1>
             <p className="text-base sm:text-2xl text-zinc-700 max-w-3xl font-light leading-relaxed">
