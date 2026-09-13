@@ -21,6 +21,7 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 import { About } from "@/components/sections/About";
 import { WhoWeAre } from "@/components/sections/WhoWeAre";
 import { BrandPhysicsBalls } from "@/components/sections/BrandPhysicsBalls";
+import { InstaReelsGallery } from "@/components/sections/InstaReelsGallery";
 
 export default function Home() {
   return (
@@ -53,7 +54,10 @@ export default function Home() {
         {/* Brand Physics Balls Drop */}
         <BrandPhysicsBalls />
 
-        {/* 6. Client Testimonials */}
+        {/* 6. Instagram Reels & Social Media Gallery */}
+        <InstaReelsGallery />
+
+        {/* 7. Client Testimonials */}
         <EditorialTestimonials />
 
         {/* 10. Project Estimator & Contact Form */}
