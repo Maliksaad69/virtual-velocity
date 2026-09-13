@@ -117,7 +117,7 @@ export const LightStatsSection = () => {
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-zinc-600 max-w-md font-normal leading-relaxed">
+          <p className="text-xs sm:text-sm text-black max-w-md font-medium leading-relaxed">
             We deliver data-backed outcomes across e-commerce growth, technical SEO scaling, paid search return, and custom web engineering.
           </p>
         </div>
@@ -129,20 +129,20 @@ export const LightStatsSection = () => {
               key={idx}
               className="gsap-stats-card p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200 space-y-3 hover:border-zinc-900 transition-colors shadow-xs"
             >
-              <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-zinc-500 font-semibold">
+              <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-black font-bold">
                 <span>0{idx + 1} {"//"} METRIC</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-zinc-700" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-black" />
               </div>
 
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black tracking-tight text-zinc-900">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black tracking-tight text-black">
                 <AnimatedCounter rawValue={stat.value} />
               </div>
 
               <div className="space-y-0.5 pt-2.5 border-t border-zinc-200">
-                <h3 className="font-outfit font-bold text-xs uppercase text-zinc-900 tracking-wide">
+                <h3 className="font-outfit font-bold text-xs uppercase text-black tracking-wide">
                   {stat.label}
                 </h3>
-                <p className="text-[11px] sm:text-xs text-zinc-600 font-normal leading-relaxed">
+                <p className="text-[11px] sm:text-xs text-black font-medium leading-relaxed">
                   {stat.detail}
                 </p>
               </div>

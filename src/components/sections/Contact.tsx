@@ -36,38 +36,33 @@ const HEAR_ABOUT_OPTIONS = [
 const REGIONAL_HUBS = [
   {
     flag: "🇺🇸",
-    country: "US",
+    country: "United States",
     city: "Washington, D.C.",
     timezone: "America/New_York",
-    label: "EST / EDT",
   },
   {
     flag: "🇬🇧",
-    country: "UK",
+    country: "United Kingdom",
     city: "London",
     timezone: "Europe/London",
-    label: "GMT / BST",
   },
   {
     flag: "🇫🇷",
     country: "France",
     city: "Paris",
     timezone: "Europe/Paris",
-    label: "CET / CEST",
   },
   {
     flag: "🇯🇵",
     country: "Japan",
     city: "Tokyo",
     timezone: "Asia/Tokyo",
-    label: "JST",
   },
   {
     flag: "🇵🇰",
     country: "Pakistan",
     city: "Islamabad",
     timezone: "Asia/Karachi",
-    label: "PKT",
   },
 ];
 
@@ -212,28 +207,30 @@ export const Contact = () => {
               {REGIONAL_HUBS.map((hub) => (
                 <div
                   key={hub.city}
-                  className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-300 transition-all flex items-center justify-between gap-3 shadow-xs group"
+                  className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-300 transition-all shadow-xs group"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className="text-xl sm:text-2xl flex-shrink-0" role="img" aria-label={hub.country}>
+                  <div className="flex items-start gap-3 min-w-0">
+                    <span className="text-xl sm:text-2xl flex-shrink-0 mt-0.5" role="img" aria-label={hub.country}>
                       {hub.flag}
                     </span>
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-1.5 font-outfit font-extrabold text-zinc-900 text-xs sm:text-sm truncate">
-                        <span>{hub.country}</span>
-                        <span className="text-zinc-400 font-normal">—</span>
-                        <span className="text-zinc-700 font-semibold">{hub.city}</span>
-                      </div>
-                      <span className="text-[10px] font-mono text-zinc-500 block">
-                        {hub.label}
+                    <div className="flex-1 min-w-0">
+                      {/* Country Name */}
+                      <span className="font-outfit font-black text-black text-xs sm:text-sm tracking-tight block truncate">
+                        {hub.country}
                       </span>
-                    </div>
-                  </div>
 
-                  <div className="text-right flex-shrink-0">
-                    <span className="font-mono text-xs sm:text-sm font-black text-emerald-600 tracking-tight block group-hover:text-emerald-500 transition-colors">
-                      {hubTimes[hub.city] || "--:--:--"}
-                    </span>
+                      {/* Capital below with Standard Time in front of it */}
+                      <div className="flex items-center justify-between gap-2 mt-0.5">
+                        <span className="text-[11px] sm:text-xs font-outfit font-semibold text-zinc-700 truncate">
+                          {hub.city}
+                        </span>
+                        <div className="flex items-center flex-shrink-0 text-right">
+                          <span className="font-mono text-xs sm:text-sm font-black text-emerald-600 group-hover:text-emerald-500 transition-colors">
+                            {hubTimes[hub.city] || "--:--:--"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -260,7 +257,7 @@ export const Contact = () => {
               <h3 className="text-2xl sm:text-3xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
                 INQUIRY TRANSMITTED
               </h3>
-              <p className="text-zinc-700 max-w-md mx-auto text-sm font-light leading-relaxed">
+              <p className="text-black max-w-md mx-auto text-sm font-normal leading-relaxed">
                 Thank you {formData.name}. Our team in Wilmington &amp; Lahore has received your request and will respond within 12 hours.
               </p>
               <button

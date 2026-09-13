@@ -91,7 +91,7 @@ export const WhoWeAre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-            className="lg:col-span-7 text-lg sm:text-2xl lg:text-3xl font-light text-zinc-800 leading-[1.6] sm:leading-[1.55]"
+            className="lg:col-span-7 text-lg sm:text-2xl lg:text-3xl font-normal text-black leading-[1.6] sm:leading-[1.55]"
           >
             We are a creative house built for brands that want to be{" "}
             <span className="font-black text-emerald-600">seen</span>,{" "}
@@ -106,7 +106,7 @@ export const WhoWeAre = () => {
             transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
             className="lg:col-span-5"
           >
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-zinc-500 block mb-3 sm:mb-4">
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-black font-bold block mb-3 sm:mb-4">
               What we bring together
             </span>
             <ul>
@@ -118,7 +118,7 @@ export const WhoWeAre = () => {
                   } hover:pl-2 transition-all duration-300`}
                 >
                   <span className="text-xs font-mono font-bold text-emerald-600">{d.number}</span>
-                  <span className="text-sm sm:text-base font-extrabold uppercase tracking-tight text-zinc-900 group-hover:text-emerald-700 transition-colors duration-300">
+                  <span className="text-sm sm:text-base font-extrabold uppercase tracking-tight text-black group-hover:text-emerald-700 transition-colors duration-300">
                     {d.label}
                   </span>
                 </li>
@@ -134,7 +134,7 @@ export const WhoWeAre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-            className="lg:col-span-7 text-sm sm:text-lg text-zinc-700 font-normal leading-relaxed sm:leading-[1.85]"
+            className="lg:col-span-7 text-sm sm:text-lg text-black font-normal leading-relaxed sm:leading-[1.85]"
           >
             From strategy and creative direction to content, social media, campaigns, and brand
             storytelling, we bring every element together to build brands with a distinct voice and

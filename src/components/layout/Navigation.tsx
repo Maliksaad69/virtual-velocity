@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { Magnetic } from "@/components/ui/Magnetic";
 
 const NAV_LINKS = [
+  { label: "HOME", href: "/", id: "00" },
   { label: "ABOUT", href: "/about", id: "01" },
   { label: "SERVICES", href: "/services", id: "02" },
   { label: "BLOG", href: "/blog", id: "03" },
@@ -90,7 +91,7 @@ export const Navigation = () => {
           </Magnetic>
 
           {/* Desktop Nav Links (≥1024px) */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-5">
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -101,9 +102,7 @@ export const Navigation = () => {
                       isActive ? "text-zinc-950 font-bold" : "text-zinc-700 hover:text-emerald-600"
                     }`}
                   >
-                    <span className="text-[10px] text-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mr-1">
-                      [{link.id}]
-                    </span>
+
                     <span className="relative inline-block">
                       {link.label}
                       <span
@@ -226,9 +225,7 @@ export const Navigation = () => {
                         <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-emerald-600 rounded-full" />
                       )}
                     </span>
-                    <span className="text-xs font-outfit text-emerald-600 font-bold">
-                      {link.id}
-                    </span>
+
                   </Link>
                 </motion.div>
               ))}

@@ -41,7 +41,7 @@ export function ContactClient() {
               <Zap className="w-4 h-4 text-emerald-600" />
               START A CONVERSATION
             </span>
-            <h1 className="text-4xl sm:text-7xl lg:text-8xl font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.92] sm:leading-[0.9]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[6.5rem] font-outfit font-black text-zinc-900 tracking-tighter uppercase leading-[0.88] select-none">
               <SplitTextReveal text="INITIATE PROJECT" highlightWords={["PROJECT"]} accentColor="#00aeac" />
             </h1>
             <p className="text-sm sm:text-xl lg:text-2xl text-zinc-700 max-w-3xl font-light leading-relaxed">

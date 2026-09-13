@@ -134,7 +134,7 @@ export function ServicesClient() {
 
           {/* Giant Display Title */}
           <div className="gsap-service-hero-title">
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.5rem] font-black tracking-tighter text-zinc-950 uppercase leading-[0.88] select-none">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[6.5rem] font-black tracking-tighter text-zinc-950 uppercase leading-[0.88] select-none">
               SERVICES
             </h1>
           </div>
@@ -149,7 +149,7 @@ export function ServicesClient() {
                 </span>
               </div>
               <p className="text-xs sm:text-sm font-mono text-zinc-600 uppercase tracking-wider">
-                WILMINGTON, USA • LAHORE, PK • GLOBAL CLIENTS
+                WILMINGTON, UNITED STATES • LAHORE, PAKISTAN • GLOBAL CLIENTS
               </p>
             </div>
 
@@ -157,7 +157,7 @@ export function ServicesClient() {
               <p className="text-xl sm:text-3xl lg:text-4xl text-zinc-900 font-black tracking-tight leading-[1.2] uppercase">
                 We engineer high-converting <span className="text-emerald-600">performance marketing</span> systems, bespoke e-commerce platforms, and visual brand identities built to accelerate revenue.
               </p>
-              <p className="text-sm sm:text-base lg:text-lg text-zinc-600 font-normal leading-relaxed max-w-3xl">
+              <p className="text-sm sm:text-base lg:text-lg text-black font-normal leading-relaxed max-w-3xl">
                 Every service at Virtual Velocity is built with measurable business outcomes at its core: zero vanity metrics, zero cookie-cutter templates, and absolute transparency in performance engineering.
               </p>
             </div>
@@ -192,10 +192,10 @@ export function ServicesClient() {
                       {/* Middle: Title, Narrative, Deliverables & Tech Stack */}
                       <div className="lg:col-span-6 space-y-3.5">
                         <div>
-                          <h2 className="text-xl sm:text-2xl lg:text-3xl font-outfit font-black text-zinc-950 uppercase tracking-tight group-hover:text-emerald-600 transition-colors duration-300">
+                          <h2 className="text-xl sm:text-2xl lg:text-3xl font-outfit font-black text-black uppercase tracking-tight group-hover:text-emerald-600 transition-colors duration-300">
                             {service.title}
                           </h2>
-                          <p className="mt-2 text-xs sm:text-sm text-zinc-700 font-normal leading-relaxed">
+                          <p className="mt-2 text-xs sm:text-sm text-black font-normal leading-relaxed">
                             {service.description}
                           </p>
                         </div>
@@ -288,7 +288,7 @@ export function ServicesClient() {
                 <span className="text-emerald-600">PREDICTABLE GROWTH</span>
               </h2>
             </div>
-            <p className="mt-3 md:mt-0 text-xs sm:text-base text-zinc-700 max-w-md font-light leading-relaxed">
+            <p className="mt-3 md:mt-0 text-xs sm:text-base text-black max-w-md font-normal leading-relaxed">
               Our 4-stage deployment framework ensures every marketing dollar and line of code translates into measurable top-line scale.
             </p>
           </div>
@@ -304,10 +304,10 @@ export function ServicesClient() {
                   <span className="block text-3xl sm:text-4xl lg:text-5xl font-mono font-black text-emerald-600/60 group-hover:text-emerald-600 transition-colors mb-2.5 sm:mb-4 lg:mb-6">
                     {step.step}
                   </span>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-zinc-950 uppercase tracking-tight mb-1.5 sm:mb-2 lg:mb-3">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-black uppercase tracking-tight mb-1.5 sm:mb-2 lg:mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-700 leading-normal sm:leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-black leading-normal sm:leading-relaxed font-normal">
                     {step.description}
                   </p>
                 </div>

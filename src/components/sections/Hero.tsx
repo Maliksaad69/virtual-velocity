@@ -31,7 +31,7 @@ export const Hero = () => {
           <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 animate-pulse" />
           <span className="font-semibold text-zinc-900 hidden sm:inline">GLOBAL OPERATIONS</span>
           <span className="inline sm:hidden">•</span>
-          <span className="font-semibold text-zinc-900">USA & PAKISTAN</span>
+          <span className="font-semibold text-zinc-900">UNITED STATES & PAKISTAN</span>
         </div>
 
         <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono text-zinc-900 font-bold">

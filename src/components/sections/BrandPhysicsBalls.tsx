@@ -282,7 +282,7 @@ export const BrandPhysicsBalls = () => {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black text-zinc-950 uppercase tracking-tight leading-none">
           Trusted by <span className="text-emerald-600">Ambitious Brands.</span>
         </h2>
-        <p className="mt-2 text-xs sm:text-sm text-zinc-600 max-w-xl font-light leading-relaxed">
+        <p className="mt-2 text-xs sm:text-sm text-black max-w-xl font-normal leading-relaxed">
           From high-growth scaleups to international enterprises, we engineer measurable momentum for brands worldwide.
         </p>
       </div>
@@ -290,7 +290,7 @@ export const BrandPhysicsBalls = () => {
       {/* Compact Interactive Physics Arena Box */}
       <div
         ref={containerRef}
-        className="relative w-full h-[260px] sm:h-[320px] lg:h-[360px] rounded-3xl overflow-hidden border-2 border-zinc-200 bg-gradient-to-b from-zinc-50/70 via-white to-zinc-100/90 shadow-inner"
+        className="relative w-full h-[210px] sm:h-[260px] lg:h-[290px] rounded-3xl overflow-hidden border-2 border-zinc-200 bg-gradient-to-b from-zinc-50/70 via-white to-zinc-100/90 shadow-inner"
         style={{ touchAction: "pan-y" }}
       >
         {/* Subtle decorative grid backdrop */}
@@ -304,7 +304,7 @@ export const BrandPhysicsBalls = () => {
 
         {/* Scaled watermark */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] select-none">
-          <span className="font-outfit font-black text-5xl sm:text-7xl lg:text-8xl tracking-tighter uppercase text-zinc-900">
+          <span className="font-outfit font-black text-4xl sm:text-6xl lg:text-7xl tracking-tighter uppercase text-zinc-900">
             VELOCITY
           </span>
         </div>

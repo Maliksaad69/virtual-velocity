@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Virtual Velocity is a full-service digital marketing & creative strategy agency scaling client revenue across global hubs.",
   openGraph: {
     title: "About Virtual Velocity | Performance Marketing Agency",
-    description: "Learn about Virtual Velocity's manifesto, leadership team, and global operational hubs in the US & PK.",
+    description: "Learn about Virtual Velocity's manifesto, leadership team, and global operational hubs in the United States & Pakistan.",
   },
 };
 

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Schedule a digital marketing consultation or propose a campaign with Virtual Velocity. Guaranteed 12-hour response time.",
   openGraph: {
     title: "Contact & Proposal Inquiry | Virtual Velocity",
-    description: "Get in touch with our marketing strategists in Wilmington, DE and Lahore, PK.",
+    description: "Get in touch with our marketing strategists in Wilmington, DE and Lahore, Pakistan.",
   },
 };
 

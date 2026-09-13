@@ -177,7 +177,7 @@ export const GSAPScrollGallery = () => {
                   {project.title}
                 </h3>
 
-                <p className="text-sm text-zinc-700 font-light leading-relaxed line-clamp-3">
+                <p className="text-sm text-black font-normal leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 

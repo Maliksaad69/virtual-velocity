@@ -86,14 +86,14 @@ export const AGENCY_INFO = {
   founder: FOUNDER,
   offices: [
     {
-      city: "WILMINGTON, DE (USA)",
+      city: "WILMINGTON, UNITED STATES",
       address: "1209 North Orange St, Suite 400, Wilmington, DE 19801",
       phone: "+1 (800) 555-0199",
       email: "us@virtualvelocity.agency",
       timezone: "America/New_York",
     },
     {
-      city: "LAHORE, PK",
+      city: "LAHORE, PAKISTAN",
       address: "Commercial Zone, Phase 5 DHA, Lahore 54000",
       phone: "+92 (42) 3555-0199",
       email: "pk@virtualvelocity.agency",
@@ -453,7 +453,7 @@ export const BLOG_POSTS: BlogPost[] = [
 ];
 
 export const STATS = [
-  { label: "CAMPAIGNS MANAGED", value: "240+", note: "Google, Meta & SEO", detail: "Executed across US & international markets" },
+  { label: "CAMPAIGNS MANAGED", value: "240+", note: "Google, Meta & SEO", detail: "Executed across United States & international markets" },
   { label: "AVERAGE ROAS GENERATED", value: "4.8x", note: "Across PPC & Social", detail: "Measured across Google & Meta campaigns" },
   { label: "ORGANIC TRAFFIC GROWTH", value: "320%", note: "Client Average", detail: "Technical SEO & content hub scaling" },
   { label: "CLIENT RETENTION RATE", value: "98%", note: "Long-Term Partnerships", detail: "Multi-year retainers & strategy support" },

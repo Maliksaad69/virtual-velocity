@@ -134,7 +134,7 @@ export const Footer = () => {
 
             <div className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white tracking-wide">
               <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
-              <span>US &amp; PK full-service offices</span>
+              <span>United States &amp; Pakistan full-service offices</span>
             </div>
 
             <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-1">

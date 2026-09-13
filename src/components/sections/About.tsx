@@ -106,30 +106,30 @@ export const About = () => {
         >
           {/* Narrative text */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-            <p className="text-base sm:text-xl lg:text-2xl text-zinc-800 font-light leading-[1.7] sm:leading-[1.8]">
-              <span className="text-zinc-900 font-bold first-letter:text-3xl sm:first-letter:text-5xl first-letter:font-black first-letter:mr-1 first-letter:float-left first-letter:leading-none first-letter:text-emerald-600">
+            <p className="text-base sm:text-xl lg:text-2xl text-black font-normal leading-[1.7] sm:leading-[1.8]">
+              <span className="text-black font-black first-letter:text-3xl sm:first-letter:text-5xl first-letter:font-black first-letter:mr-1 first-letter:float-left first-letter:leading-none first-letter:text-emerald-600">
                 Virtual Velocity
               </span>{" "}
-              is a full-stack digital marketing & creative technology agency specializing in performance-driven growth for ambitious brands. We engineer revenue pipelines through high-converting Google Ads PPC campaigns, razor-sharp technical SEO, emotionally resonant creative content, and always-on paid social machines.
+              is a full-stack digital marketing &amp; creative technology agency specializing in performance-driven growth for ambitious brands. We engineer revenue pipelines through high-converting Google Ads PPC campaigns, razor-sharp technical SEO, emotionally resonant creative content, and always-on paid social machines.
             </p>
 
-            <p className="text-sm sm:text-lg text-zinc-700 font-normal leading-relaxed sm:leading-[1.85]">
+            <p className="text-sm sm:text-lg text-black font-normal leading-relaxed sm:leading-[1.85]">
               We operate as an embedded extension of your growth team — not a detached vendor. Every dollar of media spend is accounted for, every keyword is audited, and every creative iteration is measured against a clear north-star metric. Our clients see measurable, compounding returns because our work is rooted in engineering, not guesswork.
             </p>
 
-            <p className="text-sm sm:text-lg text-zinc-700 font-normal leading-relaxed sm:leading-[1.85]">
+            <p className="text-sm sm:text-lg text-black font-normal leading-relaxed sm:leading-[1.85]">
               From direct-to-consumer e-commerce and real estate to QSR chains, fintech platforms, and premium hospitality — our playbooks adapt, our creatives iterate, and our performance compounds.
             </p>
 
             <div className="pt-3 flex flex-wrap items-center gap-4 sm:gap-6">
               <div className="flex items-baseline gap-2">
                 <span className="text-2xl sm:text-4xl font-black text-emerald-600 font-mono">140+</span>
-                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-zinc-700 pb-0.5">Campaigns Launched</span>
+                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-black font-bold pb-0.5">Campaigns Launched</span>
               </div>
               <div className="w-px h-8 sm:h-10 bg-zinc-200" />
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl sm:text-4xl font-black text-zinc-900 font-mono">4.8x</span>
-                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-zinc-700 pb-0.5">Avg. Client ROAS</span>
+                <span className="text-2xl sm:text-4xl font-black text-black font-mono">4.8x</span>
+                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-black font-bold pb-0.5">Avg. Client ROAS</span>
               </div>
             </div>
           </div>
@@ -149,10 +149,10 @@ export const About = () => {
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 bg-emerald-200 pointer-events-none" />
                   <p.icon className={`w-5 h-5 sm:w-6 sm:h-6 mb-2.5 ${p.accent}`} />
-                  <h4 className="text-sm sm:text-[15px] font-bold text-zinc-900 mb-1 tracking-tight leading-snug">
+                  <h4 className="text-sm sm:text-[15px] font-bold text-black mb-1 tracking-tight leading-snug">
                     {p.label}
                   </h4>
-                  <p className="text-[12px] sm:text-[13px] text-zinc-700 leading-relaxed">
+                  <p className="text-[12px] sm:text-[13px] text-black font-normal leading-relaxed">
                     {p.desc}
                   </p>
                 </motion.div>
@@ -170,18 +170,18 @@ export const About = () => {
               </div>
               <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4 relative z-10">
                 <div className="space-y-0.5 p-3 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm">
-                  <span className="text-[9px] font-mono text-emerald-50/80 block uppercase tracking-widest">Wilmington, US</span>
+                  <span className="text-[9px] font-mono text-emerald-50/80 block uppercase tracking-widest">Wilmington, United States</span>
                   <span className="text-xl sm:text-2xl lg:text-3xl font-outfit font-black text-white tracking-tight block">
                     {times.wilmington || "00:00"}
                   </span>
-                  <span className="text-[9px] font-mono text-emerald-100 block uppercase">EST • HQ</span>
+                  <span className="text-[9px] font-mono text-emerald-100 block uppercase">HQ • Global Operations</span>
                 </div>
                 <div className="space-y-0.5 p-3 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm">
-                  <span className="text-[9px] font-mono text-emerald-50/80 block uppercase tracking-widest">Lahore, PK</span>
+                  <span className="text-[9px] font-mono text-emerald-50/80 block uppercase tracking-widest">Lahore, Pakistan</span>
                   <span className="text-xl sm:text-2xl lg:text-3xl font-outfit font-black text-white tracking-tight block">
                     {times.lahore || "00:00"}
                   </span>
-                  <span className="text-[9px] font-mono text-emerald-100 block uppercase">PKT • Delivery</span>
+                  <span className="text-[9px] font-mono text-emerald-100 block uppercase">Delivery • Production</span>
                 </div>
               </div>
               <div className="flex items-center justify-between mt-4 pt-3 border-t border-white/15 text-[10px] font-mono uppercase tracking-widest text-emerald-100/80 relative z-10">

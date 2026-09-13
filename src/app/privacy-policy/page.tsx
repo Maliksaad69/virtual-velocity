@@ -6,7 +6,7 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Virtual Velocity Privacy Policy and Data Protection Framework across US & PK hubs.",
+  description: "Virtual Velocity Privacy Policy and Data Protection Framework across United States & Pakistan hubs.",
 };
 
 export default function PrivacyPolicyPage() {
