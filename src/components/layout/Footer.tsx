@@ -20,10 +20,12 @@ import { Magnetic } from "@/components/ui/Magnetic";
 import { AGENCY_INFO } from "@/data/agencyData";
 
 const SOCIALS = [
-  { label: "BEHANCE", href: "https://behance.net" },
-  { label: "LINKEDIN", href: "https://linkedin.com" },
-  { label: "INSTAGRAM", href: "https://instagram.com" },
-  { label: "X / TWITTER", href: "https://twitter.com" },
+  { label: "BEHANCE", href: "https://www.behance.net/thevirtualvelocity" },
+  { label: "LINKEDIN", href: "https://www.linkedin.com/company/virtualvelocitypk/" },
+  { label: "FACEBOOK", href: "https://www.facebook.com/virtualvelocitypk/" },
+  { label: "INSTAGRAM", href: "https://www.instagram.com/virtualvelocity_/" },
+  { label: "TIKTOK", href: "https://www.tiktok.com/@virtualvelocitypk" },
+  { label: "PINTEREST", href: "https://www.pinterest.com/thevirtualvelocity/" },
 ];
 
 const NAV_LINKS = [
