@@ -104,45 +104,45 @@ export const LightStatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-12 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 border-y border-zinc-200 relative overflow-hidden">
-      <div className="max-w-[1700px] mx-auto space-y-12 sm:space-y-16">
+    <section ref={sectionRef} className="py-10 sm:py-14 lg:py-16 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 border-y border-zinc-200 relative overflow-hidden">
+      <div className="max-w-[1700px] mx-auto space-y-8 sm:space-y-10">
         {/* Header */}
-        <div className="gsap-stats-header flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 border-b border-zinc-300 pb-8 sm:pb-12">
-          <div className="space-y-3">
-            <span className="text-xs font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-1.5">
+        <div className="gsap-stats-header flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-zinc-300 pb-5 sm:pb-6">
+          <div className="space-y-2">
+            <span className="text-[11px] font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-emerald-600" /> MEASURABLE AGENCY IMPACT
             </span>
-            <h2 className="text-3xl sm:text-6xl lg:text-7xl font-outfit font-black uppercase tracking-tighter leading-[0.9]">
-              PROVEN RESULTS <span className="text-emerald-600 font-black">& METRICS</span>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-outfit font-black uppercase tracking-tighter leading-[0.95]">
+              PROVEN RESULTS <span className="text-emerald-600 font-black">&amp; METRICS</span>
             </h2>
           </div>
 
-          <p className="text-sm text-zinc-700 max-w-md font-light leading-relaxed">
+          <p className="text-xs sm:text-sm text-zinc-600 max-w-md font-normal leading-relaxed">
             We deliver data-backed outcomes across e-commerce growth, technical SEO scaling, paid search return, and custom web engineering.
           </p>
         </div>
 
-        {/* Stats 4-Column Grid - Animated Counters */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        {/* Stats 4-Column Grid - Compact Animated Counters */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
           {STATS.map((stat, idx) => (
             <div
               key={idx}
-              className="gsap-stats-card p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-zinc-50 border border-zinc-200 space-y-4 hover:border-zinc-900 transition-colors"
+              className="gsap-stats-card p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200 space-y-3 hover:border-zinc-900 transition-colors shadow-xs"
             >
-              <div className="flex items-center justify-between font-mono text-xs text-zinc-700">
+              <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-zinc-500 font-semibold">
                 <span>0{idx + 1} {"//"} METRIC</span>
-                <ArrowUpRight className="w-4 h-4 text-zinc-900" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-zinc-700" />
               </div>
 
-              <div className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-outfit font-black tracking-tighter text-zinc-900">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black tracking-tight text-zinc-900">
                 <AnimatedCounter rawValue={stat.value} />
               </div>
 
-              <div className="space-y-1 pt-4 border-t border-zinc-200">
-                <h3 className="font-outfit font-extrabold text-sm uppercase text-zinc-900">
+              <div className="space-y-0.5 pt-2.5 border-t border-zinc-200">
+                <h3 className="font-outfit font-bold text-xs uppercase text-zinc-900 tracking-wide">
                   {stat.label}
                 </h3>
-                <p className="text-xs text-zinc-700 font-light leading-snug">
+                <p className="text-[11px] sm:text-xs text-zinc-600 font-normal leading-relaxed">
                   {stat.detail}
                 </p>
               </div>

@@ -15,23 +15,23 @@ const DISCIPLINES = [
 /* Single run of the bottom ticker — rendered twice for a seamless -50% loop
    driven by the existing `animate-marquee-left` keyframes in globals.css */
 const TickerRun = () => (
-  <div className="flex shrink-0 items-center gap-4 sm:gap-10 pr-4 sm:pr-10">
-    <span className="font-black text-xl sm:text-4xl uppercase tracking-tighter text-zinc-950">
+  <div className="flex shrink-0 items-center gap-3 sm:gap-6 pr-3 sm:pr-6">
+    <span className="font-black text-sm sm:text-lg uppercase tracking-tighter text-zinc-950">
       Virtual Velocity
     </span>
-    <span className="font-mono text-lg sm:text-3xl text-emerald-600">/</span>
+    <span className="font-mono text-xs sm:text-base text-emerald-600">/</span>
     {["Creative", "Strategy", "Growth"].map((word, i) => (
-      <div key={word} className="flex items-center gap-4 sm:gap-10">
-        {i > 0 && <span className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-600" />}
+      <div key={word} className="flex items-center gap-3 sm:gap-6">
+        {i > 0 && <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-600" />}
         <span
-          className="font-black text-xl sm:text-4xl uppercase tracking-tighter text-transparent"
-          style={{ WebkitTextStroke: "1.2px rgba(24, 24, 27, 0.35)" }}
+          className="font-black text-sm sm:text-lg uppercase tracking-tighter text-transparent"
+          style={{ WebkitTextStroke: "1px rgba(24, 24, 27, 0.35)" }}
         >
           {word}
         </span>
       </div>
     ))}
-    <span className="font-mono text-lg sm:text-3xl text-emerald-600">✦</span>
+    <span className="font-mono text-xs sm:text-base text-emerald-600">✦</span>
   </div>
 );
 
@@ -164,7 +164,7 @@ export const WhoWeAre = () => {
       {/* Bottom ticker strip */}
       <div
         aria-hidden="true"
-        className="relative z-10 border-t border-zinc-200 bg-zinc-50 hover-marquee overflow-hidden whitespace-nowrap py-4 sm:py-5"
+        className="relative z-10 border-t border-zinc-200 bg-zinc-50 hover-marquee overflow-hidden whitespace-nowrap py-2 sm:py-2.5"
       >
         <div className="animate-marquee-left flex items-center">
           <TickerRun />

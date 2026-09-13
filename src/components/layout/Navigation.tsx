@@ -49,8 +49,8 @@ export const Navigation = () => {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled
-            ? "py-3 sm:py-4 bg-white/90 backdrop-blur-xl border-b border-zinc-200/80 shadow-sm"
-            : "py-5 sm:py-8 bg-transparent"
+            ? "py-3 sm:py-4 bg-white/95 backdrop-blur-xl border-b border-zinc-200/80 shadow-sm"
+            : "py-5 sm:py-8 bg-white border-b border-zinc-100"
         }`}
       >
         <div className="max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">

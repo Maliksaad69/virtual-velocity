@@ -50,6 +50,11 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
     };
 
     gsap.ticker.add(updateTicker);
+    // Critical: disable GSAP lag-smoothing so it doesn't fight with Lenis RAF
+    gsap.ticker.lagSmoothing(0);
+
+    // Recalculate all ScrollTrigger positions after Lenis initialises
+    ScrollTrigger.refresh();
 
     return () => {
       clearTimeout(scrollTimeout);

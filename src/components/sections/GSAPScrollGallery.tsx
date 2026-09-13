@@ -139,13 +139,13 @@ export const GSAPScrollGallery = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Category Badge */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="text-[10px] sm:text-xs font-outfit font-extrabold text-white bg-emerald-600/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-emerald-500 shadow-lg flex items-center gap-1.5">
-                    <BarChart2 className="w-3 h-3" />
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-1.5 z-10">
+                  <span className="text-[9px] sm:text-[10px] font-outfit font-extrabold text-white bg-emerald-600/90 backdrop-blur-md px-2 sm:px-2.5 py-1 rounded-full border border-emerald-500 shadow-md flex items-center gap-1 flex-shrink-0 whitespace-nowrap">
+                    <BarChart2 className="w-2.5 h-2.5 flex-shrink-0" />
                     PROJECT {project.number}
-                    <span className="hidden sm:inline">• {project.year}</span>
+                    <span className="hidden md:inline">• {project.year}</span>
                   </span>
-                  <span className="text-[10px] font-outfit text-white bg-zinc-950/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-zinc-800 uppercase tracking-wider font-extrabold">
+                  <span className="text-[8.5px] sm:text-[9.5px] font-outfit text-white bg-zinc-950/90 backdrop-blur-md px-2 sm:px-2.5 py-1 rounded-full border border-zinc-800 uppercase tracking-wide font-extrabold flex-shrink-0 whitespace-nowrap">
                     {project.industry}
                   </span>
                 </div>
@@ -153,7 +153,7 @@ export const GSAPScrollGallery = () => {
                 {/* Results */}
                 <div className="absolute bottom-4 left-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-2 group-hover:translate-y-0">
                   <div className="flex flex-wrap gap-2">
-                    {project.results.slice(0, 2).map((res, i) => (
+                    {project.results?.slice(0, 2).map((res, i) => (
                       <div
                         key={i}
                         className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-outfit text-white bg-emerald-600/90 backdrop-blur-md px-2.5 py-1 rounded-xl border border-emerald-500 font-extrabold"
@@ -162,9 +162,9 @@ export const GSAPScrollGallery = () => {
                         <span>{res}</span>
                       </div>
                     ))}
-                    {project.results.length > 2 && (
+                    {(project.results?.length ?? 0) > 2 && (
                       <span className="text-[10px] sm:text-xs font-outfit text-white/80 bg-zinc-950/80 backdrop-blur-md px-2.5 py-1 rounded-xl border border-zinc-700">
-                        +{project.results.length - 2} more
+                        +{(project.results?.length ?? 0) - 2} more
                       </span>
                     )}
                   </div>
@@ -172,8 +172,8 @@ export const GSAPScrollGallery = () => {
               </div>
 
               {/* Content */}
-              <div className="p-5 sm:p-6 flex flex-col flex-1 space-y-4">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-outfit font-black text-zinc-950 group-hover:text-emerald-600 transition-colors duration-300 uppercase tracking-tight leading-[1.1]">
+              <div className="p-5 sm:p-6 flex flex-col flex-1 space-y-3 sm:space-y-4">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-zinc-950 group-hover:text-emerald-600 transition-colors duration-300 uppercase tracking-tight leading-[1.15]">
                   {project.title}
                 </h3>
 

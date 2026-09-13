@@ -29,8 +29,6 @@ import {
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const CATEGORIES = ["ALL", "PRACTICAL", "STRATEGIC", "CREATIVE", "TECHNICAL"] as const;
-
 const PROCESS_STEPS = [
   {
     step: "01",
@@ -60,11 +58,6 @@ const PROCESS_STEPS = [
 
 export function ServicesClient() {
   const scopeRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("ALL");
-
-  const filteredServices = activeCategory === "ALL"
-    ? SERVICES
-    : SERVICES.filter((s) => s.category === activeCategory);
 
   useGSAP(
     () => {
@@ -124,7 +117,7 @@ export function ServicesClient() {
         mm.revert();
       };
     },
-    { scope: scopeRef, dependencies: [activeCategory] }
+    { scope: scopeRef, dependencies: [] }
   );
 
   return (
@@ -173,45 +166,11 @@ export function ServicesClient() {
           </div>
         </section>
 
-        {/* 2. Interactive Category Filter Bar */}
-        <section className="sticky top-20 sm:top-24 z-20 bg-white/95 backdrop-blur-md border-b border-zinc-200 py-3.5 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto transition-all">
-          <div className="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar py-1">
-            <div className="flex items-center gap-2 sm:gap-3">
-              {CATEGORIES.map((category) => {
-                const isActive = activeCategory === category;
-                return (
-                  <button
-                    key={category}
-                    onClick={() => setActiveCategory(category)}
-                    className={`relative px-4 sm:px-6 py-2 rounded-full text-xs font-mono font-extrabold tracking-widest uppercase transition-all duration-300 select-none whitespace-nowrap ${
-                      isActive
-                        ? "bg-zinc-950 text-white shadow-md"
-                        : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 hover:text-zinc-950"
-                    }`}
-                    data-cursor-pointer
-                  >
-                    <span>{category}</span>
-                    {category === "ALL" && (
-                      <span className="ml-2 px-1.5 py-0.5 rounded-full text-[10px] bg-emerald-500 text-white font-bold">
-                        {SERVICES.length}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            <span className="hidden md:inline-block text-xs font-mono text-zinc-600 tracking-wider">
-              SHOWING {filteredServices.length} OF {SERVICES.length} CAPABILITIES
-            </span>
-          </div>
-        </section>
-
-        {/* 3. Services Rows (Emrix Media 3-Column Architecture) */}
+        {/* 2. Services Rows (Emrix Media 3-Column Architecture) */}
         <section className="gsap-services-list px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto py-12 sm:py-20">
           <div className="space-y-0 divide-y divide-zinc-200 border-t border-b border-zinc-200">
             <AnimatePresence mode="popLayout">
-              {filteredServices.map((service, index) => {
+              {SERVICES.map((service, index) => {
                 return (
                   <motion.div
                     key={service.id}
@@ -219,9 +178,9 @@ export function ServicesClient() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.03 }}
-                    className="gsap-service-row group relative py-4 sm:py-5 lg:py-6 px-1 sm:px-3 lg:px-4 transition-colors duration-300 hover:bg-zinc-50/70"
+                    className="gsap-service-row group relative py-6 sm:py-8 lg:py-10 px-1 sm:px-3 lg:px-4 transition-colors duration-300 hover:bg-zinc-50/70"
                   >
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                       {/* Left: Monospace Number & Category Tag */}
                       <div className="lg:col-span-1 flex lg:flex-col justify-start items-start gap-1.5 sm:gap-2">
                         <span className="text-base sm:text-lg lg:text-xl font-mono font-bold text-emerald-600 tracking-tight">
@@ -232,19 +191,19 @@ export function ServicesClient() {
                         </span>
                       </div>
 
-                      {/* Middle: Title, Narrative, Deliverables & Tech Stack - Shifted Left */}
-                      <div className="lg:col-span-6 space-y-3">
+                      {/* Middle: Title, Narrative, Deliverables & Tech Stack */}
+                      <div className="lg:col-span-6 space-y-3.5">
                         <div>
                           <h2 className="text-xl sm:text-2xl lg:text-3xl font-outfit font-black text-zinc-950 uppercase tracking-tight group-hover:text-emerald-600 transition-colors duration-300">
                             {service.title}
                           </h2>
-                          <p className="mt-1.5 text-xs sm:text-sm text-zinc-700 font-normal leading-relaxed">
+                          <p className="mt-2 text-xs sm:text-sm text-zinc-700 font-normal leading-relaxed">
                             {service.description}
                           </p>
                         </div>
 
                         {/* Deliverables List */}
-                        <div className="space-y-1.5 pt-0.5">
+                        <div className="space-y-1.5 pt-1">
                           <p className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider text-zinc-600">
                             KEY DELIVERABLES:
                           </p>
@@ -262,7 +221,7 @@ export function ServicesClient() {
                         </div>
 
                         {/* Action Link */}
-                        <div className="pt-1.5">
+                        <div className="pt-2">
                           <Link
                             href="/contact"
                             className="inline-flex items-center gap-2 text-xs font-outfit font-black tracking-widest uppercase text-zinc-900 group-hover:text-emerald-600 transition-colors"
@@ -274,9 +233,9 @@ export function ServicesClient() {
                         </div>
                       </div>
 
-                      {/* Right: Visual Showcase Card - Height preserved */}
+                      {/* Right: Visual Showcase Card - Increased Height */}
                       <div className="lg:col-span-5 w-full flex justify-end">
-                        <div className="service-image-card relative w-full h-[170px] sm:h-[195px] lg:h-[215px] xl:h-[235px] rounded-2xl overflow-hidden shadow-md border border-zinc-200/80 bg-zinc-100 will-change-[clip-path]">
+                        <div className="service-image-card relative w-full h-[220px] sm:h-[260px] lg:h-[290px] xl:h-[320px] rounded-2xl overflow-hidden shadow-md border border-zinc-200/80 bg-zinc-100 will-change-[clip-path]">
                           {service.previewImage ? (
                             <Image
                               src={service.previewImage}

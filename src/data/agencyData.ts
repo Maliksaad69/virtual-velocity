@@ -135,7 +135,7 @@ export const PROJECTS: Project[] = [
     challenge: "Vertex faced fierce ad competition and low organic keyword visibility for high-intent B2B commercial banking terms.",
     solution: "We executed comprehensive technical SEO audits, structured rich search schema markup, and published authority content clusters.",
     results: ["+2,900% Organic Search Traffic Growth", "#1 Ranking for 42 Commercial Banking Terms", "3.4x Growth in Qualified Inbound B2B Leads"],
-    services: ["Technical SEO Audits", "Keyword Strategy & Content Hubs", "B2B Lead Generation", "Search Schema Structuring"],
+    services: ["Technical SEO Audits", "Keyword Strategy & Content Hubs", "B2B Lead Generation"],
     liveUrl: "https://vertex-fintech.example.com",
     layoutType: "left-large",
   },

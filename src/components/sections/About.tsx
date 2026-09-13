@@ -48,19 +48,19 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className="py-16 sm:py-20 md:py-24 px-5 sm:px-10 md:px-16 max-w-[1700px] mx-auto relative overflow-hidden bg-white">
+    <section id="about" className="pt-0 sm:pt-2 pb-16 sm:pb-20 md:pb-24 px-5 sm:px-10 md:px-16 max-w-[1700px] mx-auto relative overflow-hidden bg-white">
       {/* Multi-layer blurred background accents */}
       <div className="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[160px] pointer-events-none" />
       <div className="absolute bottom-1/4 -left-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[160px] pointer-events-none" />
       <div className="absolute top-10 left-1/3 w-96 h-96 rounded-full bg-zinc-100 blur-[120px] pointer-events-none" />
 
-      <div className="space-y-16 sm:space-y-20 relative z-10">
+      <div className="space-y-4 sm:space-y-6 relative z-10">
         {/* Top meta row */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, margin: "0px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-wrap items-center justify-between gap-4 text-[11px] sm:text-xs font-mono uppercase tracking-[0.28em] text-zinc-700"
         >
           <div className="flex items-center gap-2 text-emerald-600 font-extrabold">
@@ -79,10 +79,10 @@ export const About = () => {
 
         {/* Hero headline */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+          viewport={{ once: true, margin: "0px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="select-none max-w-6xl"
         >
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-outfit font-black text-zinc-900 tracking-tighter leading-[0.92] sm:leading-[0.9] uppercase">

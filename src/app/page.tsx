@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 import { GSAPScrollGallery } from "@/components/sections/GSAPScrollGallery";
 import { LightStatsSection } from "@/components/sections/LightStatsSection";
 import { EditorialTestimonials } from "@/components/sections/EditorialTestimonials";
-import { InteractiveCTABanner } from "@/components/sections/InteractiveCTABanner";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -51,9 +50,6 @@ export default function Home() {
 
         {/* 6. Client Testimonials */}
         <EditorialTestimonials />
-
-        {/* 8. High-Impact Interactive ROI Estimator CTA Banner */}
-        <InteractiveCTABanner />
 
         {/* 10. Project Estimator & Contact Form */}
         <Contact />

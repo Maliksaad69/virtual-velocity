@@ -1,12 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Send, CheckCircle2, Phone, Mail, Clock, ShieldCheck, ChevronDown } from "lucide-react";
-import { AGENCY_INFO } from "@/data/agencyData";
+import { Send, CheckCircle2, Mail, Clock, ShieldCheck, ChevronDown } from "lucide-react";
 import { CreativeCTA } from "@/components/ui/CreativeCTA";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -34,10 +33,49 @@ const HEAR_ABOUT_OPTIONS = [
   "Other",
 ];
 
+const REGIONAL_HUBS = [
+  {
+    flag: "🇺🇸",
+    country: "US",
+    city: "Washington, D.C.",
+    timezone: "America/New_York",
+    label: "EST / EDT",
+  },
+  {
+    flag: "🇬🇧",
+    country: "UK",
+    city: "London",
+    timezone: "Europe/London",
+    label: "GMT / BST",
+  },
+  {
+    flag: "🇫🇷",
+    country: "France",
+    city: "Paris",
+    timezone: "Europe/Paris",
+    label: "CET / CEST",
+  },
+  {
+    flag: "🇯🇵",
+    country: "Japan",
+    city: "Tokyo",
+    timezone: "Asia/Tokyo",
+    label: "JST",
+  },
+  {
+    flag: "🇵🇰",
+    country: "Pakistan",
+    city: "Islamabad",
+    timezone: "Asia/Karachi",
+    label: "PKT",
+  },
+];
+
 export const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [selectedServices, setSelectedServices] = useState<string[]>(["Google Advertising"]);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [hubTimes, setHubTimes] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -48,6 +86,27 @@ export const Contact = () => {
     hearAbout: "Google Search",
     message: "",
   });
+
+  useEffect(() => {
+    const updateClocks = () => {
+      const now = new Date();
+      const updated: Record<string, string> = {};
+      REGIONAL_HUBS.forEach((hub) => {
+        updated[hub.city] = now.toLocaleTimeString("en-US", {
+          timeZone: hub.timezone,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        });
+      });
+      setHubTimes(updated);
+    };
+
+    updateClocks();
+    const interval = setInterval(updateClocks, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useGSAP(
     () => {
@@ -138,32 +197,54 @@ export const Contact = () => {
             </div>
           </div>
 
-          <div className="gsap-contact-offices space-y-4 sm:space-y-6 border-t border-zinc-200 pt-6 sm:pt-8">
-            <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider block">
-              REGIONAL OPERATIONAL HUBS
-            </span>
+          <div className="gsap-contact-offices space-y-3 sm:space-y-4 border-t border-zinc-200 pt-6 sm:pt-8">
+            <div className="flex items-center justify-between">
+              <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider block">
+                REGIONAL OPERATIONAL HUBS
+              </span>
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider flex items-center gap-1.5 font-bold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                ACTIVE STANDARD TIME
+              </span>
+            </div>
 
-            {AGENCY_INFO.offices.map((office, idx) => (
-              <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-200 transition-colors space-y-3 shadow-xs">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-outfit font-extrabold text-zinc-900 text-base sm:text-lg uppercase tracking-tight">{office.city}</h3>
-                  <span className="text-[10px] sm:text-xs font-outfit font-bold text-emerald-700 border border-emerald-200 px-2.5 sm:px-3 py-1 rounded-full bg-emerald-50">
-                    OPERATIONAL HUB
-                  </span>
+            <div className="space-y-2.5">
+              {REGIONAL_HUBS.map((hub) => (
+                <div
+                  key={hub.city}
+                  className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-300 transition-all flex items-center justify-between gap-3 shadow-xs group"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-xl sm:text-2xl flex-shrink-0" role="img" aria-label={hub.country}>
+                      {hub.flag}
+                    </span>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5 font-outfit font-extrabold text-zinc-900 text-xs sm:text-sm truncate">
+                        <span>{hub.country}</span>
+                        <span className="text-zinc-400 font-normal">—</span>
+                        <span className="text-zinc-700 font-semibold">{hub.city}</span>
+                      </div>
+                      <span className="text-[10px] font-mono text-zinc-500 block">
+                        {hub.label}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="text-right flex-shrink-0">
+                    <span className="font-mono text-xs sm:text-sm font-black text-emerald-600 tracking-tight block group-hover:text-emerald-500 transition-colors">
+                      {hubTimes[hub.city] || "--:--:--"}
+                    </span>
+                  </div>
                 </div>
-                <p className="text-xs sm:text-sm text-zinc-700 font-light leading-relaxed">{office.address}</p>
-                <div className="flex flex-wrap gap-4 text-xs sm:text-sm font-outfit font-medium text-zinc-700 pt-2 border-t border-zinc-200">
-                  <a href={`tel:${office.phone}`} className="hover:text-emerald-600 flex items-center gap-2 transition-colors min-h-[40px]">
-                    <Phone className="w-4 h-4 text-emerald-600" />
-                    <span>{office.phone}</span>
-                  </a>
-                  <a href={`mailto:${office.email}`} className="hover:text-emerald-600 flex items-center gap-2 transition-colors min-h-[40px]">
-                    <Mail className="w-4 h-4 text-emerald-600" />
-                    <span>{office.email}</span>
-                  </a>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-outfit font-medium text-zinc-700 border-t border-zinc-200">
+              <a href="mailto:us@virtualvelocity.agency" className="hover:text-emerald-600 flex items-center gap-2 transition-colors min-h-[36px]">
+                <Mail className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Global Inquiries: us@virtualvelocity.agency</span>
+              </a>
+            </div>
           </div>
         </div>
 
