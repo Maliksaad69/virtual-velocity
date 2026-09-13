@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Send, CheckCircle2, Mail, Clock, ShieldCheck, ChevronDown } from "lucide-react";
+import { Send, CheckCircle2, Mail, Clock, ShieldCheck, ChevronDown, Globe } from "lucide-react";
 import { CreativeCTA } from "@/components/ui/CreativeCTA";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -47,16 +47,10 @@ const REGIONAL_HUBS = [
     timezone: "Europe/London",
   },
   {
-    flag: "🇫🇷",
-    country: "France",
-    city: "Paris",
-    timezone: "Europe/Paris",
-  },
-  {
-    flag: "🇯🇵",
-    country: "Japan",
-    city: "Tokyo",
-    timezone: "Asia/Tokyo",
+    flag: "🇦🇪",
+    country: "United Arab Emirates",
+    city: "Abu Dhabi",
+    timezone: "Asia/Dubai",
   },
   {
     flag: "🇵🇰",
@@ -134,7 +128,7 @@ export const Contact = () => {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          scrollTrigger: { trigger: sectionRef.current, start: "top 65%" },
+          scrollTrigger: { trigger: ".gsap-contact-offices", start: "top 90%" },
         }
       );
 
@@ -173,75 +167,45 @@ export const Contact = () => {
       <div className="absolute top-1/2 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-zinc-200/35 blur-[120px] sm:blur-[180px] pointer-events-none" />
 
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-stretch">
-        {/* Left Column - Headline & Offices */}
+        {/* Left Column - Headline & Badges */}
         <div className="lg:col-span-5 flex flex-col justify-between space-y-6 sm:space-y-8">
-          <div className="gsap-contact-badges grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4">
-            <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center gap-3.5 shadow-xs">
-              <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 flex-shrink-0" />
-              <div>
-                <span className="block text-xs sm:text-sm font-outfit font-black text-zinc-900 uppercase tracking-wider">12-HOUR RESPONSE</span>
-                <span className="text-[11px] sm:text-xs font-outfit font-medium text-zinc-700">DIRECT PROPOSAL</span>
-              </div>
+          <div className="space-y-6">
+            <div className="gsap-contact-headline space-y-3">
+              <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                INITIATE PARTNERSHIP
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black text-zinc-900 uppercase tracking-tighter leading-[0.95]">
+                LET&apos;S ENGINEER YOUR <span className="text-emerald-600">NEXT LEAP</span>
+              </h2>
+              <p className="text-sm sm:text-base font-outfit text-zinc-600 font-normal leading-relaxed">
+                Scale your brand across high-growth international markets. Fill out your campaign brief and our senior strategists will formulate an ROI roadmap within 12 hours.
+              </p>
             </div>
-            <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center gap-3.5 shadow-xs">
-              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 flex-shrink-0" />
-              <div>
-                <span className="block text-xs sm:text-sm font-outfit font-black text-zinc-900 uppercase tracking-wider">NDA GUARANTEED</span>
-                <span className="text-[11px] sm:text-xs font-outfit font-medium text-zinc-700">CONFIDENTIALITY</span>
+
+            <div className="gsap-contact-badges grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4">
+              <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center gap-3.5 shadow-xs">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 flex-shrink-0" />
+                <div>
+                  <span className="block text-xs sm:text-sm font-outfit font-black text-zinc-900 uppercase tracking-wider">12-HOUR RESPONSE</span>
+                  <span className="text-[11px] sm:text-xs font-outfit font-medium text-zinc-700">DIRECT PROPOSAL</span>
+                </div>
+              </div>
+              <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center gap-3.5 shadow-xs">
+                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600 flex-shrink-0" />
+                <div>
+                  <span className="block text-xs sm:text-sm font-outfit font-black text-zinc-900 uppercase tracking-wider">NDA GUARANTEED</span>
+                  <span className="text-[11px] sm:text-xs font-outfit font-medium text-zinc-700">CONFIDENTIALITY</span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="gsap-contact-offices space-y-3 sm:space-y-4 border-t border-zinc-200 pt-6 sm:pt-8">
-            <div className="flex items-center justify-between">
-              <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider block">
-                REGIONAL OPERATIONAL HUBS
-              </span>
-              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider flex items-center gap-1.5 font-bold">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                ACTIVE STANDARD TIME
-              </span>
-            </div>
-
-            <div className="space-y-2.5">
-              {REGIONAL_HUBS.map((hub) => (
-                <div
-                  key={hub.city}
-                  className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-300 transition-all shadow-xs group"
-                >
-                  <div className="flex items-start gap-3 min-w-0">
-                    <span className="text-xl sm:text-2xl flex-shrink-0 mt-0.5" role="img" aria-label={hub.country}>
-                      {hub.flag}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      {/* Country Name */}
-                      <span className="font-outfit font-black text-black text-xs sm:text-sm tracking-tight block truncate">
-                        {hub.country}
-                      </span>
-
-                      {/* Capital below with Standard Time in front of it */}
-                      <div className="flex items-center justify-between gap-2 mt-0.5">
-                        <span className="text-[11px] sm:text-xs font-outfit font-semibold text-zinc-700 truncate">
-                          {hub.city}
-                        </span>
-                        <div className="flex items-center flex-shrink-0 text-right">
-                          <span className="font-mono text-xs sm:text-sm font-black text-emerald-600 group-hover:text-emerald-500 transition-colors">
-                            {hubTimes[hub.city] || "--:--:--"}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-outfit font-medium text-zinc-700 border-t border-zinc-200">
-              <a href="mailto:us@virtualvelocity.agency" className="hover:text-emerald-600 flex items-center gap-2 transition-colors min-h-[36px]">
-                <Mail className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Global Inquiries: us@virtualvelocity.agency</span>
-              </a>
-            </div>
+          <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-outfit font-medium text-zinc-700">
+            <a href="mailto:us@virtualvelocity.agency" className="hover:text-emerald-600 flex items-center gap-2.5 transition-colors min-h-[40px] bg-zinc-50 border border-zinc-200 px-4 py-2.5 rounded-xl shadow-xs">
+              <Mail className="w-4 h-4 text-emerald-600" />
+              <span>Global Inquiries: us@virtualvelocity.agency</span>
+            </a>
           </div>
         </div>
 
@@ -433,6 +397,56 @@ export const Contact = () => {
               </div>
             </form>
           )}
+        </div>
+      </div>
+
+      {/* Regional Operational Hubs - Full-Width (All 4 in the same row on desktop) */}
+      <div className="gsap-contact-offices relative z-10 mt-10 sm:mt-14 pt-8 sm:pt-10 border-t border-zinc-200 space-y-4 sm:space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5">
+            <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 flex-shrink-0" />
+            <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider">
+              REGIONAL OPERATIONAL HUBS
+            </span>
+          </div>
+          <span className="text-[10px] sm:text-xs font-mono text-zinc-500 uppercase tracking-wider flex items-center gap-2 font-bold">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            ACTIVE STANDARD TIME &bull; REAL-TIME SYNC
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {REGIONAL_HUBS.map((hub) => (
+            <div
+              key={hub.city}
+              className="p-4 sm:p-5 rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-300 hover:bg-emerald-50/20 transition-all shadow-xs flex flex-col justify-between gap-3 group"
+            >
+              {/* Top: Flag + Full Country Name & Capital */}
+              <div className="flex items-start gap-3">
+                <span className="text-2xl sm:text-3xl flex-shrink-0 leading-none mt-0.5" role="img" aria-label={hub.country}>
+                  {hub.flag}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <span className="font-outfit font-black text-zinc-900 text-sm sm:text-[15px] tracking-tight block leading-snug">
+                    {hub.country}
+                  </span>
+                  <span className="text-xs font-outfit font-semibold text-zinc-600 block mt-0.5">
+                    {hub.city}
+                  </span>
+                </div>
+              </div>
+
+              {/* Bottom: Live Clock */}
+              <div className="pt-2.5 border-t border-zinc-200/80 flex items-center justify-between gap-2">
+                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider font-bold">
+                  ACTIVE TIME
+                </span>
+                <span className="font-mono text-xs sm:text-sm font-black text-emerald-600 group-hover:text-emerald-500 transition-colors flex-shrink-0">
+                  {hubTimes[hub.city] || "--:--:--"}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
