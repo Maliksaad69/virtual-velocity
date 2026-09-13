@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
+import { BrandPhysicsBalls } from "@/components/sections/BrandPhysicsBalls";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -397,7 +398,10 @@ export function ServicesClient() {
           </div>
         </section>
 
-        {/* 6. High-Impact Call to Action Banner */}
+        {/* 6. Trusted by Ambitious Brands - Interactive Physics Simulator */}
+        <BrandPhysicsBalls />
+
+        {/* 7. High-Impact Call to Action Banner */}
         <section className="py-20 sm:py-32 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto">
           <div className="relative rounded-3xl overflow-hidden bg-zinc-950 text-white p-8 sm:p-16 lg:p-24 shadow-2xl border border-zinc-800">
             {/* Background Glow Accents */}

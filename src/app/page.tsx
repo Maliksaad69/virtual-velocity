@@ -19,7 +19,6 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SoundToggle } from "@/components/ui/SoundToggle";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { ClientPartners } from "@/components/sections/ClientPartners";
 import { About } from "@/components/sections/About";
 import { WhoWeAre } from "@/components/sections/WhoWeAre";
 export default function Home() {
@@ -50,10 +49,7 @@ export default function Home() {
         {/* 5. Proven Impact & Metrics */}
         <LightStatsSection />
 
-        {/* 6. Our Clients & Partners - central anchor with surrounding hexagon logos */}
-        <ClientPartners />
-
-        {/* 7. Client Testimonials */}
+        {/* 6. Client Testimonials */}
         <EditorialTestimonials />
 
         {/* 8. High-Impact Interactive ROI Estimator CTA Banner */}
