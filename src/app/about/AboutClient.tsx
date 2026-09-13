@@ -12,6 +12,7 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { FOUNDER, AGENCY_INFO } from "@/data/agencyData";
 import { Zap, Sparkles, Users, ShieldCheck } from "lucide-react";
+import { CommunitiesShowcaseBars } from "@/components/sections/CommunitiesShowcaseBars";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -112,44 +113,14 @@ export function AboutClient() {
               <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">Meet The Founder</span>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-              {/* Founder Photo */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="lg:col-span-5 relative"
-              >
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border-2 border-zinc-200 shadow-2xl bg-zinc-100">
-                  <img
-                    src={FOUNDER.image}
-                    alt={FOUNDER.name}
-                    className="w-full h-full object-cover object-center"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                    <span className="text-xs font-mono uppercase tracking-widest text-emerald-300 font-bold">
-                      {FOUNDER.experience} in Digital Media
-                    </span>
-                    <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight">
-                      {FOUNDER.name}
-                    </h3>
-                    <p className="text-xs text-zinc-300 font-medium">
-                      {FOUNDER.role}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Founder Narrative & Communities */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Founder Narrative & Communities (LEFT) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-                className="lg:col-span-7 space-y-6"
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="lg:col-span-8 space-y-6 order-2 lg:order-1"
               >
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-mono text-emerald-700 font-extrabold uppercase tracking-wide">
                   <ShieldCheck className="w-3.5 h-3.5" /> Founder &amp; Community Pioneer
@@ -175,21 +146,42 @@ export function AboutClient() {
                   {FOUNDER.vision}
                 </p>
 
-                {/* Communities Showcase */}
-                <div className="pt-4 border-t border-zinc-200 space-y-3">
-                  <span className="text-xs font-mono uppercase tracking-widest text-zinc-500 font-bold block">
-                    Proprietary Media Communities (~1M Audience)
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {FOUNDER.communities.map((comm) => (
-                      <div key={comm.name} className="p-4 rounded-xl bg-zinc-50 border border-zinc-200 space-y-1">
-                        <span className="text-xl font-black font-mono text-emerald-600 block">{comm.followers}</span>
-                        <h4 className="text-xs font-extrabold uppercase text-zinc-900">{comm.name}</h4>
-                      </div>
-                    ))}
+              </motion.div>
+
+              {/* Founder Photo (RIGHT, scaled down) */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                className="lg:col-span-4 relative order-1 lg:order-2 flex justify-center lg:justify-end"
+              >
+                <div className="relative w-full max-w-[340px] sm:max-w-[370px] aspect-[4/4.8] rounded-3xl overflow-hidden border-2 border-zinc-200 shadow-xl bg-zinc-100">
+                  <img
+                    src={FOUNDER.image}
+                    alt={FOUNDER.name}
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-emerald-300 font-bold">
+                      {FOUNDER.experience} in Digital Media
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight">
+                      {FOUNDER.name}
+                    </h3>
+                    <p className="text-xs text-zinc-300 font-medium">
+                      {FOUNDER.role}
+                    </p>
                   </div>
                 </div>
               </motion.div>
+            </div>
+
+            {/* Proprietary Media Communities Showcase (Full width reference design) */}
+            <div className="mt-14 sm:mt-18 pt-10 border-t border-zinc-200">
+              <CommunitiesShowcaseBars />
             </div>
           </section>
         </div>
