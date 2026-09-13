@@ -110,15 +110,21 @@ export const About = () => {
               <span className="text-black font-black first-letter:text-3xl sm:first-letter:text-5xl first-letter:font-black first-letter:mr-1 first-letter:float-left first-letter:leading-none first-letter:text-emerald-600">
                 Virtual Velocity
               </span>{" "}
-              is a full-stack digital marketing &amp; creative technology agency specializing in performance-driven growth for ambitious brands. We engineer revenue pipelines through high-converting Google Ads PPC campaigns, razor-sharp technical SEO, emotionally resonant creative content, and always-on paid social machines.
+              is a creative house where strategy, creativity, technology, and digital growth come together to build brands that stand out and grow.
+            </p>
+
+            <p className="text-base sm:text-xl lg:text-2xl text-black font-normal leading-[1.7] sm:leading-[1.8]">
+              We work with ambitious businesses to turn ideas into meaningful brand experiences, engaging content, powerful campaigns, and digital solutions that drive real results. From social media and performance marketing to branding, influencer collaborations, AI-powered solutions, websites, and digital experiences we bring creativity and technology together under one roof.
             </p>
 
             <p className="text-sm sm:text-lg text-black font-normal leading-relaxed sm:leading-[1.85]">
-              We operate as an embedded extension of your growth team — not a detached vendor. Every dollar of media spend is accounted for, every keyword is audited, and every creative iteration is measured against a clear north-star metric. Our clients see measurable, compounding returns because our work is rooted in engineering, not guesswork.
+              We don&apos;t just create content or run campaigns. We understand your brand, find what makes it different, and use creativity, data, and technology to turn that difference into something people notice, remember, and act on.
             </p>
 
             <p className="text-sm sm:text-lg text-black font-normal leading-relaxed sm:leading-[1.85]">
-              From direct-to-consumer e-commerce and real estate to QSR chains, fintech platforms, and premium hospitality — our playbooks adapt, our creatives iterate, and our performance compounds.
+              Because great marketing isn&apos;t just about keeping up with the digital world.
+              <br />
+              It&apos;s about using it to move your brand forward.
             </p>
 
             <div className="pt-3 flex flex-wrap items-center gap-4 sm:gap-6">

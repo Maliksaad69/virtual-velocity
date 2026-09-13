@@ -127,18 +127,20 @@ export const LightStatsSection = () => {
           {STATS.map((stat, idx) => (
             <div
               key={idx}
-              className="gsap-stats-card p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200 space-y-3 hover:border-zinc-900 transition-colors shadow-xs"
+              className="gsap-stats-card p-4 sm:p-5 rounded-xl sm:rounded-2xl space-y-3 transition-colors shadow-xs bg-emerald-500/10 border border-emerald-400/40 hover:border-emerald-600"
             >
-              <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-black font-bold">
-                <span>0{idx + 1} {"//"} METRIC</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+              <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] font-bold">
+                <span className="text-emerald-700 font-extrabold">
+                  0{idx + 1} {"//"} METRIC
+                </span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-emerald-700" />
               </div>
 
               <div className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black tracking-tight text-black">
                 <AnimatedCounter rawValue={stat.value} />
               </div>
 
-              <div className="space-y-0.5 pt-2.5 border-t border-zinc-200">
+              <div className="space-y-0.5 pt-2.5 border-t border-emerald-500/25">
                 <h3 className="font-outfit font-bold text-xs uppercase text-black tracking-wide">
                   {stat.label}
                 </h3>

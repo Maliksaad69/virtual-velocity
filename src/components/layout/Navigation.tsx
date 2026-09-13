@@ -17,17 +17,8 @@ const NAV_LINKS = [
 ];
 
 export const Navigation = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Lock body scroll when mobile drawer is active
   useEffect(() => {
@@ -47,11 +38,7 @@ export const Navigation = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          scrolled
-            ? "py-3 sm:py-4 bg-white/95 backdrop-blur-xl border-b border-zinc-200/80 shadow-sm"
-            : "py-5 sm:py-8 bg-white border-b border-zinc-100"
-        }`}
+        className="absolute top-0 left-0 right-0 z-40 py-5 sm:py-7 bg-white border-b border-zinc-100"
       >
         <div className="max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
           {/* Logo */}
@@ -122,12 +109,33 @@ export const Navigation = () => {
             <Magnetic strength={0.05}>
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl border border-emerald-600 bg-emerald-600 text-xs font-extrabold tracking-[0.15em] text-white uppercase overflow-hidden hover:bg-emerald-700 hover:border-emerald-700 transition-all duration-200 shadow-sm shadow-emerald-600/20 active:scale-[0.98]"
+                className="group relative inline-flex items-center justify-center rounded-xl overflow-hidden active:scale-[0.98] transition-transform duration-200 shadow-xs"
               >
-                <span className="relative z-10">
-                  LET&apos;S TALK
+                {/* Bold Revolving boundary line - strictly masked to border only, NEVER bleeds into interior */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-xl p-[2.5px] overflow-hidden pointer-events-none"
+                  style={{
+                    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                  }}
+                >
+                  <span
+                    className="absolute inset-[-250%]"
+                    style={{
+                      background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 50%, rgba(0, 174, 172, 0.2) 65%, #00aeac 78%, #10b981 88%, #34d399 96%, transparent 100%)",
+                      animation: "spin 3s linear infinite",
+                      willChange: "transform",
+                    }}
+                  />
                 </span>
-                <ArrowUpRight className="relative z-10 w-4 h-4 text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+
+                {/* Light Transparent Button Body - internal color remains 100% stable */}
+                <span className="relative z-10 inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl bg-emerald-500/[0.08] hover:bg-emerald-500/[0.14] backdrop-blur-md text-xs font-outfit font-black tracking-[0.15em] text-zinc-950 group-hover:text-emerald-600 transition-colors duration-200 uppercase border border-emerald-500/25">
+                  <span>LET&apos;S TALK</span>
+                  <ArrowUpRight className="w-4 h-4 text-emerald-600 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                </span>
               </Link>
             </Magnetic>
           </div>
@@ -240,10 +248,33 @@ export const Navigation = () => {
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-emerald-600 text-white font-outfit font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-emerald-600/25 active:scale-[0.98] transition-all"
+                  className="group relative w-full flex items-center justify-center rounded-2xl overflow-hidden active:scale-[0.98] transition-transform shadow-sm"
                 >
-                  <span>LET&apos;S TALK</span>
-                  <ArrowUpRight className="w-4 h-4 text-white" />
+                  {/* Bold Revolving boundary line - strictly masked to border only */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-2xl p-[2.5px] overflow-hidden pointer-events-none"
+                    style={{
+                      WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                      WebkitMaskComposite: "xor",
+                      maskComposite: "exclude",
+                    }}
+                  >
+                    <span
+                      className="absolute inset-[-250%]"
+                      style={{
+                        background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 50%, rgba(0, 174, 172, 0.2) 65%, #00aeac 78%, #10b981 88%, #34d399 96%, transparent 100%)",
+                        animation: "spin 3s linear infinite",
+                        willChange: "transform",
+                      }}
+                    />
+                  </span>
+
+                  {/* Light Transparent Button Body - internal color remains 100% stable */}
+                  <span className="relative z-10 w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-emerald-500/[0.08] hover:bg-emerald-500/[0.14] backdrop-blur-md text-zinc-950 group-hover:text-emerald-600 font-outfit font-extrabold text-sm uppercase tracking-wider border border-emerald-500/25 transition-colors">
+                    <span>LET&apos;S TALK</span>
+                    <ArrowUpRight className="w-4 h-4 text-emerald-600" />
+                  </span>
                 </Link>
               </motion.div>
             </div>

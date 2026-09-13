@@ -47,29 +47,30 @@ export const GSAPHeroTimeline = () => {
     const wrapper = videoWrapperRef.current;
     if (!outer || !wrapper) return;
 
-    // Initial: clip-path polygon gives the slanted/tilted quadrilateral shape
-    // Matches the exact technique used by buzzinteractive.co
+    // Initial: clip-path polygon gives the signature slanted/tilted quadrilateral shape
+    // Identical on both PC and mobile
     gsap.set(wrapper, {
       width: "60%",
       height: "55vh",
       clipPath: "polygon(19.17% 0.96%, 88.5% 38.33%, 99.04% 99.04%, 0% 75.08%)",
       borderRadius: "0px",
+      willChange: "transform, clip-path",
     });
 
     // Pinned scroll timeline:
     // 1. Video arrives in center and pins to viewport with GSAP pin: true
     // 2. Starts enlarging and becoming straight only once centered
-    // 3. When about to complete, more scroll is required to complete
-    // 4. Stays on full-screen straight video, then unpins cleanly with ZERO blank space
+    // 3. When about to complete, more scroll is required to complete so user stays on video
+    // 4. Stays on full-screen straight video, then unpins cleanly with zero blank space
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: outer,
         start: "top top",      // Pins when section fills viewport (video in center)
         end: "+=120%",         // Scroll depth for the animation & hold
-        pin: true,             // GSAP native pin — 100% reliable, no CSS sticky bugs
+        pin: true,             // GSAP native pin
         pinSpacing: true,      // Automatically manages layout spacing, NO blank space
         anticipatePin: 1,      // Prevents jump on fast scroll
-        scrub: 1.2,            // Smooth natural inertia
+        scrub: 0.5,            // Synchronous buttery response with Lenis
         invalidateOnRefresh: true,
       },
     });
@@ -92,7 +93,7 @@ export const GSAPHeroTimeline = () => {
     });
 
     // Phase 3 (42% -> 88% scroll — 46% of total scroll distance!):
-    // "When about to complete. More Scroll will require to complete so user could stay a bit on video"
+    // Stretches to full screen and straightens
     tl.to(wrapper, {
       width: "100%",
       height: "100vh",
@@ -120,9 +121,10 @@ export const GSAPHeroTimeline = () => {
   return (
     <section className="relative w-full bg-white select-none font-outfit">
 
+      {/* ─── Hero Banner Slider: Reduced height, complete uncropped photo on mobile, full-bleed on desktop ─── */}
       <div
-        className="relative w-full overflow-hidden"
-        style={{ minHeight: "calc(100vh - 80px)", marginTop: "80px" }}
+        className="relative w-full overflow-hidden aspect-[16/8.5] sm:aspect-auto sm:h-[62vh] sm:min-h-[440px] sm:max-h-[600px]"
+        style={{ marginTop: "80px" }}
       >
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
@@ -144,21 +146,23 @@ export const GSAPHeroTimeline = () => {
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none z-10" />
+        {/* Gradient overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none z-10" />
 
-        <div className="absolute inset-0 z-20 flex flex-col justify-end px-4 sm:px-8 lg:px-12 pb-10 sm:pb-14">
+        {/* Hero Content (Badge, Headlines, Ticker, Indicators) - Directly ON the image */}
+        <div className="absolute inset-0 z-20 flex flex-col justify-end px-3 xs:px-4 sm:px-8 lg:px-12 pb-3 xs:pb-4 sm:pb-8 lg:pb-10">
           <div className="max-w-[1700px] mx-auto w-full">
-            <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-emerald-400 font-extrabold mb-3 sm:mb-5">
-              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400 animate-pulse" />
+            <div className="flex items-center gap-1.5 xs:gap-2 text-[9px] xs:text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400 font-extrabold mb-1 sm:mb-3">
+              <Sparkles className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 text-emerald-400 animate-pulse" />
               <span>VIRTUAL VELOCITY • DIGITAL &amp; GROWTH HOUSE</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[5.2rem] font-black tracking-tighter text-white uppercase leading-[0.95] sm:leading-[0.92] drop-shadow-lg">
+            <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter text-white uppercase leading-none sm:leading-[0.92] drop-shadow-md sm:drop-shadow-lg">
               LEADING FULL-SERVICE
             </h1>
 
-            <div className="mt-1 sm:mt-1.5 text-3xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[5.2rem] font-black tracking-tighter uppercase leading-[0.95]">
-              <div className="relative h-[42px] sm:h-[60px] md:h-[72px] lg:h-[88px] xl:h-[104px] overflow-hidden">
+            <div className="mt-0.5 sm:mt-1.5 text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter uppercase leading-none">
+              <div className="relative h-[24px] xs:h-[28px] sm:h-[48px] md:h-[60px] lg:h-[72px] xl:h-[84px] overflow-hidden">
                 <div
                   className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
@@ -169,9 +173,9 @@ export const GSAPHeroTimeline = () => {
                   {TICKER_ITEMS.map((item, idx) => (
                     <div
                       key={idx}
-                      className="h-[42px] sm:h-[60px] md:h-[72px] lg:h-[88px] xl:h-[104px] flex items-center whitespace-nowrap"
+                      className="h-[24px] xs:h-[28px] sm:h-[48px] md:h-[60px] lg:h-[72px] xl:h-[84px] flex items-center whitespace-nowrap"
                     >
-                      <span className="text-emerald-400 drop-shadow-lg">
+                      <span className="text-emerald-400 drop-shadow-md sm:drop-shadow-lg">
                         {item}
                       </span>
                     </div>
@@ -180,13 +184,13 @@ export const GSAPHeroTimeline = () => {
               </div>
             </div>
 
-            <div className="mt-6 sm:mt-8 flex items-center gap-2">
+            <div className="mt-2 sm:mt-4 flex items-center gap-1.5 sm:gap-2">
               {SLIDER_IMAGES.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSliderIndex(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-400 ${
-                    sliderIndex === idx ? "w-8 bg-emerald-400" : "w-1.5 bg-white/50 hover:bg-white/80"
+                  className={`h-1 sm:h-1.5 rounded-full transition-all duration-400 ${
+                    sliderIndex === idx ? "w-6 sm:w-8 bg-emerald-400" : "w-1.5 bg-white/50 hover:bg-white/80"
                   }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -196,7 +200,7 @@ export const GSAPHeroTimeline = () => {
         </div>
       </div>
 
-      {/* ─── Video scroll section: native GSAP pinned h-screen container (NO artificial blank space) ─── */}
+      {/* ─── Video scroll section: native GSAP pinned h-screen container ─── */}
       <div
         ref={videoScrollRef}
         className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-white"
@@ -227,7 +231,7 @@ export const GSAPHeroTimeline = () => {
             type="button"
             onClick={toggleSound}
             aria-label={isMuted ? "Unmute video" : "Mute video"}
-            className="absolute bottom-3 right-3 z-30 flex items-center justify-center w-8 h-8 rounded-full bg-black/60 hover:bg-black/85 text-white backdrop-blur-md border border-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
+            className="absolute top-4 right-4 sm:top-auto sm:bottom-3 sm:right-3 z-30 flex items-center justify-center w-8 h-8 rounded-full bg-black/60 hover:bg-black/85 text-white backdrop-blur-md border border-white/20 transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg"
             data-cursor-pointer
           >
             {isMuted ? (

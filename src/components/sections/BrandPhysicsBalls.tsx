@@ -46,6 +46,8 @@ export const BrandPhysicsBalls = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const ballElementsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cleanupPhysicsRef = useRef<(() => void) | null>(null);
+  const startLoopRef = useRef<(() => void) | null>(null);
+  const stopLoopRef = useRef<(() => void) | null>(null);
   const hasTriggeredRef = useRef(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const [ballRadius, setBallRadius] = useState(36);
@@ -199,7 +201,10 @@ export const BrandPhysicsBalls = () => {
 
     // Render loop directly updating DOM transforms (GPU accelerated)
     let animationFrameId: number;
+    let isRunning = true;
+
     const updateDOM = () => {
+      if (!isRunning) return;
       bodies.forEach((body, idx) => {
         const el = ballElementsRef.current[idx];
         if (el) {
@@ -214,8 +219,26 @@ export const BrandPhysicsBalls = () => {
 
     animationFrameId = requestAnimationFrame(updateDOM);
 
+    // Pause physics & RAF when out of view to preserve 120fps smooth scrolling
+    startLoopRef.current = () => {
+      if (!isRunning) {
+        isRunning = true;
+        Matter.Runner.run(runner, engine);
+        animationFrameId = requestAnimationFrame(updateDOM);
+      }
+    };
+
+    stopLoopRef.current = () => {
+      if (isRunning) {
+        isRunning = false;
+        cancelAnimationFrame(animationFrameId);
+        Matter.Runner.stop(runner);
+      }
+    };
+
     // Set cleanup
     cleanupPhysicsRef.current = () => {
+      isRunning = false;
       cancelAnimationFrame(animationFrameId);
       container.removeEventListener("touchstart", onTouchStart);
       container.removeEventListener("touchmove", onTouchMove);
@@ -227,22 +250,30 @@ export const BrandPhysicsBalls = () => {
     };
   }, [getRadius]);
 
-  // Trigger when user reaches this section in view
+  // Trigger when user reaches this section in view & pause when offscreen
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasTriggeredRef.current) {
-          hasTriggeredRef.current = true;
-          setHasTriggered(true);
-          initPhysics();
+        if (entry.isIntersecting) {
+          if (!hasTriggeredRef.current) {
+            hasTriggeredRef.current = true;
+            setHasTriggered(true);
+            initPhysics();
+          } else if (startLoopRef.current) {
+            startLoopRef.current();
+          }
+        } else {
+          if (stopLoopRef.current) {
+            stopLoopRef.current();
+          }
         }
       },
       {
-        threshold: 0.15,
-        rootMargin: "0px 0px -30px 0px",
+        threshold: 0.05,
+        rootMargin: "80px 0px 80px 0px",
       }
     );
 
@@ -303,8 +334,8 @@ export const BrandPhysicsBalls = () => {
         />
 
         {/* Scaled watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] select-none">
-          <span className="font-outfit font-black text-4xl sm:text-6xl lg:text-7xl tracking-tighter uppercase text-zinc-900">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+          <span className="font-outfit font-black text-4xl sm:text-6xl lg:text-7xl tracking-tighter uppercase text-emerald-500/25">
             VELOCITY
           </span>
         </div>

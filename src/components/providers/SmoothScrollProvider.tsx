@@ -2,6 +2,7 @@
 
 import { useEffect, ReactNode } from "react";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,36 +14,17 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
 
-    // Initialize Lenis with smooth momentum & natural inertia
+    // Initialize Lenis with ultra-smooth lerp momentum & zero lag
     const lenis = new Lenis({
-      duration: 1.0,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
+      lerp: 0.09,
       smoothWheel: true,
-      wheelMultiplier: 1.0,
+      wheelMultiplier: 0.95,
       touchMultiplier: 1.2,
       infinite: false,
     });
 
-    let scrollTimeout: NodeJS.Timeout;
-    const handleScroll = () => {
-      if (!document.body.classList.contains("is-scrolling")) {
-        document.body.classList.add("is-scrolling");
-      }
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        document.body.classList.remove("is-scrolling");
-      }, 100);
-    };
-
-    // 1. Sync Lenis scroll updates directly to GSAP ScrollTrigger & disable hover thrashing
-    lenis.on("scroll", () => {
-      ScrollTrigger.update();
-      handleScroll();
-    });
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    // 1. Sync Lenis scroll updates directly to GSAP ScrollTrigger
+    lenis.on("scroll", ScrollTrigger.update);
 
     // 2. Bind Lenis RAF directly to GSAP's central rendering engine
     const updateTicker = (time: number) => {
@@ -50,16 +32,12 @@ export const SmoothScrollProvider = ({ children }: { children: ReactNode }) => {
     };
 
     gsap.ticker.add(updateTicker);
-    // Critical: disable GSAP lag-smoothing so it doesn't fight with Lenis RAF
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
-    // Recalculate all ScrollTrigger positions after Lenis initialises
+    // Recalculate all ScrollTrigger positions after Lenis initializes
     ScrollTrigger.refresh();
 
     return () => {
-      clearTimeout(scrollTimeout);
-      document.body.classList.remove("is-scrolling");
-      window.removeEventListener("scroll", handleScroll);
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
     };
