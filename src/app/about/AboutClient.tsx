@@ -65,10 +65,10 @@ export function AboutClient() {
                   A Creative House Built for Brands That Want to <span className="text-emerald-600">Move Forward.</span>
                 </h2>
                 <p className="text-base sm:text-xl text-black font-normal leading-relaxed">
-                  Over the past seven years, Virtual Velocity has evolved from a boutique creative studio into an international growth powerhouse. We operate at the intersection of bold aesthetic design, high-converting digital advertising, and enterprise technical engineering.
+                  We are a creative house where strategy meets storytelling, bringing together digital marketing, content creation, commercial shoots, social media, SEO, influencer marketing, graphic design, paid advertising, and AI-powered solutions.
                 </p>
                 <p className="text-sm sm:text-base text-black font-normal leading-relaxed">
-                  We don&apos;t build vanity campaigns that look pretty in pitch decks but fail in the market. Every visual identity, paid media funnel, and custom software solution we deploy is engineered with one clear objective: driving measurable, compounding revenue for our client partners.
+                  We believe great brands are not built by simply posting more. They are built through ideas that connect, visuals that stand out, and strategies that create real impact.
                 </p>
               </div>
 
