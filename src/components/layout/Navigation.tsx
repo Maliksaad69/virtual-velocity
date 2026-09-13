@@ -12,8 +12,7 @@ const NAV_LINKS = [
   { label: "ABOUT", href: "/about", id: "01" },
   { label: "SERVICES", href: "/services", id: "02" },
   { label: "BLOG", href: "/blog", id: "03" },
-  { label: "CAREERS", href: "/careers", id: "04" },
-  { label: "CONTACT", href: "/contact", id: "05" },
+  { label: "CONTACT", href: "/contact", id: "04" },
 ];
 
 export const Navigation = () => {

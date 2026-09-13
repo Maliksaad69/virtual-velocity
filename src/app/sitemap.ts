@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/contact",
     "/blog",
-    "/careers",
+    "/services",
     "/privacy-policy",
     "/terms-of-use",
   ].map((route) => ({

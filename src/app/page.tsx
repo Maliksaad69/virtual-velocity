@@ -20,6 +20,8 @@ import { SoundToggle } from "@/components/ui/SoundToggle";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { About } from "@/components/sections/About";
 import { WhoWeAre } from "@/components/sections/WhoWeAre";
+import { BrandPhysicsBalls } from "@/components/sections/BrandPhysicsBalls";
+
 export default function Home() {
   return (
     <SmoothScrollProvider>
@@ -47,6 +49,9 @@ export default function Home() {
 
         {/* 5. Proven Impact & Metrics */}
         <LightStatsSection />
+
+        {/* Brand Physics Balls Drop */}
+        <BrandPhysicsBalls />
 
         {/* 6. Client Testimonials */}
         <EditorialTestimonials />

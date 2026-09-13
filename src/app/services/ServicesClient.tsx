@@ -12,8 +12,7 @@ import { Footer } from "@/components/layout/Footer";
 import { BrandPhysicsBalls } from "@/components/sections/BrandPhysicsBalls";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { Magnetic } from "@/components/ui/Magnetic";
-import { SERVICES, AGENCY_INFO } from "@/data/agencyData";
+import { SERVICES } from "@/data/agencyData";
 import {
   ArrowUpRight,
   Sparkles,
@@ -24,7 +23,6 @@ import {
   Search,
   Code2,
   TrendingUp,
-  ArrowRight,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -327,84 +325,11 @@ export function ServicesClient() {
           </div>
         </section>
 
-        {/* 5. Metrics & Impact Grid */}
-        <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto border-b border-zinc-200">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
-            <div className="space-y-2 p-6 rounded-2xl bg-zinc-50 border border-zinc-100">
-              <span className="block text-4xl sm:text-6xl font-outfit font-black text-zinc-950">140+</span>
-              <span className="block text-xs sm:text-sm font-mono uppercase text-zinc-700 font-bold tracking-wider">
-                PROJECTS DELIVERED
-              </span>
-            </div>
-            <div className="space-y-2 p-6 rounded-2xl bg-zinc-50 border border-zinc-100">
-              <span className="block text-4xl sm:text-6xl font-outfit font-black text-emerald-600">4.8x</span>
-              <span className="block text-xs sm:text-sm font-mono uppercase text-zinc-700 font-bold tracking-wider">
-                AVERAGE CLIENT ROAS
-              </span>
-            </div>
-            <div className="space-y-2 p-6 rounded-2xl bg-zinc-50 border border-zinc-100">
-              <span className="block text-4xl sm:text-6xl font-outfit font-black text-zinc-950">99.2%</span>
-              <span className="block text-xs sm:text-sm font-mono uppercase text-zinc-700 font-bold tracking-wider">
-                CLIENT RETENTION
-              </span>
-            </div>
-            <div className="space-y-2 p-6 rounded-2xl bg-zinc-50 border border-zinc-100">
-              <span className="block text-4xl sm:text-6xl font-outfit font-black text-emerald-600">7+</span>
-              <span className="block text-xs sm:text-sm font-mono uppercase text-zinc-700 font-bold tracking-wider">
-                YEARS TRACK RECORD
-              </span>
-            </div>
-          </div>
-        </section>
+
 
         {/* 6. Trusted by Ambitious Brands - Interactive Physics Simulator */}
         <BrandPhysicsBalls />
 
-        {/* 7. High-Impact Call to Action Banner */}
-        <section className="py-20 sm:py-32 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto">
-          <div className="relative rounded-3xl overflow-hidden bg-zinc-950 text-white p-8 sm:p-16 lg:p-24 shadow-2xl border border-zinc-800">
-            {/* Background Glow Accents */}
-            <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-emerald-500/20 blur-[140px] pointer-events-none" />
-            <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-emerald-600/20 blur-[140px] pointer-events-none" />
-
-            <div className="relative z-10 max-w-4xl space-y-8">
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-emerald-400 font-extrabold">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span>START YOUR REVENUE TRANSFORMATION</span>
-              </div>
-
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-outfit font-black uppercase tracking-tight leading-[0.95]">
-                HAVE A PROJECT IN MIND? <br />
-                <span className="text-emerald-400">LET’S BUILD TOGETHER.</span>
-              </h2>
-
-              <p className="text-base sm:text-xl text-zinc-300 font-light max-w-2xl leading-relaxed">
-                Whether you want to scale ad spend, rank on Google Search, or build custom digital products, our team delivers results within 30 days.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-4">
-                <Magnetic strength={0.1}>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-outfit font-black text-xs sm:text-sm tracking-[0.2em] uppercase transition-all duration-300 shadow-xl shadow-emerald-600/30 active:scale-95"
-                    data-cursor-pointer
-                  >
-                    <span>SCHEDULE A CONSULTATION</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Magnetic>
-
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 px-8 py-4 sm:py-5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white font-outfit font-bold text-xs sm:text-sm tracking-wider uppercase border border-zinc-800 transition-all duration-300"
-                  data-cursor-pointer
-                >
-                  <span>ABOUT OUR STUDIO</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
 
         <Footer />
       </main>

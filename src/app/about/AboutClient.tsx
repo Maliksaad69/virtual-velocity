@@ -1,45 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { motion } from "framer-motion";
 import { SplitTextReveal } from "@/components/ui/SplitTextReveal";
-import { CreativeCTA } from "@/components/ui/CreativeCTA";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { FOUNDER, SERVICES, AGENCY_INFO } from "@/data/agencyData";
-import { Zap, Sparkles, Users, Award, Clock, ShieldCheck } from "lucide-react";
+import { FOUNDER, AGENCY_INFO } from "@/data/agencyData";
+import { Zap, Sparkles, Users, ShieldCheck } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const AWARDS = [
-  { title: "TOP PPC DIGITAL AGENCY", org: "CLUTCH LEADERS", year: "2024-2026" },
-  { title: "BEST SEO CAMPAIGN ROI", org: "SEARCH ENGINE LAND", year: "2025" },
-  { title: "EXCELLENCE IN CONVERSION RATE OPTIMIZATION", org: "MARKETING AWARDS", year: "2026" },
-  { title: "TOP SOCIAL MEDIA STRATEGY", org: "DIGITAL MARKETING AWARDS", year: "2025" },
-];
-
 export function AboutClient() {
-  const [times, setTimes] = useState({ delaware: "", lahore: "", london: "" });
   const scopeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const updateClocks = () => {
-      const now = new Date();
-      setTimes({
-        delaware: now.toLocaleTimeString("en-US", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit", hour12: false }),
-        lahore: now.toLocaleTimeString("en-US", { timeZone: "Asia/Karachi", hour: "2-digit", minute: "2-digit", hour12: false }),
-        london: now.toLocaleTimeString("en-US", { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit", hour12: false }),
-      });
-    };
-    updateClocks();
-    const interval = setInterval(updateClocks, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   useGSAP(
     () => {
@@ -47,37 +24,6 @@ export function AboutClient() {
         ".gsap-about-title",
         { opacity: 0, y: 40 },
         { opacity: 1, y: 0, duration: 1, ease: "power4.out" }
-      );
-
-      gsap.fromTo(
-        ".gsap-clocks-panel",
-        { opacity: 0, scale: 0.96 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".gsap-clocks-panel",
-            start: "top 85%",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".gsap-award-row",
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.08,
-          duration: 0.6,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".gsap-awards-grid",
-            start: "top 85%",
-          },
-        }
       );
     },
     { scope: scopeRef }
@@ -232,117 +178,6 @@ export function AboutClient() {
               </motion.div>
             </div>
           </section>
-
-          {/* 4. Our Capabilities — Numbered Format */}
-          <section className="space-y-8 sm:space-y-12">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-200 pb-4">
-              <span className="text-xs font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-2">
-                <Sparkles className="w-4 h-4" /> 03 // OUR CAPABILITIES
-              </span>
-              <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">Full-Service Capabilities</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {SERVICES.map((service) => (
-                <div
-                  key={service.id}
-                  className="p-6 rounded-2xl bg-white border border-zinc-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-4"
-                >
-                  <div className="space-y-2">
-                    <span className="text-xs font-black font-mono text-emerald-600 tracking-wider">
-                      {service.number} {"//"} {service.category}
-                    </span>
-                    <h3 className="text-xl font-black uppercase tracking-tight text-zinc-900">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-zinc-600 font-light leading-relaxed">
-                      {service.description || service.shortDescription}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-zinc-100 flex flex-wrap gap-1.5">
-                    {service.deliverables.slice(0, 3).map((item) => (
-                      <span key={item} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-700">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 5. Live Operational Hub Clocks */}
-          <section className="space-y-6">
-            <div className="flex items-center gap-2 text-xs font-mono text-emerald-600 uppercase tracking-widest font-extrabold">
-              <Clock className="w-4 h-4" /> 04 // GLOBAL TIMEZONES
-            </div>
-            <div className="gsap-clocks-panel grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 p-6 sm:p-10 rounded-3xl bg-white border border-zinc-200 shadow-xl">
-              <div className="space-y-2">
-                <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider">HQ HUB 01</span>
-                <h3 className="text-lg sm:text-xl font-outfit font-extrabold text-zinc-900">WILMINGTON, DE (USA)</h3>
-                <div className="text-3xl sm:text-4xl font-outfit font-black text-zinc-900">{times.delaware || "00:00"}</div>
-                <p className="text-xs font-outfit font-medium text-zinc-500">EASTERN STANDARD TIME (EST)</p>
-              </div>
-              <div className="space-y-2 border-y md:border-y-0 md:border-x border-zinc-200 py-6 md:py-0 md:px-8">
-                <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider">HQ HUB 02</span>
-                <h3 className="text-lg sm:text-xl font-outfit font-extrabold text-zinc-900">LAHORE, PK</h3>
-                <div className="text-3xl sm:text-4xl font-outfit font-black text-zinc-900">{times.lahore || "00:00"}</div>
-                <p className="text-xs font-outfit font-medium text-zinc-500">PAKISTAN STANDARD TIME (PKT)</p>
-              </div>
-              <div className="space-y-2 md:pl-4">
-                <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider">HUB 03</span>
-                <h3 className="text-lg sm:text-xl font-outfit font-extrabold text-zinc-900">LONDON, UK</h3>
-                <div className="text-3xl sm:text-4xl font-outfit font-black text-zinc-900">{times.london || "00:00"}</div>
-                <p className="text-xs font-outfit font-medium text-zinc-500">GREENWICH MEAN TIME (GMT)</p>
-              </div>
-            </div>
-          </section>
-
-          {/* 6. Industry Recognition */}
-          <section className="space-y-8 border-t border-zinc-200 pt-12 sm:pt-16">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <span className="text-xs font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-1.5">
-                  <Award className="w-4 h-4" /> 05 // RECOGNITION &amp; HONORS
-                </span>
-                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-zinc-900 uppercase tracking-tight mt-1">
-                  INDUSTRY RECOGNITION
-                </h2>
-              </div>
-            </div>
-
-            <div className="gsap-awards-grid grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              {AWARDS.map((award, idx) => (
-                <div key={idx} className="gsap-award-row p-6 sm:p-8 rounded-2xl bg-white border border-zinc-200 flex items-center justify-between hover:border-emerald-500 transition-all duration-300 shadow-xs">
-                  <div className="space-y-1">
-                    <h3 className="text-base sm:text-lg font-outfit font-extrabold text-zinc-900 uppercase">{award.title}</h3>
-                    <p className="text-xs font-outfit text-zinc-600">{award.org}</p>
-                  </div>
-                  <span className="text-xs font-outfit font-extrabold text-zinc-900 border border-zinc-200 px-3 py-1 rounded-full bg-zinc-100 flex-shrink-0 ml-4">
-                    {award.year}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 7. CTA Box */}
-          <div className="p-6 sm:p-12 lg:p-16 rounded-3xl bg-zinc-900 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
-            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
-            <div className="space-y-3 relative z-10">
-              <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest font-extrabold">COLLABORATE WITH US</span>
-              <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-                READY TO SCALE YOUR REVENUE?
-              </h3>
-              <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-light leading-relaxed">
-                Connect directly with our leadership team for a comprehensive growth audit and 12-hour roadmap proposal.
-              </p>
-            </div>
-            <div className="w-full sm:w-auto relative z-10">
-              <CreativeCTA href="/contact" text="PROPOSE A CAMPAIGN" variant="electric" />
-            </div>
-          </div>
         </div>
 
         <Footer />
