@@ -17,17 +17,8 @@ const NAV_LINKS = [
 ];
 
 export const Navigation = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Lock body scroll when mobile drawer is active
   useEffect(() => {
@@ -47,11 +38,7 @@ export const Navigation = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-          scrolled
-            ? "py-3 sm:py-4 bg-white/95 backdrop-blur-xl border-b border-zinc-200/80 shadow-sm"
-            : "py-5 sm:py-8 bg-white border-b border-zinc-100"
-        }`}
+        className="absolute top-0 left-0 right-0 z-40 py-5 sm:py-7 bg-white border-b border-zinc-100"
       >
         <div className="max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
           {/* Logo */}
