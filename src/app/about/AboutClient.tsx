@@ -64,11 +64,17 @@ export function AboutClient() {
                 <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-black leading-tight">
                   A Creative House Built for Brands That Want to <span className="text-emerald-600">Move Forward.</span>
                 </h2>
-                <p className="text-base sm:text-xl text-black font-normal leading-relaxed">
+                <p className="text-base sm:text-lg text-black font-normal leading-relaxed">
                   We are a creative house where strategy meets storytelling, bringing together digital marketing, content creation, commercial shoots, social media, SEO, influencer marketing, graphic design, paid advertising, and AI-powered solutions.
                 </p>
-                <p className="text-sm sm:text-base text-black font-normal leading-relaxed">
+                <p className="text-base sm:text-lg text-black font-normal leading-relaxed">
                   We believe great brands are not built by simply posting more. They are built through ideas that connect, visuals that stand out, and strategies that create real impact.
+                </p>
+                <p className="text-base sm:text-lg text-black font-normal leading-relaxed">
+                  From hospitality and food to lifestyle, beauty, retail, and beyond, we work with brands to build a stronger digital presence and turn their vision into something people can see, feel, and remember.
+                </p>
+                <p className="text-base sm:text-lg text-black font-semibold leading-relaxed">
+                  7+ years of experience. One creative house. Endless ways to make your brand move.
                 </p>
               </div>
 
