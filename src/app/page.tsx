@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     description: "Full-service performance marketing & tech agency scaling business revenue through Google Ads PPC, SEO, CRO, and Paid Social.",
   },
 };
-import { GSAPRevolvingServices } from "@/components/sections/GSAPRevolvingServices";
 import { GSAPScrollGallery } from "@/components/sections/GSAPScrollGallery";
 import { LightStatsSection } from "@/components/sections/LightStatsSection";
 import { EditorialTestimonials } from "@/components/sections/EditorialTestimonials";
@@ -42,10 +41,7 @@ export default function Home() {
         {/* 2. About Virtual Velocity Agency Section */}
         <About />
 
-        {/* 3. GSAP 3D Revolving Services Spectrum */}
-        <GSAPRevolvingServices />
-
-        {/* 3.5 Who We Are — Creative House Manifesto */}
+        {/* 3. Who We Are — Creative House Manifesto */}
         <WhoWeAre />
 
         {/* 4. Case Studies Walkthrough */}

@@ -58,6 +58,12 @@ body {
   word-break: break-word;
 }
 
+/* Disable hover hit-testing & transitions during scroll for silky smooth 120fps scrolling */
+body.is-scrolling,
+body.is-scrolling * {
+  pointer-events: none !important;
+}
+
 ::selection {
   background: #18181b;
   color: #ffffff;

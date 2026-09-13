@@ -28,7 +28,7 @@ const SOCIALS = [
 
 const NAV_LINKS = [
   { label: "About Studio", href: "/about" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Our Work", href: "/#work" },
   { label: "Blog & Journal", href: "/blog" },
   { label: "Careers", href: "/careers" },
