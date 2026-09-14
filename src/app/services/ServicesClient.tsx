@@ -33,24 +33,48 @@ const PROCESS_STEPS = [
     title: "AUDIT & DISCOVERY",
     description: "Deep-dive diagnostic into your ad accounts, analytics architecture, conversion funnels, and organic visibility to find immediate revenue bottlenecks.",
     deliverable: "Diagnostic Report & Growth Roadmap",
+    cardBg: "bg-gradient-to-br from-emerald-50/90 via-teal-50/40 to-emerald-100/50",
+    border: "border-emerald-200/90 hover:border-emerald-500",
+    shadow: "shadow-[0_4px_24px_rgba(16,185,129,0.07)] hover:shadow-[0_12px_32px_rgba(16,185,129,0.18)]",
+    numColor: "text-emerald-600",
+    badgeColor: "text-emerald-800",
+    dividerColor: "border-emerald-200/70",
   },
   {
     step: "02",
     title: "STRATEGIC ARCHITECTURE",
     description: "Designing bespoke campaign architecture, creative testing matrices, technical sprint plans, and tracking infrastructure configured for compounding ROI.",
     deliverable: "Full Campaign & Tech Blueprint",
+    cardBg: "bg-gradient-to-br from-sky-50/90 via-blue-50/40 to-indigo-100/50",
+    border: "border-sky-200/90 hover:border-sky-500",
+    shadow: "shadow-[0_4px_24px_rgba(14,165,233,0.07)] hover:shadow-[0_12px_32px_rgba(14,165,233,0.18)]",
+    numColor: "text-sky-600",
+    badgeColor: "text-sky-800",
+    dividerColor: "border-sky-200/70",
   },
   {
     step: "03",
     title: "RAPID EXECUTION",
     description: "High-velocity creative production, landing page engineering, ad launch sprints, and technical implementations built to capture intent at scale.",
     deliverable: "Live Campaigns & Deployed Systems",
+    cardBg: "bg-gradient-to-br from-amber-50/90 via-orange-50/40 to-rose-50/50",
+    border: "border-amber-200/90 hover:border-amber-500",
+    shadow: "shadow-[0_4px_24px_rgba(245,158,11,0.07)] hover:shadow-[0_12px_32px_rgba(245,158,11,0.18)]",
+    numColor: "text-amber-600",
+    badgeColor: "text-amber-800",
+    dividerColor: "border-amber-200/70",
   },
   {
     step: "04",
     title: "SCALE & OPTIMIZATION",
     description: "Rigorous daily bid management, conversion rate optimization sprints, multivariate copy testing, and budget allocation targeting maximum ROAS.",
     deliverable: "Compounding Monthly Revenue",
+    cardBg: "bg-gradient-to-br from-purple-50/90 via-violet-50/40 to-fuchsia-100/50",
+    border: "border-purple-200/90 hover:border-purple-500",
+    shadow: "shadow-[0_4px_24px_rgba(168,85,247,0.07)] hover:shadow-[0_12px_32px_rgba(168,85,247,0.18)]",
+    numColor: "text-purple-600",
+    badgeColor: "text-purple-800",
+    dividerColor: "border-purple-200/70",
   },
 ];
 
@@ -125,7 +149,7 @@ export function ServicesClient() {
         <Navigation />
 
         {/* 1. Hero Section inspired by Emrix Media */}
-        <section className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto border-b border-zinc-200">
+        <section className="relative pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-24 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto border-b border-zinc-200">
           {/* Top Badge */}
           <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-emerald-600 font-extrabold mb-4 sm:mb-6">
             <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 animate-pulse" />
@@ -298,25 +322,25 @@ export function ServicesClient() {
             {PROCESS_STEPS.map((step) => (
               <div
                 key={step.step}
-                className="group relative p-5 sm:p-7 lg:p-9 rounded-2xl border border-zinc-200 bg-zinc-50/50 hover:bg-white hover:border-emerald-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                className={`group relative p-6 sm:p-7 lg:p-9 rounded-2xl border ${step.border} ${step.cardBg} ${step.shadow} hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between`}
               >
                 <div>
-                  <span className="block text-3xl sm:text-4xl lg:text-5xl font-mono font-black text-emerald-600/60 group-hover:text-emerald-600 transition-colors mb-2.5 sm:mb-4 lg:mb-6">
+                  <span className={`block text-3xl sm:text-4xl lg:text-5xl font-mono font-black ${step.numColor} transition-transform duration-300 group-hover:scale-105 mb-3 sm:mb-4 lg:mb-6`}>
                     {step.step}
                   </span>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-black uppercase tracking-tight mb-1.5 sm:mb-2 lg:mb-3">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-zinc-950 uppercase tracking-tight mb-2 sm:mb-2.5 lg:mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-black leading-normal sm:leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-zinc-800 leading-normal sm:leading-relaxed font-normal">
                     {step.description}
                   </p>
                 </div>
 
-                <div className="pt-3 sm:pt-4 lg:pt-6 border-t border-zinc-200/80 mt-3.5 sm:mt-5 lg:mt-6">
-                  <span className="block text-[10px] font-mono text-zinc-600 uppercase tracking-wider mb-0.5 sm:mb-1">
+                <div className={`pt-3.5 sm:pt-4 lg:pt-6 border-t ${step.dividerColor} mt-4 sm:mt-5 lg:mt-6`}>
+                  <span className="block text-[10px] font-mono text-zinc-600 uppercase tracking-wider mb-1">
                     DELIVERABLE:
                   </span>
-                  <span className="text-xs font-outfit font-bold text-zinc-900 group-hover:text-emerald-600 transition-colors">
+                  <span className={`text-xs font-outfit font-bold ${step.badgeColor} transition-colors block`}>
                     {step.deliverable}
                   </span>
                 </div>

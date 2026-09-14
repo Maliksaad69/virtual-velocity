@@ -27,7 +27,9 @@ const BUDGET_OPTIONS = ["$5k - $15k", "$15k - $50k", "$50k - $100k", "$100k+"];
 
 const HEAR_ABOUT_OPTIONS = [
   "Google Search",
-  "Social Media (LinkedIn / Instagram)",
+  "TikTok",
+  "Facebook",
+  "Instagram",
   "Client Referral",
   "Clutch / Awwwards",
   "Other",
@@ -379,7 +381,7 @@ export const Contact = () => {
                     className="w-full appearance-none bg-zinc-50 hover:bg-zinc-100/80 border border-zinc-200 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 text-zinc-900 font-outfit font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl cursor-pointer shadow-xs transition-all outline-none min-h-[44px]"
                   >
                     {HEAR_ABOUT_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt} className="bg-white text-zinc-900 font-outfit font-medium py-2">
+                      <option key={opt} value={opt} className="bg-white text-zinc-950 font-outfit font-bold py-2">
                         {opt}
                       </option>
                     ))}
@@ -405,7 +407,7 @@ export const Contact = () => {
               <div className="gsap-form-field pt-2">
                 <CreativeCTA
                   type="submit"
-                  text="PROPOSE MARKETING CAMPAIGN"
+                  text="SUBMIT"
                   variant="electric"
                   fullWidth={true}
                   icon={<Send className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />}
@@ -431,36 +433,31 @@ export const Contact = () => {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5">
           {REGIONAL_HUBS.map((hub) => (
             <div
               key={hub.city}
-              className="p-4 sm:p-5 rounded-2xl bg-zinc-50 border border-zinc-200 hover:border-emerald-300 hover:bg-emerald-50/20 transition-all shadow-xs flex flex-col justify-between gap-3 group"
+              className="py-2 px-2.5 sm:py-2.5 sm:px-3 rounded-lg bg-zinc-50/90 border border-zinc-200/90 hover:border-emerald-300 hover:bg-emerald-50/20 transition-all shadow-2xs group"
             >
-              {/* Top: Flag + Full Country Name & Capital */}
-              <div className="flex items-start gap-3">
-                <span className="text-2xl sm:text-3xl flex-shrink-0 leading-none mt-0.5" role="img" aria-label={hub.country}>
+              <div className="flex items-center gap-2">
+                <span className="text-lg sm:text-xl flex-shrink-0 leading-none" role="img" aria-label={hub.country}>
                   {hub.flag}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <span className="font-outfit font-black text-zinc-900 text-sm sm:text-[15px] tracking-tight block leading-snug">
+                  <span className="font-outfit font-black text-zinc-950 text-xs sm:text-[13px] tracking-tight block leading-tight truncate">
                     {hub.country}
                   </span>
-                  <span className="text-xs font-outfit font-semibold text-zinc-600 block mt-0.5">
-                    {hub.city}
-                  </span>
+                  {/* Row of capital name with live time */}
+                  <div className="flex items-center justify-between gap-1.5 mt-0.5">
+                    <span className="text-[10px] sm:text-[11px] font-outfit font-bold text-zinc-800 truncate">
+                      {hub.city}
+                    </span>
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-600 tabular-nums shrink-0 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      {mounted ? (hubTimes[hub.city] || hubTimes[hub.country] || getFormattedTime(hub.timezone)) : "--:--:--"}
+                    </span>
+                  </div>
                 </div>
-              </div>
-
-              {/* Bottom: Live Clock */}
-              <div className="pt-2.5 border-t border-zinc-200/80 flex items-center justify-between gap-2">
-                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider font-bold flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  ACTIVE TIME
-                </span>
-                <span className="font-mono text-xs sm:text-sm font-black text-emerald-600 group-hover:text-emerald-500 transition-colors flex-shrink-0 tabular-nums">
-                  {mounted ? (hubTimes[hub.city] || hubTimes[hub.country] || getFormattedTime(hub.timezone)) : "--:--:--"}
-                </span>
               </div>
             </div>
           ))}

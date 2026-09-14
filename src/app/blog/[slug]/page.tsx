@@ -61,7 +61,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <CustomCursor />
         <Navigation />
 
-        <article className="pt-28 sm:pt-36 pb-20 sm:pb-28 px-4 sm:px-8 lg:px-12 max-w-[70ch] mx-auto space-y-10 sm:space-y-12">
+        <article className="pt-20 sm:pt-24 pb-20 sm:pb-28 px-4 sm:px-8 lg:px-12 max-w-[70ch] mx-auto space-y-10 sm:space-y-12">
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-xs font-outfit font-extrabold text-zinc-700 hover:text-zinc-900 transition-colors uppercase tracking-widest min-h-[44px] py-2 px-3 -ml-3 rounded-lg hover:bg-zinc-100"

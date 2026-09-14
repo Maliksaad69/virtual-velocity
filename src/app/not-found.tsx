@@ -12,7 +12,7 @@ export default function NotFound() {
         <CustomCursor />
         <Navigation />
 
-        <div className="flex-1 flex items-center justify-center pt-36 pb-24 px-4 sm:px-8">
+        <div className="flex-1 flex items-center justify-center pt-20 sm:pt-24 pb-24 px-4 sm:px-8">
           <div className="max-w-2xl mx-auto text-center space-y-6">
             <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-emerald-600 uppercase bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-200 inline-block">
               ERROR 404 // COORDINATE UNRESOLVED

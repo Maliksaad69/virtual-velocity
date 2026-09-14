@@ -112,10 +112,12 @@ const jsonLd = {
       "url": "https://virtualvelocity.agency",
       "logo": "https://virtualvelocity.agency/VV%20png.png",
       "sameAs": [
-        "https://linkedin.com/company/virtualvelocity",
-        "https://twitter.com/virtualvelocity",
-        "https://instagram.com/virtualvelocity",
-        "https://behance.net/virtualvelocity"
+        "https://www.linkedin.com/company/virtualvelocitypk/",
+        "https://www.facebook.com/virtualvelocitypk/",
+        "https://www.instagram.com/virtualvelocity_/",
+        "https://www.tiktok.com/@virtualvelocitypk",
+        "https://www.pinterest.com/thevirtualvelocity/",
+        "https://www.behance.net/thevirtualvelocity"
       ],
       "contactPoint": [
         {

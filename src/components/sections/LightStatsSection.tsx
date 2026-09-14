@@ -61,6 +61,29 @@ const AnimatedCounter = ({ rawValue, className }: { rawValue: string; className?
   );
 };
 
+const PROVEN_STATS = [
+  {
+    value: "240+",
+    line1: "Campaigns managed",
+    line2: "& deployed globally",
+  },
+  {
+    value: "4.8x",
+    line1: "Average ROAS",
+    line2: "across PPC & social",
+  },
+  {
+    value: "320%",
+    line1: "Organic traffic",
+    line2: "growth for clients",
+  },
+  {
+    value: "98%",
+    line1: "Client retention &",
+    line2: "long-term partners",
+  },
+];
+
 /* ─── Section ─── */
 export const LightStatsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -69,11 +92,11 @@ export const LightStatsSection = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".gsap-stats-header",
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.9,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -83,14 +106,13 @@ export const LightStatsSection = () => {
       );
 
       gsap.fromTo(
-        ".gsap-stats-card",
-        { opacity: 0, y: 30, scale: 0.95 },
+        ".gsap-stats-item",
+        { opacity: 0, y: 25 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
           duration: 0.8,
-          stagger: 0.15,
+          stagger: 0.12,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -104,10 +126,10 @@ export const LightStatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-10 sm:py-14 lg:py-16 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 border-y border-zinc-200 relative overflow-hidden">
-      <div className="max-w-[1700px] mx-auto space-y-8 sm:space-y-10">
+    <section ref={sectionRef} className="py-12 sm:py-16 lg:py-20 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 border-t border-zinc-200 relative overflow-hidden">
+      <div className="max-w-[1700px] mx-auto space-y-10 sm:space-y-14">
         {/* Header */}
-        <div className="gsap-stats-header flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-zinc-300 pb-5 sm:pb-6">
+        <div className="gsap-stats-header flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-zinc-200 pb-5 sm:pb-6">
           <div className="space-y-2">
             <span className="text-[11px] font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-emerald-600" /> MEASURABLE AGENCY IMPACT
@@ -122,31 +144,19 @@ export const LightStatsSection = () => {
           </p>
         </div>
 
-        {/* Stats 4-Column Grid - Compact Animated Counters */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-          {STATS.map((stat, idx) => (
+        {/* Minimalist Stats Row (Reference Design) - Zero boxes, pure typography, bottom divider */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 xl:gap-10 pb-10 sm:pb-14 border-b border-zinc-200">
+          {PROVEN_STATS.map((stat, idx) => (
             <div
               key={idx}
-              className="gsap-stats-card p-4 sm:p-5 rounded-xl sm:rounded-2xl space-y-3 transition-colors shadow-xs bg-emerald-500/10 border border-emerald-400/40 hover:border-emerald-600"
+              className="gsap-stats-item flex items-center gap-3 sm:gap-3.5 min-w-0"
             >
-              <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] font-bold">
-                <span className="text-emerald-700 font-extrabold">
-                  0{idx + 1} {"//"} METRIC
-                </span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-emerald-700" />
+              <div className="font-outfit font-bold text-3xl sm:text-4xl lg:text-[2.65rem] xl:text-[3.15rem] text-zinc-950 tracking-tight leading-none shrink-0">
+                <AnimatedCounter rawValue={stat.value} className="font-outfit font-bold" />
               </div>
-
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black tracking-tight text-black">
-                <AnimatedCounter rawValue={stat.value} />
-              </div>
-
-              <div className="space-y-0.5 pt-2.5 border-t border-emerald-500/25">
-                <h3 className="font-outfit font-bold text-xs uppercase text-black tracking-wide">
-                  {stat.label}
-                </h3>
-                <p className="text-[11px] sm:text-xs text-black font-medium leading-relaxed">
-                  {stat.detail}
-                </p>
+              <div className="flex flex-col text-xs sm:text-[13px] xl:text-sm text-zinc-800 font-medium leading-[1.25] truncate">
+                <span className="truncate">{stat.line1}</span>
+                <span className="truncate">{stat.line2}</span>
               </div>
             </div>
           ))}
