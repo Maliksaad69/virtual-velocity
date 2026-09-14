@@ -221,23 +221,23 @@ export const Contact = () => {
 
           <div className="pt-2 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 text-xs sm:text-[13px] font-outfit font-bold text-zinc-900">
             <a
-              href="mailto:admin@thevirtualvelocity.com"
-              className="hover:text-emerald-700 hover:border-emerald-300 hover:bg-emerald-50/50 flex items-center gap-2.5 transition-all min-h-[42px] bg-zinc-50 border border-zinc-300/80 px-4 py-2.5 rounded-xl shadow-xs font-bold"
-            >
-              <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span className="whitespace-nowrap">
-                <span className="font-bold text-zinc-900">Business Development Officer (BDO):</span>{" "}
-                <span className="font-extrabold text-emerald-700">admin@thevirtualvelocity.com</span>
-              </span>
-            </a>
-            <a
               href="mailto:info@thevirtualvelocity.com"
               className="hover:text-emerald-700 hover:border-emerald-300 hover:bg-emerald-50/50 flex items-center gap-2.5 transition-all min-h-[42px] bg-zinc-50 border border-zinc-300/80 px-4 py-2.5 rounded-xl shadow-xs font-bold"
             >
               <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
               <span className="whitespace-nowrap">
-                <span className="font-bold text-zinc-900">General:</span>{" "}
+                <span className="font-bold text-zinc-900">Business Development Officer (BDO):</span>{" "}
                 <span className="font-extrabold text-emerald-700">info@thevirtualvelocity.com</span>
+              </span>
+            </a>
+            <a
+              href="mailto:admin@thevirtualvelocity.com"
+              className="hover:text-emerald-700 hover:border-emerald-300 hover:bg-emerald-50/50 flex items-center gap-2.5 transition-all min-h-[42px] bg-zinc-50 border border-zinc-300/80 px-4 py-2.5 rounded-xl shadow-xs font-bold"
+            >
+              <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span className="whitespace-nowrap">
+                <span className="font-bold text-zinc-900">General:</span>{" "}
+                <span className="font-extrabold text-emerald-700">admin@thevirtualvelocity.com</span>
               </span>
             </a>
             <a

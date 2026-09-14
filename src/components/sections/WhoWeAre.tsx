@@ -76,10 +76,7 @@ export const WhoWeAre = () => {
           </span>{" "}
           your usual marketing agency.
           <br />
-          <span
-            className="text-transparent"
-            style={{ WebkitTextStroke: "1px rgba(24, 24, 27, 0.4)" }}
-          >
+          <span className="text-zinc-500 font-extrabold block sm:inline">
             Don&apos;t treat us like one.
           </span>
         </motion.h2>
