@@ -39,25 +39,25 @@ export default function Home() {
         {/* 1. GSAP Timeline Powered Hero Entrance */}
         <GSAPHeroTimeline />
 
-        {/* 2. About Virtual Velocity Agency Section */}
-        <About />
-
-        {/* 3. Who We Are — Creative House Manifesto */}
-        <WhoWeAre />
-
-        {/* 4. Case Studies Walkthrough */}
+        {/* 2. Case Studies Walkthrough */}
         <GSAPScrollGallery />
 
-        {/* 5. Proven Impact & Metrics */}
+        {/* 3. Proven Impact & Metrics */}
         <LightStatsSection />
 
-        {/* Brand Physics Balls Drop */}
+        {/* 4. Brand Physics Balls Drop */}
         <BrandPhysicsBalls />
 
-        {/* 6. Instagram Reels & Social Media Gallery */}
+        {/* 5. Instagram Reels & Social Media Gallery */}
         <InstaReelsGallery />
 
-        {/* 7. Client Testimonials */}
+        {/* 6. About Virtual Velocity Agency Section */}
+        <About />
+
+        {/* 7. Who We Are — Creative House Manifesto */}
+        <WhoWeAre />
+
+        {/* 8. Client Testimonials */}
         <EditorialTestimonials />
 
         {/* 10. Project Estimator & Contact Form */}

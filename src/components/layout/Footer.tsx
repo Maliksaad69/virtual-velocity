@@ -136,7 +136,7 @@ export const Footer = () => {
 
             <div className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white tracking-wide">
               <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
-              <span>United States &amp; Pakistan full-service offices</span>
+              <span>Islamabad, Pakistan full-service office</span>
             </div>
 
             <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-1">
@@ -195,27 +195,14 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Offices */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pb-10 border-b border-white/10">
-          {AGENCY_INFO.offices.map((office, idx) => (
-            <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-white/10 border border-white/20 space-y-3 text-xs font-bold backdrop-blur-sm">
-              <div className="flex flex-col xs:flex-row xs:items-start justify-between gap-2">
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-white font-bold">
-                    <MapPin className="w-4 h-4 text-white flex-shrink-0" />
-                    <span className="uppercase">{office.city}</span>
-                  </div>
-                  <p className="text-white/90 font-medium leading-relaxed">{office.address}</p>
-                </div>
-                <span className="flex items-center gap-1.5 text-white whitespace-nowrap pt-1 xs:pt-0">
-                  <Phone className="w-3.5 h-3.5" /> {office.phone}
-                </span>
-              </div>
-              <a href={`mailto:${office.email}`} className="flex items-center gap-2 text-white hover:text-emerald-100 transition-colors pt-1 font-bold">
-                <Mail className="w-3.5 h-3.5" /> {office.email}
-              </a>
-            </div>
-          ))}
+        {/* Office Location */}
+        <div className="pb-10 border-b border-white/10">
+          <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 flex items-center gap-2.5 text-xs font-bold backdrop-blur-sm">
+            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
+            <span className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wider text-white">
+              ISLAMABAD, PAKISTAN
+            </span>
+          </div>
         </div>
 
         {/* Bottom Bar */}
