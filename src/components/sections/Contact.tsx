@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Send, CheckCircle2, Mail, Clock, ShieldCheck, ChevronDown, Globe } from "lucide-react";
+import { Send, CheckCircle2, Mail, Phone, Clock, ShieldCheck, ChevronDown, Globe } from "lucide-react";
 import { CreativeCTA } from "@/components/ui/CreativeCTA";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -219,10 +219,18 @@ export const Contact = () => {
             </div>
           </div>
 
-          <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-outfit font-medium text-zinc-700">
-            <a href="mailto:us@virtualvelocity.agency" className="hover:text-emerald-600 flex items-center gap-2.5 transition-colors min-h-[40px] bg-zinc-50 border border-zinc-200 px-4 py-2.5 rounded-xl shadow-xs">
+          <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-outfit font-medium text-zinc-700">
+            <a href="mailto:admin@thevirtualvelocity.com" className="hover:text-emerald-600 flex items-center gap-2.5 transition-colors min-h-[40px] bg-zinc-50 border border-zinc-200 px-4 py-2.5 rounded-xl shadow-xs">
               <Mail className="w-4 h-4 text-emerald-600" />
-              <span>Global Inquiries: us@virtualvelocity.agency</span>
+              <span>Business (BDO): admin@thevirtualvelocity.com</span>
+            </a>
+            <a href="mailto:info@thevirtualvelocity.com" className="hover:text-emerald-600 flex items-center gap-2.5 transition-colors min-h-[40px] bg-zinc-50 border border-zinc-200 px-4 py-2.5 rounded-xl shadow-xs">
+              <Mail className="w-4 h-4 text-emerald-600" />
+              <span>General: info@thevirtualvelocity.com</span>
+            </a>
+            <a href="tel:+923325296693" className="hover:text-emerald-600 flex items-center gap-2.5 transition-colors min-h-[40px] bg-zinc-50 border border-zinc-200 px-4 py-2.5 rounded-xl shadow-xs">
+              <Phone className="w-4 h-4 text-emerald-600" />
+              <span>+92 332 529 6693</span>
             </a>
           </div>
         </div>

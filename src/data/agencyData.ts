@@ -94,8 +94,9 @@ export const AGENCY_INFO = {
     {
       city: "ISLAMABAD, PAKISTAN",
       address: "Islamabad, Pakistan",
-      phone: "+92 (51) 555-0199",
-      email: "hello@virtualvelocity.agency",
+      phone: "+92 332 529 6693",
+      email: "info@thevirtualvelocity.com",
+      businessEmail: "admin@thevirtualvelocity.com",
       timezone: "Asia/Karachi",
     },
   ],
