@@ -48,7 +48,7 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className="pt-0 sm:pt-2 pb-16 sm:pb-20 md:pb-24 px-5 sm:px-10 md:px-16 max-w-[1700px] mx-auto relative overflow-hidden bg-white">
+    <section id="about" className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24 px-5 sm:px-10 md:px-16 max-w-[1700px] mx-auto relative overflow-hidden bg-white border-t border-zinc-200">
       {/* Multi-layer blurred background accents */}
       <div className="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[160px] pointer-events-none" />
       <div className="absolute bottom-1/4 -left-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[160px] pointer-events-none" />

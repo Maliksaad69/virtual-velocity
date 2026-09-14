@@ -54,7 +54,7 @@ export const Footer = () => {
     const emailInput = form.elements.namedItem("email") as HTMLInputElement;
     if (emailInput && emailInput.value) {
       setEmailSubmitted(true);
-      window.location.href = `mailto:hello@virtualvelocity.agency?subject=Proposal Request&body=Email: ${encodeURIComponent(emailInput.value)}`;
+      window.location.href = `mailto:admin@thevirtualvelocity.com?subject=Proposal Request&body=Email: ${encodeURIComponent(emailInput.value)}`;
       setTimeout(() => setEmailSubmitted(false), 4000);
     }
   };
@@ -136,7 +136,7 @@ export const Footer = () => {
 
             <div className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white tracking-wide">
               <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
-              <span>United States &amp; Pakistan full-service offices</span>
+              <span>Islamabad, Pakistan full-service office</span>
             </div>
 
             <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-1">
@@ -195,27 +195,78 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Offices */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pb-10 border-b border-white/10">
-          {AGENCY_INFO.offices.map((office, idx) => (
-            <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-white/10 border border-white/20 space-y-3 text-xs font-bold backdrop-blur-sm">
-              <div className="flex flex-col xs:flex-row xs:items-start justify-between gap-2">
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-white font-bold">
-                    <MapPin className="w-4 h-4 text-white flex-shrink-0" />
-                    <span className="uppercase">{office.city}</span>
-                  </div>
-                  <p className="text-white/90 font-medium leading-relaxed">{office.address}</p>
-                </div>
-                <span className="flex items-center gap-1.5 text-white whitespace-nowrap pt-1 xs:pt-0">
-                  <Phone className="w-3.5 h-3.5" /> {office.phone}
+        {/* Contact Details & Direct Connect */}
+        <div className="pb-10 border-b border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+            {/* Location */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-start gap-3 transition-colors hover:bg-white/15">
+              <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5">
+                <MapPin className="w-4 h-4 text-emerald-200" />
+              </div>
+              <div className="min-w-0">
+                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90">
+                  Headquarters
+                </span>
+                <span className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wide text-white block mt-0.5">
+                  Islamabad, Pakistan
                 </span>
               </div>
-              <a href={`mailto:${office.email}`} className="flex items-center gap-2 text-white hover:text-emerald-100 transition-colors pt-1 font-bold">
-                <Mail className="w-3.5 h-3.5" /> {office.email}
-              </a>
             </div>
-          ))}
+
+            {/* Direct Phone / WhatsApp */}
+            <a
+              href="tel:+923325296693"
+              className="group p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-start gap-3 transition-all hover:bg-white/15 hover:border-white/40"
+            >
+              <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                <Phone className="w-4 h-4 text-emerald-200" />
+              </div>
+              <div className="min-w-0">
+                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90">
+                  Direct Call &amp; WhatsApp
+                </span>
+                <span className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wide text-white block mt-0.5 group-hover:text-emerald-200 transition-colors">
+                  +92 332 529 6693
+                </span>
+              </div>
+            </a>
+
+            {/* Business Development / BDO */}
+            <a
+              href="mailto:admin@thevirtualvelocity.com"
+              className="group p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-start gap-3 transition-all hover:bg-white/15 hover:border-white/40"
+            >
+              <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                <Zap className="w-4 h-4 text-emerald-200" />
+              </div>
+              <div className="min-w-0">
+                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90 whitespace-nowrap">
+                  Business Development Officer (BDO)
+                </span>
+                <span className="text-xs sm:text-sm font-outfit font-black lowercase tracking-wide text-white block mt-0.5 truncate group-hover:text-emerald-200 transition-colors">
+                  admin@thevirtualvelocity.com
+                </span>
+              </div>
+            </a>
+
+            {/* General Inquiries */}
+            <a
+              href="mailto:info@thevirtualvelocity.com"
+              className="group p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-start gap-3 transition-all hover:bg-white/15 hover:border-white/40"
+            >
+              <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                <Mail className="w-4 h-4 text-emerald-200" />
+              </div>
+              <div className="min-w-0">
+                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90">
+                  General Inquiries
+                </span>
+                <span className="text-xs sm:text-sm font-outfit font-black lowercase tracking-wide text-white block mt-0.5 truncate group-hover:text-emerald-200 transition-colors">
+                  info@thevirtualvelocity.com
+                </span>
+              </div>
+            </a>
+          </div>
         </div>
 
         {/* Bottom Bar */}

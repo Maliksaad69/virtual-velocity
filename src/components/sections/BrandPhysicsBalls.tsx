@@ -318,10 +318,10 @@ export const BrandPhysicsBalls = () => {
         </p>
       </div>
 
-      {/* Compact Interactive Physics Arena Box */}
+      {/* Interactive Physics Arena Box - Increased height on mobile */}
       <div
         ref={containerRef}
-        className="relative w-full h-[210px] sm:h-[260px] lg:h-[290px] rounded-3xl overflow-hidden border-2 border-zinc-200 bg-gradient-to-b from-zinc-50/70 via-white to-zinc-100/90 shadow-inner"
+        className="relative w-full h-[285px] sm:h-[275px] lg:h-[300px] rounded-3xl overflow-hidden border-2 border-zinc-200 bg-gradient-to-b from-zinc-50/70 via-white to-zinc-100/90 shadow-inner"
         style={{ touchAction: "pan-y" }}
       >
         {/* Subtle decorative grid backdrop */}

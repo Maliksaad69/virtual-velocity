@@ -92,17 +92,11 @@ export const AGENCY_INFO = {
   founder: FOUNDER,
   offices: [
     {
-      city: "WILMINGTON, UNITED STATES",
-      address: "1209 North Orange St, Suite 400, Wilmington, DE 19801",
-      phone: "+1 (800) 555-0199",
-      email: "us@virtualvelocity.agency",
-      timezone: "America/New_York",
-    },
-    {
-      city: "LAHORE, PAKISTAN",
-      address: "Commercial Zone, Phase 5 DHA, Lahore 54000",
-      phone: "+92 (42) 3555-0199",
-      email: "pk@virtualvelocity.agency",
+      city: "ISLAMABAD, PAKISTAN",
+      address: "Islamabad, Pakistan",
+      phone: "+92 332 529 6693",
+      email: "info@thevirtualvelocity.com",
+      businessEmail: "admin@thevirtualvelocity.com",
       timezone: "Asia/Karachi",
     },
   ],

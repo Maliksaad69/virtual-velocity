@@ -144,17 +144,17 @@ export const LightStatsSection = () => {
           </p>
         </div>
 
-        {/* Minimalist Stats Row (Reference Design) - Zero boxes, pure typography, bottom divider */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 xl:gap-10 pb-10 sm:pb-14 border-b border-zinc-200">
+        {/* Minimalist Stats Row - Exactly 1 line on mobile, adjusted font & boldness */}
+        <div className="grid grid-cols-4 gap-1.5 xs:gap-2.5 sm:gap-6 xl:gap-10 pb-8 sm:pb-14 border-b border-zinc-200">
           {PROVEN_STATS.map((stat, idx) => (
             <div
               key={idx}
-              className="gsap-stats-item flex items-center gap-3 sm:gap-3.5 min-w-0"
+              className="gsap-stats-item flex flex-col sm:flex-row items-start sm:items-center gap-0.5 sm:gap-3.5 min-w-0 pr-1 sm:pr-0 border-r border-zinc-200/80 last:border-r-0 sm:border-r-0"
             >
-              <div className="font-outfit font-bold text-3xl sm:text-4xl lg:text-[2.65rem] xl:text-[3.15rem] text-zinc-950 tracking-tight leading-none shrink-0">
-                <AnimatedCounter rawValue={stat.value} className="font-outfit font-bold" />
+              <div className="font-outfit font-black sm:font-bold text-lg xs:text-xl sm:text-4xl lg:text-[2.65rem] xl:text-[3.15rem] text-zinc-950 tracking-tight leading-none shrink-0">
+                <AnimatedCounter rawValue={stat.value} className="font-outfit font-black sm:font-bold" />
               </div>
-              <div className="flex flex-col text-xs sm:text-[13px] xl:text-sm text-zinc-800 font-medium leading-[1.25] truncate">
+              <div className="flex flex-col text-[8.5px] xs:text-[9.5px] sm:text-[13px] xl:text-sm text-zinc-600 font-normal leading-[1.15] sm:leading-[1.25] tracking-tight">
                 <span className="truncate">{stat.line1}</span>
                 <span className="truncate">{stat.line2}</span>
               </div>
