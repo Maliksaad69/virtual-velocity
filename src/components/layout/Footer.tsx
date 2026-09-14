@@ -240,8 +240,8 @@ export const Footer = () => {
                 <Zap className="w-4 h-4 text-emerald-200" />
               </div>
               <div className="min-w-0">
-                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90">
-                  Business Development (BDO)
+                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90 whitespace-nowrap">
+                  Business Development Officer (BDO)
                 </span>
                 <span className="text-xs sm:text-sm font-outfit font-black lowercase tracking-wide text-white block mt-0.5 truncate group-hover:text-emerald-200 transition-colors">
                   admin@thevirtualvelocity.com
