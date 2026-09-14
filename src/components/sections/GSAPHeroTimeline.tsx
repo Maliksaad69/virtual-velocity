@@ -20,8 +20,8 @@ const TICKER_ITEMS = [
 ];
 
 const SLIDER_IMAGES = [
-  { src: "/Vv.png", alt: "Virtual Velocity Digital Agency Banner" },
   { src: "/Banner 2.png", alt: "Virtual Velocity Performance Banner" },
+  { src: "/Vv.png", alt: "Virtual Velocity Digital Agency Banner" },
 ];
 
 export const GSAPHeroTimeline = () => {
@@ -30,7 +30,7 @@ export const GSAPHeroTimeline = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [tickerIndex, setTickerIndex] = useState(0);
-  const [sliderIndex, setSliderIndex] = useState(0);
+  const [slideCount, setSlideCount] = useState(0);
 
   useEffect(() => {
     const t = setInterval(() => setTickerIndex((p) => (p + 1) % TICKER_ITEMS.length), 2200);
@@ -38,7 +38,7 @@ export const GSAPHeroTimeline = () => {
   }, []);
 
   useEffect(() => {
-    const t = setInterval(() => setSliderIndex((p) => (p + 1) % SLIDER_IMAGES.length), 3000);
+    const t = setInterval(() => setSlideCount((p) => p + 1), 4500);
     return () => clearInterval(t);
   }, []);
 
@@ -182,18 +182,28 @@ export const GSAPHeroTimeline = () => {
 
       {/* ─── Hero Banner Slider: Full bleed under transparent header, increased internal height ─── */}
       <div className="relative w-full overflow-hidden h-[50vh] min-h-[360px] sm:h-[64vh] sm:min-h-[480px] sm:max-h-[640px]">
-        <AnimatePresence mode="popLayout" initial={false}>
+        {/* Hidden Preloader: Pre-decodes textures in GPU memory for zero lag */}
+        <div className="hidden" aria-hidden="true">
+          <Image src="/Banner 2.png" alt="pre" width={1920} height={1080} priority />
+          <Image src="/Vv.png" alt="pre" width={1920} height={1080} priority />
+        </div>
+
+        {/* Alternating Slider: Image enters from the right side every time without exception */}
+        <AnimatePresence initial={false}>
           <motion.div
-            key={sliderIndex}
-            initial={{ x: "100%", opacity: 1 }}
-            animate={{ x: "0%", opacity: 1 }}
-            exit={{ x: "-100%", opacity: 1 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0 w-full h-full"
+            key={slideCount}
+            initial={{ x: "100%" }}
+            animate={{ x: "0%" }}
+            exit={{ x: "-100%" }}
+            transition={{
+              duration: 0.9,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="absolute inset-0 w-full h-full will-change-transform"
           >
             <Image
-              src={SLIDER_IMAGES[sliderIndex].src}
-              alt={SLIDER_IMAGES[sliderIndex].alt}
+              src={SLIDER_IMAGES[slideCount % SLIDER_IMAGES.length].src}
+              alt={SLIDER_IMAGES[slideCount % SLIDER_IMAGES.length].alt}
               fill
               priority
               sizes="100vw"
@@ -244,16 +254,25 @@ export const GSAPHeroTimeline = () => {
             </div>
 
             <div className="mt-2 sm:mt-4 flex items-center gap-1.5 sm:gap-2">
-              {SLIDER_IMAGES.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSliderIndex(idx)}
-                  className={`h-1 sm:h-1.5 rounded-full transition-all duration-400 ${
-                    sliderIndex === idx ? "w-6 sm:w-8 bg-emerald-400" : "w-1.5 bg-white/50 hover:bg-white/80"
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
+              {SLIDER_IMAGES.map((_, idx) => {
+                const isActive = (slideCount % SLIDER_IMAGES.length) === idx;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setSlideCount((prev) => {
+                        const cur = prev % SLIDER_IMAGES.length;
+                        if (cur === idx) return prev;
+                        return prev + 1;
+                      });
+                    }}
+                    className={`h-1 sm:h-1.5 rounded-full transition-all duration-400 ${
+                      isActive ? "w-6 sm:w-8 bg-emerald-400" : "w-1.5 bg-white/50 hover:bg-white/80"
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>

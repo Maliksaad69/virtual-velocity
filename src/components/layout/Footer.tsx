@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Globe,
@@ -184,18 +185,33 @@ export const Footer = () => {
               <span>Islamabad, Pakistan full-service office</span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
-              {SOCIALS.map((social) => (
-                <a
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 pt-3 pb-2">
+              {SOCIALS.map((social, idx) => (
+                <motion.a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center bg-white/10 hover:bg-white text-white hover:text-emerald-800 border border-white/20 hover:border-white transition-all duration-300 shadow-md hover:scale-110 active:scale-95"
+                  animate={{
+                    y: [0, -7, 0],
+                  }}
+                  transition={{
+                    duration: 2.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: idx * 0.22,
+                  }}
+                  whileHover={{
+                    scale: 1.18,
+                    y: -10,
+                    transition: { duration: 0.2 },
+                  }}
+                  whileTap={{ scale: 0.92 }}
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center bg-white/10 hover:bg-white text-white hover:text-emerald-800 border border-white/20 hover:border-white shadow-md hover:shadow-lg transition-colors duration-300"
                 >
                   <SocialIcon label={social.label} className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
@@ -250,7 +266,7 @@ export const Footer = () => {
               </div>
               <div className="min-w-0">
                 <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90">
-                  Headquarters
+                  Office
                 </span>
                 <span className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wide text-white block mt-0.5">
                   Islamabad, Pakistan
