@@ -81,6 +81,7 @@ export const BrandPhysicsBalls = () => {
 
     const engine = Matter.Engine.create({
       gravity: { x: 0, y: 1.0, scale: 0.0012 },
+      enableSleeping: true,
     });
 
     // Wall boundaries (Floor, Left, Right)
@@ -166,35 +167,6 @@ export const BrandPhysicsBalls = () => {
 
     Matter.Composite.add(engine.world, mouseConstraint);
 
-    // Custom non-intrusive touch handling: only drag if touching a ball
-    let activeTouch = false;
-    const onTouchStart = (e: TouchEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.closest("[data-ball='true']")) {
-        activeTouch = true;
-        typedMouse.mousedown(e);
-      }
-    };
-
-    const onTouchMove = (e: TouchEvent) => {
-      if (activeTouch && mouseConstraint.body) {
-        if (e.cancelable) e.preventDefault();
-        typedMouse.mousemove(e);
-      }
-    };
-
-    const onTouchEnd = (e: TouchEvent) => {
-      if (activeTouch) {
-        activeTouch = false;
-        typedMouse.mouseup(e);
-      }
-    };
-
-    container.addEventListener("touchstart", onTouchStart, { passive: true });
-    container.addEventListener("touchmove", onTouchMove, { passive: false });
-    container.addEventListener("touchend", onTouchEnd, { passive: true });
-    container.addEventListener("touchcancel", onTouchEnd, { passive: true });
-
     // Runner loop
     const runner = Matter.Runner.create();
     Matter.Runner.run(runner, engine);
@@ -202,10 +174,23 @@ export const BrandPhysicsBalls = () => {
     // Render loop directly updating DOM transforms (GPU accelerated)
     let animationFrameId: number;
     let isRunning = true;
+    let isInteracting = false;
+    let idleFrames = 0;
+
+    const wakeUp = () => {
+      idleFrames = 0;
+      if (!isRunning) {
+        isRunning = true;
+        animationFrameId = requestAnimationFrame(updateDOM);
+      }
+    };
 
     const updateDOM = () => {
       if (!isRunning) return;
-      bodies.forEach((body, idx) => {
+
+      let maxSpeed = 0;
+      for (let idx = 0; idx < bodies.length; idx++) {
+        const body = bodies[idx];
         const el = ballElementsRef.current[idx];
         if (el) {
           const x = body.position.x - radius;
@@ -213,19 +198,87 @@ export const BrandPhysicsBalls = () => {
           const deg = (body.angle * 180) / Math.PI;
           el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${deg}deg)`;
         }
-      });
+        if (body.speed > maxSpeed) {
+          maxSpeed = body.speed;
+        }
+      }
+
+      // Check if user is actively touching or dragging
+      if (isInteracting || mouseConstraint.body) {
+        idleFrames = 0;
+      } else if (maxSpeed < 0.12) {
+        // Balls have virtually stopped moving
+        idleFrames++;
+      } else {
+        idleFrames = 0;
+      }
+
+      // Once balls have settled for 50 consecutive frames, pause RAF loop to free 100% CPU/GPU
+      if (idleFrames > 50) {
+        isRunning = false;
+        return;
+      }
+
       animationFrameId = requestAnimationFrame(updateDOM);
     };
 
     animationFrameId = requestAnimationFrame(updateDOM);
 
+    // Custom non-intrusive touch handling: only drag if touching a ball
+    let activeTouch = false;
+    const onTouchStart = (e: TouchEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("[data-ball='true']")) {
+        activeTouch = true;
+        isInteracting = true;
+        wakeUp();
+        typedMouse.mousedown(e);
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (activeTouch && mouseConstraint.body) {
+        if (e.cancelable) e.preventDefault();
+        wakeUp();
+        typedMouse.mousemove(e);
+      }
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (activeTouch) {
+        activeTouch = false;
+        isInteracting = false;
+        wakeUp();
+        typedMouse.mouseup(e);
+      }
+    };
+
+    const onPointerDown = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("[data-ball='true']")) {
+        isInteracting = true;
+        wakeUp();
+      }
+    };
+
+    const onPointerUp = () => {
+      if (isInteracting) {
+        isInteracting = false;
+        wakeUp();
+      }
+    };
+
+    container.addEventListener("touchstart", onTouchStart, { passive: true });
+    container.addEventListener("touchmove", onTouchMove, { passive: false });
+    container.addEventListener("touchend", onTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", onTouchEnd, { passive: true });
+    container.addEventListener("mousedown", onPointerDown, { passive: true });
+    window.addEventListener("mouseup", onPointerUp, { passive: true });
+
     // Pause physics & RAF when out of view to preserve 120fps smooth scrolling
     startLoopRef.current = () => {
-      if (!isRunning) {
-        isRunning = true;
-        Matter.Runner.run(runner, engine);
-        animationFrameId = requestAnimationFrame(updateDOM);
-      }
+      wakeUp();
+      Matter.Runner.run(runner, engine);
     };
 
     stopLoopRef.current = () => {
@@ -244,6 +297,8 @@ export const BrandPhysicsBalls = () => {
       container.removeEventListener("touchmove", onTouchMove);
       container.removeEventListener("touchend", onTouchEnd);
       container.removeEventListener("touchcancel", onTouchEnd);
+      container.removeEventListener("mousedown", onPointerDown);
+      window.removeEventListener("mouseup", onPointerUp);
       Matter.Runner.stop(runner);
       Matter.World.clear(engine.world, false);
       Matter.Engine.clear(engine);

@@ -168,7 +168,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${inter.variable} h-full antialiased overflow-x-hidden`}
+      className={`${outfit.variable} ${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -177,7 +177,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground font-inter relative overflow-x-hidden">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-inter relative">
         {children}
       </body>
     </html>

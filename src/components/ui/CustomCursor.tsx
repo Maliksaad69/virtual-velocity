@@ -16,20 +16,26 @@ export const CustomCursor = () => {
   const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (
-        "ontouchstart" in window || 
-        navigator.maxTouchPoints > 0 || 
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
-        return;
-      }
+    if (typeof window === "undefined") return;
+
+    if (
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
     }
+
+    let isShown = false;
 
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      if (!isShown) {
+        isShown = true;
+        setIsVisible(true);
+      }
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -53,6 +59,7 @@ export const CustomCursor = () => {
     };
 
     const handleMouseLeave = () => {
+      isShown = false;
       setIsVisible(false);
     };
 
@@ -65,7 +72,7 @@ export const CustomCursor = () => {
       window.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [cursorX, cursorY, isVisible]);
+  }, [cursorX, cursorY]);
 
   if (!isVisible) return null;
 
