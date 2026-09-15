@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles, Play, X } from "lucide-react";
 
 interface ReelItem {
   id: string;
@@ -154,11 +154,17 @@ const N = BRAND_REELS.length;
 // 3 identical sets of 6 reels for smooth infinite repeating track
 const CLONED_REELS = [...BRAND_REELS, ...BRAND_REELS, ...BRAND_REELS];
 
+const getReelCode = (url: string) => {
+  const match = url.match(/\/reel\/([A-Za-z0-9_-]+)/);
+  return match ? match[1] : "";
+};
+
 export const InstaReelsGallery = () => {
   // Start in middle set at index N + 1 = 7 (reel-02)
   const [currentIndex, setCurrentIndex] = useState(N + 1);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
 
   const trackRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -212,24 +218,48 @@ export const InstaReelsGallery = () => {
 
   // Infinite repeating autoplay: continually loops smoothly
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || activeModalIndex !== null) return;
     const interval = setInterval(() => {
       if (!isDragging.current) {
         nextSlide();
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [isHovered, nextSlide]);
+  }, [isHovered, activeModalIndex, nextSlide]);
 
-  // Keyboard navigation
+  // Keyboard navigation for carousel
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (activeModalIndex !== null) return;
       if (e.key === "ArrowLeft") prevSlide();
       if (e.key === "ArrowRight") nextSlide();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [prevSlide, nextSlide]);
+  }, [prevSlide, nextSlide, activeModalIndex]);
+
+  // Modal keyboard listeners and body scroll lock
+  useEffect(() => {
+    if (activeModalIndex === null) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleModalKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveModalIndex(null);
+      } else if (e.key === "ArrowLeft") {
+        setActiveModalIndex((prev) => (prev !== null ? (prev - 1 + N) % N : null));
+      } else if (e.key === "ArrowRight") {
+        setActiveModalIndex((prev) => (prev !== null ? (prev + 1) % N : null));
+      }
+    };
+
+    window.addEventListener("keydown", handleModalKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleModalKeyDown);
+    };
+  }, [activeModalIndex]);
 
   // Helper to reset track to current index transform
   const resetTrackPosition = useCallback(() => {
@@ -465,6 +495,15 @@ export const InstaReelsGallery = () => {
                     )}
                   </div>
 
+                  {/* Glowing Play Button on Active Card */}
+                  {isActive && (
+                    <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-600/90 text-white flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.7)] backdrop-blur-xs border border-white/40 transition-transform duration-300 group-hover:scale-110">
+                        <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-white translate-x-0.5" />
+                      </div>
+                    </div>
+                  )}
+
                   {/* Bottom Content Overlay with Emerald Theme */}
                   <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 pt-12 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end space-y-1 z-10 pointer-events-none">
                     <h3 className="text-[11.5px] sm:text-xs font-black text-white leading-snug tracking-tight line-clamp-2">
@@ -479,7 +518,7 @@ export const InstaReelsGallery = () => {
               );
 
               // Middle 1 box is larger (scale-110) and 100% crisp without blur, with decreased height overall
-              const cardClasses = `relative flex-shrink-0 w-[180px] sm:w-[205px] md:w-[225px] aspect-[9/13.8] rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 ease-out cursor-pointer block select-none transform-gpu ${
+              const cardClasses = `group relative flex-shrink-0 w-[180px] sm:w-[205px] md:w-[225px] aspect-[9/13.8] rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 ease-out cursor-pointer block select-none transform-gpu text-left ${
                 isActive
                   ? "scale-110 ring-2 ring-emerald-500 shadow-[0_16px_40px_rgba(16,185,129,0.3)] ring-offset-2 ring-offset-white z-30 opacity-100 hover:brightness-105"
                   : isNeighbor
@@ -487,24 +526,29 @@ export const InstaReelsGallery = () => {
                   : "scale-90 opacity-50 hover:opacity-75 z-10 shadow-sm"
               }`;
 
-              // Active card is a native link that directly opens reel in new tab on Instagram
+              // Active card: clicking opens on-page reel lightbox without navigating anywhere
               if (isActive) {
                 return (
-                  <a
+                  <div
                     key={`${reel.id}-${idx}`}
-                    href={reel.videoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => {
-                      if (hasMoved.current) {
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => {
+                      if (!hasMoved.current) {
+                        setActiveModalIndex(realActiveIndex);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
+                        setActiveModalIndex(realActiveIndex);
                       }
                     }}
                     className={cardClasses}
-                    title={`Play ${reel.title} on Instagram`}
+                    title={`Play ${reel.title} on this page`}
                   >
                     {cardContent}
-                  </a>
+                  </div>
                 );
               }
 
@@ -512,8 +556,17 @@ export const InstaReelsGallery = () => {
               return (
                 <div
                   key={`${reel.id}-${idx}`}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => {
                     if (!hasMoved.current) {
+                      setIsTransitioning(true);
+                      setCurrentIndex(idx);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
                       setIsTransitioning(true);
                       setCurrentIndex(idx);
                     }
@@ -546,6 +599,106 @@ export const InstaReelsGallery = () => {
           ))}
         </div>
       </div>
+
+      {/* On-Page Instagram Reel Player Lightbox Modal */}
+      {activeModalIndex !== null && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={BRAND_REELS[activeModalIndex]?.title || "Instagram Reel"}
+          onClick={() => setActiveModalIndex(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md transition-all duration-300"
+        >
+          {/* Modal Card */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-[420px] sm:max-w-[440px] bg-zinc-950 border border-zinc-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800/80 bg-zinc-900/95 backdrop-blur-md z-10">
+              <div className="min-w-0 pr-3 text-left">
+                <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block">
+                  {BRAND_REELS[activeModalIndex].client} · {BRAND_REELS[activeModalIndex].year}
+                </span>
+                <h4 className="text-xs sm:text-sm font-bold text-white truncate">
+                  {BRAND_REELS[activeModalIndex].title}
+                </h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveModalIndex(null)}
+                aria-label="Close reel player"
+                className="w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white flex items-center justify-center transition-colors flex-shrink-0 cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Embedded Instagram Reel Frame (Cropped to ONLY show the reel video, hiding Profile header and likes/comments footer) */}
+            <div className="relative w-full aspect-[4/5] bg-black overflow-hidden flex items-center justify-center">
+              <iframe
+                key={BRAND_REELS[activeModalIndex].id}
+                src={`https://www.instagram.com/reel/${getReelCode(BRAND_REELS[activeModalIndex].videoUrl)}/embed/`}
+                className="absolute left-0 w-full border-0 select-none"
+                style={{
+                  top: "-55px",
+                  height: "calc(100% + 180px)",
+                }}
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen
+                title={BRAND_REELS[activeModalIndex].title}
+              />
+            </div>
+
+            {/* Modal Footer Controls */}
+            <div className="flex items-center justify-between px-4 py-3 border-t border-zinc-800/80 bg-zinc-900/95 text-xs font-mono">
+              <button
+                type="button"
+                onClick={() => setActiveModalIndex((prev) => (prev !== null ? (prev - 1 + N) % N : null))}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>PREV</span>
+              </button>
+              <span className="text-zinc-400 text-[11px] font-bold">
+                {activeModalIndex + 1} / {N}
+              </span>
+              <button
+                type="button"
+                onClick={() => setActiveModalIndex((prev) => (prev !== null ? (prev + 1) % N : null))}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white transition-colors cursor-pointer"
+              >
+                <span>NEXT</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Desktop Quick Prev / Next Floating Arrows */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveModalIndex((prev) => (prev !== null ? (prev - 1 + N) % N : null));
+              }}
+              aria-label="Previous reel"
+              className="hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 text-white items-center justify-center backdrop-blur-md border border-white/20 transition-all cursor-pointer"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveModalIndex((prev) => (prev !== null ? (prev + 1) % N : null));
+              }}
+              aria-label="Next reel"
+              className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 text-white items-center justify-center backdrop-blur-md border border-white/20 transition-all cursor-pointer"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

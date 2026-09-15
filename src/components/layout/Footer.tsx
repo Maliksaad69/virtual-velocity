@@ -1,23 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
-  ArrowUpRight,
-  Globe,
   Mail,
   Phone,
   MapPin,
-  Compass,
-  Sparkles,
-  ArrowRight,
-  Zap,
-  MessageCircle,
-  Send,
+  ChevronUp,
 } from "lucide-react";
-import { Magnetic } from "@/components/ui/Magnetic";
 import { AGENCY_INFO } from "@/data/agencyData";
 
 const SOCIALS = [
@@ -30,6 +21,7 @@ const SOCIALS = [
 ];
 
 const NAV_LINKS = [
+  { label: "Home", href: "/" },
   { label: "About Studio", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Our Work", href: "/#work" },
@@ -39,10 +31,11 @@ const NAV_LINKS = [
 ];
 
 const SERVICES_ANCHORS = [
-  "Google Ads PPC",
-  "Technical SEO",
-  "Paid Social",
-  "Conversion Rate Opt.",
+  { label: "Google Ads PPC", href: "/services" },
+  { label: "Technical SEO", href: "/services" },
+  { label: "Paid Social", href: "/services" },
+  { label: "Conversion Rate Opt.", href: "/services" },
+  { label: "View All Services", href: "/services" },
 ];
 
 function SocialIcon({ label, className = "w-4 h-4" }: { label: string; className?: string }) {
@@ -91,265 +84,210 @@ function SocialIcon({ label, className = "w-4 h-4" }: { label: string; className
 }
 
 export const Footer = () => {
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
   const currentYear = new Date().getFullYear();
 
-  const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const emailInput = form.elements.namedItem("email") as HTMLInputElement;
-    if (emailInput && emailInput.value) {
-      setEmailSubmitted(true);
-      window.location.href = `mailto:info@thevirtualvelocity.com?subject=Proposal Request&body=Email: ${encodeURIComponent(emailInput.value)}`;
-      setTimeout(() => setEmailSubmitted(false), 4000);
-    }
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="relative font-calibri bg-gradient-to-b from-emerald-600 via-emerald-700 to-emerald-800 text-white pt-14 sm:pt-20 pb-10 px-4 sm:px-8 lg:px-12 overflow-hidden">
-      <div className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-white/15 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[360px] h-[360px] rounded-full bg-emerald-300/15 blur-[120px] pointer-events-none" />
-
-      <div className="relative max-w-[1700px] mx-auto space-y-12 sm:space-y-16">
-        {/* Top CTA Band */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 p-6 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-800 border border-emerald-400/30 shadow-xl shadow-emerald-900/30 overflow-hidden relative">
-          <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
-          <div className="space-y-3 relative z-10">
-            <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-outfit font-bold text-white tracking-wide">
-              <Zap className="w-4 h-4" /> Ready to scale?
-            </span>
-            <h3 className="text-2xl sm:text-4xl lg:text-5xl font-outfit font-black uppercase tracking-tight leading-[1] sm:leading-[0.95]">
-              Let&apos;s build your <span className="text-white">revenue engine</span>
-            </h3>
-            <p className="text-xs sm:text-base text-white/90 font-medium max-w-xl leading-relaxed">
-              Get a personalized growth roadmap and guaranteed 12-hour campaign proposal.
-            </p>
-          </div>
-
-          <div className="relative z-10 flex flex-col sm:flex-row items-stretch gap-3">
-            <form onSubmit={handleEmailSubmit} className="flex flex-col xs:flex-row items-stretch gap-3 w-full sm:w-auto">
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 w-full sm:w-auto min-h-[48px]">
-                <Mail className="w-5 h-5 text-white flex-shrink-0" />
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="YOUR@EMAIL.COM"
-                  className="bg-transparent text-white text-xs sm:text-sm font-outfit font-semibold uppercase placeholder:text-white/70 focus:outline-none w-full sm:w-60"
-                />
-                <button type="submit" aria-label="Send Inquiry" className="text-white hover:scale-110 transition-transform">
-                  {emailSubmitted ? (
-                    <Sparkles className="w-5 h-5 flex-shrink-0 text-emerald-200 animate-spin" />
-                  ) : (
-                    <Send className="w-5 h-5 flex-shrink-0 cursor-pointer" />
-                  )}
-                </button>
-              </div>
-              <Magnetic strength={0.2}>
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white text-emerald-800 font-outfit font-black text-xs sm:text-sm tracking-wider uppercase hover:bg-emerald-50 transition-colors shadow-lg min-h-[48px]"
-                >
-                  GET A QUOTE
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </Link>
-              </Magnetic>
-            </form>
-          </div>
-        </div>
-
-        {/* Main Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/10">
-          {/* Col 1: Brand & Tagline */}
-          <div className="md:col-span-2 lg:col-span-5 space-y-6">
+    <footer className="relative font-outfit bg-gradient-to-b from-emerald-800 via-emerald-900 to-emerald-950 text-white pt-10 sm:pt-14 pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-emerald-700/50">
+      <div className="max-w-[1700px] mx-auto space-y-10">
+        {/* Main 4-Column Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
+          {/* Col 1: Brand & Bio */}
+          <div className="sm:col-span-2 lg:col-span-4 space-y-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-3 font-outfit font-black text-2xl sm:text-3xl tracking-tighter uppercase group"
+              className="inline-flex items-center gap-2.5 font-outfit font-black text-xl sm:text-2xl tracking-tighter uppercase group"
             >
               <Image
                 src="/VV png.png"
                 alt="Virtual Velocity Logo"
-                width={48}
-                height={48}
-                className="h-9 sm:h-11 w-auto object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-105"
+                width={40}
+                height={40}
+                className="h-8 sm:h-9 w-auto object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-105"
               />
               <span>VIRTUAL VELOCITY</span>
             </Link>
 
-            <p className="text-xs sm:text-sm text-white/95 font-medium max-w-md leading-relaxed">
-              {AGENCY_INFO.tagline}. We combine strategic performance marketing, web app engineering, and creative direction to fuel business growth.
+            <p className="text-xs sm:text-[13px] text-white/85 font-normal leading-relaxed max-w-sm">
+              {AGENCY_INFO.tagline}. We combine strategic performance marketing, web app engineering, and creative direction to fuel business growth across global markets.
             </p>
 
-            <div className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white tracking-wide">
-              <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
-              <span>Islamabad, Pakistan full-service office</span>
-            </div>
+            {/* Offices in 2 separate rows with animated location icons */}
+            <div className="pt-2 space-y-2.5">
+              <div className="flex items-center gap-2 text-xs text-white/95">
+                <MapPin className="w-4 h-4 text-emerald-300 shrink-0 animate-bounce" style={{ animationDuration: "2.2s" }} />
+                <div>
+                  <span className="font-bold text-white block">Islamabad, Pakistan</span>
+                  <a href="tel:+923325296693" className="text-[11px] text-emerald-200/90 font-mono hover:text-white transition-colors">
+                    +92 332 529 6693
+                  </a>
+                </div>
+              </div>
 
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 pt-3 pb-2">
-              {SOCIALS.map((social, idx) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={social.label}
-                  animate={{
-                    y: [0, -7, 0],
-                  }}
-                  transition={{
-                    duration: 2.6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: idx * 0.22,
-                  }}
-                  whileHover={{
-                    scale: 1.18,
-                    y: -10,
-                    transition: { duration: 0.2 },
-                  }}
-                  whileTap={{ scale: 0.92 }}
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center bg-white/10 hover:bg-white text-white hover:text-emerald-800 border border-white/20 hover:border-white shadow-md hover:shadow-lg transition-colors duration-300"
-                >
-                  <SocialIcon label={social.label} className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
-                </motion.a>
-              ))}
+              <div className="flex items-center gap-2 text-xs text-white/95">
+                <MapPin className="w-4 h-4 text-emerald-300 shrink-0 animate-bounce" style={{ animationDuration: "2.2s", animationDelay: "1.1s" }} />
+                <div>
+                  <span className="font-bold text-white block">Birmingham, UK</span>
+                  <a href="tel:+447756557500" className="text-[11px] text-emerald-200/90 font-mono hover:text-white transition-colors">
+                    +44 7756 557500
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Col 2: Navigation */}
-          <div className="md:col-span-1 lg:col-span-3 space-y-4">
-            <span className="text-meta text-white font-extrabold uppercase tracking-widest flex items-center gap-1.5">
-              <Compass className="w-3.5 h-3.5 text-white" /> EXPLORE
-            </span>
-            <ul className="space-y-3 text-xs sm:text-sm font-bold text-white">
+          {/* Col 2: Quick Links */}
+          <div className="lg:col-span-2 space-y-3.5">
+            <h4 className="text-sm font-outfit font-black uppercase tracking-wider text-white">
+              Quick Links
+            </h4>
+            <ul className="space-y-1 text-xs sm:text-[13px]">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="group inline-flex items-center gap-2 hover:text-emerald-100 transition-colors py-1">
-                    <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                    <span className="uppercase">{link.label}</span>
+                  <Link
+                    href={link.href}
+                    className="group flex items-center gap-2 py-1 text-zinc-200 hover:text-white transition-all duration-200 font-medium"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                    <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                      {link.label}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 3: Services Highlights */}
-          <div className="md:col-span-1 lg:col-span-4 space-y-4">
-            <span className="text-meta text-white font-extrabold uppercase tracking-widest flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-white" /> OUR DISCIPLINES
-            </span>
-            <ul className="space-y-3 text-xs sm:text-sm font-bold text-white">
+          {/* Col 3: Our Services */}
+          <div className="lg:col-span-2 space-y-3.5">
+            <h4 className="text-sm font-outfit font-black uppercase tracking-wider text-white">
+              Our Services
+            </h4>
+            <ul className="space-y-1 text-xs sm:text-[13px]">
               {SERVICES_ANCHORS.map((service) => (
-                <li key={service}>
-                  <Link href="/#services" className="group inline-flex items-center gap-2 hover:text-emerald-100 transition-colors py-1">
-                    <MessageCircle className="w-3.5 h-3.5 text-white" />
-                    <span className="uppercase">{service}</span>
+                <li key={service.label}>
+                  <Link
+                    href={service.href}
+                    className="group flex items-center gap-2 py-1 text-zinc-200 hover:text-white transition-all duration-200 font-medium"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                    <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                      {service.label}
+                    </span>
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
-                <Link href="/#services" className="inline-flex items-center gap-2 text-white font-extrabold uppercase tracking-wider hover:text-emerald-100 transition-colors py-1">
-                  View All Services <ArrowRight className="w-4 h-4" />
-                </Link>
+            </ul>
+          </div>
+
+          {/* Col 4: Get In Touch (Shifted towards left with expanded 4-col room) */}
+          <div className="sm:col-span-2 lg:col-span-4 space-y-3.5">
+            <h4 className="text-sm font-outfit font-black uppercase tracking-wider text-white">
+              Get In Touch
+            </h4>
+            <ul className="space-y-2.5 text-xs sm:text-[13px] font-medium text-white/90">
+              <li>
+                <a
+                  href="mailto:info@thevirtualvelocity.com"
+                  className="inline-flex items-center gap-2 hover:text-emerald-200 transition-colors group"
+                >
+                  <Mail className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
+                  <span className="truncate">
+                    info@thevirtualvelocity.com <span className="text-[11px] text-emerald-200/90 font-mono">(BDO)</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:admin@thevirtualvelocity.com"
+                  className="inline-flex items-center gap-2 hover:text-emerald-200 transition-colors group"
+                >
+                  <Mail className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
+                  <span className="truncate">
+                    admin@thevirtualvelocity.com <span className="text-[11px] text-emerald-200/90 font-mono">(General Queries)</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+923325296693"
+                  className="inline-flex items-center gap-2 hover:text-emerald-200 transition-colors group"
+                >
+                  <Phone className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
+                  <span>+92 332 529 6693 <span className="text-[11px] text-emerald-300/80 font-mono">(Islamabad, PK)</span></span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+447756557500"
+                  className="inline-flex items-center gap-2 hover:text-emerald-200 transition-colors group"
+                >
+                  <Phone className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
+                  <span>+44 7756 557500 <span className="text-[11px] text-emerald-300/80 font-mono">(Birmingham, UK)</span></span>
+                </a>
               </li>
             </ul>
-          </div>
-        </div>
 
-        {/* Contact Details & Direct Connect */}
-        <div className="pb-10 border-b border-white/10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-            {/* Location */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-start gap-3 transition-colors hover:bg-white/15">
-              <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5">
-                <MapPin className="w-4 h-4 text-emerald-200" />
-              </div>
-              <div className="min-w-0">
-                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90">
-                  Office
-                </span>
-                <span className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wide text-white block mt-0.5">
-                  Islamabad, Pakistan
-                </span>
+            {/* Social Media Icons (Round with wave animation, strictly 1 row, constant size) */}
+            <div className="pt-2">
+              <div className="flex items-center gap-2.5 flex-nowrap overflow-visible py-3 px-1">
+                {SOCIALS.map((social, idx) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={social.label}
+                    animate={{
+                      y: [0, -5, 0],
+                    }}
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: idx * 0.18,
+                    }}
+                    whileHover={{
+                      y: -6,
+                      transition: { duration: 0.18 },
+                    }}
+                    className="w-8 h-8 rounded-full shrink-0 flex items-center justify-center bg-white/10 hover:bg-white text-white hover:text-emerald-950 border border-white/20 hover:border-white shadow-md hover:shadow-emerald-400/20 transition-colors duration-300 cursor-pointer"
+                  >
+                    <SocialIcon label={social.label} className="w-3.5 h-3.5" />
+                  </motion.a>
+                ))}
               </div>
             </div>
-
-            {/* Direct Phone / WhatsApp */}
-            <a
-              href="tel:+923325296693"
-              className="group p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-start gap-3 transition-all hover:bg-white/15 hover:border-white/40"
-            >
-              <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                <Phone className="w-4 h-4 text-emerald-200" />
-              </div>
-              <div className="min-w-0">
-                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90">
-                  Direct Call &amp; WhatsApp
-                </span>
-                <span className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wide text-white block mt-0.5 group-hover:text-emerald-200 transition-colors">
-                  +92 332 529 6693
-                </span>
-              </div>
-            </a>
-
-            {/* Business Development / BDO */}
-            <a
-              href="mailto:info@thevirtualvelocity.com"
-              className="group p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-start gap-3 transition-all hover:bg-white/15 hover:border-white/40"
-            >
-              <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                <Zap className="w-4 h-4 text-emerald-200" />
-              </div>
-              <div className="min-w-0">
-                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90 whitespace-nowrap">
-                  Business Development Officer (BDO)
-                </span>
-                <span className="text-xs sm:text-sm font-outfit font-black lowercase tracking-wide text-white block mt-0.5 truncate group-hover:text-emerald-200 transition-colors">
-                  info@thevirtualvelocity.com
-                </span>
-              </div>
-            </a>
-
-            {/* General Inquiries */}
-            <a
-              href="mailto:admin@thevirtualvelocity.com"
-              className="group p-4 sm:p-5 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-start gap-3 transition-all hover:bg-white/15 hover:border-white/40"
-            >
-              <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                <Mail className="w-4 h-4 text-emerald-200" />
-              </div>
-              <div className="min-w-0">
-                <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-200/90">
-                  General Inquiries
-                </span>
-                <span className="text-xs sm:text-sm font-outfit font-black lowercase tracking-wide text-white block mt-0.5 truncate group-hover:text-emerald-200 transition-colors">
-                  admin@thevirtualvelocity.com
-                </span>
-              </div>
-            </a>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-5 text-xs font-bold text-white text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <Globe className="w-3.5 h-3.5 text-white flex-shrink-0" />
-            <span>© {currentYear} VIRTUAL VELOCITY DIGITAL AGENCY. ALL RIGHTS RESERVED.</span>
+        {/* Bottom Copyright & Legal Bar */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/80 text-center sm:text-left">
+          <div>
+            <span>© {currentYear} Virtual Velocity. All rights reserved.</span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5">
-            <Link href="/privacy-policy" className="hover:text-emerald-100 transition-colors uppercase tracking-wide py-1">
+          <div className="flex items-center gap-3">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <span className="text-white/70">•</span>
-            <Link href="/terms-of-use" className="hover:text-emerald-100 transition-colors uppercase tracking-wide py-1">
+            <span>•</span>
+            <Link href="/terms-of-use" className="hover:text-white transition-colors">
               Terms of Use
             </Link>
-            <span className="text-white/70">•</span>
-            <span className="text-white font-extrabold uppercase tracking-wide">
-              Powered by Virtual Velocity Engine
-            </span>
           </div>
+
+          {/* Back to top button matching reference design */}
+          <button
+            onClick={scrollToTop}
+            aria-label="Back to top"
+            className="w-8 h-8 rounded-md bg-white/15 hover:bg-white text-white hover:text-emerald-950 flex items-center justify-center transition-all border border-white/20 shadow-xs cursor-pointer hover:scale-105"
+          >
+            <ChevronUp className="w-4 h-4" />
+          </button>
         </div>
       </div>
     </footer>
