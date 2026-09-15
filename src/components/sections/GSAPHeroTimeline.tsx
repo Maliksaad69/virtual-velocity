@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Volume2, VolumeX, Sparkles } from "lucide-react";
@@ -20,7 +20,7 @@ const TICKER_ITEMS = [
 ];
 
 const SLIDER_IMAGES = [
-  { src: "/Banner 2.png", alt: "Virtual Velocity Performance Banner" },
+  { src: "/banner-2.png", alt: "Virtual Velocity Performance Banner" },
   { src: "/Vv.png", alt: "Virtual Velocity Digital Agency Banner" },
 ];
 
@@ -31,6 +31,15 @@ export const GSAPHeroTimeline = () => {
   const [isMuted, setIsMuted] = useState(true);
   const [tickerIndex, setTickerIndex] = useState(0);
   const [slideCount, setSlideCount] = useState(0);
+
+  useEffect(() => {
+    SLIDER_IMAGES.forEach((img) => {
+      if (typeof window !== "undefined") {
+        const i = new window.Image();
+        i.src = img.src;
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const t = setInterval(() => setTickerIndex((p) => (p + 1) % TICKER_ITEMS.length), 2200);
@@ -180,37 +189,43 @@ export const GSAPHeroTimeline = () => {
   return (
     <section className="relative w-full bg-white select-none font-outfit">
 
-      {/* ─── Hero Banner Slider: Full bleed under transparent header, increased internal height ─── */}
-      <div className="relative w-full overflow-hidden h-[50vh] min-h-[360px] sm:h-[64vh] sm:min-h-[480px] sm:max-h-[640px]">
-        {/* Hidden Preloader: Pre-decodes textures in GPU memory for zero lag */}
-        <div className="hidden" aria-hidden="true">
-          <Image src="/Banner 2.png" alt="pre" width={1920} height={1080} priority />
-          <Image src="/Vv.png" alt="pre" width={1920} height={1080} priority />
-        </div>
+      {/* ─── Hero Banner Slider: Full bleed under transparent header ─── */}
+      <div className="relative w-full overflow-hidden h-[58vh] min-h-[420px] sm:h-[72vh] sm:min-h-[540px] sm:max-h-[720px] bg-zinc-950">
+        {/* Persistently Mounted Slider Images: Permanently in DOM tree to eliminate unmounting & blank frame flicker */}
+        <div className="absolute inset-0 w-full h-full">
+          {SLIDER_IMAGES.map((img, idx) => {
+            const activeIdx = ((slideCount % SLIDER_IMAGES.length) + SLIDER_IMAGES.length) % SLIDER_IMAGES.length;
+            const isActive = activeIdx === idx;
 
-        {/* Alternating Slider: Image enters from the right side every time without exception */}
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={slideCount}
-            initial={{ x: "100%" }}
-            animate={{ x: "0%" }}
-            exit={{ x: "-100%" }}
-            transition={{
-              duration: 0.9,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="absolute inset-0 w-full h-full will-change-transform"
-          >
-            <Image
-              src={SLIDER_IMAGES[slideCount % SLIDER_IMAGES.length].src}
-              alt={SLIDER_IMAGES[slideCount % SLIDER_IMAGES.length].alt}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </motion.div>
-        </AnimatePresence>
+            return (
+              <motion.div
+                key={img.src}
+                initial={false}
+                animate={{
+                  x: isActive ? "0%" : "-8%",
+                  scale: isActive ? 1 : 1.06,
+                  opacity: isActive ? 1 : 0,
+                  zIndex: isActive ? 10 : 1,
+                }}
+                transition={{
+                  x: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
+                  scale: { duration: 1.3, ease: [0.16, 1, 0.3, 1] },
+                  opacity: { duration: 0.8, ease: [0.25, 1, 0.5, 1] },
+                }}
+                className="absolute inset-0 w-full h-full will-change-transform pointer-events-none"
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-cover object-center"
+                />
+              </motion.div>
+            );
+          })}
+        </div>
 
         {/* Soft top gradient to ensure transparent header is crisp and readable */}
         <div className="absolute inset-x-0 top-0 h-28 sm:h-32 bg-gradient-to-b from-white/60 via-white/15 to-transparent pointer-events-none z-10" />
@@ -255,13 +270,13 @@ export const GSAPHeroTimeline = () => {
 
             <div className="mt-2 sm:mt-4 flex items-center gap-1.5 sm:gap-2">
               {SLIDER_IMAGES.map((_, idx) => {
-                const isActive = (slideCount % SLIDER_IMAGES.length) === idx;
+                const isActive = ((slideCount % SLIDER_IMAGES.length) + SLIDER_IMAGES.length) % SLIDER_IMAGES.length === idx;
                 return (
                   <button
                     key={idx}
                     onClick={() => {
                       setSlideCount((prev) => {
-                        const cur = prev % SLIDER_IMAGES.length;
+                        const cur = ((prev % SLIDER_IMAGES.length) + SLIDER_IMAGES.length) % SLIDER_IMAGES.length;
                         if (cur === idx) return prev;
                         return prev + 1;
                       });
@@ -296,7 +311,7 @@ export const GSAPHeroTimeline = () => {
         >
           <video
             ref={videoRef}
-            src="/VV%20website%20video%20.mp4"
+            src="/vv-website-video.mp4"
             autoPlay
             loop
             muted

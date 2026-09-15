@@ -51,36 +51,39 @@ export const InteractiveCTABanner = () => {
       {/* Background Soft Orbs */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[800px] h-[400px] sm:h-[800px] bg-zinc-200/30 blur-[140px] sm:blur-[200px] pointer-events-none rounded-full" />
 
-      {/* Main Container */}
-      <div className="gsap-cta-banner-content relative z-10 p-6 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl bg-white border-2 border-zinc-200 shadow-xl overflow-hidden space-y-8 sm:space-y-12 text-zinc-900">
+      {/* Main Container - High Contrast Dark Obsidian */}
+      <div className="gsap-cta-banner-content relative z-10 p-6 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl bg-zinc-950 border border-emerald-500/30 shadow-2xl overflow-hidden space-y-8 sm:space-y-12 text-white">
+        {/* Background ambient lighting */}
+        <div className="absolute top-0 right-0 w-[450px] h-[450px] rounded-full bg-emerald-500/15 blur-[160px] pointer-events-none" />
+
         {/* Top Header Tag */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-zinc-200 pb-6 sm:pb-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-zinc-800 pb-6 sm:pb-8 relative z-10">
           <div className="space-y-3">
-            <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-2">
-              <Zap className="w-4 h-4 text-emerald-600" />
+            <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+              <Zap className="w-4 h-4 text-emerald-400 animate-pulse" />
               INTERACTIVE CAMPAIGN ROI ESTIMATOR
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-[0.95] sm:leading-[0.9]">
+            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-outfit font-black text-white uppercase tracking-tight leading-[0.95] sm:leading-[0.9]">
               READY TO SCALE YOUR <br />
-              <span className="text-emerald-600 font-black">BRAND REVENUE?</span>
+              <span className="text-emerald-400 font-black drop-shadow-[0_0_20px_rgba(0,174,172,0.4)]">BRAND REVENUE?</span>
             </h2>
           </div>
 
-          <div className="hidden lg:flex items-center gap-3.5 bg-zinc-50 border border-zinc-200 px-6 py-3.5 rounded-2xl">
-            <ShieldCheck className="w-6 h-6 text-emerald-600 flex-shrink-0" />
+          <div className="hidden lg:flex items-center gap-3.5 bg-zinc-900 border border-zinc-800 px-6 py-3.5 rounded-2xl">
+            <ShieldCheck className="w-6 h-6 text-emerald-400 flex-shrink-0" />
             <div className="text-left font-outfit">
-              <span className="block text-sm font-extrabold text-zinc-900">100% DATA ATTRIBUTION</span>
-              <span className="text-xs text-zinc-700 font-medium">NO CONTRACT LOCK-IN</span>
+              <span className="block text-sm font-extrabold text-white">100% DATA ATTRIBUTION</span>
+              <span className="text-xs text-zinc-400 font-medium">NO CONTRACT LOCK-IN</span>
             </div>
           </div>
         </div>
 
         {/* Interactive ROI Calculator HUD */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center bg-zinc-50 p-5 sm:p-8 lg:p-10 rounded-2xl border border-zinc-200">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center bg-zinc-900/90 p-5 sm:p-8 lg:p-10 rounded-2xl border border-zinc-800 relative z-10 backdrop-blur-md">
           {/* Left: Select Monthly Ad Spend */}
           <div className="lg:col-span-6 space-y-3 sm:space-y-4">
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-outfit font-extrabold text-zinc-900 uppercase tracking-wider">
-              <Calculator className="w-4 h-4 text-emerald-600" />
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-outfit font-extrabold text-zinc-200 uppercase tracking-wider">
+              <Calculator className="w-4 h-4 text-emerald-400" />
               <span>STEP 1: SELECT YOUR MONTHLY AD BUDGET</span>
             </div>
 
@@ -93,8 +96,8 @@ export const InteractiveCTABanner = () => {
                     onClick={() => setActiveTierIndex(idx)}
                     className={`py-3.5 px-2.5 rounded-xl border text-center text-xs sm:text-sm font-outfit font-black uppercase tracking-wider transition-all duration-200 min-h-[48px] flex items-center justify-center ${
                       isActive
-                        ? "bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-600/20 scale-[1.02]"
-                        : "bg-white border-zinc-200 text-zinc-700 hover:border-emerald-300 hover:bg-emerald-50/50"
+                        ? "bg-emerald-500 border-emerald-400 text-zinc-950 font-black shadow-lg shadow-emerald-500/30 scale-[1.03]"
+                        : "bg-zinc-950 border-zinc-800 text-zinc-300 hover:border-emerald-500/50 hover:bg-zinc-900"
                     }`}
                     data-cursor-pointer
                   >
@@ -106,24 +109,24 @@ export const InteractiveCTABanner = () => {
           </div>
 
           {/* Right: Real-time Projected ROI Display */}
-          <div className="lg:col-span-6 grid grid-cols-3 gap-3 sm:gap-4 border-t lg:border-t-0 lg:border-l border-zinc-200 pt-5 lg:pt-0 lg:pl-8">
+          <div className="lg:col-span-6 grid grid-cols-3 gap-3 sm:gap-4 border-t lg:border-t-0 lg:border-l border-zinc-800 pt-5 lg:pt-0 lg:pl-8">
             <div className="space-y-1">
-              <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider block">EST. REVENUE</span>
-              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-emerald-600 tracking-tight block">
+              <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-400 uppercase tracking-wider block">EST. REVENUE</span>
+              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-emerald-400 tracking-tight block font-mono drop-shadow-[0_0_15px_rgba(0,174,172,0.4)]">
                 {activeTier.estRevenue}
               </span>
             </div>
 
             <div className="space-y-1">
-              <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider block">TARGET ROAS</span>
-              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-zinc-900 tracking-tight block">
+              <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-400 uppercase tracking-wider block">TARGET ROAS</span>
+              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-white tracking-tight block font-mono">
                 {activeTier.roas}
               </span>
             </div>
 
             <div className="space-y-1">
-              <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-700 uppercase tracking-wider block">EST. LEADS</span>
-              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-zinc-900 tracking-tight block">
+              <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-400 uppercase tracking-wider block">EST. LEADS</span>
+              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-white tracking-tight block font-mono">
                 {activeTier.leads}
               </span>
             </div>
@@ -131,13 +134,13 @@ export const InteractiveCTABanner = () => {
         </div>
 
         {/* Bottom CTA Action Bar */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-6 border-t border-zinc-200 pt-6 sm:pt-8">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-6 border-t border-zinc-800 pt-6 sm:pt-8 relative z-10">
           <div className="space-y-1">
-            <div className="flex items-center gap-2.5 text-xs sm:text-sm font-outfit font-extrabold text-zinc-900">
-              <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 flex-shrink-0" />
+            <div className="flex items-center gap-2.5 text-xs sm:text-sm font-outfit font-extrabold text-white">
+              <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400 flex-shrink-0" />
               <span>GUARANTEED 12-HOUR CAMPAIGN PROPOSAL DELIVERY</span>
             </div>
-            <p className="text-xs sm:text-sm text-zinc-700 font-light">
+            <p className="text-xs sm:text-sm text-zinc-400 font-normal">
               Submit your project objectives for a personalized growth roadmap & channel breakdown.
             </p>
           </div>

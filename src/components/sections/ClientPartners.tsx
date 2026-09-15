@@ -164,6 +164,12 @@ export const ClientPartners = () => {
 
   return (
     <section className="relative w-full overflow-hidden bg-white py-16 sm:py-20 lg:py-24 selection:bg-zinc-900 selection:text-white">
+      {/* Full-width spread background watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
+        <span className="font-outfit font-black text-[12vw] sm:text-[10vw] lg:text-[8vw] tracking-[0.18em] uppercase text-zinc-900/[0.035] whitespace-nowrap w-full text-center leading-none">
+          VIRTUAL VELOCITY
+        </span>
+      </div>
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-12">
         {/* Section header */}
         <motion.div

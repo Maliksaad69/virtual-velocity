@@ -5,33 +5,35 @@ import { Sparkles } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const DISCIPLINES = [
-  { number: "01", label: "Strategy & Creative Direction" },
-  { number: "02", label: "Content & Social Media" },
-  { number: "03", label: "Campaigns" },
-  { number: "04", label: "Brand Storytelling" },
+const TICKER_ITEMS = [
+  "Creative Brand House",
+  "Performance Marketing",
+  "Google Ads PPC & Meta Ads",
+  "Technical SEO & CRO",
+  "Custom Web & App Engineering",
+  "Social Media & Influencer Growth",
+  "Commercial Videography",
+  "Brand Architecture & Identity",
+  "AI-Driven Growth Solutions",
 ];
 
 /* Single run of the bottom ticker — rendered twice for a seamless -50% loop
    driven by the existing `animate-marquee-left` keyframes in globals.css */
 const TickerRun = () => (
-  <div className="flex shrink-0 items-center gap-3 sm:gap-6 pr-3 sm:pr-6">
-    <span className="font-black text-sm sm:text-lg uppercase tracking-tighter text-zinc-950">
-      Virtual Velocity
+  <div className="flex shrink-0 items-center gap-4 sm:gap-8 pr-4 sm:pr-8">
+    <span className="font-black text-base sm:text-xl uppercase tracking-tighter text-zinc-950 flex items-center gap-2">
+      <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
+      VIRTUAL VELOCITY
     </span>
-    <span className="font-mono text-xs sm:text-base text-emerald-600">/</span>
-    {["Creative", "Strategy", "Growth"].map((word, i) => (
-      <div key={word} className="flex items-center gap-3 sm:gap-6">
-        {i > 0 && <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-600" />}
-        <span
-          className="font-black text-sm sm:text-lg uppercase tracking-tighter text-transparent"
-          style={{ WebkitTextStroke: "1px rgba(24, 24, 27, 0.35)" }}
-        >
+    <span className="font-mono text-sm sm:text-lg text-emerald-600 font-extrabold">/</span>
+    {TICKER_ITEMS.map((word) => (
+      <div key={word} className="flex items-center gap-4 sm:gap-8">
+        <span className="font-black text-sm sm:text-lg uppercase tracking-tight text-zinc-950 font-outfit">
           {word}
         </span>
+        <span className="font-mono text-xs sm:text-sm text-emerald-600 font-extrabold">✦</span>
       </div>
     ))}
-    <span className="font-mono text-xs sm:text-base text-emerald-600">✦</span>
   </div>
 );
 
@@ -81,14 +83,14 @@ export const WhoWeAre = () => {
           </span>
         </motion.h2>
 
-        {/* Lede + disciplines rail */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mt-8 sm:mt-14 pt-6 sm:pt-10 border-t border-zinc-200">
+        {/* Pure narrative layout — NO box containers */}
+        <div className="mt-8 sm:mt-14 pt-6 sm:pt-10 border-t border-zinc-200 max-w-5xl space-y-6 sm:space-y-8">
           <motion.p
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-            className="lg:col-span-7 text-lg sm:text-2xl lg:text-3xl font-normal text-black leading-[1.6] sm:leading-[1.55]"
+            className="text-xl sm:text-3xl lg:text-4xl font-normal text-black leading-[1.5] sm:leading-[1.45]"
           >
             We are a creative house built for brands that want to be{" "}
             <span className="font-black text-emerald-600">seen</span>,{" "}
@@ -96,72 +98,35 @@ export const WhoWeAre = () => {
             <span className="font-black text-emerald-600">talked about</span>.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
-            className="lg:col-span-5"
-          >
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-black font-bold block mb-3 sm:mb-4">
-              What we bring together
-            </span>
-            <ul>
-              {DISCIPLINES.map((d, i) => (
-                <li
-                  key={d.number}
-                  className={`group flex items-baseline gap-3 sm:gap-4 py-2.5 sm:py-3 border-t border-zinc-200 ${
-                    i === DISCIPLINES.length - 1 ? "border-b" : ""
-                  } hover:pl-2 transition-all duration-300`}
-                >
-                  <span className="text-xs font-mono font-bold text-emerald-600">{d.number}</span>
-                  <span className="text-sm sm:text-base font-extrabold uppercase tracking-tight text-black group-hover:text-emerald-700 transition-colors duration-300">
-                    {d.label}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-
-        {/* Narrative + punchline card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mt-8 sm:mt-14">
           <motion.p
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-            className="lg:col-span-7 text-sm sm:text-lg text-black font-normal leading-relaxed sm:leading-[1.85]"
+            transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
+            className="text-base sm:text-xl lg:text-2xl text-zinc-800 font-normal leading-relaxed sm:leading-[1.75]"
           >
-            From strategy and creative direction to content, social media, campaigns, and brand
-            storytelling, we bring every element together to build brands with a distinct voice and
-            presence.
+            From strategy and creative direction to content, social media, campaigns, and brand storytelling, we bring every element together to build brands with a distinct voice and presence.
           </motion.p>
 
-          <motion.div
+          <motion.p
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
-            className="lg:col-span-5 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-zinc-900 text-white relative overflow-hidden"
+            transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
+            className="text-lg sm:text-2xl lg:text-3xl font-black uppercase text-zinc-950 tracking-tight leading-snug pt-6 border-t border-zinc-200"
           >
-            <div className="absolute -top-10 -right-10 w-32 sm:w-40 h-32 sm:h-40 rounded-full bg-emerald-500/25 blur-3xl pointer-events-none" />
-            <span className="relative z-10 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-emerald-300 block leading-relaxed">
-              We don&apos;t believe in simply filling content calendars
-            </span>
-            <p className="relative z-10 mt-3 sm:mt-4 text-base sm:text-2xl lg:text-[1.7rem] font-black uppercase tracking-tight leading-[1.15] sm:leading-[1.1]">
-              We create <span className="text-emerald-400">ideas</span>, build{" "}
-              <span className="text-emerald-400">identities</span>, and turn brands into{" "}
-              <span className="text-emerald-400">experiences</span>.
-            </p>
-          </motion.div>
+            We don&apos;t believe in simply filling content calendars. We create{" "}
+            <span className="text-emerald-600">ideas</span>, build{" "}
+            <span className="text-emerald-600 font-extrabold">identities</span>, and turn brands into{" "}
+            <span className="text-emerald-600">experiences</span>.
+          </motion.p>
         </div>
       </div>
 
       {/* Bottom ticker strip */}
       <div
         aria-hidden="true"
-        className="relative z-10 border-t border-zinc-200 bg-zinc-50 hover-marquee overflow-hidden whitespace-nowrap py-2 sm:py-2.5"
+        className="relative z-10 border-t-2 border-zinc-300 bg-zinc-100 hover-marquee overflow-hidden whitespace-nowrap py-3 sm:py-3.5 shadow-inner"
       >
         <div className="animate-marquee-left flex items-center">
           <TickerRun />

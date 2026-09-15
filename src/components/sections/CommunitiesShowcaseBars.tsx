@@ -15,6 +15,8 @@ export interface CommunityBarData {
   followerNum: number;
   logo: string;
   featured?: boolean;
+  colorBg: string;
+  colorBorder: string;
 }
 
 export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
@@ -25,6 +27,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "24K",
     followerNum: 24000,
     logo: "/images/communities/islamabad_insider.png",
+    colorBg: "bg-gradient-to-b from-indigo-100/95 via-purple-100/90 to-indigo-200/95 hover:from-indigo-50 hover:to-purple-50",
+    colorBorder: "border-indigo-300 hover:border-indigo-400 shadow-indigo-950/10",
   },
   {
     id: "islamabad_reels",
@@ -33,6 +37,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "54.1K",
     followerNum: 54100,
     logo: "/images/communities/islamabad_reels.png",
+    colorBg: "bg-gradient-to-b from-rose-100/95 via-pink-100/90 to-rose-200/95 hover:from-rose-50 hover:to-pink-50",
+    colorBorder: "border-rose-300 hover:border-rose-400 shadow-rose-950/10",
   },
   {
     id: "snapseedpak",
@@ -41,6 +47,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "40K",
     followerNum: 40000,
     logo: "/images/communities/snapseedpak.png",
+    colorBg: "bg-gradient-to-b from-amber-100/95 via-yellow-100/90 to-amber-200/95 hover:from-amber-50 hover:to-yellow-50",
+    colorBorder: "border-amber-300 hover:border-amber-400 shadow-amber-950/10",
   },
   {
     id: "rawalpindians",
@@ -50,6 +58,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerNum: 180000,
     logo: "/images/communities/rawalpindians.png",
     featured: true,
+    colorBg: "bg-gradient-to-b from-[#c4f2eb] via-[#a3ede0] to-[#7ee0d0] hover:from-[#d1f7f1] hover:to-[#91ebd9]",
+    colorBorder: "border-white shadow-2xl ring-2 ring-white/90",
   },
   {
     id: "sirfchai",
@@ -58,6 +68,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "118K",
     followerNum: 118000,
     logo: "/images/communities/sirfchai.png",
+    colorBg: "bg-gradient-to-b from-orange-100/95 via-amber-100/90 to-orange-200/95 hover:from-orange-50 hover:to-amber-50",
+    colorBorder: "border-orange-300 hover:border-orange-400 shadow-orange-950/10",
   },
   {
     id: "lifeofislamabad",
@@ -66,6 +78,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "89K",
     followerNum: 89000,
     logo: "/images/communities/lifeofislamabad.png",
+    colorBg: "bg-gradient-to-b from-sky-100/95 via-cyan-100/90 to-sky-200/95 hover:from-sky-50 hover:to-cyan-50",
+    colorBorder: "border-sky-300 hover:border-sky-400 shadow-sky-950/10",
   },
   {
     id: "lahorians",
@@ -74,6 +88,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "56.9K",
     followerNum: 56900,
     logo: "/images/communities/lahorians.png",
+    colorBg: "bg-gradient-to-b from-red-100/95 via-rose-100/90 to-red-200/95 hover:from-red-50 hover:to-rose-50",
+    colorBorder: "border-red-300 hover:border-red-400 shadow-red-950/10",
   },
 ];
 
@@ -242,11 +258,7 @@ export function CommunitiesShowcaseBars() {
             return (
               <div
                 key={`mobile-${comm.id}`}
-                className={`gsap-community-bar-mobile relative overflow-hidden rounded-2xl border transition-all duration-300 p-3 sm:p-4 ${widthClass} ${
-                  isFeatured
-                    ? "bg-[#c4f2eb] border-white shadow-xl ring-2 ring-white/80"
-                    : "bg-[#dbfaf6]/95 hover:bg-white border-white/80 shadow-md"
-                }`}
+                className={`gsap-community-bar-mobile relative overflow-hidden rounded-2xl border transition-all duration-300 p-3 sm:p-4 ${widthClass} ${comm.colorBg} ${comm.colorBorder} shadow-lg`}
               >
                 {/* Main Horizontal Content Row */}
                 <div className="relative z-10 flex items-center justify-between gap-3">
@@ -310,10 +322,8 @@ export function CommunitiesShowcaseBars() {
               <div
                 key={`desktop-${comm.id}`}
                 style={{ transformOrigin: "bottom center" }}
-                className={`gsap-community-bar-desktop shrink-0 flex flex-col justify-between rounded-3xl border transition-all duration-300 ${heightClass} ${
-                  isFeatured
-                    ? "bg-[#c4f2eb] border-white shadow-2xl ring-2 ring-white/70 z-20"
-                    : "bg-[#dbfaf6]/95 hover:bg-white border-white/80 shadow-lg hover:shadow-xl z-10"
+                className={`gsap-community-bar-desktop shrink-0 flex flex-col justify-between rounded-3xl border transition-all duration-300 ${heightClass} ${comm.colorBg} ${comm.colorBorder} ${
+                  isFeatured ? "z-20 shadow-2xl scale-[1.02]" : "z-10 shadow-lg hover:shadow-2xl hover:scale-[1.03]"
                 } p-4 pt-13 relative group`}
               >
                 {/* Top Center Logo Wrapper */}
