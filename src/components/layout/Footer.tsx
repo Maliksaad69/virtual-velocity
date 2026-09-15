@@ -26,7 +26,6 @@ const NAV_LINKS = [
   { label: "Services", href: "/services" },
   { label: "Our Work", href: "/#work" },
   { label: "Blog & Journal", href: "/blog" },
-  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -91,22 +90,22 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative font-outfit bg-gradient-to-b from-emerald-800 via-emerald-900 to-emerald-950 text-white pt-10 sm:pt-14 pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-emerald-700/50">
-      <div className="max-w-[1700px] mx-auto space-y-10">
-        {/* Main 4-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
-          {/* Col 1: Brand & Bio */}
-          <div className="sm:col-span-2 lg:col-span-4 space-y-4">
+    <footer className="relative font-outfit bg-gradient-to-b from-emerald-800 via-emerald-900 to-emerald-950 text-white pt-8 sm:pt-12 lg:pt-14 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-emerald-700/50">
+      <div className="max-w-[1700px] mx-auto space-y-7 sm:space-y-10">
+        {/* Main Grid: 2 columns on mobile for parallel links/services, 12 columns on desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-4 gap-y-7 sm:gap-8 lg:gap-10">
+          {/* Col 1: Brand & Bio (full width on mobile) */}
+          <div className="col-span-2 lg:col-span-4 space-y-3 sm:space-y-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-2.5 font-outfit font-black text-xl sm:text-2xl tracking-tighter uppercase group"
+              className="inline-flex items-center gap-2 font-outfit font-black text-lg sm:text-2xl tracking-tighter uppercase group"
             >
               <Image
                 src="/VV png.png"
                 alt="Virtual Velocity Logo"
                 width={40}
                 height={40}
-                className="h-8 sm:h-9 w-auto object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-105"
+                className="h-7 sm:h-9 w-auto object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-105"
               />
               <span>VIRTUAL VELOCITY</span>
             </Link>
@@ -116,11 +115,11 @@ export const Footer = () => {
             </p>
 
             {/* Offices in 2 separate rows with animated location icons */}
-            <div className="pt-2 space-y-2.5">
+            <div className="pt-1 sm:pt-2 space-y-2 sm:space-y-2.5">
               <div className="flex items-center gap-2 text-xs text-white/95">
-                <MapPin className="w-4 h-4 text-emerald-300 shrink-0 animate-bounce" style={{ animationDuration: "2.2s" }} />
+                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-300 shrink-0 animate-bounce" style={{ animationDuration: "2.2s" }} />
                 <div>
-                  <span className="font-bold text-white block">Islamabad, Pakistan</span>
+                  <span className="font-bold text-white block text-xs">Islamabad, Pakistan</span>
                   <a href="tel:+923325296693" className="text-[11px] text-emerald-200/90 font-mono hover:text-white transition-colors">
                     +92 332 529 6693
                   </a>
@@ -128,9 +127,9 @@ export const Footer = () => {
               </div>
 
               <div className="flex items-center gap-2 text-xs text-white/95">
-                <MapPin className="w-4 h-4 text-emerald-300 shrink-0 animate-bounce" style={{ animationDuration: "2.2s", animationDelay: "1.1s" }} />
+                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-300 shrink-0 animate-bounce" style={{ animationDuration: "2.2s", animationDelay: "1.1s" }} />
                 <div>
-                  <span className="font-bold text-white block">Birmingham, UK</span>
+                  <span className="font-bold text-white block text-xs">Birmingham, UK</span>
                   <a href="tel:+447756557500" className="text-[11px] text-emerald-200/90 font-mono hover:text-white transition-colors">
                     +44 7756 557500
                   </a>
@@ -139,20 +138,20 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Col 2: Quick Links */}
-          <div className="lg:col-span-2 space-y-3.5">
-            <h4 className="text-sm font-outfit font-black uppercase tracking-wider text-white">
+          {/* Col 2: Quick Links (Parallel Column 1 on mobile) */}
+          <div className="col-span-1 lg:col-span-2 space-y-2.5 sm:space-y-3.5">
+            <h4 className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wider text-white">
               Quick Links
             </h4>
-            <ul className="space-y-1 text-xs sm:text-[13px]">
+            <ul className="space-y-0.5 sm:space-y-1 text-xs sm:text-[13px]">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-2 py-1 text-zinc-200 hover:text-white transition-all duration-200 font-medium"
+                    className="group flex items-center gap-1.5 sm:gap-2 py-0.5 sm:py-1 text-zinc-200 hover:text-white transition-all duration-200 font-medium"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                    <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                    <span className="transition-transform duration-200 group-hover:translate-x-0.5 truncate">
                       {link.label}
                     </span>
                   </Link>
@@ -161,20 +160,20 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 3: Our Services */}
-          <div className="lg:col-span-2 space-y-3.5">
-            <h4 className="text-sm font-outfit font-black uppercase tracking-wider text-white">
+          {/* Col 3: Our Services (Parallel Column 2 on mobile) */}
+          <div className="col-span-1 lg:col-span-2 space-y-2.5 sm:space-y-3.5">
+            <h4 className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wider text-white">
               Our Services
             </h4>
-            <ul className="space-y-1 text-xs sm:text-[13px]">
+            <ul className="space-y-0.5 sm:space-y-1 text-xs sm:text-[13px]">
               {SERVICES_ANCHORS.map((service) => (
                 <li key={service.label}>
                   <Link
                     href={service.href}
-                    className="group flex items-center gap-2 py-1 text-zinc-200 hover:text-white transition-all duration-200 font-medium"
+                    className="group flex items-center gap-1.5 sm:gap-2 py-0.5 sm:py-1 text-zinc-200 hover:text-white transition-all duration-200 font-medium"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                    <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                    <span className="transition-transform duration-200 group-hover:translate-x-0.5 truncate">
                       {service.label}
                     </span>
                   </Link>
@@ -183,12 +182,12 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 4: Get In Touch (Shifted towards left with expanded 4-col room) */}
-          <div className="sm:col-span-2 lg:col-span-4 space-y-3.5">
-            <h4 className="text-sm font-outfit font-black uppercase tracking-wider text-white">
+          {/* Col 4: Get In Touch (full width on mobile, 4 columns on desktop) */}
+          <div className="col-span-2 lg:col-span-4 space-y-3 sm:space-y-3.5">
+            <h4 className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wider text-white">
               Get In Touch
             </h4>
-            <ul className="space-y-2.5 text-xs sm:text-[13px] font-medium text-white/90">
+            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-[13px] font-medium text-white/90">
               <li>
                 <a
                   href="mailto:info@thevirtualvelocity.com"
@@ -232,8 +231,8 @@ export const Footer = () => {
             </ul>
 
             {/* Social Media Icons (Round with wave animation, strictly 1 row, constant size) */}
-            <div className="pt-2">
-              <div className="flex items-center gap-2.5 flex-nowrap overflow-visible py-3 px-1">
+            <div className="pt-1 sm:pt-2">
+              <div className="flex items-center gap-2.5 flex-nowrap overflow-visible py-2 sm:py-3 px-1">
                 {SOCIALS.map((social, idx) => (
                   <motion.a
                     key={social.label}
@@ -265,7 +264,7 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Copyright & Legal Bar */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/80 text-center sm:text-left">
+        <div className="pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-white/80 text-center sm:text-left">
           <div>
             <span>© {currentYear} Virtual Velocity. All rights reserved.</span>
           </div>
