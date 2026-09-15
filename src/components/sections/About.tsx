@@ -50,9 +50,9 @@ export const About = () => {
   return (
     <section id="about" className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24 px-5 sm:px-10 md:px-16 max-w-[1700px] mx-auto relative overflow-hidden bg-white border-t border-zinc-200">
       {/* Multi-layer blurred background accents */}
-      <div className="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[160px] pointer-events-none" />
-      <div className="absolute top-10 left-1/3 w-96 h-96 rounded-full bg-zinc-100 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 -right-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[140px] pointer-events-none transform-gpu" style={{ transform: "translate3d(0,0,0)" }} />
+      <div className="absolute bottom-1/4 -left-40 w-[520px] h-[520px] rounded-full bg-emerald-100/60 blur-[140px] pointer-events-none transform-gpu" style={{ transform: "translate3d(0,0,0)" }} />
+      <div className="absolute top-10 left-1/3 w-96 h-96 rounded-full bg-zinc-100 blur-[100px] pointer-events-none transform-gpu" style={{ transform: "translate3d(0,0,0)" }} />
 
       <div className="space-y-4 sm:space-y-6 relative z-10">
         {/* Top meta row */}

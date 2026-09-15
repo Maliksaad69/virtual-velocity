@@ -285,13 +285,13 @@ export const GSAPHeroTimeline = () => {
       >
         <div
           ref={videoWrapperRef}
-          className="relative overflow-hidden bg-zinc-950 shadow-2xl"
+          className="relative overflow-hidden bg-zinc-950 shadow-2xl transform-gpu"
           style={{
-            transform: "translateY(-16vh)",
+            transform: "translate3d(0, -16vh, 0)",
             width: "60%",
             height: "55vh",
             clipPath: "polygon(19.17% 0.96%, 88.5% 38.33%, 99.04% 99.04%, 0% 75.08%)",
-            willChange: "clip-path, width, height, transform",
+            willChange: "transform, clip-path",
           }}
         >
           <video
@@ -301,7 +301,7 @@ export const GSAPHeroTimeline = () => {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 via-transparent to-transparent pointer-events-none" />

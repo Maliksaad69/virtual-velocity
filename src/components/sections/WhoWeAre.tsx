@@ -42,8 +42,8 @@ export const WhoWeAre = () => {
       className="relative isolate overflow-hidden bg-white text-zinc-900 font-outfit select-none border-t border-zinc-200"
     >
       {/* Ambient blurred background accents */}
-      <div className="absolute top-0 -left-24 sm:-left-40 w-[240px] h-[240px] sm:w-[560px] sm:h-[560px] rounded-full bg-emerald-100/40 sm:bg-emerald-100/60 blur-[100px] sm:blur-[170px] pointer-events-none" />
-      <div className="absolute bottom-0 -right-24 sm:-right-40 w-[240px] h-[240px] sm:w-[560px] sm:h-[560px] rounded-full bg-emerald-100/35 sm:bg-emerald-100/50 blur-[100px] sm:blur-[170px] pointer-events-none" />
+      <div className="absolute top-0 -left-24 sm:-left-40 w-[240px] h-[240px] sm:w-[560px] sm:h-[560px] rounded-full bg-emerald-100/40 sm:bg-emerald-100/60 blur-[100px] sm:blur-[140px] pointer-events-none transform-gpu" style={{ transform: "translate3d(0,0,0)" }} />
+      <div className="absolute bottom-0 -right-24 sm:-right-40 w-[240px] h-[240px] sm:w-[560px] sm:h-[560px] rounded-full bg-emerald-100/35 sm:bg-emerald-100/50 blur-[100px] sm:blur-[140px] pointer-events-none transform-gpu" style={{ transform: "translate3d(0,0,0)" }} />
 
       <div className="relative z-10 max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-20 lg:py-28">
         {/* Eyebrow meta row */}
