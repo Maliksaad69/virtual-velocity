@@ -177,7 +177,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground font-inter relative">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-inter relative" suppressHydrationWarning>
         {children}
       </body>
     </html>

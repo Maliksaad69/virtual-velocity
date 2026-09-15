@@ -181,6 +181,7 @@ export const BrandPhysicsBalls = () => {
       idleFrames = 0;
       if (!isRunning) {
         isRunning = true;
+        Matter.Runner.run(runner, engine);
         animationFrameId = requestAnimationFrame(updateDOM);
       }
     };
@@ -213,9 +214,10 @@ export const BrandPhysicsBalls = () => {
         idleFrames = 0;
       }
 
-      // Once balls have settled for 50 consecutive frames, pause RAF loop to free 100% CPU/GPU
+      // Once balls have settled for 50 consecutive frames, pause RAF loop & physics engine to free 100% CPU/GPU
       if (idleFrames > 50) {
         isRunning = false;
+        Matter.Runner.stop(runner);
         return;
       }
 
@@ -389,9 +391,9 @@ export const BrandPhysicsBalls = () => {
         />
 
         {/* Scaled watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-          <span className="font-outfit font-black text-4xl sm:text-6xl lg:text-7xl tracking-tighter uppercase text-emerald-500/25">
-            VELOCITY
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden px-2">
+          <span className="font-outfit font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.15em] sm:tracking-[0.25em] uppercase text-emerald-500/20 whitespace-nowrap text-center w-full">
+            VIRTUAL VELOCITY
           </span>
         </div>
 

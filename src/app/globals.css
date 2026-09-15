@@ -2,12 +2,12 @@
 
 @layer base {
   :root {
-    --background: #fafafa;
+    --background: #fcfcfc;
     --foreground: #18181b;
     --surface: #ffffff;
-    --surface-border: rgba(24, 24, 27, 0.1);
-    --accent: #09090b;
-    --accent-secondary: #71717a;
+    --surface-border: rgba(24, 24, 27, 0.08);
+    --accent: #00aeac;
+    --accent-secondary: #008280;
     --muted: #71717a;
   }
 }
@@ -38,7 +38,7 @@
 }
 
 html {
-  background-color: #fafafa;
+  background-color: var(--background);
   color: #18181b;
   font-family: var(--font-inter), sans-serif;
   overflow-x: clip;

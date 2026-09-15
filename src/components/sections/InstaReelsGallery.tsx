@@ -165,7 +165,9 @@ export const InstaReelsGallery = () => {
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
+  const [isInView, setIsInView] = useState(false);
 
+  const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -202,6 +204,18 @@ export const InstaReelsGallery = () => {
     }
   }, [currentIndex]);
 
+  // IntersectionObserver to pause autoplay timer when gallery is offscreen
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.05 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   // Re-enable smooth transition immediately after silent jump is rendered
   useEffect(() => {
     if (!isTransitioning) {
@@ -216,16 +230,16 @@ export const InstaReelsGallery = () => {
     }
   }, [isTransitioning]);
 
-  // Infinite repeating autoplay: continually loops smoothly
+  // Infinite repeating autoplay: only when section is active & in view
   useEffect(() => {
-    if (isHovered || activeModalIndex !== null) return;
+    if (!isInView || isHovered || activeModalIndex !== null) return;
     const interval = setInterval(() => {
       if (!isDragging.current) {
         nextSlide();
       }
     }, 4000);
     return () => clearInterval(interval);
-  }, [isHovered, activeModalIndex, nextSlide]);
+  }, [isInView, isHovered, activeModalIndex, nextSlide]);
 
   // Keyboard navigation for carousel
   useEffect(() => {
@@ -382,6 +396,7 @@ export const InstaReelsGallery = () => {
 
   return (
     <section
+      ref={sectionRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="py-10 sm:py-14 lg:py-16 px-4 sm:px-8 lg:px-12 relative bg-white text-zinc-900 select-none font-outfit overflow-hidden border-t border-zinc-200"
