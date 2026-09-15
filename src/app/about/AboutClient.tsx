@@ -13,6 +13,7 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 import { FOUNDER, AGENCY_INFO } from "@/data/agencyData";
 import { Zap, Sparkles, Users, ShieldCheck } from "lucide-react";
 import { CommunitiesShowcaseBars } from "@/components/sections/CommunitiesShowcaseBars";
+import { BrandPhysicsBalls } from "@/components/sections/BrandPhysicsBalls";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -36,7 +37,7 @@ export function AboutClient() {
         <CustomCursor />
         <Navigation />
 
-        <div className="pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-28 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto space-y-20 sm:space-y-28">
+        <div className="pt-20 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto space-y-16 sm:space-y-24">
           {/* 1. Hero Header */}
           <div className="gsap-about-title space-y-6 border-b border-zinc-200 pb-10 sm:pb-14">
             <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-2">
@@ -185,6 +186,9 @@ export function AboutClient() {
             </div>
           </section>
         </div>
+
+        {/* 4. Trusted by Ambitious Brands - Interactive Physics Simulator */}
+        <BrandPhysicsBalls />
 
         <Footer />
       </main>
