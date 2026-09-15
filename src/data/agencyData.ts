@@ -188,7 +188,7 @@ export const SERVICES: Service[] = [
     description: "Create a distinctive brand identity that resonates with your target audience and differentiates you from competitors.",
     deliverables: ["Brand Identity System", "Logo Design", "Visual Guidelines", "Brand Positioning Strategy"],
     techStack: ["Adobe Creative Suite", "Figma", "Canva"],
-    previewImage: "https://images.unsplash.com/photo-1763705857736-2b4f16a33758?q=80&w=800&auto=format&fit=crop",
+    previewImage: "/services/01  Digital Strategy.png",
   },
   {
     id: "social-media",
@@ -199,7 +199,7 @@ export const SERVICES: Service[] = [
     description: "Engage your audience and build brand awareness through strategic social media content and campaigns.",
     deliverables: ["Content Calendar", "Post Creation", "Community Management", "Social Media Strategy"],
     techStack: ["Meta Business Suite", "Hootsuite", "Canva", "Adobe Creative Suite"],
-    previewImage: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?q=80&w=800&auto=format&fit=crop",
+    previewImage: "/services/02 Social Media.png",
   },
   {
     id: "photography",
@@ -221,7 +221,7 @@ export const SERVICES: Service[] = [
     description: "Tell your brand story through compelling video content that drives engagement and conversions.",
     deliverables: ["Video Production", "Script Writing", "Editing", "Final Video Deliverable"],
     techStack: ["Sony/Canon Cameras", "Adobe Premiere Pro", "After Effects"],
-    previewImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop",
+    previewImage: "/services/04 Creative.png",
   },
   {
     id: "shopify-store",
@@ -243,7 +243,7 @@ export const SERVICES: Service[] = [
     description: "Amplify your brand reach and credibility through strategic influencer collaborations.",
     deliverables: ["Influencer Identification", "Partnership Management", "Campaign Tracking", "ROI Analysis"],
     techStack: ["AspireIQ", "Upfluence", "Social Blade", "Google Analytics"],
-    previewImage: "https://images.unsplash.com/photo-1522860747050-bb0c1af38ae9?q=80&w=800&auto=format&fit=crop",
+    previewImage: "/services/05  Influencer & PR_.png",
   },
   {
     id: "seo",
@@ -254,7 +254,7 @@ export const SERVICES: Service[] = [
     description: "Increase organic visibility and drive qualified traffic through comprehensive SEO strategies.",
     deliverables: ["SEO Audit", "Keyword Research", "Content Strategy", "Technical Implementation"],
     techStack: ["Google Search Console", "Ahrefs", "SEMrush", "Google Analytics"],
-    previewImage: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&auto=format&fit=crop",
+    previewImage: "/services/06 SEO & Digital.png",
   },
   {
     id: "meta-advertising",
@@ -265,7 +265,7 @@ export const SERVICES: Service[] = [
     description: "Reach your ideal customers on Facebook and Instagram with targeted advertising campaigns.",
     deliverables: ["Ad Campaign Setup", "Creative Assets", "Audience Targeting", "Performance Optimization"],
     techStack: ["Meta Ads Manager", "Facebook Pixel", "Instagram Insights"],
-    previewImage: "https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=800&auto=format&fit=crop",
+    previewImage: "/services/03  Paid Ads.png",
   },
   {
     id: "google-advertising",

@@ -16,7 +16,6 @@ import { EditorialTestimonials } from "@/components/sections/EditorialTestimonia
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { SoundToggle } from "@/components/ui/SoundToggle";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { About } from "@/components/sections/About";
 import { WhoWeAre } from "@/components/sections/WhoWeAre";
@@ -29,9 +28,6 @@ export default function Home() {
       <main className="min-h-screen bg-white text-zinc-900 relative selection:bg-zinc-900 selection:text-white font-outfit">
         {/* Custom Award-Style Dynamic Cursor */}
         <CustomCursor />
-
-        {/* Web Audio Ambient Sound Toggle */}
-        <SoundToggle />
 
         {/* Global Floating Navigation Header */}
         <Navigation />
