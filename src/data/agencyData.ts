@@ -287,7 +287,7 @@ export const SERVICES: Service[] = [
     description: "Develop custom software solutions to streamline operations and enhance customer experiences.",
     deliverables: ["Requirement Analysis", "UI/UX Design", "Development", "Testing & Deployment"],
     techStack: ["React", "Node.js", "Python", "AWS"],
-    previewImage: "https://images.unsplash.com/photo-1537731121640-bc1c4aba9b80?q=80&w=800&auto=format&fit=crop",
+    previewImage: "/services/software-coding.jpg",
   },
 ];
 

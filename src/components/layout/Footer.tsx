@@ -90,7 +90,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative font-outfit bg-gradient-to-b from-emerald-800 via-emerald-900 to-emerald-950 text-white pt-8 sm:pt-12 lg:pt-14 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-emerald-700/50">
+    <footer className="relative [font-family:Calibri,Tahoma,Segoe_UI,sans-serif] bg-gradient-to-b from-emerald-950 via-zinc-950 to-black text-white pt-8 sm:pt-12 lg:pt-14 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-zinc-800">
       <div className="max-w-[1700px] mx-auto space-y-7 sm:space-y-10">
         {/* Main Grid: 2 columns on mobile for parallel links/services, 12 columns on desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-4 gap-y-7 sm:gap-8 lg:gap-10">
@@ -98,7 +98,7 @@ export const Footer = () => {
           <div className="col-span-2 lg:col-span-4 space-y-3 sm:space-y-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 font-outfit font-black text-lg sm:text-2xl tracking-tighter uppercase group"
+              className="inline-flex items-center gap-2 font-bold text-lg sm:text-2xl tracking-tight uppercase text-white group"
             >
               <Image
                 src="/VV png.png"
@@ -107,30 +107,30 @@ export const Footer = () => {
                 height={40}
                 className="h-7 sm:h-9 w-auto object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-105"
               />
-              <span>VIRTUAL VELOCITY</span>
+              <span className="text-white">VIRTUAL VELOCITY</span>
             </Link>
 
-            <p className="text-xs sm:text-[13px] text-white/85 font-normal leading-relaxed max-w-sm">
+            <p className="text-xs sm:text-[13px] text-white font-normal leading-relaxed max-w-sm">
               {AGENCY_INFO.tagline}. We combine strategic performance marketing, web app engineering, and creative direction to fuel business growth across global markets.
             </p>
 
             {/* Offices in 2 separate rows with animated location icons */}
-            <div className="pt-1 sm:pt-2 space-y-2 sm:space-y-2.5">
-              <div className="flex items-center gap-2 text-xs text-white/95">
-                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-300 shrink-0 animate-bounce" style={{ animationDuration: "2.2s" }} />
+            <div className="pt-1 sm:pt-2 space-y-2.5">
+              <div className="flex items-center gap-2 text-xs text-white">
+                <MapPin className="w-4 h-4 text-emerald-400 shrink-0 animate-bounce" style={{ animationDuration: "2.2s" }} />
                 <div>
-                  <span className="font-bold text-white block text-xs">Islamabad, Pakistan</span>
-                  <a href="tel:+923325296693" className="text-[11px] text-emerald-200/90 font-mono hover:text-white transition-colors">
+                  <span className="font-medium text-white block text-xs">Islamabad, Pakistan</span>
+                  <a href="tel:+923325296693" className="text-xs text-white font-normal hover:underline transition-all">
                     +92 332 529 6693
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-xs text-white/95">
-                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-300 shrink-0 animate-bounce" style={{ animationDuration: "2.2s", animationDelay: "1.1s" }} />
+              <div className="flex items-center gap-2 text-xs text-white">
+                <MapPin className="w-4 h-4 text-emerald-400 shrink-0 animate-bounce" style={{ animationDuration: "2.2s", animationDelay: "1.1s" }} />
                 <div>
-                  <span className="font-bold text-white block text-xs">Birmingham, UK</span>
-                  <a href="tel:+447756557500" className="text-[11px] text-emerald-200/90 font-mono hover:text-white transition-colors">
+                  <span className="font-medium text-white block text-xs">Birmingham, UK</span>
+                  <a href="tel:+447756557500" className="text-xs text-white font-normal hover:underline transition-all">
                     +44 7756 557500
                   </a>
                 </div>
@@ -140,18 +140,18 @@ export const Footer = () => {
 
           {/* Col 2: Quick Links (Parallel Column 1 on mobile) */}
           <div className="col-span-1 lg:col-span-2 space-y-2.5 sm:space-y-3.5">
-            <h4 className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wider text-white">
+            <h4 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-white">
               Quick Links
             </h4>
-            <ul className="space-y-0.5 sm:space-y-1 text-xs sm:text-[13px]">
+            <ul className="space-y-1 text-xs sm:text-[13px]">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-1.5 sm:gap-2 py-0.5 sm:py-1 text-zinc-200 hover:text-white transition-all duration-200 font-medium"
+                    className="group flex items-center gap-1.5 sm:gap-2 py-0.5 sm:py-1 text-white hover:text-emerald-300 transition-all duration-200 font-normal"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                    <span className="transition-transform duration-200 group-hover:translate-x-0.5 truncate">
+                    <span className="transition-transform duration-200 group-hover:translate-x-0.5 truncate text-white">
                       {link.label}
                     </span>
                   </Link>
@@ -162,18 +162,18 @@ export const Footer = () => {
 
           {/* Col 3: Our Services (Parallel Column 2 on mobile) */}
           <div className="col-span-1 lg:col-span-2 space-y-2.5 sm:space-y-3.5">
-            <h4 className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wider text-white">
+            <h4 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-white">
               Our Services
             </h4>
-            <ul className="space-y-0.5 sm:space-y-1 text-xs sm:text-[13px]">
+            <ul className="space-y-1 text-xs sm:text-[13px]">
               {SERVICES_ANCHORS.map((service) => (
                 <li key={service.label}>
                   <Link
                     href={service.href}
-                    className="group flex items-center gap-1.5 sm:gap-2 py-0.5 sm:py-1 text-zinc-200 hover:text-white transition-all duration-200 font-medium"
+                    className="group flex items-center gap-1.5 sm:gap-2 py-0.5 sm:py-1 text-white hover:text-emerald-300 transition-all duration-200 font-normal"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                    <span className="transition-transform duration-200 group-hover:translate-x-0.5 truncate">
+                    <span className="transition-transform duration-200 group-hover:translate-x-0.5 truncate text-white">
                       {service.label}
                     </span>
                   </Link>
@@ -184,48 +184,48 @@ export const Footer = () => {
 
           {/* Col 4: Get In Touch (full width on mobile, 4 columns on desktop) */}
           <div className="col-span-2 lg:col-span-4 space-y-3 sm:space-y-3.5">
-            <h4 className="text-xs sm:text-sm font-outfit font-black uppercase tracking-wider text-white">
+            <h4 className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-white">
               Get In Touch
             </h4>
-            <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-[13px] font-medium text-white/90">
+            <ul className="space-y-2.5 text-xs sm:text-[13px] font-normal text-white">
               <li>
                 <a
                   href="mailto:info@thevirtualvelocity.com"
-                  className="inline-flex items-center gap-2 hover:text-emerald-200 transition-colors group"
+                  className="inline-flex items-center gap-2 text-white hover:text-emerald-300 transition-colors group"
                 >
-                  <Mail className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
-                  <span className="truncate">
-                    info@thevirtualvelocity.com <span className="text-[11px] text-emerald-200/90 font-mono">(BDO)</span>
+                  <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="truncate text-white">
+                    info@thevirtualvelocity.com <span className="text-xs font-normal text-white">(BDO)</span>
                   </span>
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:admin@thevirtualvelocity.com"
-                  className="inline-flex items-center gap-2 hover:text-emerald-200 transition-colors group"
+                  className="inline-flex items-center gap-2 text-white hover:text-emerald-300 transition-colors group"
                 >
-                  <Mail className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
-                  <span className="truncate">
-                    admin@thevirtualvelocity.com <span className="text-[11px] text-emerald-200/90 font-mono">(General Queries)</span>
+                  <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="truncate text-white">
+                    admin@thevirtualvelocity.com <span className="text-xs font-normal text-white">(General Queries)</span>
                   </span>
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+923325296693"
-                  className="inline-flex items-center gap-2 hover:text-emerald-200 transition-colors group"
+                  className="inline-flex items-center gap-2 text-white hover:text-emerald-300 transition-colors group"
                 >
-                  <Phone className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
-                  <span>+92 332 529 6693 <span className="text-[11px] text-emerald-300/80 font-mono">(Islamabad, PK)</span></span>
+                  <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-white">+92 332 529 6693 <span className="text-xs font-normal text-white">(Islamabad, PK)</span></span>
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+447756557500"
-                  className="inline-flex items-center gap-2 hover:text-emerald-200 transition-colors group"
+                  className="inline-flex items-center gap-2 text-white hover:text-emerald-300 transition-colors group"
                 >
-                  <Phone className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
-                  <span>+44 7756 557500 <span className="text-[11px] text-emerald-300/80 font-mono">(Birmingham, UK)</span></span>
+                  <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span className="text-white">+44 7756 557500 <span className="text-xs font-normal text-white">(Birmingham, UK)</span></span>
                 </a>
               </li>
             </ul>
@@ -253,9 +253,9 @@ export const Footer = () => {
                       y: -6,
                       transition: { duration: 0.18 },
                     }}
-                    className="w-8 h-8 rounded-full shrink-0 flex items-center justify-center bg-white/10 hover:bg-white text-white hover:text-emerald-950 border border-white/20 hover:border-white shadow-md hover:shadow-emerald-400/20 transition-colors duration-300 cursor-pointer"
+                    className="w-8.5 h-8.5 rounded-full shrink-0 flex items-center justify-center bg-white/20 hover:bg-white text-white hover:text-emerald-950 border border-white/50 hover:border-white shadow-md hover:shadow-emerald-400/30 transition-colors duration-300 cursor-pointer"
                   >
-                    <SocialIcon label={social.label} className="w-3.5 h-3.5" />
+                    <SocialIcon label={social.label} className="w-4 h-4" />
                   </motion.a>
                 ))}
               </div>
@@ -264,17 +264,17 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Copyright & Legal Bar */}
-        <div className="pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-white/80 text-center sm:text-left">
+        <div className="pt-4 sm:pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-[13px] text-white font-normal text-center sm:text-left">
           <div>
-            <span>© {currentYear} Virtual Velocity. All rights reserved.</span>
+            <span className="text-white font-normal">© {currentYear} Virtual Velocity. All rights reserved.</span>
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="text-white hover:text-emerald-300 font-normal transition-colors">
               Privacy Policy
             </Link>
-            <span>•</span>
-            <Link href="/terms-of-use" className="hover:text-white transition-colors">
+            <span className="text-white font-normal">•</span>
+            <Link href="/terms-of-use" className="text-white hover:text-emerald-300 font-normal transition-colors">
               Terms of Use
             </Link>
           </div>
@@ -283,7 +283,7 @@ export const Footer = () => {
           <button
             onClick={scrollToTop}
             aria-label="Back to top"
-            className="w-8 h-8 rounded-md bg-white/15 hover:bg-white text-white hover:text-emerald-950 flex items-center justify-center transition-all border border-white/20 shadow-xs cursor-pointer hover:scale-105"
+            className="w-8 h-8 rounded-md bg-white/20 hover:bg-white text-white hover:text-emerald-950 flex items-center justify-center transition-all border border-white/40 shadow-xs cursor-pointer hover:scale-105"
           >
             <ChevronUp className="w-4 h-4" />
           </button>

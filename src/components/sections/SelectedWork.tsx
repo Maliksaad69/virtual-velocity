@@ -270,7 +270,7 @@ const ProjectCard = ({ project, index: _index, isMobile }: { project: Project; i
               variants={itemVariants}
             >
               <span className="text-xl sm:text-2xl font-outfit font-extrabold text-emerald-600">{project.number}</span>
-              <span>{"//"} {project.industry}</span>
+              <span>• {project.industry}</span>
             </motion.div>
             <motion.h3
               className="text-2xl sm:text-3xl lg:text-4xl font-outfit font-black text-zinc-950 group-hover:text-emerald-600 transition-colors duration-300 uppercase tracking-tighter leading-[1.1]"

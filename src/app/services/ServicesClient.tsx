@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
-import { BrandPhysicsBalls } from "@/components/sections/BrandPhysicsBalls";
+import { ServicesClientLogosCarousel } from "@/components/sections/ServicesClientLogosCarousel";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { SERVICES } from "@/data/agencyData";
@@ -351,8 +351,8 @@ export function ServicesClient() {
 
 
 
-        {/* 6. Trusted by Ambitious Brands - Interactive Physics Simulator */}
-        <BrandPhysicsBalls />
+        {/* 6. Trusted by Ambitious Brands - Multi-Slide Logo Deck Carousel */}
+        <ServicesClientLogosCarousel />
 
 
         <Footer />
