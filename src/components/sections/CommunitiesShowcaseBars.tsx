@@ -27,8 +27,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "24K",
     followerNum: 24000,
     logo: "/images/communities/islamabad_insider.png",
-    colorBg: "bg-gradient-to-b from-indigo-100/95 via-purple-100/90 to-indigo-200/95 hover:from-indigo-50 hover:to-purple-50",
-    colorBorder: "border-indigo-300 hover:border-indigo-400 shadow-indigo-950/10",
+    colorBg: "bg-gradient-to-b from-emerald-100/95 via-teal-100/90 to-emerald-200/95 hover:from-emerald-50 hover:to-teal-50",
+    colorBorder: "border-emerald-300 hover:border-emerald-400 shadow-emerald-950/10",
   },
   {
     id: "islamabad_reels",
@@ -37,8 +37,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "54.1K",
     followerNum: 54100,
     logo: "/images/communities/islamabad_reels.png",
-    colorBg: "bg-gradient-to-b from-rose-100/95 via-pink-100/90 to-rose-200/95 hover:from-rose-50 hover:to-pink-50",
-    colorBorder: "border-rose-300 hover:border-rose-400 shadow-rose-950/10",
+    colorBg: "bg-gradient-to-b from-emerald-100/90 via-emerald-200/95 to-teal-200/90 hover:from-emerald-50 hover:to-emerald-100",
+    colorBorder: "border-emerald-300 hover:border-emerald-400 shadow-emerald-950/10",
   },
   {
     id: "snapseedpak",
@@ -47,8 +47,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "40K",
     followerNum: 40000,
     logo: "/images/communities/snapseedpak.png",
-    colorBg: "bg-gradient-to-b from-amber-100/95 via-yellow-100/90 to-amber-200/95 hover:from-amber-50 hover:to-yellow-50",
-    colorBorder: "border-amber-300 hover:border-amber-400 shadow-amber-950/10",
+    colorBg: "bg-gradient-to-b from-teal-100/95 via-emerald-100/90 to-teal-200/95 hover:from-teal-50 hover:to-emerald-50",
+    colorBorder: "border-teal-300 hover:border-teal-400 shadow-teal-950/10",
   },
   {
     id: "rawalpindians",
@@ -68,8 +68,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "118K",
     followerNum: 118000,
     logo: "/images/communities/sirfchai.png",
-    colorBg: "bg-gradient-to-b from-orange-100/95 via-amber-100/90 to-orange-200/95 hover:from-orange-50 hover:to-amber-50",
-    colorBorder: "border-orange-300 hover:border-orange-400 shadow-orange-950/10",
+    colorBg: "bg-gradient-to-b from-emerald-100/95 via-teal-100/90 to-emerald-200/95 hover:from-emerald-50 hover:to-teal-50",
+    colorBorder: "border-emerald-300 hover:border-emerald-400 shadow-emerald-950/10",
   },
   {
     id: "lifeofislamabad",
@@ -78,8 +78,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "89K",
     followerNum: 89000,
     logo: "/images/communities/lifeofislamabad.png",
-    colorBg: "bg-gradient-to-b from-sky-100/95 via-cyan-100/90 to-sky-200/95 hover:from-sky-50 hover:to-cyan-50",
-    colorBorder: "border-sky-300 hover:border-sky-400 shadow-sky-950/10",
+    colorBg: "bg-gradient-to-b from-teal-100/90 via-emerald-100/95 to-teal-200/90 hover:from-teal-50 hover:to-emerald-50",
+    colorBorder: "border-teal-300 hover:border-teal-400 shadow-teal-950/10",
   },
   {
     id: "lahorians",
@@ -88,8 +88,8 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     followerCount: "56.9K",
     followerNum: 56900,
     logo: "/images/communities/lahorians.png",
-    colorBg: "bg-gradient-to-b from-red-100/95 via-rose-100/90 to-red-200/95 hover:from-red-50 hover:to-rose-50",
-    colorBorder: "border-red-300 hover:border-red-400 shadow-red-950/10",
+    colorBg: "bg-gradient-to-b from-emerald-100/95 via-teal-100/90 to-emerald-200/95 hover:from-emerald-50 hover:to-teal-50",
+    colorBorder: "border-emerald-300 hover:border-emerald-400 shadow-emerald-950/10",
   },
 ];
 

@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
         <div className="pt-20 sm:pt-24 pb-24 px-6 sm:px-12 max-w-4xl mx-auto space-y-12">
           <div className="space-y-4 border-b border-zinc-200 pb-8">
             <span className="text-meta text-zinc-900 uppercase tracking-widest block font-bold">
-              {"//"} LEGAL COMPLIANCE
+              LEGAL COMPLIANCE
             </span>
             <h1 className="text-4xl sm:text-6xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
               PRIVACY POLICY

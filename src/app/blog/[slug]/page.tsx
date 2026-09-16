@@ -75,8 +75,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <span className="text-emerald-700 font-extrabold uppercase bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
                 {post.category}
               </span>
-              <span className="text-zinc-500">{"//"} {post.date}</span>
-              <span className="text-zinc-500">{"//"} {post.readTime}</span>
+              <span className="text-zinc-500">• {post.date}</span>
+              <span className="text-zinc-500">• {post.readTime}</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-[1.05] break-words">

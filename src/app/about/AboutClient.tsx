@@ -13,7 +13,7 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 import { FOUNDER, AGENCY_INFO } from "@/data/agencyData";
 import { Zap, Sparkles, Users, ShieldCheck } from "lucide-react";
 import { CommunitiesShowcaseBars } from "@/components/sections/CommunitiesShowcaseBars";
-import { BrandPhysicsBalls } from "@/components/sections/BrandPhysicsBalls";
+import { AboutClientLogosSlider } from "@/components/sections/AboutClientLogosSlider";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -56,7 +56,7 @@ export function AboutClient() {
           <section className="space-y-6 sm:space-y-8">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-200 pb-3">
               <span className="text-xs font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-2">
-                <Users className="w-4 h-4" /> 01 // LEADERSHIP
+                <Users className="w-4 h-4" /> 01 • LEADERSHIP
               </span>
               <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">Meet The Founder</span>
             </div>
@@ -128,7 +128,7 @@ export function AboutClient() {
           <section className="space-y-6 sm:space-y-8">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-200 pb-3">
               <span className="text-xs font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-2">
-                <Sparkles className="w-4 h-4" /> 02 // THE AGENCY STORY
+                <Sparkles className="w-4 h-4" /> 02 • THE AGENCY STORY
               </span>
               <span className="text-xs font-mono text-black font-bold uppercase tracking-wider">7+ Years of Impact</span>
             </div>
@@ -172,8 +172,8 @@ export function AboutClient() {
           </section>
         </div>
 
-        {/* 4. Trusted by Ambitious Brands - Interactive Physics Simulator */}
-        <BrandPhysicsBalls />
+        {/* 4. Trusted by Ambitious Brands - Dual-Track Infinite Ribbon Slider */}
+        <AboutClientLogosSlider />
 
         <Footer />
       </main>
