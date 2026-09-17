@@ -114,10 +114,20 @@ export const Footer = () => {
               {AGENCY_INFO.tagline}. We combine strategic performance marketing, web app engineering, and creative direction to fuel business growth across global markets.
             </p>
 
-            {/* Offices in 2 separate rows with animated location icons */}
+            {/* Offices in separate rows with animated location icons */}
             <div className="pt-2 space-y-3.5">
               <div className="flex items-center gap-3 text-base sm:text-lg text-white">
                 <MapPin className="w-5 h-5 text-white shrink-0 animate-bounce" style={{ animationDuration: "2.2s" }} />
+                <div>
+                  <span className="font-bold text-white block text-base sm:text-lg">United States</span>
+                  <a href="tel:+14178975749" className="text-base sm:text-[17px] text-white font-medium hover:underline transition-all">
+                    +1 (417) 897-5749
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 text-base sm:text-lg text-white">
+                <MapPin className="w-5 h-5 text-white shrink-0 animate-bounce" style={{ animationDuration: "2.2s", animationDelay: "0.7s" }} />
                 <div>
                   <span className="font-bold text-white block text-base sm:text-lg">Islamabad, Pakistan</span>
                   <a href="tel:+923325296693" className="text-base sm:text-[17px] text-white font-medium hover:underline transition-all">
@@ -127,7 +137,7 @@ export const Footer = () => {
               </div>
 
               <div className="flex items-center gap-3 text-base sm:text-lg text-white">
-                <MapPin className="w-5 h-5 text-white shrink-0 animate-bounce" style={{ animationDuration: "2.2s", animationDelay: "1.1s" }} />
+                <MapPin className="w-5 h-5 text-white shrink-0 animate-bounce" style={{ animationDuration: "2.2s", animationDelay: "1.4s" }} />
                 <div>
                   <span className="font-bold text-white block text-base sm:text-lg">Birmingham, UK</span>
                   <a href="tel:+447756557500" className="text-base sm:text-[17px] text-white font-medium hover:underline transition-all">
@@ -208,6 +218,15 @@ export const Footer = () => {
                   <span className="truncate text-white">
                     admin@thevirtualvelocity.com <span className="text-sm font-normal opacity-90">(General Queries)</span>
                   </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+14178975749"
+                  className="inline-flex items-center gap-3 text-white hover:underline transition-colors group"
+                >
+                  <Phone className="w-5 h-5 text-white shrink-0" />
+                  <span className="text-white">+1 (417) 897-5749 <span className="text-sm font-normal opacity-90">(United States)</span></span>
                 </a>
               </li>
               <li>

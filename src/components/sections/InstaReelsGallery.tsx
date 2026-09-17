@@ -488,28 +488,6 @@ export const InstaReelsGallery = () => {
                     loading="lazy"
                   />
 
-                  {/* Gentle Top Shadow for Meta Readability */}
-                  <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/55 via-black/15 to-transparent pointer-events-none" />
-
-                  {/* Card Top Row: Clean VV Badge + FEATURED Pill */}
-                  <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between z-10 pointer-events-none">
-                    <div className="flex items-center gap-1.5">
-                      {reel.hasVvIcon && (
-                        <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/65 backdrop-blur-md border border-emerald-400/50 shadow-xs">
-                          <img src="/icon.png" alt="VV" className="w-3 h-3 object-contain rounded-full" />
-                          <span className="text-[8.5px] font-mono font-black text-emerald-300 uppercase tracking-widest leading-none">
-                            VV
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    {isActive && (
-                      <span className="text-[8.5px] font-mono font-black tracking-widest text-emerald-300 uppercase px-2 py-0.5 rounded-full bg-black/65 backdrop-blur-md border border-emerald-400/50 shadow-xs">
-                        FEATURED
-                      </span>
-                    )}
-                  </div>
-
                   {/* Glowing Play Button on Active Card */}
                   {isActive && (
                     <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
@@ -518,17 +496,6 @@ export const InstaReelsGallery = () => {
                       </div>
                     </div>
                   )}
-
-                  {/* Bottom Content Overlay with Emerald Theme */}
-                  <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 pt-12 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end space-y-1 z-10 pointer-events-none">
-                    <h3 className="text-[11.5px] sm:text-xs font-black text-white leading-snug tracking-tight line-clamp-2">
-                      {reel.title}
-                    </h3>
-
-                    <p className="text-[9.5px] sm:text-[10px] font-mono text-zinc-300/90 font-medium tracking-wide">
-                      {reel.client} · {reel.year}
-                    </p>
-                  </div>
                 </>
               );
 
