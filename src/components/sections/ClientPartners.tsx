@@ -71,8 +71,9 @@ const BASE_CENTER_IMG = 220;
 // Logo card visuals - simple rounded container, no clipping.
 const innerCard = (hovering: boolean) =>
   ({
-    background: "transparent",
-    borderRadius: "16px",
+    background: "white",
+    borderRadius: "9999px",
+    border: "2px solid rgba(228, 228, 231, 0.9)",
     filter: hovering
       ? "drop-shadow(0 2px 4px rgba(24,24,27,0.10)) drop-shadow(0 10px 22px rgba(0,174,172,0.16))"
       : "drop-shadow(0 1px 2px rgba(24,24,27,0.06)) drop-shadow(0 5px 12px rgba(24,24,27,0.08))",
@@ -166,8 +167,8 @@ export const ClientPartners = () => {
     <section className="relative w-full overflow-hidden bg-white py-16 sm:py-20 lg:py-24 selection:bg-zinc-900 selection:text-white">
       {/* Full-width spread background watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0">
-        <span className="font-outfit font-black text-[12vw] sm:text-[10vw] lg:text-[8vw] tracking-[0.18em] uppercase text-zinc-900/[0.035] whitespace-nowrap w-full text-center leading-none">
-          VIRTUAL VELOCITY
+        <span className="font-outfit font-black text-[14vw] sm:text-[12vw] lg:text-[10vw] tracking-[0.2em] uppercase text-zinc-900/[0.035] whitespace-nowrap w-full text-center leading-none">
+          VELOCITY
         </span>
       </div>
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-12">
@@ -317,7 +318,7 @@ export const ClientPartners = () => {
             {ALL_LOGOS.map((logo) => (
               <div
                 key={logo.alt}
-                className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-center aspect-square shadow-xs hover:border-emerald-300 transition-colors"
+                className="p-2 sm:p-2.5 rounded-full bg-white border-2 border-zinc-200/90 flex items-center justify-center aspect-square shadow-xs hover:border-emerald-300 transition-colors"
               >
                 <img
                   src={logo.src}

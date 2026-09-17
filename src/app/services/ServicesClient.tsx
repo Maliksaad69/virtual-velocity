@@ -188,8 +188,11 @@ export function ServicesClient() {
           </div>
         </section>
 
-        {/* 2. Services Rows (Emrix Media 3-Column Architecture) */}
-        <section className="gsap-services-list px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto py-12 sm:py-20">
+        {/* 2. Trusted by Ambitious Brands - Client Logos Carousel */}
+        <ServicesClientLogosCarousel />
+
+        {/* 3. Services Rows (Emrix Media 3-Column Architecture) */}
+        <section className="gsap-services-list px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto pt-6 sm:pt-10 pb-12 sm:pb-20">
           <div className="space-y-0 divide-y divide-zinc-200 border-t border-b border-zinc-200">
             <AnimatePresence mode="popLayout">
               {SERVICES.map((service, index) => {
@@ -349,10 +352,6 @@ export function ServicesClient() {
           </div>
         </section>
 
-
-
-        {/* 6. Trusted by Ambitious Brands - Multi-Slide Logo Deck Carousel */}
-        <ServicesClientLogosCarousel />
 
 
         <Footer />

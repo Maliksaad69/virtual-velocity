@@ -52,14 +52,13 @@ export const BrandPhysicsBalls = () => {
   const [hasTriggered, setHasTriggered] = useState(false);
   const [ballRadius, setBallRadius] = useState(36);
 
-  // Responsive ball radius suited for the compact box height with prominent logos
+  // Uniform circle radius: 110px diameter (radius 55) on desktop, 90px diameter (radius 45) on mobile
   const getRadius = useCallback(() => {
-    if (typeof window === "undefined") return 42;
+    if (typeof window === "undefined") return 55;
     const w = window.innerWidth;
-    if (w < 480) return 28; // 56px ball on small mobile
-    if (w < 768) return 33; // 66px ball on mobile
-    if (w < 1024) return 38; // 76px ball on tablet
-    return 44; // 88px ball on desktop
+    if (w < 640) return 45; // 90px circle on mobile
+    if (w < 1024) return 50; // 100px circle on tablet
+    return 55; // 110px circle on desktop
   }, []);
 
   const initPhysics = useCallback(() => {
@@ -378,7 +377,7 @@ export const BrandPhysicsBalls = () => {
       {/* Interactive Physics Arena Box - Increased height on mobile */}
       <div
         ref={containerRef}
-        className="relative w-full h-[285px] sm:h-[275px] lg:h-[300px] rounded-3xl overflow-hidden border-2 border-zinc-200 bg-gradient-to-b from-zinc-50/70 via-white to-zinc-100/90 shadow-inner"
+        className="relative w-full h-[320px] sm:h-[340px] lg:h-[360px] rounded-3xl overflow-hidden border-2 border-zinc-200 bg-gradient-to-b from-zinc-50/70 via-white to-zinc-100/90 shadow-inner"
         style={{ touchAction: "pan-y" }}
       >
         {/* Subtle decorative grid backdrop */}
@@ -392,8 +391,8 @@ export const BrandPhysicsBalls = () => {
 
         {/* Scaled watermark */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden px-2">
-          <span className="font-outfit font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.15em] sm:tracking-[0.25em] uppercase text-emerald-500/20 whitespace-nowrap text-center w-full">
-            VIRTUAL VELOCITY
+          <span className="font-outfit font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[0.2em] sm:tracking-[0.3em] uppercase text-emerald-500/20 whitespace-nowrap text-center w-full">
+            VELOCITY
           </span>
         </div>
 
