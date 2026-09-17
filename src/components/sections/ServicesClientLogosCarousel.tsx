@@ -69,16 +69,16 @@ export const ServicesClientLogosCarousel = () => {
   );
 
   return (
-    <section className="py-16 sm:py-24 bg-white text-zinc-900 relative font-outfit border-y border-zinc-200 overflow-hidden select-none">
+    <section className="pt-8 sm:pt-12 pb-4 sm:pb-6 bg-white text-zinc-900 relative font-outfit border-t border-zinc-200 overflow-hidden select-none">
       <div className="max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-200 pb-6 sm:pb-8 mb-10 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-zinc-200 pb-4 sm:pb-6 mb-6 sm:mb-8">
           <div>
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-600 flex items-center gap-2 mb-2">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-600 flex items-center gap-2 mb-1.5">
               <Building2 className="w-4 h-4 text-emerald-600" />
               ENTERPRISE BRAND NETWORK
             </span>
-            <h2 className="text-3xl sm:text-5xl font-outfit font-black uppercase tracking-tight text-zinc-950">
+            <h2 className="text-2xl sm:text-4xl font-outfit font-black uppercase tracking-tight text-zinc-950">
               BRANDS SCALED BY <span className="text-emerald-600">OUR SERVICES</span>
             </h2>
           </div>
@@ -94,23 +94,23 @@ export const ServicesClientLogosCarousel = () => {
               <button
                 onClick={handlePrev}
                 aria-label="Previous client logos"
-                className="w-10 h-10 rounded-full border border-zinc-300 hover:border-emerald-600 hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center text-zinc-800 shadow-xs cursor-pointer"
+                className="w-9 h-9 rounded-full border border-zinc-300 hover:border-emerald-600 hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center text-zinc-800 shadow-xs cursor-pointer"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={handleNext}
                 aria-label="Next client logos"
-                className="w-10 h-10 rounded-full border border-zinc-300 hover:border-emerald-600 hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center text-zinc-800 shadow-xs cursor-pointer"
+                className="w-9 h-9 rounded-full border border-zinc-300 hover:border-emerald-600 hover:bg-emerald-600 hover:text-white transition-all flex items-center justify-center text-zinc-800 shadow-xs cursor-pointer"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
 
         {/* 3D Animated Grid Slide */}
-        <div className="min-h-[260px] sm:min-h-[300px] relative">
+        <div className="min-h-[115px] sm:min-h-[135px] relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -118,19 +118,21 @@ export const ServicesClientLogosCarousel = () => {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -50, scale: 0.98 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6"
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-5"
             >
               {visibleBrands.map((brand) => (
                 <div
                   key={brand.name}
-                  className="p-6 sm:p-8 rounded-2xl bg-zinc-50 hover:bg-white border border-zinc-200/90 hover:border-emerald-500/60 shadow-xs hover:shadow-xl transition-all duration-300 flex items-center justify-center h-[120px] sm:h-[140px] group cursor-pointer"
+                  className="flex items-center justify-center p-1 h-[105px] sm:h-[125px] group cursor-pointer"
                 >
-                  <img
-                    src={brand.src}
-                    alt={brand.name}
-                    className="max-h-12 sm:max-h-14 w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-110"
-                    loading="lazy"
-                  />
+                  <div className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] rounded-full bg-white border-2 border-zinc-200/90 group-hover:border-emerald-500/80 p-2.5 sm:p-3 flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-xs group-hover:shadow-lg">
+                    <img
+                      src={brand.src}
+                      alt={brand.name}
+                      className="max-h-[82%] max-w-[82%] w-auto h-auto object-contain transition-all duration-300"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -138,16 +140,16 @@ export const ServicesClientLogosCarousel = () => {
         </div>
 
         {/* Dot Progress Indicator */}
-        <div className="flex justify-center items-center gap-2 mt-8 sm:mt-10">
+        <div className="flex justify-center items-center gap-2 mt-4 sm:mt-5">
           {Array.from({ length: TOTAL_SLIDES }).map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
               aria-label={`Go to logo slide ${idx + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                 idx === currentSlide
-                  ? "w-8 bg-emerald-600"
-                  : "w-2 bg-zinc-300 hover:bg-zinc-400"
+                  ? "w-7 bg-emerald-600"
+                  : "w-1.5 bg-zinc-300 hover:bg-zinc-400"
               }`}
             />
           ))}

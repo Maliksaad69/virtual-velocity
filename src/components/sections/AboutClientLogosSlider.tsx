@@ -72,12 +72,12 @@ export const AboutClientLogosSlider = () => {
           {[...ROW_1, ...ROW_1, ...ROW_1].map((brand, idx) => (
             <div
               key={`row1-${brand.name}-${idx}`}
-              className="shrink-0 w-[95px] h-[95px] sm:w-[115px] sm:h-[115px] rounded-full bg-white border-2 border-zinc-200/90 hover:border-emerald-500/80 p-3 sm:p-4 flex items-center justify-center transition-all duration-300 group hover:scale-110 shadow-xs hover:shadow-lg"
+              className="shrink-0 w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] rounded-full bg-white border-2 border-zinc-200/90 hover:border-emerald-500/80 p-2.5 sm:p-3 flex items-center justify-center transition-all duration-300 group hover:scale-105 shadow-xs hover:shadow-lg"
             >
               <img
                 src={brand.src}
                 alt={brand.name}
-                className="max-h-10 sm:max-h-12 max-w-[70%] sm:max-w-[75%] object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                className="max-h-[82%] max-w-[82%] w-auto h-auto object-contain transition-all duration-300"
                 loading="lazy"
               />
             </div>
@@ -89,12 +89,12 @@ export const AboutClientLogosSlider = () => {
           {[...ROW_2, ...ROW_2, ...ROW_2].map((brand, idx) => (
             <div
               key={`row2-${brand.name}-${idx}`}
-              className="shrink-0 w-[95px] h-[95px] sm:w-[115px] sm:h-[115px] rounded-full bg-white border-2 border-zinc-200/90 hover:border-emerald-500/80 p-3 sm:p-4 flex items-center justify-center transition-all duration-300 group hover:scale-110 shadow-xs hover:shadow-lg"
+              className="shrink-0 w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] rounded-full bg-white border-2 border-zinc-200/90 hover:border-emerald-500/80 p-2.5 sm:p-3 flex items-center justify-center transition-all duration-300 group hover:scale-105 shadow-xs hover:shadow-lg"
             >
               <img
                 src={brand.src}
                 alt={brand.name}
-                className="max-h-10 sm:max-h-12 max-w-[70%] sm:max-w-[75%] object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                className="max-h-[82%] max-w-[82%] w-auto h-auto object-contain transition-all duration-300"
                 loading="lazy"
               />
             </div>
