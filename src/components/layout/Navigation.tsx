@@ -12,8 +12,9 @@ const NAV_LINKS = [
   { label: "HOME", href: "/", id: "00" },
   { label: "ABOUT", href: "/about", id: "01" },
   { label: "SERVICES", href: "/services", id: "02" },
-  { label: "BLOG", href: "/blog", id: "03" },
-  { label: "CONTACT", href: "/contact", id: "04" },
+  { label: "BRANDING", href: "/branding", id: "03" },
+  { label: "BLOG", href: "/blog", id: "04" },
+  { label: "CONTACT", href: "/contact", id: "05" },
 ];
 
 export const Navigation = () => {
