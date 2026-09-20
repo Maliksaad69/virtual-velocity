@@ -92,12 +92,28 @@ export const AGENCY_INFO = {
   founder: FOUNDER,
   offices: [
     {
+      city: "UNITED STATES",
+      address: "United States",
+      phone: "+1 (417) 897-5749",
+      email: "admin@thevirtualvelocity.com",
+      businessEmail: "info@thevirtualvelocity.com",
+      timezone: "America/New_York",
+    },
+    {
       city: "ISLAMABAD, PAKISTAN",
       address: "Islamabad, Pakistan",
       phone: "+92 332 529 6693",
       email: "admin@thevirtualvelocity.com",
       businessEmail: "info@thevirtualvelocity.com",
       timezone: "Asia/Karachi",
+    },
+    {
+      city: "BIRMINGHAM, UK",
+      address: "Birmingham, UK",
+      phone: "+44 7756 557500",
+      email: "admin@thevirtualvelocity.com",
+      businessEmail: "info@thevirtualvelocity.com",
+      timezone: "Europe/London",
     },
   ],
 };
