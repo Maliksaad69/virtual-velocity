@@ -21,17 +21,17 @@ const TICKER_ITEMS = [
    driven by the existing `animate-marquee-left` keyframes in globals.css */
 const TickerRun = () => (
   <div className="flex shrink-0 items-center gap-4 sm:gap-8 pr-4 sm:pr-8">
-    <span className="font-black text-base sm:text-xl uppercase tracking-tighter text-zinc-950 flex items-center gap-2">
-      <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
+    <span className="font-medium text-base sm:text-lg uppercase tracking-tighter text-zinc-800 flex items-center gap-2">
+      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
       VIRTUAL VELOCITY
     </span>
-    <span className="font-mono text-sm sm:text-lg text-emerald-600 font-extrabold">/</span>
+    <span className="font-mono text-sm sm:text-base text-emerald-500 font-normal">/</span>
     {TICKER_ITEMS.map((word) => (
       <div key={word} className="flex items-center gap-4 sm:gap-8">
-        <span className="font-black text-sm sm:text-lg uppercase tracking-tight text-zinc-950 font-outfit">
+        <span className="font-normal text-sm sm:text-base uppercase tracking-tight text-zinc-600 font-outfit">
           {word}
         </span>
-        <span className="font-mono text-xs sm:text-sm text-emerald-600 font-extrabold">✦</span>
+        <span className="font-mono text-xs sm:text-sm text-emerald-400 font-normal">✦</span>
       </div>
     ))}
   </div>
@@ -117,7 +117,7 @@ export const WhoWeAre = () => {
       {/* Bottom ticker strip */}
       <div
         aria-hidden="true"
-        className="relative z-10 border-t-2 border-zinc-300 bg-zinc-100 hover-marquee overflow-hidden whitespace-nowrap py-3 sm:py-3.5 shadow-inner"
+        className="relative z-10 border-t border-zinc-200/80 bg-zinc-50/50 hover-marquee overflow-hidden whitespace-nowrap py-3 sm:py-3.5"
       >
         <div className="animate-marquee-left flex items-center">
           <TickerRun />

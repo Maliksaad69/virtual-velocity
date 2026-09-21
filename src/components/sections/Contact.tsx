@@ -237,7 +237,7 @@ export const Contact = () => {
                 INQUIRY TRANSMITTED
               </h3>
               <p className="text-zinc-700 max-w-md mx-auto text-sm font-normal leading-relaxed">
-                Thank you <span className="text-emerald-700 font-bold">{formData.name}</span>. Our team in Wilmington &amp; Lahore has received your request and will respond within 12 hours.
+                Thank you <span className="text-emerald-700 font-bold">{formData.name}</span>. Our team has received your request and will respond within 12 hours.
               </p>
               <button
                 onClick={() => setSubmitted(false)}

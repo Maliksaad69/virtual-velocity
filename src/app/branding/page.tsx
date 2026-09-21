@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     siteName: "Virtual Velocity Digital Agency",
     images: [
       {
-        url: "/images/cresto/page-1.png",
-        width: 1600,
-        height: 900,
+        url: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005642/Artboard_1.png",
+        width: 1596,
+        height: 897,
         alt: "Cresto Pizza Brand Identity Mockup",
       },
     ],
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "Cresto Pizza Brand Identity Case Study | Virtual Velocity",
     description:
       "Modern culinary branding, custom packaging engineering, and architectural signage for Cresto Pizza.",
-    images: ["/images/cresto/page-1.png"],
+    images: ["https://res.cloudinary.com/nudghwmz/image/upload/v1790005642/Artboard_1.png"],
   },
 };
 

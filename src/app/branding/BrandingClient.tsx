@@ -7,19 +7,18 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 
-// Cloudinary Hosted Images for Cresto Branding Portfolio
+// Cloudinary Hosted Images for Cresto Branding Portfolio (Optimized Artboards)
 const CLOUDINARY_IMAGES = {
-  page1: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916727/page-1.png",
-  page2: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916728/page-2.png",
-  page3: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916728/page-3.png",
-  page4: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916728/page-4.png",
-  page5: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916728/page-5.png",
-  page6: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916729/page-6.png",
-  page7: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916729/page-7.png",
-  page8: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916728/page-8.png",
-  page9: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916728/page-9.png",
-  page10: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916730/page-10.png",
-  page11: "https://res.cloudinary.com/nudghwmz/image/upload/v1789916729/page-11.png",
+  page1: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005642/Artboard_1.png",
+  page2: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005642/Artboard_2.png",
+  page3: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005643/Artboard_3.png",
+  page4: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005643/Artboard_4.png",
+  page5: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_5.png",
+  page7: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_7.png",
+  page8: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_8.png",
+  page9: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_9.png",
+  page10: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_10.png",
+  page11: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005642/Artboard_11.png",
 };
 
 export function BrandingClient() {
@@ -36,8 +35,8 @@ export function BrandingClient() {
             <Image
               src={CLOUDINARY_IMAGES.page1}
               alt="Cresto Pizza Portfolio - Slide 01"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               priority
               unoptimized
               sizes="100vw"
@@ -50,8 +49,8 @@ export function BrandingClient() {
             <Image
               src={CLOUDINARY_IMAGES.page2}
               alt="Cresto Pizza Portfolio - Slide 02"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               priority
               unoptimized
               sizes="100vw"
@@ -84,8 +83,8 @@ export function BrandingClient() {
             <Image
               src={CLOUDINARY_IMAGES.page3}
               alt="Cresto Pizza Portfolio - Slide 03"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
@@ -97,8 +96,8 @@ export function BrandingClient() {
             <Image
               src={CLOUDINARY_IMAGES.page4}
               alt="Cresto Pizza Portfolio - Slide 04"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
@@ -125,39 +124,26 @@ export function BrandingClient() {
             </motion.div>
           </div>
 
-          {/* 5th Image: Overlays 6th image with rounded bottom edges */}
-          <div className="relative w-full m-0 p-0 leading-none z-10 -mb-6 sm:-mb-10 md:-mb-14 lg:-mb-20 rounded-b-2xl sm:rounded-b-3xl md:rounded-b-[2.5rem] lg:rounded-b-[3.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+          {/* 5th Image: Overlays 7th image with rounded bottom edges */}
+          <div className="relative w-full m-0 p-0 leading-none z-20 -mb-6 sm:-mb-10 md:-mb-14 lg:-mb-20 rounded-b-2xl sm:rounded-b-3xl md:rounded-b-[2.5rem] lg:rounded-b-[3.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             <Image
               src={CLOUDINARY_IMAGES.page5}
               alt="Cresto Pizza Portfolio - Slide 05"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
           </div>
 
-          {/* 6th Image */}
-          <div className="relative w-full m-0 p-0 leading-none z-0">
-            <Image
-              src={CLOUDINARY_IMAGES.page6}
-              alt="Cresto Pizza Portfolio - Slide 06"
-              width={3325}
-              height={1869}
-              unoptimized
-              sizes="100vw"
-              className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
-            />
-          </div>
-
-          {/* 7th Image: Overlays 6th image with rounded top edges */}
-          <div className="relative w-full m-0 p-0 leading-none z-10 -mt-6 sm:-mt-10 md:-mt-14 lg:-mt-20 rounded-t-2xl sm:rounded-t-3xl md:rounded-t-[2.5rem] lg:rounded-t-[3.5rem] overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+          {/* 6th Image on page (Slide 07): Overlays next image with prominent rounded bottom edges */}
+          <div className="relative w-full m-0 p-0 leading-none z-10 -mb-8 sm:-mb-14 md:-mb-20 lg:-mb-28 rounded-b-2xl sm:rounded-b-3xl md:rounded-b-[2.5rem] lg:rounded-b-[3.5rem] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.85)]">
             <Image
               src={CLOUDINARY_IMAGES.page7}
               alt="Cresto Pizza Portfolio - Slide 07"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
@@ -169,7 +155,7 @@ export function BrandingClient() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.35 }}
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute bottom-8 sm:bottom-14 md:bottom-20 left-6 sm:left-12 lg:left-16 z-20 pointer-events-none"
+              className="absolute bottom-12 sm:bottom-16 md:bottom-24 lg:bottom-28 left-6 sm:left-12 lg:left-16 z-20 pointer-events-none"
             >
               <span className="inline-block font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase text-[#fab730] font-bold mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 HEAT-LOCKING CARTON ARCHITECTURE
@@ -186,8 +172,8 @@ export function BrandingClient() {
             <Image
               src={CLOUDINARY_IMAGES.page8}
               alt="Cresto Pizza Portfolio - Slide 08"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
@@ -199,8 +185,8 @@ export function BrandingClient() {
             <Image
               src={CLOUDINARY_IMAGES.page9}
               alt="Cresto Pizza Portfolio - Slide 09"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
@@ -228,8 +214,8 @@ export function BrandingClient() {
             <Image
               src={CLOUDINARY_IMAGES.page10}
               alt="Cresto Pizza Portfolio - Slide 10"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
@@ -241,14 +227,22 @@ export function BrandingClient() {
             <Image
               src={CLOUDINARY_IMAGES.page11}
               alt="Cresto Pizza Portfolio - Slide 11"
-              width={3325}
-              height={1869}
+              width={1596}
+              height={897}
               unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
+            {/* Smooth gradient fade over bottom of 11th image into dark background */}
+            <div className="absolute inset-x-0 bottom-0 h-28 sm:h-40 md:h-56 bg-gradient-to-b from-transparent via-[#0a0a0a]/80 to-[#0a0a0a] pointer-events-none" />
           </div>
         </section>
+
+        {/* Seamless transitional gradient bridging dark portfolio into vibrant teal footer */}
+        <div className="relative w-full h-24 sm:h-32 md:h-44 bg-gradient-to-b from-[#0a0a0a] to-[#00AEAC] pointer-events-none overflow-hidden">
+          {/* Ambient teal glow accent */}
+          <div className="absolute inset-0 bg-radial-[at_50%_100%] from-[#00AEAC]/30 via-transparent to-transparent" />
+        </div>
 
         <Footer />
       </main>
