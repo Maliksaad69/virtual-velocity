@@ -33,15 +33,21 @@ export const Navigation = () => {
     };
   }, [mobileOpen]);
 
+  const isSaltLine = pathname === "/the-salt-line";
+
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 z-40 py-3 sm:py-4 bg-transparent">
+      <header className={`absolute top-0 left-0 right-0 z-40 py-3 sm:py-4 transition-colors duration-300 ${
+        isSaltLine ? "bg-gradient-to-b from-black/75 via-black/35 to-transparent" : "bg-transparent"
+      }`}>
         <div className="max-w-[1700px] mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
           {/* Logo */}
           <Magnetic strength={0.25}>
             <Link
               href="/"
-              className="group relative flex items-center font-outfit font-extrabold text-lg sm:text-xl lg:text-2xl tracking-tighter text-zinc-950 uppercase"
+              className={`group relative flex items-center font-outfit font-extrabold text-lg sm:text-xl lg:text-2xl tracking-tighter uppercase ${
+                isSaltLine ? "text-white" : "text-zinc-950"
+              }`}
             >
               {/* Emerald glow that pops in behind the logo on hover */}
               <span
@@ -59,12 +65,16 @@ export const Navigation = () => {
                   alt="Virtual Velocity Logo"
                   width={44}
                   height={44}
-                  className="h-7 sm:h-8 lg:h-9 w-auto object-contain drop-shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_6px_16px_rgba(0,174,172,0.5)] mix-blend-multiply"
+                  className={`h-7 sm:h-8 lg:h-9 w-auto object-contain drop-shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_6px_16px_rgba(0,174,172,0.5)] ${
+                    isSaltLine ? "brightness-0 invert drop-shadow-[0_2px_10px_rgba(0,174,172,0.6)]" : "mix-blend-multiply"
+                  }`}
                   priority
                 />
-                <span className="group-hover:text-emerald-600 transition-colors duration-300 font-extrabold text-base sm:text-xl lg:text-2xl">
+                <span className={`transition-colors duration-300 font-extrabold text-base sm:text-xl lg:text-2xl ${
+                  isSaltLine ? "text-white group-hover:text-emerald-400" : "text-zinc-950 group-hover:text-emerald-600"
+                }`}>
                   VIRTUAL{" "}
-                  <span className="text-emerald-600 font-extrabold inline-block transition-transform duration-500 group-hover:rotate-180">
+                  <span className="text-emerald-400 font-extrabold inline-block transition-transform duration-500 group-hover:rotate-180">
                     •
                   </span>{" "}
                   VELOCITY
@@ -82,14 +92,19 @@ export const Navigation = () => {
                   <Link
                     href={link.href}
                     className={`group relative py-1 px-1.5 text-xs font-semibold tracking-[0.22em] uppercase transition-colors duration-300 flex items-center ${
-                      isActive ? "text-zinc-950 font-bold" : "text-zinc-700 hover:text-emerald-600"
+                      isActive
+                        ? isSaltLine
+                          ? "text-white font-bold"
+                          : "text-zinc-950 font-bold"
+                        : isSaltLine
+                        ? "text-zinc-200/90 hover:text-emerald-400"
+                        : "text-zinc-700 hover:text-emerald-600"
                     }`}
                   >
-
                     <span className="relative inline-block">
                       {link.label}
                       <span
-                        className={`absolute -bottom-1 left-0 h-[2px] bg-emerald-600 transition-all duration-300 ${
+                        className={`absolute -bottom-1 left-0 h-[2px] ${isSaltLine ? "bg-emerald-400" : "bg-emerald-600"} transition-all duration-300 ${
                           isActive ? "w-full" : "w-0 group-hover:w-full"
                         }`}
                       />
@@ -128,9 +143,15 @@ export const Navigation = () => {
                 </span>
 
                 {/* Light Transparent Button Body - internal color remains 100% stable */}
-                <span className="relative z-10 inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl bg-emerald-500/[0.08] hover:bg-emerald-500/[0.14] backdrop-blur-md text-xs font-outfit font-black tracking-[0.15em] text-zinc-950 group-hover:text-emerald-600 transition-colors duration-200 uppercase border border-emerald-500/25">
+                <span className={`relative z-10 inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl backdrop-blur-md text-xs font-outfit font-black tracking-[0.15em] uppercase border transition-colors duration-200 ${
+                  isSaltLine
+                    ? "bg-white/10 hover:bg-white/20 text-white group-hover:text-emerald-300 border-white/25"
+                    : "bg-emerald-500/[0.08] hover:bg-emerald-500/[0.14] text-zinc-950 group-hover:text-emerald-600 border-emerald-500/25"
+                }`}>
                   <span>LET&apos;S TALK</span>
-                  <ArrowUpRight className="w-4 h-4 text-emerald-600 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                  <ArrowUpRight className={`w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 ${
+                    isSaltLine ? "text-emerald-400" : "text-emerald-600"
+                  }`} />
                 </span>
               </Link>
             </Magnetic>
@@ -140,7 +161,9 @@ export const Navigation = () => {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className={`lg:hidden relative z-40 p-2 rounded-xl text-zinc-950 hover:text-emerald-600 focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center transition-opacity duration-200 active:scale-90 ${
+            className={`lg:hidden relative z-40 p-2 rounded-xl focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center transition-all duration-200 active:scale-90 ${
+              isSaltLine ? "text-white hover:text-emerald-400" : "text-zinc-950 hover:text-emerald-600"
+            } ${
               mobileOpen ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
             aria-label="Open menu"
