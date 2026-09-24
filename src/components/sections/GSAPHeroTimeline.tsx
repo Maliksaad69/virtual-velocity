@@ -2,10 +2,12 @@
 
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Volume2, VolumeX, Sparkles } from "lucide-react";
+import { Volume2, VolumeX, Sparkles, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,8 +22,8 @@ const TICKER_ITEMS = [
 ];
 
 const SLIDER_IMAGES = [
-  { src: "/banner-2.png", alt: "Virtual Velocity Performance Banner" },
-  { src: "/Vv.png", alt: "Virtual Velocity Digital Agency Banner" },
+  { src: "/banner-2.webp", alt: "Virtual Velocity Performance Banner" },
+  { src: "/Vv.webp", alt: "Virtual Velocity Digital Agency Banner" },
 ];
 
 export const GSAPHeroTimeline = () => {
@@ -167,9 +169,9 @@ export const GSAPHeroTimeline = () => {
   };
 
   return (
-    <section className="relative w-full bg-white select-none font-outfit">
+    <section className="relative w-full bg-white select-none font-outfit pt-16 sm:pt-20">
 
-      {/* ─── Hero Banner Slider: Full bleed under transparent header ─── */}
+      {/* ─── Hero Banner Slider: Positioned below top navbar ─── */}
       <div className="relative w-full overflow-hidden h-[58vh] min-h-[420px] sm:h-[72vh] sm:min-h-[540px] sm:max-h-[720px] bg-zinc-950">
         {/* Persistently Mounted Slider Images: Permanently in DOM tree to eliminate unmounting & blank frame flicker */}
         <div className="absolute inset-0 w-full h-full">
@@ -198,7 +200,7 @@ export const GSAPHeroTimeline = () => {
                   src={img.src}
                   alt={img.alt}
                   fill
-                  priority
+                  priority={idx === 0}
                   sizes="100vw"
                   className="object-cover object-center"
                 />
@@ -222,7 +224,7 @@ export const GSAPHeroTimeline = () => {
             </div>
 
             <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter text-white uppercase leading-none sm:leading-[0.92] drop-shadow-md sm:drop-shadow-lg">
-              LEADING FULL-SERVICE
+              FULL-SERVICE DIGITAL
             </h1>
 
             <div className="mt-0.5 sm:mt-1.5 text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter uppercase leading-none">
@@ -268,6 +270,19 @@ export const GSAPHeroTimeline = () => {
                   />
                 );
               })}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="mt-3 sm:mt-5 flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <Button asChild variant="emerald" size="lg" className="font-bold tracking-wider">
+                <Link href="/contact">
+                  <span>FREE GROWTH AUDIT</span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="bg-black/40 text-white border-white/30 hover:bg-white hover:text-black font-bold tracking-wider backdrop-blur-md">
+                <Link href="/services">OUR SERVICES</Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -28,16 +28,16 @@ const CARD_ACCENTS = [
 
 // Soft HD abstract background images (bright/light, not dark)
 const BACKDROPS = [
-  "https://images.unsplash.com/photo-1557683316-973673baf926?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1557682260-96773eb01377?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1557683316-973673baf926?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1557682260-96773eb01377?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=85&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1557683316-973673baf926?q=85&w=1600&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557683316-973673baf926?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682260-96773eb01377?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557683316-973673baf926?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682260-96773eb01377?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=75&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1557683316-973673baf926?q=75&w=800&auto=format&fit=crop",
 ];
 
 export const GSAPRevolvingServices = () => {
@@ -282,6 +282,8 @@ export const GSAPRevolvingServices = () => {
                     <img
                       src={service.previewImage || backdrop}
                       alt=""
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-center scale-125 filter blur-lg brightness-90 saturate-110 transition-transform duration-1000 ease-out"
                     />
                     {isVideography ? (
@@ -305,6 +307,8 @@ export const GSAPRevolvingServices = () => {
                     <img
                       src={service.previewImage || backdrop}
                       alt=""
+                      loading="lazy"
+                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover object-center brightness-105 saturate-110"
                       style={{
                         WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 42%, transparent 70%)",

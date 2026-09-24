@@ -101,6 +101,7 @@ export function AboutClient() {
                     alt={FOUNDER.name}
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
                   <div className="absolute bottom-5 left-5 right-5 text-white space-y-1">

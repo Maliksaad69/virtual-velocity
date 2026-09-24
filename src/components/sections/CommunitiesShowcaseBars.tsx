@@ -39,7 +39,7 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     subtitleLines: ["FOLLOWERS"],
     bottomLines: ["VIRTUAL VELOCITY"],
     avatarRingColor: "ring-2 ring-emerald-400",
-    cardBg: "bg-gradient-to-b from-[#e3fbf5] via-[#d5f7ee] to-[#c4f1e5]",
+    cardBg: "bg-gradient-to-b from-white via-zinc-50 to-zinc-100",
     cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
     heightClass: "h-[300px] lg:h-[320px] xl:h-[345px]",
   },
@@ -54,7 +54,7 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     subtitleLines: ["FOLLOWERS"],
     bottomLines: ["VIRTUAL VELOCITY"],
     avatarRingColor: "ring-2 ring-teal-400",
-    cardBg: "bg-gradient-to-b from-[#e3fbf5] via-[#d5f7ee] to-[#c4f1e5]",
+    cardBg: "bg-gradient-to-b from-white via-slate-50 to-slate-100",
     cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
     heightClass: "h-[360px] lg:h-[385px] xl:h-[415px]",
   },
@@ -69,7 +69,7 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     subtitleLines: ["FOLLOWERS"],
     bottomLines: ["VIRTUAL VELOCITY"],
     avatarRingColor: "ring-2 ring-amber-500",
-    cardBg: "bg-gradient-to-b from-[#e3fbf5] via-[#d5f7ee] to-[#c4f1e5]",
+    cardBg: "bg-gradient-to-b from-white via-stone-50 to-stone-100",
     cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
     heightClass: "h-[430px] lg:h-[455px] xl:h-[485px]",
   },
@@ -117,7 +117,7 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     subtitleLines: ["FOLLOWERS"],
     bottomLines: ["VIRTUAL VELOCITY"],
     avatarRingColor: "ring-2 ring-teal-400",
-    cardBg: "bg-gradient-to-b from-[#e3fbf5] via-[#d5f7ee] to-[#c4f1e5]",
+    cardBg: "bg-gradient-to-b from-white via-zinc-50 to-zinc-100",
     cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
     heightClass: "h-[430px] lg:h-[455px] xl:h-[485px]",
   },
@@ -132,7 +132,7 @@ export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
     subtitleLines: ["FOLLOWERS"],
     bottomLines: ["VIRTUAL VELOCITY"],
     avatarRingColor: "ring-2 ring-teal-400",
-    cardBg: "bg-gradient-to-b from-[#e3fbf5] via-[#d5f7ee] to-[#c4f1e5]",
+    cardBg: "bg-gradient-to-b from-white via-slate-50 to-slate-100",
     cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
     heightClass: "h-[355px] lg:h-[380px] xl:h-[405px]",
   },
@@ -263,20 +263,18 @@ export function CommunitiesShowcaseBars() {
         </div>
       </div>
 
-      {/* Main Dark Emerald Mesh Background Canvas (Matching Image Exactly) */}
-      <div className="relative w-full rounded-3xl p-4 sm:p-6 lg:p-10 bg-[#021d19] shadow-2xl border border-teal-500/20 overflow-hidden">
-        {/* Subtle Emerald Dot Matrix Background */}
-        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(#00aeac_1.2px,transparent_1.2px)] [background-size:24px_24px] pointer-events-none" />
+      {/* Main Dark Mesh Background Canvas */}
+      <div className="relative w-full rounded-3xl bg-zinc-950 shadow-2xl border border-zinc-800/80 overflow-hidden">
+        {/* Subtle Ambient Dot Matrix Background */}
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(rgba(255,255,255,0.25)_1.2px,transparent_1.2px)] [background-size:24px_24px] pointer-events-none" />
 
         {/* Ambient Center Glow behind Flagship Peak #4 */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full bg-amber-400/20 blur-[100px] pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-teal-400/15 blur-[90px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full bg-amber-400/15 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-emerald-500/10 blur-[90px] pointer-events-none" />
 
         {/* ── RESPONSIVE BARS CONTAINER ── */}
-        {/* On mobile: smooth horizontal pan so all 7 bars preserve full mountain peaks and proportions */}
-        {/* On desktop: full grid matching the reference image */}
-        <div className="relative z-10 overflow-x-auto scrollbar-hide pt-14 pb-2">
-          <div className="min-w-[940px] lg:min-w-0 grid grid-cols-7 gap-2.5 sm:gap-3 xl:gap-4 items-end">
+        <div className="relative z-10 overflow-x-auto scrollbar-hide px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-5 sm:pb-8">
+          <div className="min-w-[860px] lg:min-w-0 grid grid-cols-7 gap-2.5 sm:gap-3 xl:gap-4 items-end">
             {PROPRIETARY_COMMUNITIES.map((comm) => {
               const isFeatured = comm.featured;
 
@@ -286,10 +284,10 @@ export function CommunitiesShowcaseBars() {
                   style={{ transformOrigin: "bottom center" }}
                   className={`gsap-comm-bar relative flex flex-col justify-between rounded-[2rem] lg:rounded-[2.25rem] xl:rounded-[2.5rem] transition-all duration-300 p-2 sm:p-3 xl:p-4 pb-4 ${comm.heightClass} ${comm.cardBg} ${comm.cardBorder} ${
                     isFeatured ? "z-20 scale-[1.02]" : "z-10 hover:scale-[1.02] hover:-translate-y-1"
-                  } group`}
+                  } group overflow-visible`}
                 >
                   {/* Floating Orb at Top Center */}
-                  <div className="absolute -top-7 xl:-top-8 inset-x-0 flex justify-center pointer-events-none z-30">
+                  <div className="absolute -top-8 sm:-top-9 xl:-top-10 inset-x-0 flex justify-center pointer-events-none z-30">
                     <div className="gsap-comm-orb pointer-events-auto transition-transform duration-300 group-hover:scale-110">
                       <AvatarOrb
                         iconSrc={comm.iconSrc}

@@ -486,6 +486,7 @@ export const InstaReelsGallery = () => {
                       isActive ? "brightness-100 contrast-105" : "brightness-95 contrast-100"
                     }`}
                     loading="lazy"
+                    decoding="async"
                   />
 
                   {/* Glowing Play Button on Active Card */}

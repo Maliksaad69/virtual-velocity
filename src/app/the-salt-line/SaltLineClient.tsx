@@ -8,15 +8,15 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 
 // Cloudinary Hosted Images for The Salt Line Case Study
 const CLOUDINARY_IMAGES = {
-  slide1: "https://res.cloudinary.com/nudghwmz/image/upload/v1790186939/1.png", // Header image covering top navigation
-  slide2: "https://res.cloudinary.com/nudghwmz/image/upload/v1790179028/2.png", // The Challenge
-  slide3: "https://res.cloudinary.com/nudghwmz/image/upload/v1790179027/3.png", // The Music Was The Difference
-  slide4: "https://res.cloudinary.com/nudghwmz/image/upload/v1790179028/4.png", // Real Moments -> Real Content
-  slide5: "https://res.cloudinary.com/nudghwmz/image/upload/v1790179030/5.png", // The #WOW Moment
-  slide6: "https://res.cloudinary.com/nudghwmz/image/upload/v1790179033/6.png", // We Weren't Just Growing A Page
-  slide7: "https://res.cloudinary.com/nudghwmz/image/upload/v1790179032/7.png", // What We Actually Did
-  slide8: "https://res.cloudinary.com/nudghwmz/image/upload/v1790179027/8.png", // The Result
-  slide9: "https://res.cloudinary.com/nudghwmz/image/upload/v1790179027/9.png", // VV's Role
+  slide1: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790186939/1.png", // Header image covering top navigation
+  slide2: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790179028/2.png", // The Challenge
+  slide3: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790179027/3.png", // The Music Was The Difference
+  slide4: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790179028/4.png", // Real Moments -> Real Content
+  slide5: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790179030/5.png", // The #WOW Moment
+  slide6: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790179033/6.png", // We Weren't Just Growing A Page
+  slide7: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790179032/7.png", // What We Actually Did
+  slide8: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790179027/8.png", // The Result
+  slide9: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790179027/9.png", // VV's Role
 };
 
 export function SaltLineClient() {
@@ -37,7 +37,6 @@ export function SaltLineClient() {
               width={1920}
               height={1080}
               priority
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -50,8 +49,6 @@ export function SaltLineClient() {
               alt="The Salt Line - The Challenge"
               width={1920}
               height={1080}
-              priority
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -64,7 +61,6 @@ export function SaltLineClient() {
               alt="The Salt Line - The Music Was The Difference"
               width={1920}
               height={1080}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -77,7 +73,6 @@ export function SaltLineClient() {
               alt="The Salt Line - Real Moments Real Content Real Audience"
               width={1920}
               height={1080}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -90,7 +85,6 @@ export function SaltLineClient() {
               alt="The Salt Line - The #WOW Moment 3-4 Months Organic Trajectory"
               width={1920}
               height={1080}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -103,7 +97,6 @@ export function SaltLineClient() {
               alt="The Salt Line - Packed Qawwali Night Crowd"
               width={1920}
               height={1080}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -116,7 +109,6 @@ export function SaltLineClient() {
               alt="The Salt Line - 5 Pillars What We Actually Did"
               width={1920}
               height={1080}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -129,7 +121,6 @@ export function SaltLineClient() {
               alt="The Salt Line - The Result Analytics Dashboard"
               width={1920}
               height={1080}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -142,7 +133,6 @@ export function SaltLineClient() {
               alt="The Salt Line - Virtual Velocity's Role"
               width={1920}
               height={1080}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />

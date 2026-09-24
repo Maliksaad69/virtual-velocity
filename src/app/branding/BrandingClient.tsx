@@ -9,16 +9,16 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 
 // Cloudinary Hosted Images for Cresto Branding Portfolio (Optimized Artboards)
 const CLOUDINARY_IMAGES = {
-  page1: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005642/Artboard_1.png",
-  page2: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005642/Artboard_2.png",
-  page3: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005643/Artboard_3.png",
-  page4: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005643/Artboard_4.png",
-  page5: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_5.png",
-  page7: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_7.png",
-  page8: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_8.png",
-  page9: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_9.png",
-  page10: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005644/Artboard_10.png",
-  page11: "https://res.cloudinary.com/nudghwmz/image/upload/v1790005642/Artboard_11.png",
+  page1: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005642/Artboard_1.png",
+  page2: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005642/Artboard_2.png",
+  page3: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005643/Artboard_3.png",
+  page4: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005643/Artboard_4.png",
+  page5: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005644/Artboard_5.png",
+  page7: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005644/Artboard_7.png",
+  page8: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005644/Artboard_8.png",
+  page9: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005644/Artboard_9.png",
+  page10: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005644/Artboard_10.png",
+  page11: "https://res.cloudinary.com/nudghwmz/image/upload/f_auto,q_auto,w_1400/v1790005642/Artboard_11.png",
 };
 
 export function BrandingClient() {
@@ -38,7 +38,6 @@ export function BrandingClient() {
               width={1596}
               height={897}
               priority
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -51,8 +50,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 02"
               width={1596}
               height={897}
-              priority
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -85,7 +82,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 03"
               width={1596}
               height={897}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -98,7 +94,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 04"
               width={1596}
               height={897}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -131,7 +126,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 05"
               width={1596}
               height={897}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -144,7 +138,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 07"
               width={1596}
               height={897}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -174,7 +167,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 08"
               width={1596}
               height={897}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -187,7 +179,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 09"
               width={1596}
               height={897}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -216,7 +207,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 10"
               width={1596}
               height={897}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />
@@ -229,7 +219,6 @@ export function BrandingClient() {
               alt="Cresto Pizza Portfolio - Slide 11"
               width={1596}
               height={897}
-              unoptimized
               sizes="100vw"
               className="w-full h-auto block m-0 p-0 select-none pointer-events-auto"
             />

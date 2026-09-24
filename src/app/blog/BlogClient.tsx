@@ -122,6 +122,7 @@ export function BlogClient() {
                       alt={post.author.name}
                       className="w-8 h-8 rounded-full object-cover border border-zinc-300"
                       loading="lazy"
+                      decoding="async"
                     />
                     <div className="text-xs font-outfit">
                       <span className="text-zinc-900 font-extrabold block">{post.author.name}</span>
