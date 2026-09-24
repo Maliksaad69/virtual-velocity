@@ -24,6 +24,8 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About Studio", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Branding", href: "/branding" },
+  { label: "The Salt Line", href: "/the-salt-line" },
   { label: "Our Work", href: "/#work" },
   { label: "Blog & Journal", href: "/blog" },
   { label: "Contact", href: "/contact" },

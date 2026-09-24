@@ -85,7 +85,7 @@ export const About = () => {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="select-none max-w-6xl"
         >
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-outfit font-black text-zinc-900 tracking-tighter leading-[0.92] sm:leading-[0.9] uppercase">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-outfit font-black text-zinc-900 tracking-tighter leading-[0.92] sm:leading-[0.9] uppercase">
             A <span className="text-emerald-600">digital marketing</span>
             <br className="hidden sm:block" />
             agency built for{" "}
@@ -106,25 +106,12 @@ export const About = () => {
         >
           {/* Narrative text */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-            <p className="text-base sm:text-xl lg:text-2xl text-black font-normal leading-[1.7] sm:leading-[1.8]">
-              <span className="text-black font-black first-letter:text-3xl sm:first-letter:text-5xl first-letter:font-black first-letter:mr-1 first-letter:float-left first-letter:leading-none first-letter:text-emerald-600">
-                Virtual Velocity
-              </span>{" "}
-              is a creative house where strategy, creativity, technology, and digital growth come together to build brands that stand out and grow.
+            <p className="text-base sm:text-lg text-zinc-600 font-normal leading-[1.7]">
+              Virtual Velocity is a creative house where strategy, creativity, technology, and digital growth come together to build brands that stand out and grow.
             </p>
 
-            <p className="text-base sm:text-xl lg:text-2xl text-black font-normal leading-[1.7] sm:leading-[1.8]">
-              We work with ambitious businesses to turn ideas into meaningful brand experiences, engaging content, powerful campaigns, and digital solutions that drive real results. From social media and performance marketing to branding, influencer collaborations, AI-powered solutions, websites, and digital experiences we bring creativity and technology together under one roof.
-            </p>
-
-            <p className="text-sm sm:text-lg text-black font-normal leading-relaxed sm:leading-[1.85]">
-              We don&apos;t just create content or run campaigns. We understand your brand, find what makes it different, and use creativity, data, and technology to turn that difference into something people notice, remember, and act on.
-            </p>
-
-            <p className="text-sm sm:text-lg text-black font-normal leading-relaxed sm:leading-[1.85]">
-              Because great marketing isn&apos;t just about keeping up with the digital world.
-              <br />
-              It&apos;s about using it to move your brand forward.
+            <p className="text-sm sm:text-base text-zinc-600 font-normal leading-[1.75]">
+              From social media and performance marketing to branding, influencer campaigns, AI-powered solutions, websites, and digital experiences — we bring creativity and technology together under one roof to turn your brand vision into real results.
             </p>
 
             <div className="pt-3 flex flex-wrap items-center gap-4 sm:gap-6">

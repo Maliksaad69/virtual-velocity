@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -11,115 +12,184 @@ export interface CommunityBarData {
   id: string;
   name: string;
   handle: string;
+  iconSrc: string;
+  tagLines: string[];
+  tagColorClass: string;
   followerCount: string;
-  followerNum: number;
-  logo: string;
+  subtitleLines: string[];
+  bottomLines: string[];
   featured?: boolean;
-  colorBg: string;
-  colorBorder: string;
+  avatarRingColor: string;
+  cardBg: string;
+  cardBorder: string;
+  heightClass: string;
+  nicheSubLines?: string[];
+  monthlyViews?: string;
 }
 
 export const PROPRIETARY_COMMUNITIES: CommunityBarData[] = [
   {
-    id: "islamabad_insider",
-    name: "Islamabad Insider",
-    handle: "IslamabadInsider",
-    followerCount: "24K",
-    followerNum: 24000,
-    logo: "/images/communities/islamabad_insider.png",
-    colorBg: "bg-gradient-to-b from-emerald-100/95 via-teal-100/90 to-emerald-200/95 hover:from-emerald-50 hover:to-teal-50",
-    colorBorder: "border-emerald-300 hover:border-emerald-400 shadow-emerald-950/10",
+    id: "snapseedpak",
+    name: "SnapSeedPak",
+    handle: "SnapSeedPak",
+    iconSrc: "/images/communities/snapseedpak.png",
+    tagLines: ["VISUAL GUILD"],
+    tagColorClass: "bg-teal-900/10 text-teal-900",
+    followerCount: "40K",
+    subtitleLines: ["FOLLOWERS"],
+    bottomLines: ["VIRTUAL VELOCITY"],
+    avatarRingColor: "ring-2 ring-emerald-400",
+    cardBg: "bg-gradient-to-b from-white via-zinc-50 to-zinc-100",
+    cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
+    heightClass: "h-[300px] lg:h-[320px] xl:h-[345px]",
   },
   {
     id: "islamabad_reels",
     name: "Islamabad Reels",
     handle: "islamabad_reels",
-    followerCount: "54.1K",
-    followerNum: 54100,
-    logo: "/images/communities/islamabad_reels.png",
-    colorBg: "bg-gradient-to-b from-emerald-100/90 via-emerald-200/95 to-teal-200/90 hover:from-emerald-50 hover:to-emerald-100",
-    colorBorder: "border-emerald-300 hover:border-emerald-400 shadow-emerald-950/10",
+    iconSrc: "/images/communities/islamabad_reels.png",
+    tagLines: ["CINEMATICS"],
+    tagColorClass: "bg-teal-900/10 text-teal-900",
+    followerCount: "200K",
+    subtitleLines: ["FOLLOWERS"],
+    bottomLines: ["VIRTUAL VELOCITY"],
+    avatarRingColor: "ring-2 ring-teal-400",
+    cardBg: "bg-gradient-to-b from-white via-slate-50 to-slate-100",
+    cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
+    heightClass: "h-[360px] lg:h-[385px] xl:h-[415px]",
   },
   {
-    id: "snapseedpak",
-    name: "SnapSeedpak",
-    handle: "SnapSeedpak",
-    followerCount: "40K",
-    followerNum: 40000,
-    logo: "/images/communities/snapseedpak.png",
-    colorBg: "bg-gradient-to-b from-teal-100/95 via-emerald-100/90 to-teal-200/95 hover:from-teal-50 hover:to-emerald-50",
-    colorBorder: "border-teal-300 hover:border-teal-400 shadow-teal-950/10",
+    id: "islamabad_insider",
+    name: "Islamabad Insider",
+    handle: "IslamabadInsider",
+    iconSrc: "/images/communities/islamabad_insider.png",
+    tagLines: ["CIVIC NEWS"],
+    tagColorClass: "bg-teal-900/10 text-teal-900",
+    followerCount: "440K",
+    subtitleLines: ["FOLLOWERS"],
+    bottomLines: ["VIRTUAL VELOCITY"],
+    avatarRingColor: "ring-2 ring-amber-500",
+    cardBg: "bg-gradient-to-b from-white via-stone-50 to-stone-100",
+    cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
+    heightClass: "h-[430px] lg:h-[455px] xl:h-[485px]",
   },
   {
     id: "rawalpindians",
     name: "Rawalpindians",
     handle: "Rawalpindians",
-    followerCount: "180K",
-    followerNum: 180000,
-    logo: "/images/communities/rawalpindians.png",
+    iconSrc: "/images/communities/rawalpindians.png",
     featured: true,
-    colorBg: "bg-gradient-to-b from-[#c4f2eb] via-[#a3ede0] to-[#7ee0d0] hover:from-[#d1f7f1] hover:to-[#91ebd9]",
-    colorBorder: "border-white shadow-2xl ring-2 ring-white/90",
+    tagLines: ["★ FLAGSHIP", "PEAK #1"],
+    tagColorClass: "bg-gradient-to-r from-[#ffe082] via-[#ffd54f] to-[#ffca28] text-amber-950 font-black",
+    nicheSubLines: ["URBAN CULTURE &", "VIRALITY"],
+    followerCount: "750K",
+    subtitleLines: ["DIRECT", "FOLLOWERS"],
+    monthlyViews: "45M+ Monthly Views",
+    bottomLines: ["VIRTUAL VELOCITY", "FLAGSHIP"],
+    avatarRingColor: "ring-3 ring-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.7)]",
+    cardBg: "bg-white",
+    cardBorder: "border-2 border-amber-300 ring-2 ring-amber-400/40 shadow-[0_0_50px_rgba(245,158,11,0.45),0_20px_45px_rgba(0,0,0,0.4)]",
+    heightClass: "h-[530px] lg:h-[560px] xl:h-[595px]",
   },
   {
     id: "sirfchai",
     name: "Sirf Chai",
     handle: "sirfchai_",
-    followerCount: "118K",
-    followerNum: 118000,
-    logo: "/images/communities/sirfchai.png",
-    colorBg: "bg-gradient-to-b from-emerald-100/95 via-teal-100/90 to-emerald-200/95 hover:from-emerald-50 hover:to-teal-50",
-    colorBorder: "border-emerald-300 hover:border-emerald-400 shadow-emerald-950/10",
+    iconSrc: "/images/communities/sirfchai.png",
+    tagLines: ["LIFESTYLE"],
+    tagColorClass: "bg-[#fae8d4] text-[#7a421d]",
+    followerCount: "670K",
+    subtitleLines: ["FOLLOWERS"],
+    bottomLines: ["VIRTUAL VELOCITY"],
+    avatarRingColor: "ring-2 ring-teal-400",
+    cardBg: "bg-gradient-to-b from-[#fbf8f2] via-[#f7f2ea] to-[#efe6dc]",
+    cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
+    heightClass: "h-[475px] lg:h-[500px] xl:h-[530px]",
   },
   {
     id: "lifeofislamabad",
     name: "Life of Islamabad",
     handle: "lifeofislamabad",
-    followerCount: "89K",
-    followerNum: 89000,
-    logo: "/images/communities/lifeofislamabad.png",
-    colorBg: "bg-gradient-to-b from-teal-100/90 via-emerald-100/95 to-teal-200/90 hover:from-teal-50 hover:to-emerald-50",
-    colorBorder: "border-teal-300 hover:border-teal-400 shadow-teal-950/10",
+    iconSrc: "/images/communities/lifeofislamabad.png",
+    tagLines: ["METRO GUIDE"],
+    tagColorClass: "bg-teal-900/10 text-teal-900",
+    followerCount: "620K",
+    subtitleLines: ["FOLLOWERS"],
+    bottomLines: ["VIRTUAL VELOCITY"],
+    avatarRingColor: "ring-2 ring-teal-400",
+    cardBg: "bg-gradient-to-b from-white via-zinc-50 to-zinc-100",
+    cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
+    heightClass: "h-[430px] lg:h-[455px] xl:h-[485px]",
   },
   {
     id: "lahorians",
     name: "Lahorians",
     handle: "Lahorians",
-    followerCount: "56.9K",
-    followerNum: 56900,
-    logo: "/images/communities/lahorians.png",
-    colorBg: "bg-gradient-to-b from-emerald-100/95 via-teal-100/90 to-emerald-200/95 hover:from-emerald-50 hover:to-teal-50",
-    colorBorder: "border-emerald-300 hover:border-emerald-400 shadow-emerald-950/10",
+    iconSrc: "/images/communities/lahorians.png",
+    tagLines: ["HERITAGE"],
+    tagColorClass: "bg-teal-900/10 text-teal-900",
+    followerCount: "230K",
+    subtitleLines: ["FOLLOWERS"],
+    bottomLines: ["VIRTUAL VELOCITY"],
+    avatarRingColor: "ring-2 ring-teal-400",
+    cardBg: "bg-gradient-to-b from-white via-slate-50 to-slate-100",
+    cardBorder: "border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.25)]",
+    heightClass: "h-[355px] lg:h-[380px] xl:h-[405px]",
   },
 ];
 
-// Mountain arch: Ascending order from 1 to 4 (Peak), Descending order from 4 to 7
-const BAR_HEIGHT_CLASSES = [
-  "h-[220px] sm:h-[235px] lg:h-[250px] xl:h-[265px]", // 1: Lowest
-  "h-[260px] sm:h-[275px] lg:h-[295px] xl:h-[315px]", // 2: Ascending
-  "h-[305px] sm:h-[325px] lg:h-[350px] xl:h-[370px]", // 3: Ascending
-  "h-[355px] sm:h-[385px] lg:h-[415px] xl:h-[435px]", // 4: Peak (Rawalpindians)
-  "h-[305px] sm:h-[325px] lg:h-[350px] xl:h-[370px]", // 5: Descending
-  "h-[260px] sm:h-[275px] lg:h-[295px] xl:h-[315px]", // 6: Descending
-  "h-[220px] sm:h-[235px] lg:h-[250px] xl:h-[265px]", // 7: Lowest (symmetric to 1)
-];
-
-// Mobile horizontal widths: Ascending order from 1 to 4 (Peak), Descending order from 4 to 7
-const BAR_MOBILE_WIDTH_CLASSES = [
-  "w-[76%] sm:w-[78%]", // 1: Lowest
-  "w-[84%] sm:w-[85%]", // 2: Ascending
-  "w-[92%] sm:w-[93%]", // 3: Ascending
-  "w-full",             // 4: Peak (Rawalpindians)
-  "w-[92%] sm:w-[93%]", // 5: Descending
-  "w-[84%] sm:w-[85%]", // 6: Descending
-  "w-[76%] sm:w-[78%]", // 7: Lowest
-];
-
-function VerifiedBadge({ className = "w-3.5 h-3.5 sm:w-4 sm:h-4" }: { className?: string }) {
+// Blue Verified Checkmark attached at bottom-right of avatar orb
+function BlueOrbCheckBadge() {
   return (
-    <svg className={`${className} inline-block shrink-0 fill-[#0095f6]`} viewBox="0 0 24 24">
-      <path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.33 2.33 4.95-4.95 1.41 1.41-6.36 6.37z" />
-    </svg>
+    <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#0095f6] border-2 border-white flex items-center justify-center shadow-md shrink-0 z-20">
+      <svg className="w-2.5 h-2.5 text-white fill-current" viewBox="0 0 20 20">
+        <path
+          fillRule="evenodd"
+          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+  );
+}
+
+// Blue Dot next to account handle
+function BlueHandleDot() {
+  return (
+    <span className="w-2.5 h-2.5 rounded-full bg-[#0095f6] inline-block shrink-0 shadow-xs" />
+  );
+}
+
+// Avatar Orb renderer loading icons from public/images/communities
+function AvatarOrb({
+  iconSrc,
+  name,
+  ringClass,
+  isFeatured,
+}: {
+  iconSrc: string;
+  name: string;
+  ringClass: string;
+  isFeatured?: boolean;
+}) {
+  const sizeClass = isFeatured ? "w-16 h-16 xl:w-18 xl:h-18" : "w-13 h-13 xl:w-15 xl:h-15";
+
+  return (
+    <div className={`relative ${sizeClass} rounded-full ${ringClass} shrink-0 bg-zinc-950 p-[2px]`}>
+      <div className="relative w-full h-full rounded-full overflow-hidden bg-zinc-950 flex items-center justify-center">
+        <Image
+          src={iconSrc}
+          alt={name}
+          fill
+          className="object-cover"
+          sizes={isFeatured ? "72px" : "60px"}
+          priority
+        />
+      </div>
+
+      {/* Blue Verified Check Badge */}
+      <BlueOrbCheckBadge />
+    </div>
   );
 }
 
@@ -128,258 +198,192 @@ export function CommunitiesShowcaseBars() {
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia(containerRef);
-
-      // Desktop: Vertical mountain wave
-      mm.add("(min-width: 1024px)", () => {
-        gsap.fromTo(
-          ".gsap-community-bar-desktop",
-          {
-            scaleY: 0,
-            opacity: 0,
+      gsap.fromTo(
+        ".gsap-comm-bar",
+        {
+          scaleY: 0.1,
+          opacity: 0,
+        },
+        {
+          scaleY: 1,
+          opacity: 1,
+          duration: 1.1,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 85%",
+            once: true,
           },
-          {
-            scaleY: 1,
-            opacity: 1,
-            duration: 1.15,
-            ease: "power3.out",
-            stagger: 0.07,
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 85%",
-              once: true,
-            },
-          }
-        );
+        }
+      );
 
-        gsap.fromTo(
-          ".gsap-community-logo-desktop",
-          {
-            scale: 0.7,
-            opacity: 0,
-            y: 15,
+      gsap.fromTo(
+        ".gsap-comm-orb",
+        {
+          scale: 0.5,
+          opacity: 0,
+          y: 20,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "back.out(1.5)",
+          stagger: 0.08,
+          delay: 0.2,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 85%",
+            once: true,
           },
-          {
-            scale: 1,
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: "power3.out",
-            stagger: 0.07,
-            delay: 0.15,
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 85%",
-              once: true,
-            },
-          }
-        );
-
-        gsap.fromTo(
-          ".gsap-community-content-desktop",
-          {
-            opacity: 0,
-            y: 10,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            stagger: 0.07,
-            delay: 0.25,
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 85%",
-              once: true,
-            },
-          }
-        );
-      });
-
-      // Mobile & Tablet: Horizontal responsive bars
-      mm.add("(max-width: 1023px)", () => {
-        gsap.fromTo(
-          ".gsap-community-bar-mobile",
-          {
-            x: -25,
-            opacity: 0,
-          },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.75,
-            ease: "power3.out",
-            stagger: 0.06,
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 88%",
-              once: true,
-            },
-          }
-        );
-      });
+        }
+      );
     },
     { scope: containerRef }
   );
 
   return (
     <div ref={containerRef} className="w-full space-y-4">
-      {/* Header */}
+      {/* Section Header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 font-bold block">
-            Proprietary Media Communities (~1M+ Direct Audience)
+          <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 font-extrabold block">
+            Proprietary Media Communities (~2.95M+ Direct Audience)
           </span>
           <p className="text-xs sm:text-sm text-zinc-600 font-medium">
-            In-house media network driving organic culture, viral reach &amp; regional attention.
+            Virtual Velocity&apos;s verified digital network driving viral organic reach, culture, and high-impact regional engagement.
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-[11px] font-mono font-bold text-emerald-800">
-            VERIFIED NETWORK
+          <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-mono font-bold text-emerald-800 shadow-xs">
+            2.95M+ VERIFIED NETWORK
           </span>
         </div>
       </div>
 
-      {/* Main Teal Showcase Container */}
-      <div className="relative w-full rounded-3xl p-3.5 sm:p-6 lg:p-8 bg-gradient-to-b from-[#029e92] via-[#028b80] to-[#01685f] shadow-2xl border border-teal-400/30 overflow-hidden">
-        {/* Subtle decorative background watermark/mesh */}
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white/10 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-teal-300/10 blur-3xl pointer-events-none" />
+      {/* Main Dark Mesh Background Canvas */}
+      <div className="relative w-full rounded-3xl bg-zinc-950 shadow-2xl border border-zinc-800/80 overflow-hidden">
+        {/* Subtle Ambient Dot Matrix Background */}
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(rgba(255,255,255,0.25)_1.2px,transparent_1.2px)] [background-size:24px_24px] pointer-events-none" />
 
-        {/* ── MOBILE & TABLET VIEW: Responsive Horizontal Bars (< 1024px) ── */}
-        <div className="relative z-10 flex flex-col items-start gap-2.5 sm:gap-3 lg:hidden w-full">
-          {PROPRIETARY_COMMUNITIES.map((comm, idx) => {
-            const isFeatured = comm.featured;
-            const widthClass = BAR_MOBILE_WIDTH_CLASSES[idx];
+        {/* Ambient Center Glow behind Flagship Peak #4 */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 sm:w-[480px] h-80 sm:h-[480px] rounded-full bg-amber-400/15 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-emerald-500/10 blur-[90px] pointer-events-none" />
 
-            return (
-              <div
-                key={`mobile-${comm.id}`}
-                className={`gsap-community-bar-mobile relative overflow-hidden rounded-2xl border transition-all duration-300 p-3 sm:p-4 ${widthClass} ${comm.colorBg} ${comm.colorBorder} shadow-lg`}
-              >
-                {/* Main Horizontal Content Row */}
-                <div className="relative z-10 flex items-center justify-between gap-3">
-                  {/* Left: Community Orb Logo + Identity */}
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className={`shrink-0 rounded-full p-0.5 bg-white shadow-md ring-2 ring-white/90 ${
-                        isFeatured ? "w-11 h-11 sm:w-12 sm:h-12" : "w-10 h-10 sm:w-11 sm:h-11"
-                      }`}
-                    >
-                      <img
-                        src={comm.logo}
-                        alt={comm.name}
-                        className="w-full h-full object-cover rounded-full"
-                        loading="lazy"
+        {/* ── RESPONSIVE BARS CONTAINER ── */}
+        <div className="relative z-10 overflow-x-auto scrollbar-hide px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-5 sm:pb-8">
+          <div className="min-w-[860px] lg:min-w-0 grid grid-cols-7 gap-2.5 sm:gap-3 xl:gap-4 items-end">
+            {PROPRIETARY_COMMUNITIES.map((comm) => {
+              const isFeatured = comm.featured;
+
+              return (
+                <div
+                  key={comm.id}
+                  style={{ transformOrigin: "bottom center" }}
+                  className={`gsap-comm-bar relative flex flex-col justify-between rounded-[2rem] lg:rounded-[2.25rem] xl:rounded-[2.5rem] transition-all duration-300 p-2 sm:p-3 xl:p-4 pb-4 ${comm.heightClass} ${comm.cardBg} ${comm.cardBorder} ${
+                    isFeatured ? "z-20 scale-[1.02]" : "z-10 hover:scale-[1.02] hover:-translate-y-1"
+                  } group overflow-visible`}
+                >
+                  {/* Floating Orb at Top Center */}
+                  <div className="absolute -top-8 sm:-top-9 xl:-top-10 inset-x-0 flex justify-center pointer-events-none z-30">
+                    <div className="gsap-comm-orb pointer-events-auto transition-transform duration-300 group-hover:scale-110">
+                      <AvatarOrb
+                        iconSrc={comm.iconSrc}
+                        name={comm.name}
+                        ringClass={comm.avatarRingColor}
+                        isFeatured={isFeatured}
                       />
                     </div>
+                  </div>
 
-                    <div className="min-w-0 flex flex-col justify-center">
-                      <div className="flex items-center gap-1.5 flex-nowrap">
-                        <span className="font-black text-[13px] sm:text-[15px] text-zinc-950 tracking-tight truncate">
-                          {comm.handle}
-                        </span>
-                        <VerifiedBadge className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                        {isFeatured && (
-                          <span className="px-1.5 py-0.5 rounded-full text-[9px] font-mono font-black uppercase bg-teal-800 text-white tracking-widest leading-none shrink-0">
-                            PEAK
-                          </span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono font-bold text-teal-950/70 uppercase tracking-wide mt-0.5">
-                        <span className="shrink-0">Virtual Velocity</span>
-                        <span className="text-teal-950/30 shrink-0">•</span>
-                        <span className="truncate font-semibold normal-case text-teal-900/85">{comm.name}</span>
+                  {/* Top Content: Category Pill & Handle */}
+                  <div className="pt-6 sm:pt-7 text-center space-y-1.5 w-full overflow-hidden">
+                    {/* Category Pill Tag */}
+                    <div className="flex justify-center">
+                      <div
+                        className={`text-[8.5px] sm:text-[9.5px] xl:text-[10px] font-mono font-bold tracking-wider px-2.5 sm:px-3 py-1 rounded-full uppercase leading-tight shadow-xs ${comm.tagColorClass}`}
+                      >
+                        {comm.tagLines.map((line, idx) => (
+                          <div key={idx} className="whitespace-nowrap">{line}</div>
+                        ))}
                       </div>
                     </div>
-                  </div>
 
-                  {/* Right: Followers Count */}
-                  <div className="text-right shrink-0 pl-2">
-                    <div className="text-xl sm:text-2xl font-black text-zinc-950 font-outfit tracking-tight leading-none">
-                      {comm.followerCount}
-                    </div>
-                    <div className="text-[10px] sm:text-[11px] font-extrabold text-teal-950/80 uppercase tracking-wider mt-0.5">
-                      Followers
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* ── DESKTOP VIEW: 7-Column Mountain Wave Vertical Bars (>= 1024px) ── */}
-        <div className="relative z-10 hidden lg:grid lg:grid-cols-7 gap-3 xl:gap-4 items-end pb-2 pt-16">
-          {PROPRIETARY_COMMUNITIES.map((comm, idx) => {
-            const isFeatured = comm.featured;
-            const heightClass = BAR_HEIGHT_CLASSES[idx];
-
-            return (
-              <div
-                key={`desktop-${comm.id}`}
-                style={{ transformOrigin: "bottom center" }}
-                className={`gsap-community-bar-desktop shrink-0 flex flex-col justify-between rounded-3xl border transition-all duration-300 ${heightClass} ${comm.colorBg} ${comm.colorBorder} ${
-                  isFeatured ? "z-20 shadow-2xl scale-[1.02]" : "z-10 shadow-lg hover:shadow-2xl hover:scale-[1.03]"
-                } p-4 pt-13 relative group`}
-              >
-                {/* Top Center Logo Wrapper */}
-                <div
-                  className={`absolute ${
-                    isFeatured ? "-top-10 xl:-top-11" : "-top-8 xl:-top-9"
-                  } inset-x-0 flex justify-center pointer-events-none z-30`}
-                >
-                  <div
-                    className={`gsap-community-logo-desktop pointer-events-auto rounded-full p-1 bg-white shadow-xl ring-2 ring-white/90 transition-transform duration-300 group-hover:scale-105 ${
-                      isFeatured
-                        ? "w-18 h-18 xl:w-20 xl:h-20"
-                        : "w-15 h-15 xl:w-16 xl:h-16"
-                    }`}
-                  >
-                    <img
-                      src={comm.logo}
-                      alt={comm.name}
-                      className="w-full h-full object-cover rounded-full"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
-                {/* Content wrapper */}
-                <div className="gsap-community-content-desktop flex flex-col justify-between h-full pt-1">
-                  {/* 1 ROW: Full Name & Verified Badge */}
-                  <div className="text-center">
-                    <div className="flex items-center justify-center gap-1 flex-nowrap whitespace-nowrap px-0.5">
-                      <span className="font-black text-[13px] lg:text-[13.5px] xl:text-[14px] text-zinc-950 tracking-tight whitespace-nowrap">
+                    {/* Account Handle + Blue Dot */}
+                    <div className="flex items-center justify-center gap-1 flex-nowrap px-0.5">
+                      <span className="font-black text-[11.5px] sm:text-[12.5px] xl:text-[13.5px] text-zinc-950 tracking-tight whitespace-nowrap truncate">
                         {comm.handle}
                       </span>
-                      <VerifiedBadge className="w-3.5 h-3.5 shrink-0" />
+                      <BlueHandleDot />
                     </div>
+
+                    {/* Centerpiece Extra Niche Subtitle */}
+                    {comm.nicheSubLines && (
+                      <div className="text-[8.5px] sm:text-[9.5px] xl:text-[10px] font-extrabold text-teal-700 tracking-wider uppercase font-outfit leading-tight pt-0.5">
+                        {comm.nicheSubLines.map((line, idx) => (
+                          <div key={idx} className="whitespace-nowrap">{line}</div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Followers Highlight: Digits in Line 1, Word Followers in Line 2 */}
-                  <div className="my-auto text-center py-2 space-y-0.5">
-                    <div className="text-2xl xl:text-3xl font-black text-zinc-950 font-outfit tracking-tight leading-none whitespace-nowrap">
-                      {comm.followerCount}
+                  {/* Middle Content: Big Statistics */}
+                  <div className="my-auto text-center py-2 px-0.5 space-y-1 w-full overflow-hidden">
+                    {/* The 750K / 670K / etc: STRICTLY SINGLE ROW! */}
+                    <div className="flex justify-center items-center w-full">
+                      <span
+                        className={`font-black font-outfit text-zinc-950 tracking-tight leading-none whitespace-nowrap select-none ${
+                          isFeatured
+                            ? "text-[2rem] sm:text-[2.35rem] lg:text-[2rem] xl:text-[2.65rem]"
+                            : "text-[1.65rem] sm:text-[1.85rem] lg:text-[1.6rem] xl:text-[2.1rem]"
+                        }`}
+                        style={{ whiteSpace: "nowrap" }}
+                      >
+                        {comm.followerCount}
+                      </span>
                     </div>
-                    <div className="text-[12px] xl:text-[13px] font-extrabold text-teal-950/80 uppercase tracking-wider whitespace-nowrap">
-                      Followers
+
+                    {/* Subtitle Lines (e.g. "DIRECT" / "FOLLOWERS" or "FOLLOWERS") */}
+                    <div
+                      className={`font-extrabold uppercase tracking-wider leading-tight ${
+                        isFeatured
+                          ? "text-[9.5px] sm:text-[10px] xl:text-[11px] text-teal-700 font-black"
+                          : "text-[9px] sm:text-[9.5px] xl:text-[10px] text-zinc-700"
+                      }`}
+                    >
+                      {comm.subtitleLines.map((line, idx) => (
+                        <div key={idx} className="whitespace-nowrap">{line}</div>
+                      ))}
                     </div>
+
+                    {/* Centerpiece Monthly Views Extra Metric */}
+                    {comm.monthlyViews && (
+                      <div className="text-[9.5px] sm:text-[10px] xl:text-[11px] font-medium text-zinc-500 pt-0.5 whitespace-nowrap">
+                        {comm.monthlyViews}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Clean Bottom Anchor */}
-                  <div className="pt-2 border-t border-teal-900/10 text-center">
-                    <span className="text-[10px] font-mono font-bold tracking-wider text-teal-950/70 uppercase whitespace-nowrap">
-                      Virtual Velocity
-                    </span>
+                  {/* Bottom Content: VIRTUAL VELOCITY Brand Tag */}
+                  <div className="text-center pt-2 pb-1 border-t border-teal-900/10 w-full px-1 overflow-hidden">
+                    <div
+                      className={`text-[8px] sm:text-[8.5px] xl:text-[9px] font-mono uppercase tracking-wider leading-tight ${
+                        isFeatured
+                          ? "text-teal-900 font-extrabold"
+                          : "text-teal-900/60 font-bold"
+                      }`}
+                    >
+                      {comm.bottomLines.map((line, idx) => (
+                        <div key={idx} className="whitespace-nowrap">{line}</div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

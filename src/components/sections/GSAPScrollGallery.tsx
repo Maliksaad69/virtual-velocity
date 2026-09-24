@@ -1,17 +1,16 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PROJECTS, Project } from "@/data/agencyData";
-import { Layers, Filter, TrendingUp, ArrowUpRight, BarChart2 } from "lucide-react";
+import { PROJECTS } from "@/data/agencyData";
+import { Layers, TrendingUp, ArrowUpRight, BarChart2 } from "lucide-react";
 import { Magnetic } from "@/components/ui/Magnetic";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const CATEGORIES = ["ALL", "RETAIL & E-COMMERCE", "FINANCIAL INFRASTRUCTURE", "HEALTHCARE & MEDTECH", "AUTOMOTIVE & HIGH-TECH"];
 
 const gridVariants = {
   hidden: { opacity: 0 },
@@ -33,12 +32,6 @@ const cardVariants = {
 
 export const GSAPScrollGallery = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState("ALL");
-
-  const filteredProjects: Project[] =
-    activeCategory === "ALL"
-      ? PROJECTS
-      : PROJECTS.filter((p) => p.industry.toUpperCase() === activeCategory);
 
   // Scroll reveal animation for cards
   useGSAP(
@@ -77,7 +70,7 @@ export const GSAPScrollGallery = () => {
         );
       });
     },
-    { scope: containerRef, dependencies: [filteredProjects] }
+    { scope: containerRef }
   );
 
   return (
@@ -87,49 +80,42 @@ export const GSAPScrollGallery = () => {
       className="relative bg-white text-zinc-900 overflow-hidden py-10 sm:py-16 lg:py-24 selection:bg-zinc-900 selection:text-white font-outfit border-t border-zinc-200"
     >
       <div className="max-w-[1700px] w-full mx-auto px-4 sm:px-6 lg:px-12">
-        {/* Header Bar + Filter Pills */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-4 sm:pb-6 gap-4 z-10">
-          <span className="text-[10px] sm:text-xs font-outfit font-extrabold text-zinc-900 uppercase tracking-wider flex items-center gap-2">
-            <Layers className="w-4 h-4 text-emerald-600 animate-pulse" />
-            FEATURED CASE STUDIES
-          </span>
-
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-hide py-1 max-w-full">
-            <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-700 mr-1 flex items-center gap-1 flex-shrink-0">
-              <Filter className="w-3.5 h-3.5 text-emerald-600" /> FILTER:
+        {/* Header Bar without filter buttons */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-zinc-200 pb-4 sm:pb-6 gap-3 z-10">
+          <div>
+            <span className="text-[10px] sm:text-xs font-outfit font-extrabold text-zinc-900 uppercase tracking-wider flex items-center gap-2">
+              <Layers className="w-4 h-4 text-emerald-600 animate-pulse" />
+              FEATURED CASE STUDIES
             </span>
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`text-[11px] sm:text-xs font-outfit font-extrabold px-3.5 sm:px-4 py-2 rounded-full border transition-all duration-300 whitespace-nowrap min-h-[40px] flex items-center flex-shrink-0 ${
-                  activeCategory === cat
-                    ? "bg-emerald-600 border-emerald-600 text-white shadow-sm"
-                    : "bg-emerald-50 border-emerald-200 text-zinc-800 hover:border-emerald-400"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-outfit font-black text-zinc-950 uppercase tracking-tight mt-1">
+              PROVEN RESULTS & BRAND ARCHIVES
+            </h2>
           </div>
+          <span className="text-xs font-mono text-zinc-500 font-bold uppercase tracking-wider">
+            {PROJECTS.length} SELECTED WORKS
+          </span>
         </div>
 
-        {/* Case Studies Grid */}
+        {/* Case Studies Grid - 3 items per row on large screens */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8 lg:mt-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-8 lg:mt-12 items-stretch"
           variants={gridVariants}
           initial="hidden"
           animate="visible"
         >
-          {filteredProjects.map((project) => (
+          {PROJECTS.map((project) => (
             <motion.article
               key={project.id}
-              className="case-study-card group relative overflow-hidden rounded-2xl lg:rounded-3xl bg-white border-2 border-zinc-200 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-500 flex flex-col"
+              className="case-study-card group relative overflow-hidden rounded-2xl lg:rounded-3xl bg-white border-2 border-zinc-200 shadow-sm hover:shadow-xl hover:border-emerald-300 transition-all duration-500 flex flex-col h-full"
               variants={cardVariants}
               style={{ willChange: "transform, opacity" }}
             >
               {/* Image */}
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <Link
+                href={project.liveUrl}
+                className="relative aspect-[16/10] overflow-hidden block flex-shrink-0"
+                {...(project.liveUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
                 <img
                   src={project.image}
                   alt={project.title}
@@ -169,20 +155,26 @@ export const GSAPScrollGallery = () => {
                     )}
                   </div>
                 </div>
-              </div>
+              </Link>
 
-              {/* Content */}
-              <div className="p-5 sm:p-6 flex flex-col flex-1 space-y-3 sm:space-y-4">
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-zinc-950 group-hover:text-emerald-600 transition-colors duration-300 uppercase tracking-tight leading-[1.15]">
-                  {project.title}
-                </h3>
+              {/* Content - flex-1 with mt-auto on CTA so all buttons in the row align on the exact same baseline */}
+              <div className="p-5 sm:p-6 flex flex-col flex-1">
+                <Link
+                  href={project.liveUrl}
+                  className="block group/title"
+                  {...(project.liveUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-zinc-950 group-hover/title:text-emerald-600 transition-colors duration-300 uppercase tracking-tight leading-[1.15] min-h-[3.2rem] line-clamp-2">
+                    {project.title}
+                  </h3>
+                </Link>
 
-                <p className="text-sm text-black font-normal leading-relaxed line-clamp-3">
+                <p className="text-sm text-zinc-700 font-normal leading-relaxed line-clamp-3 mt-3 mb-4">
                   {project.description}
                 </p>
 
                 {/* Services Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
                   {project.services.slice(0, 4).map((service, i) => (
                     <span
                       key={i}
@@ -198,26 +190,25 @@ export const GSAPScrollGallery = () => {
                   )}
                 </div>
 
-                {/* CTA */}
-                <Magnetic strength={0.3}>
-                  <div className="pt-2 flex items-center gap-2 text-[10px] sm:text-xs font-extrabold font-outfit tracking-widest text-emerald-600 group-hover:translate-x-2 transition-transform duration-300 text-white">
-                    <span className="px-4 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 transition-colors shadow-md flex items-center gap-2 whitespace-nowrap" data-cursor-pointer>
-                      VIEW CASE STUDY
-                      <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    </span>
-                  </div>
-                </Magnetic>
+                {/* CTA - pinned to bottom via mt-auto, guaranteeing 1-row alignment across all 3 cards in the grid row */}
+                <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center">
+                  <Magnetic strength={0.3}>
+                    <Link
+                      href={project.liveUrl}
+                      className="inline-flex items-center gap-2 text-[10px] sm:text-xs font-extrabold font-outfit tracking-widest text-emerald-600 group-hover:translate-x-2 transition-transform duration-300 text-white"
+                      {...(project.liveUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      <span className="px-4 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 transition-colors shadow-md flex items-center gap-2 whitespace-nowrap" data-cursor-pointer>
+                        VIEW CASE STUDY
+                        <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      </span>
+                    </Link>
+                  </Magnetic>
+                </div>
               </div>
             </motion.article>
           ))}
         </motion.div>
-
-        {/* Empty State */}
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-20">
-            <p className="text-zinc-700">No case studies found for this category.</p>
-          </div>
-        )}
       </div>
     </section>
   );

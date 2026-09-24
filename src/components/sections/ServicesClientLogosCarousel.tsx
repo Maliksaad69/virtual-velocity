@@ -131,6 +131,7 @@ export const ServicesClientLogosCarousel = () => {
                       alt={brand.name}
                       className="max-h-[82%] max-w-[82%] w-auto h-auto object-contain transition-all duration-300"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

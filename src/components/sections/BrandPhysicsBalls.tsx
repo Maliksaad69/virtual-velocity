@@ -417,6 +417,8 @@ export const BrandPhysicsBalls = () => {
             <img
               src={brand.src}
               alt={brand.name}
+              loading="lazy"
+              decoding="async"
               className="max-h-[85%] max-w-[85%] w-auto h-auto object-contain pointer-events-none select-none drop-shadow-2xs"
               draggable={false}
             />
