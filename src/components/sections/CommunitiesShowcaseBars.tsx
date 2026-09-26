@@ -250,7 +250,7 @@ export function CommunitiesShowcaseBars() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 font-extrabold block">
-            Proprietary Media Communities (~2.95M+ Direct Audience)
+            Proprietary Media Communities — 2.95M+ Direct Audience
           </span>
           <p className="text-xs sm:text-sm text-zinc-600 font-medium">
             Virtual Velocity&apos;s verified digital network driving viral organic reach, culture, and high-impact regional engagement.
@@ -283,12 +283,12 @@ export function CommunitiesShowcaseBars() {
                   key={comm.id}
                   style={{ transformOrigin: "bottom center" }}
                   className={`gsap-comm-bar relative flex flex-col justify-between rounded-[2rem] lg:rounded-[2.25rem] xl:rounded-[2.5rem] transition-all duration-300 p-2 sm:p-3 xl:p-4 pb-4 ${comm.heightClass} ${comm.cardBg} ${comm.cardBorder} ${
-                    isFeatured ? "z-20 scale-[1.02]" : "z-10 hover:scale-[1.02] hover:-translate-y-1"
+                    isFeatured ? "z-20 scale-[1.02] shadow-[0_20px_50px_rgba(245,158,11,0.25)]" : "z-10 hover:scale-[1.05] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(16,185,129,0.2)]"
                   } group overflow-visible`}
                 >
                   {/* Floating Orb at Top Center */}
                   <div className="absolute -top-8 sm:-top-9 xl:-top-10 inset-x-0 flex justify-center pointer-events-none z-30">
-                    <div className="gsap-comm-orb pointer-events-auto transition-transform duration-300 group-hover:scale-110">
+                    <div className="gsap-comm-orb pointer-events-auto transition-transform duration-300 group-hover:scale-120 group-hover:-translate-y-1">
                       <AvatarOrb
                         iconSrc={comm.iconSrc}
                         name={comm.name}
@@ -313,7 +313,7 @@ export function CommunitiesShowcaseBars() {
 
                     {/* Account Handle + Blue Dot */}
                     <div className="flex items-center justify-center gap-1 flex-nowrap px-0.5">
-                      <span className="font-black text-[11.5px] sm:text-[12.5px] xl:text-[13.5px] text-zinc-950 tracking-tight whitespace-nowrap truncate">
+                      <span className="font-black text-xs sm:text-sm xl:text-base text-zinc-950 tracking-tight whitespace-nowrap truncate">
                         {comm.handle}
                       </span>
                       <BlueHandleDot />

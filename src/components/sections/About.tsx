@@ -1,25 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Sparkles, TrendingUp, Target, Megaphone, Palette, ArrowRight } from "lucide-react";
+import { Sparkles, TrendingUp, Target, Megaphone, Palette } from "lucide-react";
 
 export const About = () => {
-  const [times, setTimes] = useState({ wilmington: "", lahore: "" });
-
-  useEffect(() => {
-    const updateClocks = () => {
-      const now = new Date();
-      setTimes({
-        wilmington: now.toLocaleTimeString("en-US", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit", hour12: false }),
-        lahore: now.toLocaleTimeString("en-US", { timeZone: "Asia/Karachi", hour: "2-digit", minute: "2-digit", hour12: false }),
-      });
-    };
-    updateClocks();
-    const interval = setInterval(updateClocks, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   const pillars = [
     {
       icon: Target,
@@ -150,40 +134,6 @@ export const About = () => {
                   </p>
                 </motion.div>
               ))}
-            </div>
-
-            {/* Global studio clocks */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-white border border-emerald-700/30 shadow-lg relative overflow-hidden">
-              <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/10 blur-2xl pointer-events-none" />
-              <div className="flex items-center justify-between mb-3 relative z-10">
-                <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-emerald-100">
-                  Global Studio Hubs
-                </span>
-                <ArrowRight className="w-3.5 h-3.5 text-white" />
-              </div>
-              <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4 relative z-10">
-                <div className="space-y-0.5 p-3 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm">
-                  <span className="text-[9px] font-mono text-emerald-50/80 block uppercase tracking-widest">Wilmington, United States</span>
-                  <span className="text-xl sm:text-2xl lg:text-3xl font-outfit font-black text-white tracking-tight block">
-                    {times.wilmington || "00:00"}
-                  </span>
-                  <span className="text-[9px] font-mono text-emerald-100 block uppercase">HQ • Global Operations</span>
-                </div>
-                <div className="space-y-0.5 p-3 rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm">
-                  <span className="text-[9px] font-mono text-emerald-50/80 block uppercase tracking-widest">Lahore, Pakistan</span>
-                  <span className="text-xl sm:text-2xl lg:text-3xl font-outfit font-black text-white tracking-tight block">
-                    {times.lahore || "00:00"}
-                  </span>
-                  <span className="text-[9px] font-mono text-emerald-100 block uppercase">Delivery • Production</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between mt-4 pt-3 border-t border-white/15 text-[10px] font-mono uppercase tracking-widest text-emerald-100/80 relative z-10">
-                <span>Follow-the-sun</span>
-                <span className="flex items-center gap-1.5 text-white">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                  Online
-                </span>
-              </div>
             </div>
           </div>
         </motion.div>

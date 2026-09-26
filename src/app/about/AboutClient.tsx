@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -11,8 +12,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { FOUNDER, AGENCY_INFO } from "@/data/agencyData";
-import { Zap, Sparkles, Users, ShieldCheck } from "lucide-react";
-import { CommunitiesShowcaseBars } from "@/components/sections/CommunitiesShowcaseBars";
+import { Zap, Sparkles, Users, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { AboutClientLogosSlider } from "@/components/sections/AboutClientLogosSlider";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -70,7 +70,7 @@ export function AboutClient() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="lg:col-span-8 space-y-4 order-2 lg:order-1"
               >
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-mono text-emerald-700 font-extrabold uppercase tracking-wide">
+                <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-700 font-extrabold uppercase tracking-wide">
                   <ShieldCheck className="w-3.5 h-3.5" /> Founder &amp; Community Pioneer
                 </div>
 
@@ -119,9 +119,26 @@ export function AboutClient() {
               </motion.div>
             </div>
 
-            {/* Proprietary Media Communities Showcase */}
-            <div className="mt-10 sm:mt-12 pt-8 border-t border-zinc-200">
-              <CommunitiesShowcaseBars />
+            {/* Proprietary Media Communities — now lives on the dedicated /socials page */}
+            <div className="mt-10 sm:mt-12 pt-8 border-t border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+              <div className="space-y-1.5">
+                <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 font-extrabold block">
+                  Proprietary Media Communities (~2.95M+ Direct Audience)
+                </span>
+                <p className="text-xs sm:text-sm text-zinc-600 font-medium">
+                  Our 7 verified in-house portals now have a dedicated network audit and
+                  distribution matrix page.
+                </p>
+              </div>
+
+              <Link
+                href="/owned-media"
+                className="group inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-zinc-950 text-white font-outfit font-extrabold text-[10px] sm:text-[11px] tracking-[0.2em] uppercase hover:bg-emerald-600 transition-colors duration-300 shadow-md shadow-zinc-950/10 active:scale-[0.98] shrink-0"
+                data-cursor-pointer
+              >
+                <span>Explore the owned media network</span>
+                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
             </div>
           </section>
 

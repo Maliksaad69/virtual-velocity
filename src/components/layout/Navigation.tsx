@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { label: "HOME", href: "/" },
   { label: "ABOUT", href: "/about" },
   { label: "SERVICES", href: "/services" },
-  { label: "BRANDING", href: "/branding" },
+  { label: "OWNED MEDIA", href: "/owned-media" },
   { label: "BLOG", href: "/blog" },
   { label: "CONTACT", href: "/contact" },
 ];
@@ -75,6 +75,7 @@ export const Navigation = () => {
                   alt="Virtual Velocity Logo"
                   width={40}
                   height={40}
+                  style={{ width: "auto", height: "auto" }}
                   className={`h-7 sm:h-8 w-auto object-contain drop-shadow-xs transition-transform duration-300 group-hover:scale-105 ${
                     isSaltLine ? "brightness-0 invert" : "mix-blend-multiply"
                   }`}
@@ -214,6 +215,7 @@ export const Navigation = () => {
                   alt="Virtual Velocity Logo"
                   width={36}
                   height={36}
+                  style={{ width: "auto", height: "auto" }}
                   className="h-7 w-auto object-contain"
                 />
                 <span className="font-extrabold text-base sm:text-lg text-zinc-950">

@@ -124,11 +124,11 @@ export const Testimonials = () => {
                 </p>
               </div>
 
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-outfit font-bold text-zinc-700 bg-white px-3 py-1 rounded-full border border-zinc-200 uppercase">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+                <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider">
                   METRIC: {current.metric}
                 </span>
-                <span className="text-xs font-outfit font-bold text-emerald-800 border border-emerald-200 bg-emerald-50 px-3 py-1 rounded-full uppercase">
+                <span className="text-xs font-outfit font-bold text-emerald-700 uppercase tracking-wider">
                   VERIFIED PARTNERSHIP
                 </span>
               </div>
