@@ -160,7 +160,7 @@ const ProjectCard = ({ project, index: _index, isMobile }: { project: Project; i
         {project.services.map((service, i) => (
           <motion.span
             key={i}
-            className="text-[10px] sm:text-xs font-outfit font-bold tracking-wider px-3 py-1 rounded-full border border-zinc-200 bg-zinc-100 text-zinc-700"
+            className="text-[10px] sm:text-xs font-outfit font-semibold tracking-wide text-zinc-600 flex items-center gap-1.5 before:content-['•'] before:text-emerald-500 before:font-black"
             variants={itemVariants}
             whileHover={{ scale: 1.05, boxShadow: "0 4px 12px rgba(0,174,172,0.15)" }}
           >

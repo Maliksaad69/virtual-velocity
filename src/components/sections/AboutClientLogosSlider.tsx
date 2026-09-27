@@ -58,7 +58,7 @@ export const AboutClientLogosSlider = () => {
           </h2>
         </div>
         <div className="flex items-center gap-3">
-          <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-mono font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-2 shadow-xs">
+          <span className="text-xs font-mono font-bold text-emerald-700 uppercase tracking-wider flex items-center gap-2">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
             PROVEN BRAND RETENTION
           </span>

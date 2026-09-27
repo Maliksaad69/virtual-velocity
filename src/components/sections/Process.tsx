@@ -254,7 +254,7 @@ export const Process = () => {
                     <Zap className="w-4 h-4 text-zinc-900" />
                     STAGE {currentStep.number} OF 05
                   </span>
-                  <span className="text-xs font-outfit font-bold text-zinc-700 bg-zinc-100 px-3.5 py-1 rounded-full border border-zinc-200 uppercase">
+                  <span className="text-xs font-outfit font-bold text-zinc-500 uppercase tracking-wider">
                     {currentStep.subtitle}
                   </span>
                 </div>

@@ -126,12 +126,12 @@ export const GSAPScrollGallery = () => {
 
                 {/* Category Badge */}
                 <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 flex items-center justify-between gap-1.5 z-10">
-                  <span className="text-[9px] sm:text-[10px] font-outfit font-extrabold text-white bg-emerald-600/90 backdrop-blur-md px-2 sm:px-2.5 py-1 rounded-full border border-emerald-500 shadow-md flex items-center gap-1 flex-shrink-0 whitespace-nowrap">
+                  <span className="text-[9px] sm:text-[10px] font-outfit font-extrabold text-emerald-300 drop-shadow-[0_1px_6px_rgba(0,0,0,0.65)] flex items-center gap-1 flex-shrink-0 whitespace-nowrap">
                     <BarChart2 className="w-2.5 h-2.5 flex-shrink-0" />
                     PROJECT {project.number}
                     <span className="hidden md:inline">• {project.year}</span>
                   </span>
-                  <span className="text-[8.5px] sm:text-[9.5px] font-outfit text-white bg-zinc-950/90 backdrop-blur-md px-2 sm:px-2.5 py-1 rounded-full border border-zinc-800 uppercase tracking-wide font-extrabold flex-shrink-0 whitespace-nowrap">
+                  <span className="text-[8.5px] sm:text-[9.5px] font-outfit text-white/90 drop-shadow-[0_1px_6px_rgba(0,0,0,0.65)] uppercase tracking-wide font-extrabold flex-shrink-0 whitespace-nowrap">
                     {project.industry}
                   </span>
                 </div>
