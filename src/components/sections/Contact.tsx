@@ -246,10 +246,10 @@ export const Contact = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="py-12 my-auto text-center space-y-4 relative z-10"
+              className="py-12 my-auto text-center space-y-4 relative z-10 [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
             >
               <CheckCircle2 className="w-14 h-14 text-emerald-600 mx-auto animate-bounce" />
-              <h3 className="text-2xl sm:text-3xl font-outfit font-black text-zinc-900 uppercase tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 uppercase tracking-tight">
                 INQUIRY TRANSMITTED
               </h3>
               <p className="text-zinc-700 max-w-md mx-auto text-sm font-normal leading-relaxed">
@@ -261,13 +261,13 @@ export const Contact = () => {
                   setStepError("");
                   setStep(1);
                 }}
-                className="px-6 py-3 rounded-full border border-zinc-300 text-xs font-outfit font-extrabold text-zinc-900 bg-white/80 backdrop-blur-xs hover:bg-zinc-900 hover:text-white uppercase tracking-wider transition-all min-h-[44px] shadow-xs"
+                className="px-6 py-3 rounded-full border border-zinc-300 text-xs font-extrabold text-zinc-900 bg-white/80 backdrop-blur-xs hover:bg-zinc-900 hover:text-white uppercase tracking-wider transition-all min-h-[44px] shadow-xs cursor-pointer [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
               >
                 SUBMIT ANOTHER REQUEST
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col justify-between space-y-6 sm:space-y-7 relative z-10">
+            <form onSubmit={handleSubmit} className="flex flex-col justify-between space-y-6 sm:space-y-7 relative z-10 [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]">
               {/* Step Progress Rail */}
               <div className="flex items-center justify-between gap-4 pb-1 border-b border-zinc-200/70">
                 <div className="flex items-center gap-2.5 sm:gap-3">
@@ -277,17 +277,17 @@ export const Contact = () => {
                         type="button"
                         onClick={() => (s === 1 ? setStep(1) : goToStep2())}
                         aria-label={`Go to step ${s}`}
-                        className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-mono font-black border transition-all cursor-pointer ${
+                        className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border transition-all cursor-pointer ${
                           step >= s
                             ? "bg-emerald-600 border-emerald-600 text-white shadow-xs"
-                            : "bg-white/60 border-zinc-300 text-zinc-500 hover:border-emerald-500 hover:text-emerald-600"
+                            : "bg-white/60 border-zinc-400 text-zinc-700 hover:border-emerald-500 hover:text-emerald-600"
                         }`}
                       >
                         {String(s).padStart(2, "0")}
                       </button>
                       <span
-                        className={`text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider whitespace-nowrap ${
-                          step === s ? "text-emerald-700" : "text-zinc-500"
+                        className={`text-xs font-bold uppercase tracking-wider whitespace-nowrap ${
+                          step === s ? "text-emerald-700" : "text-zinc-700"
                         }`}
                       >
                         {s === 1 ? "Services & Contact" : "Campaign Brief"}
@@ -296,7 +296,7 @@ export const Contact = () => {
                     </div>
                   ))}
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-500 whitespace-nowrap">
+                <span className="text-xs font-bold uppercase tracking-wider text-zinc-700 whitespace-nowrap">
                   Step {step} / 2
                 </span>
               </div>
@@ -312,10 +312,10 @@ export const Contact = () => {
                   {/* Service Pills Grid */}
                   <div className="gsap-form-field space-y-3">
                     <div className="flex items-center justify-between">
-                      <label className="text-xs font-outfit font-extrabold text-zinc-900 block uppercase tracking-wider">
+                      <label className="text-xs font-bold text-zinc-900 block uppercase tracking-wider">
                         1. SERVICES REQUIRED
                       </label>
-                      <span className="text-[11px] font-mono text-zinc-700 font-medium">Select all that apply</span>
+                      <span className="text-xs text-zinc-700 font-medium">Select all that apply</span>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2.5">
                       {SERVICE_OPTIONS.map((service) => {
@@ -325,7 +325,7 @@ export const Contact = () => {
                             type="button"
                             key={service}
                             onClick={() => toggleService(service)}
-                            className={`p-2.5 px-3.5 rounded-xl border text-left text-xs font-outfit font-bold tracking-tight transition-all duration-200 flex items-center justify-between gap-1.5 min-h-[44px] cursor-pointer ${
+                            className={`p-2.5 px-3.5 rounded-xl border text-left text-xs font-bold tracking-tight transition-all duration-200 flex items-center justify-between gap-1.5 min-h-[44px] cursor-pointer [font-family:Calibri,Tahoma,Segoe_UI,sans-serif] ${
                               isSelected
                                 ? "bg-emerald-50/90 backdrop-blur-md border-2 border-emerald-600 text-emerald-950 shadow-xs"
                                 : "bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-700 hover:border-emerald-500/50 hover:bg-emerald-50/50 hover:text-zinc-900"
@@ -344,33 +344,33 @@ export const Contact = () => {
                   {/* Personal Details */}
                   <div className="gsap-form-field grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-outfit font-bold text-zinc-800 block uppercase tracking-wider">FULL NAME *</label>
+                      <label className="text-xs font-bold text-zinc-800 block uppercase tracking-wider">FULL NAME *</label>
                       <input
                         type="text"
                         required
-                        placeholder="e.g. Sarah Jennings"
+                        placeholder="e.g. Sarah Jenkins"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-outfit font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
+                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-600 transition-all shadow-2xs [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-outfit font-bold text-zinc-800 block uppercase tracking-wider">WORK EMAIL *</label>
+                      <label className="text-xs font-bold text-zinc-800 block uppercase tracking-wider">WORK EMAIL *</label>
                       <input
                         type="email"
                         required
                         placeholder="sarah@company.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-outfit font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
+                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-600 transition-all shadow-2xs [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                       />
                     </div>
                   </div>
 
                   {/* Step 1 Validation Notice */}
                   {stepError && (
-                    <p className="text-[11px] sm:text-xs font-outfit font-bold text-rose-600 bg-rose-50 border border-rose-200 rounded-xl px-3.5 py-2.5">
+                    <p className="text-xs font-bold text-rose-600 bg-rose-50 border border-rose-200 rounded-xl px-3.5 py-2.5">
                       {stepError}
                     </p>
                   )}
@@ -380,7 +380,7 @@ export const Contact = () => {
                     <button
                       type="button"
                       onClick={goToStep2}
-                      className="inline-flex items-center justify-center gap-2 bg-zinc-950 hover:bg-emerald-600 text-white font-outfit font-extrabold text-[11px] sm:text-xs px-6 sm:px-7 py-3 rounded-xl uppercase tracking-widest transition-all shadow-md shadow-zinc-950/10 active:scale-[0.98] cursor-pointer min-h-[44px] group"
+                      className="inline-flex items-center justify-center gap-2 bg-zinc-950 hover:bg-emerald-600 text-white font-extrabold text-xs px-6 sm:px-7 py-3 rounded-xl uppercase tracking-widest transition-all shadow-md shadow-zinc-950/10 active:scale-[0.98] cursor-pointer min-h-[44px] group [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                     >
                       <span>NEXT</span>
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -398,50 +398,50 @@ export const Contact = () => {
                   {/* Contact Info */}
                   <div className="gsap-form-field grid grid-cols-1 sm:grid-cols-3 gap-5">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-outfit font-bold text-zinc-800 block uppercase tracking-wider">PHONE NUMBER *</label>
+                      <label className="text-xs font-bold text-zinc-800 block uppercase tracking-wider">PHONE NUMBER *</label>
                       <input
                         type="tel"
                         required
                         placeholder="+1 (555) 000-0000"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-outfit font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
+                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-600 transition-all shadow-2xs [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-outfit font-bold text-zinc-800 block uppercase tracking-wider">COMPANY NAME</label>
+                      <label className="text-xs font-bold text-zinc-800 block uppercase tracking-wider">COMPANY NAME</label>
                       <input
                         type="text"
                         placeholder="Nexus Retail"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-outfit font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
+                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-600 transition-all shadow-2xs [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-outfit font-bold text-zinc-800 block uppercase tracking-wider">JOB TITLE</label>
+                      <label className="text-xs font-bold text-zinc-800 block uppercase tracking-wider">JOB TITLE</label>
                       <input
                         type="text"
                         placeholder="VP of Marketing"
                         value={formData.designation}
                         onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-outfit font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
+                        className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl px-4 py-3.5 placeholder:text-zinc-600 transition-all shadow-2xs [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                       />
                     </div>
                   </div>
 
                   {/* Budget Radios */}
                   <div className="gsap-form-field space-y-2.5">
-                    <label className="text-xs font-outfit font-extrabold text-zinc-900 block uppercase tracking-wider">
+                    <label className="text-xs font-extrabold text-zinc-900 block uppercase tracking-wider">
                       2. MONTHLY AD BUDGET RANGE
                     </label>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                       {BUDGET_OPTIONS.map((b) => (
                         <label
                           key={b}
-                          className={`py-3 px-3 rounded-xl border text-center text-xs font-outfit font-bold uppercase tracking-wide cursor-pointer transition-all duration-200 min-h-[46px] flex items-center justify-center ${
+                          className={`py-3 px-3 rounded-xl border text-center text-xs font-bold uppercase tracking-wide cursor-pointer transition-all duration-200 min-h-[46px] flex items-center justify-center [font-family:Calibri,Tahoma,Segoe_UI,sans-serif] ${
                             formData.budget === b
                               ? "bg-zinc-900 border-2 border-zinc-900 text-white font-extrabold shadow-md scale-[1.01]"
                               : "bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-700 hover:border-emerald-500/50 hover:bg-emerald-50/50 hover:text-zinc-900"
@@ -463,15 +463,15 @@ export const Contact = () => {
 
                   {/* Dropdown Menu */}
                   <div className="gsap-form-field space-y-1.5">
-                    <label className="text-xs font-outfit font-bold text-zinc-800 block uppercase tracking-wider">HOW DID YOU HEAR ABOUT US?</label>
+                    <label className="text-xs font-bold text-zinc-800 block uppercase tracking-wider">HOW DID YOU HEAR ABOUT US?</label>
                     <div className="relative">
                       <select
                         value={formData.hearAbout}
                         onChange={(e) => setFormData({ ...formData, hearAbout: e.target.value })}
-                        className="w-full appearance-none bg-white/60 backdrop-blur-xs border border-zinc-200/80 focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 text-zinc-900 font-outfit font-bold text-sm px-4 py-3.5 rounded-xl cursor-pointer shadow-2xs transition-all outline-none min-h-[46px]"
+                        className="w-full appearance-none bg-white/60 backdrop-blur-xs border border-zinc-200/80 focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 text-zinc-900 font-bold text-sm px-4 py-3.5 rounded-xl cursor-pointer shadow-2xs transition-all outline-none min-h-[46px] [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                       >
                         {HEAR_ABOUT_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt} className="bg-white text-zinc-950 font-outfit font-bold py-2">
+                          <option key={opt} value={opt} className="bg-white text-zinc-950 font-bold py-2 [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]">
                             {opt}
                           </option>
                         ))}
@@ -482,14 +482,14 @@ export const Contact = () => {
 
                   {/* Message Brief */}
                   <div className="gsap-form-field space-y-1.5">
-                    <label className="text-xs font-outfit font-bold text-zinc-800 block uppercase tracking-wider">CAMPAIGN OBJECTIVES &amp; GOALS *</label>
+                    <label className="text-xs font-bold text-zinc-800 block uppercase tracking-wider">CAMPAIGN OBJECTIVES &amp; GOALS *</label>
                     <textarea
                       rows={3}
                       required
                       placeholder="Outline your targets, monthly ad budget, website URL..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-outfit font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl p-4 placeholder:text-zinc-400 transition-all resize-none shadow-2xs"
+                      className="w-full bg-white/60 backdrop-blur-xs border border-zinc-200/80 text-zinc-900 font-medium text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 rounded-xl p-4 placeholder:text-zinc-600 transition-all resize-none shadow-2xs [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                     />
                   </div>
 
@@ -501,7 +501,7 @@ export const Contact = () => {
                         setStepError("");
                         setStep(1);
                       }}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-zinc-300 bg-white/70 text-zinc-800 font-outfit font-extrabold text-[11px] uppercase tracking-widest hover:bg-zinc-100 hover:text-zinc-950 transition-all cursor-pointer min-h-[42px] group"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-zinc-300 bg-white/70 text-zinc-800 font-extrabold text-xs uppercase tracking-widest hover:bg-zinc-100 hover:text-zinc-950 transition-all cursor-pointer min-h-[42px] group [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                     >
                       <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
                       <span>BACK</span>
@@ -509,7 +509,7 @@ export const Contact = () => {
 
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-outfit font-extrabold text-[11px] sm:text-xs px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl uppercase tracking-widest transition-all shadow-md shadow-emerald-600/25 active:scale-[0.98] cursor-pointer min-h-[42px] group backdrop-blur-xs"
+                      className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl uppercase tracking-widest transition-all shadow-md shadow-emerald-600/25 active:scale-[0.98] cursor-pointer min-h-[42px] group backdrop-blur-xs [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
                     >
                       <span>SUBMIT BRIEF</span>
                       <Send className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />

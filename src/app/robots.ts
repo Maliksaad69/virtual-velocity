@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://virtualvelocity.agency/sitemap.xml",
+    sitemap: "https://www.thevirtualvelocity.com/sitemap.xml",
   };
 }

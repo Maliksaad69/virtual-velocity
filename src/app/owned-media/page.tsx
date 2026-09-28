@@ -2,13 +2,21 @@ import type { Metadata } from "next";
 import { OwnedMediaClient } from "./OwnedMediaClient";
 
 export const metadata: Metadata = {
-  title: "Owned Media Network | Virtual Velocity",
+  title: "Owned Media Network Pakistan | Rawalpindians, Islamabad Insider & Sirf Chai",
   description:
-    "Virtual Velocity's in-house owned media network: 2.95M+ direct organic reach across 7 owned portals driving urban youth culture, viral regional reach, and high-affinity demographic resonance.",
+    "Virtual Velocity's proprietary media network in Pakistan: 1M+ organic reach across Rawalpindians (450K+), Islamabad Insider (380K+), Sirf Chai (200K+), driving viral regional reach, youth culture, and high-affinity brand placement.",
+  keywords: [
+    "Rawalpindians Community Pakistan",
+    "Islamabad Insider Media Network",
+    "Sirf Chai Digital Platform",
+    "Digital Media Network Pakistan",
+    "Social Media Communities Islamabad Rawalpindi",
+    "Viral Media Channels Pakistan"
+  ],
   openGraph: {
-    title: "Owned Media Network | Virtual Velocity",
+    title: "Proprietary Media Network Pakistan | Virtual Velocity",
     description:
-      "2.95M+ direct reach across 7 in-house owned media portals — audited live Q2 2025, zero synthetic bots.",
+      "1M+ direct organic reach across Rawalpindians, Islamabad Insider, and Sirf Chai — premier digital communities in Pakistan.",
   },
 };
 

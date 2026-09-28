@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "The Salt Line — Organic Growth & Community Case Study | Virtual Velocity",
     description:
       "Good food. Great music. Real people. How storytelling turned weekend Qawwali nights into a sold-out culinary and cultural destination in Islamabad.",
-    url: "https://virtualvelocity.agency/the-salt-line",
+    url: "https://www.thevirtualvelocity.com/the-salt-line",
     siteName: "Virtual Velocity Digital Agency",
     images: [
       {

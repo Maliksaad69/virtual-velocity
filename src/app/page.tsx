@@ -1,26 +1,49 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Navigation } from "@/components/layout/Navigation";
 import { GSAPHeroTimeline } from "@/components/sections/GSAPHeroTimeline";
-
-export const metadata: Metadata = {
-  title: "Virtual Velocity | Digital Marketing & Growth Agency",
-  description: "Scale your brand revenue with ROI-driven Google Ads PPC, Technical SEO, Paid Social, CRO, and Custom App Engineering.",
-  openGraph: {
-    title: "Virtual Velocity | Digital Marketing & Growth Agency",
-    description: "Full-service performance marketing & tech agency scaling business revenue through Google Ads PPC, SEO, CRO, and Paid Social.",
-  },
-};
+import { About } from "@/components/sections/About";
+import { WhoWeAre } from "@/components/sections/WhoWeAre";
 import { GSAPScrollGallery } from "@/components/sections/GSAPScrollGallery";
 import { LightStatsSection } from "@/components/sections/LightStatsSection";
 import { EditorialTestimonials } from "@/components/sections/EditorialTestimonials";
+import { SEOTextSection } from "@/components/sections/SEOTextSection";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { About } from "@/components/sections/About";
-import { WhoWeAre } from "@/components/sections/WhoWeAre";
-import { BrandPhysicsBalls } from "@/components/sections/BrandPhysicsBalls";
-import { InstaReelsGallery } from "@/components/sections/InstaReelsGallery";
+
+// Dynamic imports for heavy interactive components to boost Mobile PageSpeed Insights & reducing main thread TBT
+const InstaReelsGallery = dynamic(
+  () => import("@/components/sections/InstaReelsGallery").then((mod) => mod.InstaReelsGallery)
+);
+
+const BrandPhysicsBalls = dynamic(
+  () => import("@/components/sections/BrandPhysicsBalls").then((mod) => mod.BrandPhysicsBalls)
+);
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.thevirtualvelocity.com"),
+  alternates: {
+    canonical: "https://www.thevirtualvelocity.com",
+  },
+  title: "Virtual Velocity | Best Digital Marketing Agency Pakistan",
+  description:
+    "Pakistan's premier digital marketing & performance agency in Islamabad & Rawalpindi. Scale your business with Google Ads PPC, Technical SEO, Meta Paid Social, CRO, and Proprietary Media Channels (Rawalpindians, Islamabad Insider, Sirf Chai).",
+  keywords: [
+    "Digital Marketing Agency Pakistan",
+    "Best Digital Marketing Agency Islamabad",
+    "Performance Marketing Agency Rawalpindi",
+    "Social Media Marketing Agency Pakistan",
+    "SEO Agency Islamabad Pakistan",
+    "Virtual Velocity Agency Pakistan",
+  ],
+  openGraph: {
+    title: "Virtual Velocity | Top Digital Marketing Agency Pakistan",
+    description: "Full-service performance marketing & digital media agency scaling business revenue in Pakistan and worldwide.",
+    url: "https://www.thevirtualvelocity.com",
+  },
+};
 
 export default function Home() {
   return (
@@ -53,7 +76,10 @@ export default function Home() {
         {/* 7. Proven Impact & Metrics */}
         <LightStatsSection />
 
-        {/* 8. Client Testimonials */}
+        {/* 8. Agency Discovery & FAQ Text Section (Optimized for Text to Code Ratio) */}
+        <SEOTextSection />
+
+        {/* 9. Client Testimonials */}
         <EditorialTestimonials />
 
         {/* 10. Project Estimator & Contact Form */}

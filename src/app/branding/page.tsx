@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Cresto Pizza Brand Identity & Packaging | Virtual Velocity Agency",
     description:
       "A modern slice of tradition. Complete visual identity, custom packaging, 3D signage, and digital campaigns crafted by Virtual Velocity.",
-    url: "https://virtualvelocity.agency/branding",
+    url: "https://www.thevirtualvelocity.com/branding",
     siteName: "Virtual Velocity Digital Agency",
     images: [
       {

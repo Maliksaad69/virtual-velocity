@@ -24,26 +24,37 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://virtualvelocity.agency"),
+  metadataBase: new URL("https://www.thevirtualvelocity.com"),
+  alternates: {
+    canonical: "https://www.thevirtualvelocity.com",
+  },
   title: {
-    default: "Virtual Velocity | Digital Marketing & Growth Agency",
-    template: "%s | Virtual Velocity Agency",
+    default: "Virtual Velocity | Best Digital Marketing & Growth Agency Pakistan",
+    template: "%s | Virtual Velocity Agency Pakistan",
   },
   description:
-    "Virtual Velocity is a full-service performance marketing & tech agency scaling client revenue through Google Ads PPC, Technical SEO, Paid Social, CRO, and custom Web Development.",
+    "Virtual Velocity is Pakistan's premier full-service digital marketing, performance ads, branding & web app development agency in Islamabad & Rawalpindi. Scale revenue with Google Ads, Technical SEO, Meta Ads, and proprietary media communities (Rawalpindians, Islamabad Insider, Sirf Chai).",
   keywords: [
-    "Digital Marketing Agency",
-    "Google Ads PPC Agency",
-    "Technical SEO Agency",
-    "Conversion Rate Optimization",
-    "CRO Agency",
-    "Paid Social Media Ads",
-    "E-commerce PPC Growth",
-    "B2B Performance Marketing",
-    "Web App Development",
+    "Digital Marketing Agency Pakistan",
+    "Best Digital Marketing Agency Islamabad",
+    "Performance Marketing Agency Rawalpindi",
+    "Social Media Marketing Agency Pakistan",
+    "SEO Agency Islamabad Pakistan",
+    "Top Marketing Agency Pakistan",
+    "Branding & Creative Agency Pakistan",
+    "Digital Media Agency Islamabad",
+    "Meta Ads Specialist Pakistan",
+    "Google Ads Agency Pakistan",
+    "Web Development Agency Pakistan",
+    "E-commerce PPC Growth Pakistan",
+    "B2B Performance Marketing Pakistan",
+    "Rawalpindians Community Marketing",
+    "Islamabad Insider Media",
+    "Sirf Chai Digital Network",
     "Virtual Velocity Agency",
+    "Tauseef Alam Founder Virtual Velocity"
   ],
-  authors: [{ name: "Virtual Velocity Team", url: "https://virtualvelocity.agency" }],
+  authors: [{ name: "Tauseef Alam & Virtual Velocity Team", url: "https://thevirtualvelocity.com" }],
   creator: "Virtual Velocity",
   publisher: "Virtual Velocity",
   formatDetection: {
@@ -52,27 +63,27 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Virtual Velocity | Digital Marketing & Growth Agency",
+    title: "Virtual Velocity | Top Digital Marketing Agency Islamabad Pakistan",
     description:
-      "Scale your brand revenue with ROI-driven Google Ads PPC, Technical SEO, Paid Social, and Conversion Rate Optimization.",
-    url: "https://virtualvelocity.agency",
-    siteName: "Virtual Velocity Digital Agency",
+      "Scale your brand in Pakistan and global markets with ROI-driven Google Ads PPC, Technical SEO, Social Media Marketing, and Proprietary Media Channels.",
+    url: "https://thevirtualvelocity.com",
+    siteName: "Virtual Velocity Digital Agency Pakistan",
     images: [
       {
         url: "/VV png.png",
         width: 1200,
         height: 630,
-        alt: "Virtual Velocity Brand Logo",
+        alt: "Virtual Velocity Digital Marketing Agency Pakistan",
       },
     ],
-    locale: "en_US",
+    locale: "en_PK",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Virtual Velocity | Digital Marketing & Growth Agency",
+    title: "Virtual Velocity | Digital Marketing Agency Pakistan",
     description:
-      "Scale your brand revenue with ROI-driven Google Ads PPC, Technical SEO, and Growth Solutions.",
+      "Pakistan's leading digital media house & performance marketing agency. Google Ads, Meta Ads, SEO, and Brand Development in Islamabad & Rawalpindi.",
     images: ["/VV png.png"],
     creator: "@virtualvelocity",
   },
@@ -103,14 +114,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://virtualvelocity.agency/#organization",
+      "@id": "https://thevirtualvelocity.com/#organization",
       "name": "Virtual Velocity",
       "founder": {
         "@type": "Person",
-        "name": "Tauseef Alam"
+        "name": "Tauseef Alam",
+        "jobTitle": "Founder & Creative Director",
+        "sameAs": [
+          "https://www.linkedin.com/in/tauseefalam/"
+        ]
       },
-      "url": "https://virtualvelocity.agency",
-      "logo": "https://virtualvelocity.agency/VV%20png.png",
+      "url": "https://thevirtualvelocity.com",
+      "logo": "https://thevirtualvelocity.com/VV%20png.png",
       "sameAs": [
         "https://www.linkedin.com/company/virtualvelocitypk/",
         "https://www.facebook.com/virtualvelocitypk/",
@@ -122,44 +137,71 @@ const jsonLd = {
       "contactPoint": [
         {
           "@type": "ContactPoint",
-          "telephone": "+1 (800) 555-0199",
+          "telephone": "+923325296693",
           "contactType": "customer service",
-          "email": "us@virtualvelocity.agency",
-          "availableLanguage": "English"
+          "email": "info@thevirtualvelocity.com",
+          "areaServed": ["Pakistan", "United States", "United Kingdom", "Worldwide"],
+          "availableLanguage": ["English", "Urdu"]
         }
       ]
     },
     {
       "@type": "ProfessionalService",
-      "@id": "https://virtualvelocity.agency/#service",
-      "name": "Virtual Velocity Digital Marketing Agency",
-      "url": "https://virtualvelocity.agency",
-      "image": "https://virtualvelocity.agency/VV%20png.png",
+      "@id": "https://thevirtualvelocity.com/#service",
+      "name": "Virtual Velocity Digital Marketing Agency Pakistan",
+      "url": "https://thevirtualvelocity.com",
+      "image": "https://thevirtualvelocity.com/VV%20png.png",
       "priceRange": "$$$",
       "founder": {
         "@type": "Person",
         "name": "Tauseef Alam"
       },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Pakistan"
+        },
+        {
+          "@type": "City",
+          "name": "Islamabad"
+        },
+        {
+          "@type": "City",
+          "name": "Rawalpindi"
+        },
+        {
+          "@type": "Country",
+          "name": "United States"
+        },
+        {
+          "@type": "Country",
+          "name": "United Kingdom"
+        }
+      ],
       "address": [
         {
           "@type": "PostalAddress",
-          "streetAddress": "1209 NORTH ORANGE ST, SUITE 400",
-          "addressLocality": "WILMINGTON",
-          "addressRegion": "DE",
-          "postalCode": "19801",
+          "addressLocality": "Islamabad",
+          "addressRegion": "Islamabad Capital Territory",
+          "addressCountry": "PK"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Rawalpindi",
+          "addressRegion": "Punjab",
+          "addressCountry": "PK"
+        },
+        {
+          "@type": "PostalAddress",
           "addressCountry": "US"
         },
         {
           "@type": "PostalAddress",
-          "streetAddress": "COMMERCIAL ZONE, PHASE 5 DHA",
-          "addressLocality": "LAHORE",
-          "addressRegion": "PUNJAB",
-          "postalCode": "54000",
-          "addressCountry": "PK"
+          "addressCountry": "GB"
         }
       ],
       "description":
-        "Full-service digital marketing agency scaling client revenue through Google Ads PPC, Technical SEO, Paid Social, and Conversion Rate Optimization."
+        "Pakistan's premier digital marketing & media agency specializing in Google Ads PPC, Technical SEO, Social Media Campaigns, Branding, and Proprietary Media Channels (Rawalpindians, Islamabad Insider, Sirf Chai)."
     }
   ]
 };
@@ -172,6 +214,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <head>
+        <link rel="canonical" href="https://www.thevirtualvelocity.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

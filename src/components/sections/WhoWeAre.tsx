@@ -60,7 +60,7 @@ export const WhoWeAre = () => {
             <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             Who We Are
           </span>
-          <span className="text-zinc-500 font-semibold">( The Agency Manifesto )</span>
+          <span className="text-zinc-700 font-semibold">( The Agency Manifesto )</span>
         </motion.div>
 
         {/* Editorial headline */}
@@ -94,7 +94,7 @@ export const WhoWeAre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.15 }}
-            className="text-sm sm:text-base lg:text-lg text-zinc-600 font-normal leading-relaxed"
+            className="text-sm sm:text-base lg:text-lg text-zinc-800 font-medium leading-relaxed"
           >
             From strategy and creative direction to content, social media, campaigns, and brand storytelling, we bring every element together to build brands with a distinct voice and presence.
           </motion.p>
