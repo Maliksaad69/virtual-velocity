@@ -135,7 +135,7 @@ export const LightStatsSection = () => {
               className="gsap-compact-stat p-4 sm:p-5 rounded-2xl bg-zinc-50 hover:bg-white border border-zinc-200/90 hover:border-emerald-500/60 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-3 group cursor-pointer"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono font-bold text-zinc-400 group-hover:text-emerald-600 transition-colors">
+                <span className="text-[10px] font-mono font-bold text-zinc-600 group-hover:text-emerald-600 transition-colors">
                   0{idx + 1}
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
@@ -150,7 +150,7 @@ export const LightStatsSection = () => {
                 </h3>
               </div>
 
-              <p className="text-[11px] text-zinc-500 font-medium leading-tight border-t border-zinc-200/70 pt-2">
+              <p className="text-[11px] text-zinc-700 font-bold leading-tight border-t border-zinc-200/70 pt-2">
                 {stat.detail}
               </p>
             </div>

@@ -112,7 +112,7 @@ export const Navigation = () => {
                           : "text-emerald-600 font-extrabold"
                         : isSaltLine
                         ? "text-zinc-300 hover:text-white"
-                        : "text-zinc-600 hover:text-zinc-950"
+                        : "text-zinc-800 hover:text-zinc-950 font-bold"
                     }`}
                   >
                     {/* Hover Background Pill */}
@@ -275,12 +275,12 @@ export const Navigation = () => {
 
             {/* Footer Inquiries */}
             <div className="space-y-1 pt-6 border-t border-zinc-200 mt-6">
-              <span className="text-xs text-zinc-500 font-bold block">INQUIRIES</span>
+              <span className="text-xs text-zinc-700 font-bold block">INQUIRIES</span>
               <a
-                href="mailto:hello@virtualvelocity.agency"
+                href="mailto:info@thevirtualvelocity.com"
                 className="text-sm font-outfit text-zinc-900 hover:text-emerald-600 transition-colors font-bold block"
               >
-                hello@virtualvelocity.agency
+                info@thevirtualvelocity.com
               </a>
             </div>
           </motion.div>

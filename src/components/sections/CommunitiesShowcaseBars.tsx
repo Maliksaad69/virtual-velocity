@@ -252,7 +252,7 @@ export function CommunitiesShowcaseBars() {
           <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 font-extrabold block">
             Proprietary Media Communities — 2.95M+ Direct Audience
           </span>
-          <p className="text-xs sm:text-sm text-zinc-600 font-medium">
+          <p className="text-xs sm:text-sm text-zinc-800 font-medium">
             Virtual Velocity&apos;s verified digital network driving viral organic reach, culture, and high-impact regional engagement.
           </p>
         </div>
@@ -360,7 +360,7 @@ export function CommunitiesShowcaseBars() {
 
                     {/* Centerpiece Monthly Views Extra Metric */}
                     {comm.monthlyViews && (
-                      <div className="text-[9.5px] sm:text-[10px] xl:text-[11px] font-medium text-zinc-500 pt-0.5 whitespace-nowrap">
+                      <div className="text-[9.5px] sm:text-[10px] xl:text-[11px] font-bold text-zinc-700 pt-0.5 whitespace-nowrap">
                         {comm.monthlyViews}
                       </div>
                     )}

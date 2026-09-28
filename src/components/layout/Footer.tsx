@@ -1,8 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -86,6 +87,20 @@ function SocialIcon({ label, className = "w-4 h-4" }: { label: string; className
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -299,17 +314,25 @@ export const Footer = () => {
               Terms of Use
             </Link>
           </div>
-
-          {/* Back to top button matching reference design */}
-          <button
-            onClick={scrollToTop}
-            aria-label="Back to top"
-            className="w-10 h-10 rounded-md bg-white/20 hover:bg-white text-white hover:text-[#00AEAC] flex items-center justify-center transition-all border border-white/40 shadow-xs cursor-pointer hover:scale-105"
-          >
-            <ChevronUp className="w-5 h-5" />
-          </button>
         </div>
       </div>
+
+      {/* Floating Back-to-Top Button alongside scroll */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            onClick={scrollToTop}
+            aria-label="Scroll to top"
+            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-[#00AEAC] hover:bg-zinc-950 text-white flex items-center justify-center transition-colors duration-300 border border-white/40 shadow-2xl backdrop-blur-md cursor-pointer hover:scale-110 active:scale-95 group"
+          >
+            <ChevronUp className="w-6 h-6 group-hover:-translate-y-0.5 transition-transform duration-200" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </footer>
   );
 };
