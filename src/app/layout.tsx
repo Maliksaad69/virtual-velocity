@@ -29,25 +29,53 @@ export const metadata: Metadata = {
     canonical: "https://www.thevirtualvelocity.com",
   },
   title: {
-    default: "Virtual Velocity | Best Digital Marketing & Growth Agency Pakistan",
+    default: "Virtual Velocity | Digital Marketing Agency Pakistan & BPO Services",
     template: "%s | Virtual Velocity Agency Pakistan",
   },
   description:
-    "Virtual Velocity is Pakistan's premier full-service digital marketing, performance ads, branding & web app development agency in Islamabad & Rawalpindi. Scale revenue with Google Ads, Technical SEO, Meta Ads, and proprietary media communities (Rawalpindians, Islamabad Insider, Sirf Chai).",
+    "Virtual Velocity is Pakistan's premier Digital Marketing Agency in Islamabad. Offering BPO Services, Hotel & Restaurant Marketing, Meta Ads & Google Ads.",
   keywords: [
+    // Digital Marketing Vertical
+    "Digital Marketing Agency",
+    "Digital Marketing Company",
+    "Digital Marketing Services",
     "Digital Marketing Agency Pakistan",
-    "Best Digital Marketing Agency Islamabad",
+    "Digital Marketing Agency Islamabad",
+    // BPO & Outsourcing Vertical
+    "BPO Services",
+    "BPO Services Pakistan",
+    "Outsourcing Company Pakistan",
+    "Outsourcing Services Pakistan",
+    "Business Outsourcing Services",
+    "Customer Service Outsourcing",
+    "Customer Support Outsourcing",
+    "Call Center Outsourcing Pakistan",
+    // Hospitality Marketing Vertical
+    "Hospitality Marketing Agency",
+    "Hotel Marketing Agency",
+    "Hotel Social Media Marketing",
+    "Hospitality Digital Marketing",
+    "Hotel Advertising Agency",
+    "Hotel SEO Services",
+    // Restaurant Marketing Vertical
+    "Restaurant Marketing Agency",
+    "Restaurant Digital Marketing",
+    "Restaurant Social Media Marketing",
+    "Restaurant Advertising Agency",
+    "Restaurant Marketing Services",
+    "Restaurant SEO Services",
+    "Restaurant Lead Generation",
+    // Performance Marketing Vertical
+    "Performance Marketing Agency",
+    "Performance Marketing Services",
+    "Paid Advertising Agency",
+    "Meta Ads Agency",
+    "Google Ads Agency",
+    "Lead Generation Agency",
+    // Brand & Regional Modifiers
     "Performance Marketing Agency Rawalpindi",
     "Social Media Marketing Agency Pakistan",
     "SEO Agency Islamabad Pakistan",
-    "Top Marketing Agency Pakistan",
-    "Branding & Creative Agency Pakistan",
-    "Digital Media Agency Islamabad",
-    "Meta Ads Specialist Pakistan",
-    "Google Ads Agency Pakistan",
-    "Web Development Agency Pakistan",
-    "E-commerce PPC Growth Pakistan",
-    "B2B Performance Marketing Pakistan",
     "Rawalpindians Community Marketing",
     "Islamabad Insider Media",
     "Sirf Chai Digital Network",
@@ -63,9 +91,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Virtual Velocity | Top Digital Marketing Agency Islamabad Pakistan",
+    title: "Virtual Velocity | Top Digital Marketing & BPO Agency Islamabad Pakistan",
     description:
-      "Scale your brand in Pakistan and global markets with ROI-driven Google Ads PPC, Technical SEO, Social Media Marketing, and Proprietary Media Channels.",
+      "Scale your business revenue with top-rated Digital Marketing Services, BPO Services Pakistan, Hotel Marketing Agency campaigns, Restaurant SEO, Meta Ads Agency, and Google Ads Agency solutions.",
     url: "https://thevirtualvelocity.com",
     siteName: "Virtual Velocity Digital Agency Pakistan",
     images: [
@@ -81,9 +109,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Virtual Velocity | Digital Marketing Agency Pakistan",
+    title: "Virtual Velocity | Digital Marketing & Performance Agency Pakistan",
     description:
-      "Pakistan's leading digital media house & performance marketing agency. Google Ads, Meta Ads, SEO, and Brand Development in Islamabad & Rawalpindi.",
+      "Pakistan's premier Digital Marketing Agency, BPO Services Provider, Hospitality & Restaurant Marketing Specialist, and Performance Marketing Agency.",
     images: ["/VV png.png"],
     creator: "@virtualvelocity",
   },
@@ -134,6 +162,26 @@ const jsonLd = {
         "https://www.pinterest.com/thevirtualvelocity/",
         "https://www.behance.net/thevirtualvelocity"
       ],
+      "knowsAbout": [
+        "Digital Marketing Agency Pakistan",
+        "Digital Marketing Agency Islamabad",
+        "BPO Services Pakistan",
+        "Customer Service Outsourcing",
+        "Customer Support Outsourcing",
+        "Call Center Outsourcing Pakistan",
+        "Hospitality Marketing Agency",
+        "Hotel Marketing Agency",
+        "Hotel Social Media Marketing",
+        "Hotel SEO Services",
+        "Restaurant Marketing Agency",
+        "Restaurant Digital Marketing",
+        "Restaurant Social Media Marketing",
+        "Restaurant Lead Generation",
+        "Performance Marketing Agency",
+        "Meta Ads Agency",
+        "Google Ads Agency",
+        "Lead Generation Agency"
+      ],
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -148,7 +196,7 @@ const jsonLd = {
     {
       "@type": "ProfessionalService",
       "@id": "https://thevirtualvelocity.com/#service",
-      "name": "Virtual Velocity Digital Marketing Agency Pakistan",
+      "name": "Virtual Velocity Digital Marketing & BPO Agency Pakistan",
       "url": "https://thevirtualvelocity.com",
       "image": "https://thevirtualvelocity.com/VV%20png.png",
       "priceRange": "$$$",
@@ -157,26 +205,11 @@ const jsonLd = {
         "name": "Tauseef Alam"
       },
       "areaServed": [
-        {
-          "@type": "Country",
-          "name": "Pakistan"
-        },
-        {
-          "@type": "City",
-          "name": "Islamabad"
-        },
-        {
-          "@type": "City",
-          "name": "Rawalpindi"
-        },
-        {
-          "@type": "Country",
-          "name": "United States"
-        },
-        {
-          "@type": "Country",
-          "name": "United Kingdom"
-        }
+        { "@type": "Country", "name": "Pakistan" },
+        { "@type": "City", "name": "Islamabad" },
+        { "@type": "City", "name": "Rawalpindi" },
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "United Kingdom" }
       ],
       "address": [
         {
@@ -190,18 +223,102 @@ const jsonLd = {
           "addressLocality": "Rawalpindi",
           "addressRegion": "Punjab",
           "addressCountry": "PK"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressCountry": "US"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressCountry": "GB"
         }
       ],
       "description":
-        "Pakistan's premier digital marketing & media agency specializing in Google Ads PPC, Technical SEO, Social Media Campaigns, Branding, and Proprietary Media Channels (Rawalpindians, Islamabad Insider, Sirf Chai)."
+        "Pakistan's top full-service Digital Marketing Agency, BPO Services Provider, Hospitality Marketing Agency, Restaurant Marketing Specialist, and Performance Marketing Agency in Islamabad & Rawalpindi.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Digital & BPO Services Catalog",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Digital Marketing Services",
+              "description": "Full service Digital Marketing Company in Pakistan & Islamabad."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "BPO & Outsourcing Services",
+              "description": "BPO Services Pakistan including Customer Service Outsourcing, Customer Support Outsourcing, and Call Center Outsourcing Pakistan."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hospitality & Hotel Marketing",
+              "description": "Hospitality Marketing Agency providing Hotel Social Media Marketing, Hotel Advertising, and Hotel SEO Services."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Restaurant Marketing & Lead Generation",
+              "description": "Restaurant Marketing Agency providing Restaurant Digital Marketing, Restaurant SEO Services, and Restaurant Lead Generation."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Performance Marketing & Paid Advertising",
+              "description": "Performance Marketing Agency, Meta Ads Agency, Google Ads Agency, and Lead Generation Agency."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thevirtualvelocity.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What services does Virtual Velocity offer as a Digital Marketing Agency in Pakistan and Islamabad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Virtual Velocity is a leading Digital Marketing Agency in Pakistan and Islamabad providing comprehensive Digital Marketing Services, Performance Marketing, Technical SEO, Social Media Campaigns, BPO & Outsourcing Services, and Brand Strategy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide BPO Services and Call Center Outsourcing in Pakistan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Virtual Velocity is a trusted Outsourcing Company in Pakistan offering BPO Services Pakistan, Customer Service Outsourcing, Customer Support Outsourcing, Call Center Outsourcing Pakistan, and Business Outsourcing Services for international and local clients."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does your Hospitality & Hotel Marketing Agency increase room bookings?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our Hospitality Marketing Agency specializes in Hotel Marketing Agency strategies, Hotel Social Media Marketing, Hospitality Digital Marketing, Hotel Advertising Agency campaigns, and Hotel SEO Services designed to drive direct online bookings and reduce OTA dependency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is included in your Restaurant Marketing & Lead Generation services?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As a top Restaurant Marketing Agency, we deliver Restaurant Digital Marketing, Restaurant Social Media Marketing, Restaurant Advertising Agency creative, Restaurant SEO Services, and targeted Restaurant Lead Generation to fill dining rooms and scale delivery orders."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why choose Virtual Velocity as your Performance Marketing, Meta Ads & Google Ads Agency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Virtual Velocity is a high-ROAS Performance Marketing Agency, Meta Ads Agency, and Google Ads Agency. We function as an elite Lead Generation Agency & Paid Advertising Agency driving measurable commercial revenue."
+          }
+        }
+      ]
     }
   ]
 };
@@ -214,7 +331,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <head>
-        <link rel="canonical" href="https://www.thevirtualvelocity.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

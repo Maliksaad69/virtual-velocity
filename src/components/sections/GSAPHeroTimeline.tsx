@@ -224,7 +224,7 @@ export const GSAPHeroTimeline = () => {
             </div>
 
             <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter text-white uppercase leading-none sm:leading-[0.92] drop-shadow-md sm:drop-shadow-lg">
-              FULL-SERVICE DIGITAL <span className="sr-only">MARKETING &amp; GROWTH AGENCY PAKISTAN</span>
+              VIRTUAL VELOCITY — DIGITAL MARKETING AGENCY PAKISTAN &amp; BPO SERVICES
             </h1>
 
             <div className="mt-0.5 sm:mt-1.5 text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter uppercase leading-none">
