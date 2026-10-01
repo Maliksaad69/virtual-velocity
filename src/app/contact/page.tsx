@@ -2,17 +2,30 @@ import type { Metadata } from "next";
 import { ContactClient } from "./ContactClient";
 
 export const metadata: Metadata = {
-  title: "Contact Digital Marketing Agency Islamabad Pakistan | Virtual Velocity",
-  description: "Get in touch with Virtual Velocity's marketing strategists in Islamabad, Pakistan (+92 332 529 6693), US & UK. Guaranteed 12-hour proposal response time for SEO, PPC, Social Media & Web Development campaigns.",
+  metadataBase: new URL("https://www.thevirtualvelocity.com"),
+  alternates: {
+    canonical: "https://www.thevirtualvelocity.com/contact",
+  },
+  title: "Contact Virtual Velocity | Digital Marketing & BPO Agency",
+  description: "Get in touch with Virtual Velocity — premier Digital Marketing Agency, BPO Services Provider, Hotel & Restaurant Marketing Agency, and Performance Marketing Agency in Islamabad (+92 332 529 6693), US & UK.",
   keywords: [
-    "Contact Digital Marketing Agency Pakistan",
-    "Digital Agency Islamabad Contact",
-    "Marketing Agency Rawalpindi Phone Number",
-    "Virtual Velocity Islamabad Office"
+    "Digital Marketing Agency Pakistan",
+    "Digital Marketing Agency Islamabad",
+    "Digital Marketing Company",
+    "BPO Services Pakistan",
+    "Customer Support Outsourcing",
+    "Hospitality Marketing Agency",
+    "Restaurant Marketing Agency",
+    "Performance Marketing Agency",
+    "Meta Ads Agency",
+    "Google Ads Agency",
+    "Lead Generation Agency",
+    "Virtual Velocity Contact",
   ],
   openGraph: {
-    title: "Contact & Proposal Inquiry | Virtual Velocity Pakistan",
-    description: "Get in touch with our marketing strategists in Islamabad, Pakistan, US & UK.",
+    title: "Contact & Strategy Session | Virtual Velocity Agency Pakistan",
+    description: "Connect with our marketing specialists in Islamabad, US, and UK for Digital Marketing, BPO, Hotel, and Restaurant growth.",
+    url: "https://www.thevirtualvelocity.com/contact",
   },
 };
 
