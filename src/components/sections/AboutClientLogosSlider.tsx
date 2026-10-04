@@ -66,18 +66,18 @@ export const AboutClientLogosSlider = () => {
       </div>
 
       {/* Dual Infinite Slider Tracks with ample top spacing from upper boundary */}
-      <div className="relative z-10 mt-4 sm:mt-6 pt-2 sm:pt-4 space-y-4 sm:space-y-6 overflow-hidden">
+      <div className="relative z-10 mt-4 sm:mt-6 pt-2 sm:pt-4 space-y-3 sm:space-y-6 overflow-hidden">
         {/* Track 1: Moving Left */}
-        <div className="flex w-max space-x-4 sm:space-x-6 animate-marquee-left hover:[animation-play-state:paused]">
+        <div className="flex w-max space-x-3 sm:space-x-6 animate-marquee-left hover:[animation-play-state:paused]">
           {[...ROW_1, ...ROW_1, ...ROW_1].map((brand, idx) => (
             <div
               key={`row1-${brand.name}-${idx}`}
-              className="shrink-0 w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] rounded-full bg-white border-2 border-zinc-200/90 hover:border-emerald-500/80 p-2.5 sm:p-3 flex items-center justify-center transition-all duration-300 group hover:scale-105 shadow-xs hover:shadow-lg"
+              className="shrink-0 w-[56px] h-[56px] xs:w-[68px] xs:h-[68px] sm:w-[100px] sm:h-[100px] lg:w-[110px] lg:h-[110px] rounded-full bg-white border border-zinc-200/90 sm:border-2 hover:border-emerald-500/80 p-1.5 xs:p-2 sm:p-3 flex items-center justify-center transition-all duration-300 group hover:scale-105 shadow-xs hover:shadow-lg"
             >
               <img
                 src={brand.src}
                 alt={brand.name}
-                className="max-h-[82%] max-w-[82%] w-auto h-auto object-contain transition-all duration-300"
+                className="max-h-[80%] max-w-[80%] w-auto h-auto object-contain transition-all duration-300"
                 loading="lazy"
                 decoding="async"
               />
@@ -86,16 +86,16 @@ export const AboutClientLogosSlider = () => {
         </div>
 
         {/* Track 2: Moving Right */}
-        <div className="flex w-max space-x-4 sm:space-x-6 animate-marquee-right hover:[animation-play-state:paused]">
+        <div className="flex w-max space-x-3 sm:space-x-6 animate-marquee-right hover:[animation-play-state:paused]">
           {[...ROW_2, ...ROW_2, ...ROW_2].map((brand, idx) => (
             <div
               key={`row2-${brand.name}-${idx}`}
-              className="shrink-0 w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] rounded-full bg-white border-2 border-zinc-200/90 hover:border-emerald-500/80 p-2.5 sm:p-3 flex items-center justify-center transition-all duration-300 group hover:scale-105 shadow-xs hover:shadow-lg"
+              className="shrink-0 w-[56px] h-[56px] xs:w-[68px] xs:h-[68px] sm:w-[100px] sm:h-[100px] lg:w-[110px] lg:h-[110px] rounded-full bg-white border border-zinc-200/90 sm:border-2 hover:border-emerald-500/80 p-1.5 xs:p-2 sm:p-3 flex items-center justify-center transition-all duration-300 group hover:scale-105 shadow-xs hover:shadow-lg"
             >
               <img
                 src={brand.src}
                 alt={brand.name}
-                className="max-h-[82%] max-w-[82%] w-auto h-auto object-contain transition-all duration-300"
+                className="max-h-[80%] max-w-[80%] w-auto h-auto object-contain transition-all duration-300"
                 loading="lazy"
                 decoding="async"
               />

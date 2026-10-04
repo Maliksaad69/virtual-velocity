@@ -145,9 +145,9 @@ export const LightStatsSection = () => {
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-950 group-hover:text-emerald-600 transition-colors tracking-tight font-outfit">
                   <AnimatedCounter rawValue={stat.value} />
                 </div>
-                <h3 className="mt-1 text-xs font-extrabold uppercase tracking-wider text-zinc-900">
+                <p className="mt-1 text-xs font-extrabold uppercase tracking-wider text-zinc-900">
                   {stat.label}
-                </h3>
+                </p>
               </div>
 
               <p className="text-[11px] text-zinc-700 font-bold leading-tight border-t border-zinc-200/70 pt-2">

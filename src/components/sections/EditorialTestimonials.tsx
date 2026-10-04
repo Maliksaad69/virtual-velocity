@@ -199,9 +199,9 @@ export const EditorialTestimonials = () => {
             ) : reviewsList.length === 0 ? (
               <div className="p-8 sm:p-12 rounded-3xl bg-white border border-zinc-300 text-center space-y-4">
                 <Quote className="w-10 h-10 text-emerald-600 mx-auto" />
-                <h4 className="text-xl sm:text-2xl font-outfit font-black uppercase text-zinc-900">
+                <p className="text-xl sm:text-2xl font-outfit font-black uppercase text-zinc-900">
                   No Client Reviews Stored Yet
-                </h4>
+                </p>
                 <p className="text-xs sm:text-sm text-zinc-600 max-w-md mx-auto">
                   Submit a review using the form on the right to have your client feedback stored live in our database.
                 </p>
@@ -305,9 +305,9 @@ export const EditorialTestimonials = () => {
                 <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                 <span>CLIENT FEEDBACK</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold uppercase text-zinc-950 mt-1">
+              <p className="text-2xl sm:text-3xl font-extrabold uppercase text-zinc-950 mt-1">
                 LEAVE A <span className="text-emerald-600">REVIEW</span>
-              </h3>
+              </p>
             </div>
 
             {/* Post-submission Feedback Notification */}

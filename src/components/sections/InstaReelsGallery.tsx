@@ -603,9 +603,9 @@ export const InstaReelsGallery = () => {
                 <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block">
                   {BRAND_REELS[activeModalIndex].client} · {BRAND_REELS[activeModalIndex].year}
                 </span>
-                <h4 className="text-xs sm:text-sm font-bold text-white truncate">
+                <p className="text-xs sm:text-sm font-bold text-white truncate">
                   {BRAND_REELS[activeModalIndex].title}
-                </h4>
+                </p>
               </div>
               <button
                 type="button"

@@ -110,7 +110,7 @@ export const ServicesClientLogosCarousel = () => {
         </div>
 
         {/* 3D Animated Grid Slide */}
-        <div className="min-h-[115px] sm:min-h-[135px] relative">
+        <div className="min-h-[75px] sm:min-h-[135px] relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -118,18 +118,18 @@ export const ServicesClientLogosCarousel = () => {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -50, scale: 0.98 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-5"
+              className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 xs:gap-3 sm:gap-5"
             >
               {visibleBrands.map((brand) => (
                 <div
                   key={brand.name}
-                  className="flex items-center justify-center p-1 h-[105px] sm:h-[125px] group cursor-pointer"
+                  className="flex items-center justify-center p-0.5 sm:p-1 h-[72px] xs:h-[84px] sm:h-[125px] group cursor-pointer"
                 >
-                  <div className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] rounded-full bg-white border-2 border-zinc-200/90 group-hover:border-emerald-500/80 p-2.5 sm:p-3 flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-xs group-hover:shadow-lg">
+                  <div className="w-[56px] h-[56px] xs:w-[68px] xs:h-[68px] sm:w-[100px] sm:h-[100px] lg:w-[110px] lg:h-[110px] rounded-full bg-white border border-zinc-200/90 sm:border-2 group-hover:border-emerald-500/80 p-1.5 xs:p-2 sm:p-3 flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-xs group-hover:shadow-lg">
                     <img
                       src={brand.src}
                       alt={brand.name}
-                      className="max-h-[82%] max-w-[82%] w-auto h-auto object-contain transition-all duration-300"
+                      className="max-h-[80%] max-w-[80%] w-auto h-auto object-contain transition-all duration-300"
                       loading="lazy"
                       decoding="async"
                     />

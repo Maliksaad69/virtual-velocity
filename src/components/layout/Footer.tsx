@@ -33,11 +33,11 @@ const NAV_LINKS = [
 ];
 
 const SERVICES_ANCHORS = [
-  { label: "Google Ads PPC", href: "/services" },
-  { label: "Technical SEO", href: "/services" },
-  { label: "Paid Social", href: "/services" },
-  { label: "Conversion Rate Opt.", href: "/services" },
-  { label: "View All Services", href: "/services" },
+  { label: "Digital Marketing Agency Services", href: "/services#digital-marketing" },
+  { label: "BPO & Customer Support Outsourcing", href: "/services#bpo-outsourcing" },
+  { label: "Hospitality & Hotel Marketing Agency", href: "/services#hospitality-marketing" },
+  { label: "Restaurant Marketing & Lead Gen", href: "/services#restaurant-marketing" },
+  { label: "Performance Marketing & Paid Ads Agency", href: "/services#performance-marketing" },
 ];
 
 function SocialIcon({ label, className = "w-4 h-4" }: { label: string; className?: string }) {
@@ -167,9 +167,9 @@ export const Footer = () => {
 
           {/* Col 2: Quick Links (Parallel Column 1 on mobile) */}
           <div className="col-span-1 lg:col-span-2 space-y-3.5 sm:space-y-4">
-            <h4 className="text-base sm:text-lg font-extrabold uppercase tracking-wider text-white">
+            <p className="text-base sm:text-lg font-extrabold uppercase tracking-wider text-white">
               Quick Links
-            </h4>
+            </p>
             <ul className="space-y-2 text-base sm:text-[17px]">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
@@ -189,9 +189,9 @@ export const Footer = () => {
 
           {/* Col 3: Our Services (Parallel Column 2 on mobile) */}
           <div className="col-span-1 lg:col-span-2 space-y-3.5 sm:space-y-4">
-            <h4 className="text-base sm:text-lg font-extrabold uppercase tracking-wider text-white">
+            <p className="text-base sm:text-lg font-extrabold uppercase tracking-wider text-white">
               Our Services
-            </h4>
+            </p>
             <ul className="space-y-2 text-base sm:text-[17px]">
               {SERVICES_ANCHORS.map((service) => (
                 <li key={service.label}>
@@ -211,9 +211,9 @@ export const Footer = () => {
 
           {/* Col 4: Get In Touch (full width on mobile, 4 columns on desktop) */}
           <div className="col-span-2 lg:col-span-4 space-y-3.5 sm:space-y-4">
-            <h4 className="text-base sm:text-lg font-extrabold uppercase tracking-wider text-white">
+            <p className="text-base sm:text-lg font-extrabold uppercase tracking-wider text-white">
               Get In Touch
-            </h4>
+            </p>
             <ul className="space-y-3.5 text-base sm:text-[17px] font-medium text-white">
               <li>
                 <a

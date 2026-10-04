@@ -126,9 +126,9 @@ export const About = () => {
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 bg-emerald-200 pointer-events-none" />
                   <p.icon className={`w-5 h-5 sm:w-6 sm:h-6 mb-2.5 ${p.accent}`} />
-                  <h4 className="text-sm sm:text-[15px] font-bold text-black mb-1 tracking-tight leading-snug">
+                  <p className="text-sm sm:text-[15px] font-bold text-black mb-1 tracking-tight leading-snug">
                     {p.label}
-                  </h4>
+                  </p>
                   <p className="text-[12px] sm:text-[13px] text-black font-normal leading-relaxed">
                     {p.desc}
                   </p>

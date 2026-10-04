@@ -164,9 +164,9 @@ export const GSAPScrollGallery = () => {
                   className="block group/title"
                   {...(project.liveUrl.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 >
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-zinc-950 group-hover/title:text-emerald-600 transition-colors duration-300 uppercase tracking-tight leading-[1.15] min-h-[3.2rem] line-clamp-2">
+                  <p className="text-lg sm:text-xl lg:text-2xl font-outfit font-black text-zinc-950 group-hover/title:text-emerald-600 transition-colors duration-300 uppercase tracking-tight leading-[1.15] min-h-[3.2rem] line-clamp-2">
                     {project.title}
-                  </h3>
+                  </p>
                 </Link>
 
                 <p className="text-sm text-zinc-700 font-normal leading-relaxed line-clamp-3 mt-3 mb-4">
