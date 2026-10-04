@@ -314,17 +314,17 @@ export const ClientPartners = () => {
           </div>
 
           {/* Clean Responsive Logo Grid */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5 sm:gap-3.5">
+          <div className="grid grid-cols-4 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2 sm:gap-3.5">
             {ALL_LOGOS.map((logo) => (
               <div
                 key={logo.alt}
-                className="p-2 sm:p-2.5 rounded-full bg-white border-2 border-zinc-200/90 flex items-center justify-center aspect-square shadow-xs hover:border-emerald-300 transition-colors"
+                className="p-1.5 xs:p-2 sm:p-2.5 rounded-full bg-white border border-zinc-200/90 sm:border-2 flex items-center justify-center aspect-square shadow-xs hover:border-emerald-300 transition-colors"
               >
                 <img
                   src={logo.src}
                   alt={logo.alt}
                   loading="lazy"
-                  className="max-h-[85%] max-w-[85%] object-contain"
+                  className="max-h-[78%] max-w-[78%] object-contain"
                   draggable={false}
                 />
               </div>
