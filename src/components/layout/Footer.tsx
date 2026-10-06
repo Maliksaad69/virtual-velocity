@@ -107,7 +107,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative [font-family:Calibri,Tahoma,Segoe_UI,sans-serif] bg-[#00AEAC] text-white pt-8 sm:pt-12 lg:pt-14 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-[#009b9a]">
+    <footer className="relative font-outfit bg-[#00AEAC] text-white pt-8 sm:pt-12 lg:pt-14 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-[#009b9a]">
       <div className="max-w-[1700px] mx-auto space-y-7 sm:space-y-10">
         {/* Main Grid: 2 columns on mobile for parallel links/services, 12 columns on desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 sm:gap-8 lg:gap-10">

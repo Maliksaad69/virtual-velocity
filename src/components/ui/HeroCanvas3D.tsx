@@ -10,6 +10,9 @@ export const HeroCanvas3D = () => {
     const container = containerRef.current;
     if (!container) return;
 
+    // Do not initialize Three.js WebGL context on mobile/tablet screens (< 1024px) since element is hidden
+    if (window.innerWidth < 1024) return;
+
     // 1. Scene & Camera
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -21,16 +24,16 @@ export const HeroCanvas3D = () => {
     camera.position.z = 4.5;
 
     // 2. Renderer
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     container.appendChild(renderer.domElement);
 
-    // 3. Create Complex 3D Geometry (Wireframe Icosahedron + Inner Core)
+    // 3. Create 3D Geometry (Wireframe Icosahedron + Inner Core)
     const group = new THREE.Group();
 
-    // Outer Wireframe Torus Knot (Emerald Accent)
-    const outerGeo = new THREE.TorusKnotGeometry(1.2, 0.35, 128, 32);
+    // Outer Wireframe Torus Knot
+    const outerGeo = new THREE.TorusKnotGeometry(1.2, 0.35, 96, 24);
     const outerMat = new THREE.MeshBasicMaterial({
       color: 0x00aeac,
       wireframe: true,
@@ -40,8 +43,8 @@ export const HeroCanvas3D = () => {
     const outerMesh = new THREE.Mesh(outerGeo, outerMat);
     group.add(outerMesh);
 
-    // Inner Glowing Core (Vibrant Emerald)
-    const innerGeo = new THREE.IcosahedronGeometry(0.8, 2);
+    // Inner Glowing Core
+    const innerGeo = new THREE.IcosahedronGeometry(0.8, 1);
     const innerMat = new THREE.MeshBasicMaterial({
       color: 0x00a29f,
       wireframe: true,
@@ -52,7 +55,7 @@ export const HeroCanvas3D = () => {
     group.add(innerMesh);
 
     // Floating Emerald Particles Array
-    const particleCount = 250;
+    const particleCount = 150;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
 
@@ -83,7 +86,7 @@ export const HeroCanvas3D = () => {
       targetY = (e.clientY / window.innerHeight - 0.5) * 2;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     const handleResize = () => {
       if (!container) return;
@@ -92,16 +95,17 @@ export const HeroCanvas3D = () => {
       renderer.setSize(container.clientWidth, container.clientHeight);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
 
-    // 5. Animation Loop
-    let animationFrameId: number;
+    // 5. Animation Loop with IntersectionObserver Pausing
+    let animationFrameId: number | null = null;
+    let isRendering = false;
     const clock = new THREE.Clock();
 
-    const animate = () => {
+    const renderFrame = () => {
+      if (!isRendering) return;
       const elapsedTime = clock.getElapsedTime();
 
-      // Smooth rotations
       group.rotation.x = elapsedTime * 0.2;
       group.rotation.y = elapsedTime * 0.25;
 
@@ -110,23 +114,58 @@ export const HeroCanvas3D = () => {
 
       particles.rotation.y = elapsedTime * 0.05;
 
-      // Mouse displacement lerp (controlled small offset to stay within right bounds)
       group.position.x += (targetX * 0.25 - group.position.x) * 0.05;
       group.position.y += (-targetY * 0.25 - group.position.y) * 0.05;
 
       renderer.render(scene, camera);
-      animationFrameId = requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(renderFrame);
     };
 
-    animate();
+    const startAnimation = () => {
+      if (!isRendering) {
+        isRendering = true;
+        clock.start();
+        renderFrame();
+      }
+    };
+
+    const stopAnimation = () => {
+      if (isRendering) {
+        isRendering = false;
+        if (animationFrameId !== null) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(container);
 
     return () => {
+      stopAnimation();
+      observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationFrameId);
-      if (container && renderer.domElement) {
+      if (container && renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
+      outerGeo.dispose();
+      outerMat.dispose();
+      innerGeo.dispose();
+      innerMat.dispose();
+      particleGeo.dispose();
+      particleMat.dispose();
       renderer.dispose();
     };
   }, []);

@@ -299,7 +299,7 @@ export const EditorialTestimonials = () => {
           </div>
 
           {/* RIGHT COLUMN: Clean Review Submission Form */}
-          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-zinc-300 shadow-md space-y-5 [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]">
+          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-zinc-300 shadow-md space-y-5 font-outfit">
             <div>
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600">
                 <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
@@ -377,7 +377,7 @@ export const EditorialTestimonials = () => {
                     placeholder="e.g. Sarah Jenkins"
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 text-sm font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 transition-colors [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
+                    className="w-full px-3.5 py-3 text-base sm:text-sm rounded-xl border border-zinc-300 font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 transition-all font-outfit"
                   />
                 </div>
                 <div>
@@ -389,7 +389,7 @@ export const EditorialTestimonials = () => {
                     placeholder="e.g. Head of Growth"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 text-sm font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 transition-colors [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
+                    className="w-full px-3.5 py-3 text-base sm:text-sm rounded-xl border border-zinc-300 font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 transition-all font-outfit"
                   />
                 </div>
               </div>
@@ -405,7 +405,7 @@ export const EditorialTestimonials = () => {
                     placeholder="e.g. Nexus Retail"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 text-sm font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 transition-colors [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
+                    className="w-full px-3.5 py-3 text-base sm:text-sm rounded-xl border border-zinc-300 font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 transition-all font-outfit"
                   />
                 </div>
                 <div>
@@ -417,7 +417,7 @@ export const EditorialTestimonials = () => {
                     placeholder="e.g. +310% Revenue"
                     value={metric}
                     onChange={(e) => setMetric(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 text-sm font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 transition-colors [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
+                    className="w-full px-3.5 py-3 text-base sm:text-sm rounded-xl border border-zinc-300 font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 transition-all font-outfit"
                   />
                 </div>
               </div>
@@ -433,7 +433,7 @@ export const EditorialTestimonials = () => {
                   placeholder="Share your experience working with Virtual Velocity..."
                   value={quote}
                   onChange={(e) => setQuote(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 text-sm font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 transition-colors resize-none [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
+                  className="w-full px-3.5 py-3 text-base sm:text-sm rounded-xl border border-zinc-300 font-medium text-zinc-900 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/15 transition-all resize-none font-outfit"
                 />
               </div>
 
@@ -441,7 +441,7 @@ export const EditorialTestimonials = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 [font-family:Calibri,Tahoma,Segoe_UI,sans-serif]"
+                className="w-full py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs uppercase tracking-wider transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 min-h-[44px] font-outfit"
               >
                 {isSubmitting ? (
                   <span>SUBMITTING...</span>

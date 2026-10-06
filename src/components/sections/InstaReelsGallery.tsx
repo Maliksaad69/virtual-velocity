@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, Sparkles, Play, X } from "lucide-react";
 
 interface ReelItem {
@@ -479,14 +480,15 @@ export const InstaReelsGallery = () => {
               const cardContent = (
                 <>
                   {/* Background Reel Cover Image: 100% Crisp, High-Contrast, No Blur */}
-                  <img
+                  <Image
                     src={reel.thumbnail}
                     alt={reel.title}
-                    className={`absolute inset-0 w-full h-full object-cover object-center pointer-events-none transition-all duration-300 ${
+                    fill
+                    sizes="(max-width: 640px) 180px, (max-width: 1024px) 205px, 225px"
+                    className={`object-cover object-center pointer-events-none transition-all duration-300 ${
                       isActive ? "brightness-100 contrast-105" : "brightness-95 contrast-100"
                     }`}
                     loading="lazy"
-                    decoding="async"
                   />
 
                   {/* Glowing Play Button on Active Card */}

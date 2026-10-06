@@ -238,9 +238,9 @@ p[class*="text-emerald-"] {
   animation-play-state: paused;
 }
 
-/* ── Footer: Calibri ── */
+/* ── Global Font Utility ── */
 .font-calibri {
-  font-family: Calibri, Carlito, "Segoe UI", Candara, Arial, sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
 }
 
 /* ── Prefers-reduced-motion Fallback ── */
