@@ -33,11 +33,11 @@ const NAV_LINKS = [
 ];
 
 const SERVICES_ANCHORS = [
-  { label: "Digital Marketing Agency Services", href: "/services#digital-marketing" },
-  { label: "BPO & Customer Support Outsourcing", href: "/services#bpo-outsourcing" },
-  { label: "Hospitality & Hotel Marketing Agency", href: "/services#hospitality-marketing" },
-  { label: "Restaurant Marketing & Lead Gen", href: "/services#restaurant-marketing" },
-  { label: "Performance Marketing & Paid Ads Agency", href: "/services#performance-marketing" },
+  { label: "Digital Marketing", href: "/services#digital-marketing" },
+  { label: "BPO Services", href: "/services#bpo-outsourcing" },
+  { label: "Hospitality Marketing", href: "/services#hospitality-marketing" },
+  { label: "Restaurant Marketing", href: "/services#restaurant-marketing" },
+  { label: "Performance Marketing", href: "/services#performance-marketing" },
 ];
 
 function SocialIcon({ label, className = "w-4 h-4" }: { label: string; className?: string }) {

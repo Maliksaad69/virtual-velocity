@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.thevirtualvelocity.com",
   },
-  title: "Virtual Velocity | Digital Marketing Agency Pakistan & BPO Services",
+  title: "Virtual Velocity | Digital Marketing & BPO Agency",
   description:
-    "Pakistan's premier Digital Marketing Agency & Performance Marketing Agency in Islamabad & Rawalpindi. Provider of Digital Marketing Services, BPO Services Pakistan, Hospitality Marketing Agency solutions, Restaurant Lead Generation, Meta Ads Agency campaigns, & Google Ads Agency PPC.",
+    "Virtual Velocity is Pakistan's premier Digital Marketing Agency & BPO service provider in Islamabad. Expert Meta Ads, Google Ads, SEO & BPO solutions.",
   keywords: [
     "Digital Marketing Agency",
     "Digital Marketing Company",
@@ -58,8 +58,9 @@ export const metadata: Metadata = {
     "Lead Generation Agency",
   ],
   openGraph: {
-    title: "Virtual Velocity | Digital Marketing Agency & BPO Services Pakistan",
-    description: "Full-service performance marketing, BPO services, hotel & restaurant digital marketing, Meta Ads, & Google Ads in Islamabad & worldwide.",
+    title: "Virtual Velocity | Digital Marketing & BPO Agency",
+    description:
+      "Pakistan's premier Digital Marketing Agency & BPO service provider. Performance marketing, SEO, Meta Ads & Google Ads.",
     url: "https://www.thevirtualvelocity.com",
   },
 };

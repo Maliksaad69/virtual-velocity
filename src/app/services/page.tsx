@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
   title: "Digital Marketing Services, BPO, Hotel & Restaurant Marketing",
   description:
-    "Explore Virtual Velocity's complete agency capabilities: Digital Marketing Services, BPO Services Pakistan, Hospitality Marketing Agency, Hotel SEO, Restaurant Marketing Agency, Meta Ads Agency, and Google Ads Agency in Islamabad & worldwide.",
+    "Explore Virtual Velocity's digital marketing, BPO services, hotel & restaurant marketing, Meta Ads, and Google Ads in Islamabad & worldwide.",
   keywords: [
     "Digital Marketing Agency",
     "Digital Marketing Company",
