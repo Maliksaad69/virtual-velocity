@@ -54,6 +54,26 @@ export const GSAPHeroTimeline = () => {
   }, []);
 
   useEffect(() => {
+    const video = videoRef.current;
+    const outer = videoScrollRef.current;
+    if (!video || !outer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(outer);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const outer = videoScrollRef.current;
     const wrapper = videoWrapperRef.current;
     if (!outer || !wrapper) return;

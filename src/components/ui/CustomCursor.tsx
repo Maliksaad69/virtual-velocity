@@ -18,20 +18,34 @@ export const CustomCursor = () => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    if (
+    const isTouch =
       "ontouchstart" in window ||
       navigator.maxTouchPoints > 0 ||
       window.matchMedia("(pointer: coarse)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.innerWidth < 1024;
+
+    if (isTouch) return;
 
     let isShown = false;
+    let rafId: number | null = null;
+    let latestX = -100;
+    let latestY = -100;
+
+    const updatePosition = () => {
+      cursorX.set(latestX);
+      cursorY.set(latestY);
+      rafId = null;
+    };
 
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+      latestX = e.clientX;
+      latestY = e.clientY;
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(updatePosition);
+      }
+
       if (!isShown) {
         isShown = true;
         setIsVisible(true);
@@ -68,6 +82,7 @@ export const CustomCursor = () => {
     document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseleave", handleMouseLeave);
