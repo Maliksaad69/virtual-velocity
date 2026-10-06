@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     canonical: "https://www.thevirtualvelocity.com/about",
   },
   title: "About Virtual Velocity | Premier Digital Marketing & BPO Agency",
-  description: "Virtual Velocity is Pakistan's premier Digital Marketing Agency & BPO Services provider founded by Tauseef Alam. Delivering Performance Marketing, Hotel & Restaurant Marketing, and Customer Support Outsourcing from Islamabad & global hubs.",
+  description: "Learn about Virtual Velocity, Pakistan's premier Digital Marketing Agency & BPO provider founded by Tauseef Alam in Islamabad.",
   keywords: [
     "Digital Marketing Agency Pakistan",
     "Digital Marketing Agency Islamabad",

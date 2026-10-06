@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     canonical: "https://www.thevirtualvelocity.com/contact",
   },
   title: "Contact Virtual Velocity | Digital Marketing & BPO Agency",
-  description: "Get in touch with Virtual Velocity — premier Digital Marketing Agency, BPO Services Provider, Hotel & Restaurant Marketing Agency, and Performance Marketing Agency in Islamabad (+92 332 529 6693), US & UK.",
+  description: "Contact Virtual Velocity in Islamabad, US & UK for Digital Marketing, BPO Services, Hotel & Restaurant Growth, Meta Ads & Google Ads.",
   keywords: [
     "Digital Marketing Agency Pakistan",
     "Digital Marketing Agency Islamabad",

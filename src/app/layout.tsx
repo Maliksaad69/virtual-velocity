@@ -29,11 +29,11 @@ export const metadata: Metadata = {
     canonical: "https://www.thevirtualvelocity.com",
   },
   title: {
-    default: "Virtual Velocity | Digital Marketing Agency Pakistan & BPO Services",
-    template: "%s | Virtual Velocity Agency Pakistan",
+    default: "Virtual Velocity | Digital Marketing & BPO Agency",
+    template: "%s | Virtual Velocity Agency",
   },
   description:
-    "Virtual Velocity is Pakistan's premier Digital Marketing Agency in Islamabad. Offering BPO Services, Hotel & Restaurant Marketing, Meta Ads & Google Ads.",
+    "Virtual Velocity is Pakistan's premier Digital Marketing Agency & BPO service provider in Islamabad. Expert Meta Ads, Google Ads, SEO & BPO solutions.",
   keywords: [
     // Digital Marketing Vertical
     "Digital Marketing Agency",
