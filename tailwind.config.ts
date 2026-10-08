@@ -18,21 +18,21 @@ export default <Config>{
       colors: {
         background: 'var(--color-background)',
         foreground: 'var(--color-foreground)',
-        primary: '#111111', // near‑black
-        secondary: '#F5F5F0', // warm off‑white
-        accent: '#00aeac', // brand green/teal accent
+        primary: '#0f1a15', // deep near‑black green
+        secondary: '#F5F6F2', // warm off‑white
+        accent: '#178a66', // brand emerald accent
         emerald: {
-          50: '#e6f7f7',
-          100: '#c2eff0',
-          200: '#99e5e4',
-          300: '#66d7d5',
-          400: '#33c9c6',
-          500: '#00aeac',
-          600: '#00aeac',
-          700: '#00a29f',
-          800: '#008280',
-          900: '#006160',
-          950: '#003b3a',
+          50: '#edf7f2',
+          100: '#d3ede2',
+          200: '#a7dbc6',
+          300: '#74c3a5',
+          400: '#40a583',
+          500: '#178a66',
+          600: '#106e51',
+          700: '#0d5941',
+          800: '#0b4735',
+          900: '#09382a',
+          950: '#041f17',
         },
       },
       fontFamily: {

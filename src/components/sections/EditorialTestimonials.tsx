@@ -2,9 +2,6 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import {
   Quote,
   Star,
@@ -21,13 +18,12 @@ import {
   Loader2,
 } from "lucide-react";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { loadGsap } from "@/lib/gsapClient";
 import {
   submitReviewAction,
   fetchReviewsAction,
   ReviewRecord,
 } from "@/app/actions/reviews";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const AUTO_ROTATE_INTERVAL = 4000; // 4 seconds per review
 
@@ -92,24 +88,39 @@ export const EditorialTestimonials = () => {
     return () => clearInterval(timer);
   }, [isPlaying, isPausedHover, handleNext, reviewsList.length]);
 
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        ".gsap-testimonial-header",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        }
-      );
-    },
-    { scope: sectionRef }
-  );
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
+
+    (async () => {
+      const { gsap } = await loadGsap();
+      if (cancelled || !sectionRef.current) return;
+
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          ".gsap-testimonial-header",
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+            },
+          }
+        );
+      }, sectionRef);
+    })();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -106,12 +106,12 @@ export function BrandingClient() {
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               className="absolute top-8 sm:top-14 md:top-20 right-6 sm:right-12 lg:right-16 text-right z-20 pointer-events-none"
             >
-              <span className="inline-block font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase text-[#00aeac] font-bold mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+              <span className="inline-block font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase text-[#178a66] font-bold mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 AUTHENTIC ARTISANAL RECIPE
               </span>
               <h2 className="font-outfit font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tighter text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-[0.95]">
                 48-HOUR FERMENTED DOUGH. <br />
-                <span className="text-[#00aeac]">SAN MARZANO DOP SAUCE.</span>
+                <span className="text-[#178a66]">SAN MARZANO DOP SAUCE.</span>
               </h2>
               <p className="font-mono text-[10px] sm:text-xs text-white/80 uppercase tracking-widest mt-2 drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]">
                 100% WHOLE MILK MOZZARELLA • FIRED AT 450°C
@@ -155,7 +155,7 @@ export function BrandingClient() {
               </span>
               <h2 className="font-outfit font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tighter text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] leading-[0.95]">
                 STEAM-VENTED CORNERS. <br />
-                <span className="text-[#00aeac]">ZERO SOGGY PIZZA.</span>
+                <span className="text-[#178a66]">ZERO SOGGY PIZZA.</span>
               </h2>
             </motion.div>
           </div>
@@ -228,9 +228,9 @@ export function BrandingClient() {
         </section>
 
         {/* Seamless transitional gradient bridging dark portfolio into vibrant teal footer */}
-        <div className="relative w-full h-24 sm:h-32 md:h-44 bg-gradient-to-b from-[#0a0a0a] to-[#00AEAC] pointer-events-none overflow-hidden">
+        <div className="relative w-full h-24 sm:h-32 md:h-44 bg-gradient-to-b from-[#0a0a0a] to-[#178A66] pointer-events-none overflow-hidden">
           {/* Ambient teal glow accent */}
-          <div className="absolute inset-0 bg-radial-[at_50%_100%] from-[#00AEAC]/30 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-radial-[at_50%_100%] from-[#178A66]/30 via-transparent to-transparent" />
         </div>
 
         <Footer />

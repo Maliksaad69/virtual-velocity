@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TrendingUp } from "lucide-react";
+import { loadGsap } from "@/lib/gsapClient";
 
-gsap.registerPlugin(ScrollTrigger);
+// GSAP + ScrollTrigger are loaded on demand (see effects below) so this section
+// never pulls the animation library into the initial page payload.
 
 function parseStatValue(raw: string): { target: number; suffix: string; decimals: number } {
   const match = raw.match(/^([\d.]+)(.*)$/);
@@ -27,27 +27,38 @@ const AnimatedCounter = ({ rawValue, className }: { rawValue: string; className?
     const proxy = proxyRef.current;
     if (!el) return;
 
-    const ctx = gsap.context(() => {
-      gsap.to(proxy, {
-        val: target,
-        duration: 2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 92%",
-          toggleActions: "play none none none",
-        },
-        onUpdate: () => {
-          const formatted =
-            decimals > 0
-              ? proxy.val.toFixed(decimals)
-              : Math.round(proxy.val);
-          el.textContent = formatted + suffix;
-        },
-      });
-    }, el);
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
 
-    return () => ctx.revert();
+    (async () => {
+      const { gsap } = await loadGsap();
+      if (cancelled) return;
+
+      ctx = gsap.context(() => {
+        gsap.to(proxy, {
+          val: target,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 92%",
+            toggleActions: "play none none none",
+          },
+          onUpdate: () => {
+            const formatted =
+              decimals > 0
+                ? proxy.val.toFixed(decimals)
+                : Math.round(proxy.val);
+            el.textContent = formatted + suffix;
+          },
+        });
+      }, el);
+    })();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, [target, suffix, decimals]);
 
   return (
@@ -84,25 +95,39 @@ export const LightStatsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".gsap-compact-stat",
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-          },
-        }
-      );
-    }, sectionRef);
+    const el = sectionRef.current;
+    if (!el) return;
 
-    return () => ctx.revert();
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
+
+    (async () => {
+      const { gsap } = await loadGsap();
+      if (cancelled || !sectionRef.current) return;
+
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          ".gsap-compact-stat",
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 85%",
+            },
+          }
+        );
+      }, sectionRef);
+    })();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (

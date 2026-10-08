@@ -45,7 +45,7 @@ export function AboutClient() {
               AGENCY MANIFESTO &amp; CULTURE
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.5rem] font-outfit font-black text-zinc-900 tracking-tighter uppercase leading-[0.88] select-none">
-              <SplitTextReveal text="WE ARE VIRTUAL VELOCITY" highlightWords={["VELOCITY"]} accentColor="#00aeac" />
+              <SplitTextReveal text="WE ARE VIRTUAL VELOCITY" highlightWords={["VELOCITY"]} accentColor="#178a66" />
             </h1>
             <p className="text-base sm:text-xl lg:text-2xl text-black max-w-3xl font-normal leading-relaxed">
               {AGENCY_INFO.tagline}. We combine strategic performance marketing, web app engineering, and creative direction to fuel business growth.

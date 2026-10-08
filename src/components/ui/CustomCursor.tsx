@@ -103,7 +103,7 @@ export const CustomCursor = () => {
       animate={{
         width: cursorText ? 100 : isHovered ? 54 : 14,
         height: cursorText ? 100 : isHovered ? 54 : 14,
-        backgroundColor: cursorText ? "#00aeac" : isHovered ? "rgba(0, 174, 172, 0.9)" : "#00aeac",
+        backgroundColor: cursorText ? "#178a66" : isHovered ? "rgba(23, 138, 102, 0.9)" : "#178a66",
         mixBlendMode: "normal",
       }}
       transition={{ type: "spring", damping: 28, stiffness: 350, mass: 0.3 }}

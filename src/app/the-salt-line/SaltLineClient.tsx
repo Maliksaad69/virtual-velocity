@@ -142,9 +142,9 @@ export function SaltLineClient() {
         </section>
 
         {/* Seamless transitional gradient bridging dark portfolio into vibrant teal footer */}
-        <div className="relative w-full h-24 sm:h-32 md:h-44 bg-gradient-to-b from-[#0a0a0a] to-[#00AEAC] pointer-events-none overflow-hidden">
+        <div className="relative w-full h-24 sm:h-32 md:h-44 bg-gradient-to-b from-[#0a0a0a] to-[#178A66] pointer-events-none overflow-hidden">
           {/* Ambient teal glow accent */}
-          <div className="absolute inset-0 bg-radial-[at_50%_100%] from-[#00AEAC]/30 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-radial-[at_50%_100%] from-[#178A66]/30 via-transparent to-transparent" />
         </div>
 
         <Footer />

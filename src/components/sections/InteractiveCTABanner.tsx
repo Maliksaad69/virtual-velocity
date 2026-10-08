@@ -65,7 +65,7 @@ export const InteractiveCTABanner = () => {
             </span>
             <h2 className="text-3xl sm:text-5xl lg:text-7xl font-outfit font-black text-white uppercase tracking-tight leading-[0.95] sm:leading-[0.9]">
               READY TO SCALE YOUR <br />
-              <span className="text-emerald-400 font-black drop-shadow-[0_0_20px_rgba(0,174,172,0.4)]">BRAND REVENUE?</span>
+              <span className="text-emerald-400 font-black drop-shadow-[0_0_20px_rgba(23, 138, 102,0.4)]">BRAND REVENUE?</span>
             </h2>
           </div>
 
@@ -112,7 +112,7 @@ export const InteractiveCTABanner = () => {
           <div className="lg:col-span-6 grid grid-cols-3 gap-3 sm:gap-4 border-t lg:border-t-0 lg:border-l border-zinc-800 pt-5 lg:pt-0 lg:pl-8">
             <div className="space-y-1">
               <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-400 uppercase tracking-wider block">EST. REVENUE</span>
-              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-emerald-400 tracking-tight block font-mono drop-shadow-[0_0_15px_rgba(0,174,172,0.4)]">
+              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-emerald-400 tracking-tight block font-mono drop-shadow-[0_0_15px_rgba(23, 138, 102,0.4)]">
                 {activeTier.estRevenue}
               </span>
             </div>

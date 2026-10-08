@@ -403,7 +403,7 @@ export const InstaReelsGallery = () => {
       className="py-10 sm:py-14 lg:py-16 px-4 sm:px-8 lg:px-12 relative bg-white text-zinc-900 select-none font-outfit overflow-hidden border-t border-zinc-200"
     >
       {/* Soft emerald ambient glow radiating behind header */}
-      <div className="absolute top-0 inset-x-0 h-[360px] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.08),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-[360px] bg-[radial-gradient(ellipse_at_top,rgba(23,138,102,0.08),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-[1700px] mx-auto space-y-7 sm:space-y-9 relative z-10">
         {/* Header: Kept on the LEFT with agency emerald branding */}
@@ -494,7 +494,7 @@ export const InstaReelsGallery = () => {
                   {/* Glowing Play Button on Active Card */}
                   {isActive && (
                     <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-600/90 text-white flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.7)] backdrop-blur-xs border border-white/40 transition-transform duration-300 group-hover:scale-110">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-600/90 text-white flex items-center justify-center shadow-[0_0_30px_rgba(23,138,102,0.7)] backdrop-blur-xs border border-white/40 transition-transform duration-300 group-hover:scale-110">
                         <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-white translate-x-0.5" />
                       </div>
                     </div>
@@ -505,7 +505,7 @@ export const InstaReelsGallery = () => {
               // Middle 1 box is larger (scale-110) and 100% crisp without blur, with decreased height overall
               const cardClasses = `group relative flex-shrink-0 w-[180px] sm:w-[205px] md:w-[225px] aspect-[9/13.8] rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-500 ease-out cursor-pointer block select-none transform-gpu text-left ${
                 isActive
-                  ? "scale-110 ring-2 ring-emerald-500 shadow-[0_16px_40px_rgba(16,185,129,0.3)] ring-offset-2 ring-offset-white z-30 opacity-100 hover:brightness-105"
+                  ? "scale-110 ring-2 ring-emerald-500 shadow-[0_16px_40px_rgba(23,138,102,0.3)] ring-offset-2 ring-offset-white z-30 opacity-100 hover:brightness-105"
                   : isNeighbor
                   ? "scale-95 opacity-75 hover:opacity-90 z-20 shadow-md"
                   : "scale-90 opacity-50 hover:opacity-75 z-10 shadow-sm"

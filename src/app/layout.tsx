@@ -2,22 +2,26 @@ import type { Metadata, Viewport } from "next";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 
-// Outfit for headings – premium grotesk
+// Outfit for headings – premium grotesk (variable font: one file serves all weights)
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  weight: ["100", "900"],
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
-// Inter for body copy
+// Inter for body copy (variable font)
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  weight: ["100", "900"],
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const viewport: Viewport = {
-  themeColor: "#00aeac",
+  themeColor: "#178a66",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,

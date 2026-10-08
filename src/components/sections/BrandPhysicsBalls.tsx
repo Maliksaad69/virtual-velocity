@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import Matter from "matter-js";
+import type * as MatterNS from "matter-js";
 import { Sparkles } from "lucide-react";
 
 interface BrandItem {
@@ -61,9 +61,14 @@ export const BrandPhysicsBalls = () => {
     return 55; // 110px circle on desktop
   }, []);
 
-  const initPhysics = useCallback(() => {
+  const initPhysics = useCallback(async () => {
     const container = containerRef.current;
     if (!container) return;
+
+    // Load the physics engine on demand — keeps ~90KB of matter-js off the
+    // initial page payload. It is only fetched once this section scrolls in.
+    const { default: Matter } = await import("matter-js");
+    if (!containerRef.current) return;
 
     // Clean up previous engine if any
     if (cleanupPhysicsRef.current) {
@@ -84,7 +89,7 @@ export const BrandPhysicsBalls = () => {
     });
 
     // Wall boundaries (Floor, Left, Right)
-    const wallOptions: Matter.IChamferableBodyDefinition = {
+    const wallOptions: MatterNS.IChamferableBodyDefinition = {
       isStatic: true,
       restitution: 0.45,
       friction: 0.35,
@@ -116,7 +121,7 @@ export const BrandPhysicsBalls = () => {
     Matter.Composite.add(engine.world, [floor, leftWall, rightWall]);
 
     // Create falling circular bodies for each brand
-    const bodies: Matter.Body[] = BRANDS.map((_, i) => {
+    const bodies: MatterNS.Body[] = BRANDS.map((_, i) => {
       const minX = radius + 20;
       const maxX = Math.max(width - radius - 20, minX + 10);
       const randomX = minX + Math.random() * (maxX - minX);
@@ -404,7 +409,7 @@ export const BrandPhysicsBalls = () => {
             ref={(el) => {
               ballElementsRef.current[idx] = el;
             }}
-            className={`absolute top-0 left-0 rounded-full bg-white border border-zinc-200/90 shadow-[0_6px_20px_rgba(0,0,0,0.06)] flex items-center justify-center p-1 sm:p-1.5 select-none cursor-grab active:cursor-grabbing hover:border-emerald-500 hover:shadow-[0_8px_25px_rgba(16,185,129,0.2)] transition-colors will-change-transform z-10 touch-none ${
+            className={`absolute top-0 left-0 rounded-full bg-white border border-zinc-200/90 shadow-[0_6px_20px_rgba(0,0,0,0.06)] flex items-center justify-center p-1 sm:p-1.5 select-none cursor-grab active:cursor-grabbing hover:border-emerald-500 hover:shadow-[0_8px_25px_rgba(23,138,102,0.2)] transition-colors will-change-transform z-10 touch-none ${
               hasTriggered ? "opacity-100" : "opacity-0"
             }`}
             style={{

@@ -75,7 +75,7 @@ const innerCard = (hovering: boolean) =>
     borderRadius: "9999px",
     border: "2px solid rgba(228, 228, 231, 0.9)",
     filter: hovering
-      ? "drop-shadow(0 2px 4px rgba(24,24,27,0.10)) drop-shadow(0 10px 22px rgba(0,174,172,0.16))"
+      ? "drop-shadow(0 2px 4px rgba(24,24,27,0.10)) drop-shadow(0 10px 22px rgba(23, 138, 102,0.16))"
       : "drop-shadow(0 1px 2px rgba(24,24,27,0.06)) drop-shadow(0 5px 12px rgba(24,24,27,0.08))",
   } as React.CSSProperties);
 
@@ -215,7 +215,7 @@ export const ClientPartners = () => {
               borderRadius: "24px",
               background: "rgba(255,255,255,0.9)",
               filter:
-                "drop-shadow(0 2px 4px rgba(24,24,27,0.08)) drop-shadow(0 14px 30px rgba(0,174,172,0.12))",
+                "drop-shadow(0 2px 4px rgba(24,24,27,0.08)) drop-shadow(0 14px 30px rgba(23, 138, 102,0.12))",
             }}
           >
             <img

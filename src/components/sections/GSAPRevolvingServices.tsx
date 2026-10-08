@@ -11,19 +11,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Single emerald/white theme - consistent with rest of website
 const THEME = {
-  glow: "rgba(0, 174, 172, 0.35)",
+  glow: "rgba(23, 138, 102, 0.35)",
   border: "border-emerald-500/60",
   badge: "bg-emerald-500 text-white border-emerald-400",
   badgeInactive: "bg-white/10 text-white border-white/20",
-  accent: "#00aeac",
-  accentSoft: "rgba(0, 174, 172, 0.12)",
+  accent: "#178a66",
+  accentSoft: "rgba(23, 138, 102, 0.12)",
 };
-// Per-card accent shades (different green/teal color on each card) - same family as theme
+// Per-card accent shades — a coordinated spread within the Emerald Royale ramp
 const CARD_ACCENTS = [
-  { tint: "rgba(0, 166, 159, 0.30)", accent: "#00a69f", glowSoft: "rgba(0, 166, 159, 0.45)" },
-  { tint: "rgba(22, 163, 74, 0.28)", accent: "#16a34a", glowSoft: "rgba(22, 163, 74, 0.42)" },
-  { tint: "rgba(0, 130, 122, 0.30)", accent: "#00827a", glowSoft: "rgba(0, 130, 122, 0.45)" },
-  { tint: "rgba(56, 189, 145, 0.32)", accent: "#38bd91", glowSoft: "rgba(56, 189, 145, 0.5)" },
+  { tint: "rgba(23, 138, 102, 0.30)", accent: "#178a66", glowSoft: "rgba(23, 138, 102, 0.45)" },
+  { tint: "rgba(64, 165, 131, 0.28)", accent: "#40a583", glowSoft: "rgba(64, 165, 131, 0.42)" },
+  { tint: "rgba(16, 110, 81, 0.30)", accent: "#106e51", glowSoft: "rgba(16, 110, 81, 0.45)" },
+  { tint: "rgba(116, 195, 165, 0.32)", accent: "#74c3a5", glowSoft: "rgba(116, 195, 165, 0.5)" },
 ];
 
 // Soft HD abstract background images (bright/light, not dark)
@@ -318,7 +318,7 @@ export const GSAPRevolvingServices = () => {
 
                     <div
                       className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}
-                      style={{ boxShadow: `inset 0 0 0 2px ${isVideography ? "rgba(0,174,172,0.8)" : `${acc.accent}66`}, inset 0 0 30px ${acc.glowSoft}` }}
+                      style={{ boxShadow: `inset 0 0 0 2px ${isVideography ? "rgba(23, 138, 102,0.8)" : `${acc.accent}66`}, inset 0 0 30px ${acc.glowSoft}` }}
                     />
                   </div>
 

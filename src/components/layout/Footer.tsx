@@ -107,7 +107,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative font-outfit bg-[#00AEAC] text-white pt-8 sm:pt-12 lg:pt-14 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-[#009b9a]">
+    <footer className="relative font-outfit bg-[#178A66] text-white pt-8 sm:pt-12 lg:pt-14 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 overflow-hidden border-t border-[#0f7a5a]">
       <div className="max-w-[1700px] mx-auto space-y-7 sm:space-y-10">
         {/* Main Grid: 2 columns on mobile for parallel links/services, 12 columns on desktop */}
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-8 sm:gap-8 lg:gap-10">
@@ -289,7 +289,7 @@ export const Footer = () => {
                       y: -6,
                       transition: { duration: 0.18 },
                     }}
-                    className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-white/20 hover:bg-white text-white hover:text-[#00AEAC] border border-white/50 hover:border-white shadow-md transition-colors duration-300 cursor-pointer"
+                    className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-white/20 hover:bg-white text-white hover:text-[#178A66] border border-white/50 hover:border-white shadow-md transition-colors duration-300 cursor-pointer"
                   >
                     <SocialIcon label={social.label} className="w-5 h-5" />
                   </motion.a>
@@ -327,7 +327,7 @@ export const Footer = () => {
             transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={scrollToTop}
             aria-label="Scroll to top"
-            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-[#00AEAC] hover:bg-zinc-950 text-white flex items-center justify-center transition-colors duration-300 border border-white/40 shadow-2xl backdrop-blur-md cursor-pointer hover:scale-110 active:scale-95 group"
+            className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-[#178A66] hover:bg-zinc-950 text-white flex items-center justify-center transition-colors duration-300 border border-white/40 shadow-2xl backdrop-blur-md cursor-pointer hover:scale-110 active:scale-95 group"
           >
             <ChevronUp className="w-6 h-6 group-hover:-translate-y-0.5 transition-transform duration-200" />
           </motion.button>

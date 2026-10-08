@@ -42,7 +42,7 @@ export function ContactClient() {
               START A CONVERSATION
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.5rem] font-outfit font-black text-zinc-900 tracking-tighter uppercase leading-[0.88] select-none">
-              <SplitTextReveal text="INITIATE PROJECT" highlightWords={["PROJECT"]} accentColor="#00aeac" />
+              <SplitTextReveal text="INITIATE PROJECT" highlightWords={["PROJECT"]} accentColor="#178a66" />
             </h1>
             <p className="text-sm sm:text-xl lg:text-2xl text-zinc-700 max-w-3xl font-light leading-relaxed">
               We collaborate with visionary brands globally. Select your campaign goals and budget below for a guaranteed response within 12 hours.

@@ -1,15 +1,23 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Volume2, VolumeX, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-gsap.registerPlugin(ScrollTrigger);
+// The GSAP-driven pin/expand choreography lives in a headless component loaded
+// after hydration (`ssr: false`) so the animation library never enters the
+// initial page payload. The hero itself renders and is fully interactive first.
+const HeroScrollDriver = dynamic(
+  () =>
+    import("@/components/sections/HeroScrollDriver").then(
+      (mod) => mod.HeroScrollDriver
+    ),
+  { ssr: false }
+);
 
 const TICKER_ITEMS = [
   "Digital Agency",
@@ -73,113 +81,6 @@ export const GSAPHeroTimeline = () => {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const outer = videoScrollRef.current;
-    const wrapper = videoWrapperRef.current;
-    if (!outer || !wrapper) return;
-
-    const mm = gsap.matchMedia();
-
-    // ─── Mobile (width < 768px): Responsive edge-to-edge scaling without letterboxing gaps ───
-    mm.add("(max-width: 767px)", () => {
-      gsap.set(wrapper, {
-        y: 0,
-        width: "90%",
-        height: "46vh",
-        clipPath: "polygon(2% 0%, 98% 0%, 100% 100%, 0% 100%)",
-        borderRadius: "16px",
-        willChange: "transform, clip-path",
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: outer,
-          start: "top top",
-          end: "+=75%",
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          scrub: 0.5,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      // Smoothly expand to fill 100% width and 100% container height on mobile
-      tl.to(wrapper, {
-        y: 0,
-        width: "100%",
-        height: "100%",
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        borderRadius: "0px",
-        ease: "power2.out",
-        duration: 0.7,
-      });
-
-      tl.to({}, { duration: 0.1 });
-    });
-
-    // ─── Desktop & Tablet (width >= 768px): Full-bleed widescreen viewport ───
-    mm.add("(min-width: 768px)", () => {
-      gsap.set(wrapper, {
-        y: "-16vh",
-        width: "60%",
-        height: "55vh",
-        clipPath: "polygon(19.17% 0.96%, 88.5% 38.33%, 99.04% 99.04%, 0% 75.08%)",
-        borderRadius: "0px",
-        willChange: "transform, clip-path",
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: outer,
-          start: "top top",
-          end: "+=120%",
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          scrub: 0.5,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      // Phase 1 (0% -> 14% scroll): Video smoothly settles to y: 0 in center before enlarging
-      tl.to(wrapper, {
-        y: 0,
-        width: "60%",
-        height: "55vh",
-        clipPath: "polygon(19.17% 0.96%, 88.5% 38.33%, 99.04% 99.04%, 0% 75.08%)",
-        ease: "power1.out",
-        duration: 0.14,
-      });
-
-      // Phase 2 (14% -> 44% scroll): Starts enlarging & straightening toward 86% width
-      tl.to(wrapper, {
-        y: 0,
-        width: "86%",
-        height: "82vh",
-        clipPath: "polygon(6% 0.3%, 96% 12%, 99.5% 99.5%, 0% 88%)",
-        ease: "power1.inOut",
-        duration: 0.3,
-      });
-
-      // Phase 3 (44% -> 88% scroll): Stretches to full screen and straightens
-      tl.to(wrapper, {
-        y: 0,
-        width: "100%",
-        height: "100vh",
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "power2.out",
-        duration: 0.44,
-      });
-
-      // Phase 4 (88% -> 100% scroll): User stays on the video full screen and straight
-      tl.to({}, { duration: 0.12 });
-    });
-
-    return () => {
-      mm.revert();
-    };
-  }, []);
 
   const toggleSound = () => {
     if (videoRef.current) {
@@ -323,11 +224,12 @@ export const GSAPHeroTimeline = () => {
           <video
             ref={videoRef}
             src="/vv-website-video.mp4"
+            poster="/vv-website-video-poster.webp"
             autoPlay
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
             className="w-full h-full object-cover object-center pointer-events-none"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 via-transparent to-transparent pointer-events-none" />
@@ -347,6 +249,9 @@ export const GSAPHeroTimeline = () => {
           </button>
         </div>
       </div>
+
+      {/* Headless GSAP scroll choreography (loads after hydration) */}
+      <HeroScrollDriver outerRef={videoScrollRef} wrapperRef={videoWrapperRef} />
     </section>
   );
 };

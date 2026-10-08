@@ -33,7 +33,7 @@ const PROCESS_STEPS = [
     deliverable: "Diagnostic Report & Growth Roadmap",
     cardBg: "bg-gradient-to-br from-emerald-50/90 via-teal-50/40 to-emerald-100/50",
     border: "border-emerald-200/90 hover:border-emerald-500",
-    shadow: "shadow-[0_4px_24px_rgba(16,185,129,0.07)] hover:shadow-[0_12px_32px_rgba(16,185,129,0.18)]",
+    shadow: "shadow-[0_4px_24px_rgba(23,138,102,0.07)] hover:shadow-[0_12px_32px_rgba(23,138,102,0.18)]",
     numColor: "text-emerald-600",
     badgeColor: "text-emerald-800",
     dividerColor: "border-emerald-200/70",

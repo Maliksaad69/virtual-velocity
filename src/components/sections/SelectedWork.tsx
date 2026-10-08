@@ -53,7 +53,7 @@ export const SelectedWork = () => {
             <Briefcase className="w-3.5 h-3.5 text-emerald-600" /> FEATURED CASE STUDIES
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-6xl font-outfit font-black text-zinc-950 uppercase tracking-tight leading-[0.95]">
-            <SplitTextReveal text="SELECTED WORK" highlightWords={["WORK"]} accentColor="#00aeac" />
+            <SplitTextReveal text="SELECTED WORK" highlightWords={["WORK"]} accentColor="#178a66" />
           </h2>
         </div>
         <p className="mt-4 md:mt-0 text-sm sm:text-base text-zinc-700 max-w-md font-light leading-relaxed">
@@ -162,7 +162,7 @@ const ProjectCard = ({ project, index: _index, isMobile }: { project: Project; i
             key={i}
             className="text-[10px] sm:text-xs font-outfit font-semibold tracking-wide text-zinc-600 flex items-center gap-1.5 before:content-['•'] before:text-emerald-500 before:font-black"
             variants={itemVariants}
-            whileHover={{ scale: 1.05, boxShadow: "0 4px 12px rgba(0,174,172,0.15)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 4px 12px rgba(23, 138, 102,0.15)" }}
           >
             {service}
           </motion.span>

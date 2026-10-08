@@ -2,13 +2,9 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { Send, CheckCircle2, Clock, ShieldCheck, ChevronDown, Globe, ArrowLeft, ArrowRight } from "lucide-react";
 import { CreativeCTA } from "@/components/ui/CreativeCTA";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { loadGsap } from "@/lib/gsapClient";
 
 const SERVICE_OPTIONS = [
   "Branding",
@@ -117,56 +113,71 @@ export const Contact = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        ".gsap-contact-headline",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
-        }
-      );
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
 
-      gsap.fromTo(
-        ".gsap-contact-badges",
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
-        }
-      );
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
 
-      gsap.fromTo(
-        ".gsap-contact-offices",
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          scrollTrigger: { trigger: ".gsap-contact-offices", start: "top 90%" },
-        }
-      );
+    (async () => {
+      const { gsap } = await loadGsap();
+      if (cancelled || !sectionRef.current) return;
 
-      gsap.fromTo(
-        ".gsap-form-field",
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: 0.08,
-          scrollTrigger: { trigger: sectionRef.current, start: "top 60%" },
-        }
-      );
-    },
-    { scope: sectionRef }
-  );
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          ".gsap-contact-headline",
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
+          }
+        );
+
+        gsap.fromTo(
+          ".gsap-contact-badges",
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
+          }
+        );
+
+        gsap.fromTo(
+          ".gsap-contact-offices",
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            scrollTrigger: { trigger: ".gsap-contact-offices", start: "top 90%" },
+          }
+        );
+
+        gsap.fromTo(
+          ".gsap-form-field",
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.08,
+            scrollTrigger: { trigger: sectionRef.current, start: "top 60%" },
+          }
+        );
+      }, sectionRef);
+    })();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, []);
 
   const toggleService = (service: string) => {
     if (selectedServices.includes(service)) {
@@ -237,7 +248,7 @@ export const Contact = () => {
         </div>
 
         {/* Right Form - Frosted Glassmorphism Studio Card */}
-        <div className="lg:col-span-7 bg-white/80 backdrop-blur-xl border border-white/90 shadow-[0_20px_60px_-15px_rgba(0,174,172,0.1),0_8px_30px_rgba(0,0,0,0.04)] p-4 xs:p-6 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl relative flex flex-col justify-between text-zinc-900 overflow-hidden group font-outfit">
+        <div className="lg:col-span-7 bg-white/80 backdrop-blur-xl border border-white/90 shadow-[0_20px_60px_-15px_rgba(23, 138, 102,0.1),0_8px_30px_rgba(0,0,0,0.04)] p-4 xs:p-6 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl relative flex flex-col justify-between text-zinc-900 overflow-hidden group font-inter">
           {/* Ambient Glass Glow Orbs */}
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-emerald-400/20 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-emerald-300/15 blur-3xl pointer-events-none" />
@@ -246,10 +257,10 @@ export const Contact = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="py-12 my-auto text-center space-y-4 relative z-10 font-outfit"
+              className="py-12 my-auto text-center space-y-4 relative z-10 font-inter"
             >
               <CheckCircle2 className="w-14 h-14 text-emerald-600 mx-auto animate-bounce" />
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 uppercase tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-bold text-zinc-900 uppercase tracking-tight">
                 INQUIRY TRANSMITTED
               </h3>
               <p className="text-zinc-700 max-w-md mx-auto text-sm font-normal leading-relaxed">
@@ -261,13 +272,13 @@ export const Contact = () => {
                   setStepError("");
                   setStep(1);
                 }}
-                className="px-6 py-3 rounded-full border border-zinc-300 text-xs font-extrabold text-zinc-900 bg-white/80 backdrop-blur-xs hover:bg-zinc-900 hover:text-white uppercase tracking-wider transition-all min-h-[44px] shadow-xs cursor-pointer font-outfit"
+                className="px-6 py-3 rounded-full border border-zinc-300 text-xs font-semibold text-zinc-900 bg-white/80 backdrop-blur-xs hover:bg-zinc-900 hover:text-white uppercase tracking-wide transition-all min-h-[44px] shadow-xs cursor-pointer"
               >
                 SUBMIT ANOTHER REQUEST
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col justify-between space-y-6 sm:space-y-7 relative z-10 font-outfit">
+            <form onSubmit={handleSubmit} className="flex flex-col justify-between space-y-6 sm:space-y-7 relative z-10 font-inter">
               {/* Step Progress Rail */}
               <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 pb-2 sm:pb-3 border-b border-zinc-200/70">
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -277,7 +288,7 @@ export const Contact = () => {
                         type="button"
                         onClick={() => (s === 1 ? setStep(1) : goToStep2())}
                         aria-label={`Go to step ${s}`}
-                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold border transition-all cursor-pointer ${
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-semibold border transition-all cursor-pointer ${
                           step >= s
                             ? "bg-emerald-600 border-emerald-600 text-white shadow-xs"
                             : "bg-white/60 border-zinc-400 text-zinc-700 hover:border-emerald-500 hover:text-emerald-600"
@@ -286,7 +297,7 @@ export const Contact = () => {
                         {String(s).padStart(2, "0")}
                       </button>
                       <span
-                        className={`text-xs font-bold uppercase tracking-wider whitespace-nowrap ${
+                        className={`text-[11px] font-semibold uppercase tracking-wide whitespace-nowrap ${
                           step === s ? "text-emerald-700" : "text-zinc-600"
                         }`}
                       >
@@ -296,7 +307,7 @@ export const Contact = () => {
                     </div>
                   ))}
                 </div>
-                <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full whitespace-nowrap">
+                <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wide text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full whitespace-nowrap">
                   STEP {step} OF 2
                 </span>
               </div>
@@ -312,8 +323,8 @@ export const Contact = () => {
                   {/* Service Pills Grid */}
                   <div className="gsap-form-field space-y-2.5">
                     <div className="flex items-center justify-between flex-wrap gap-1">
-                      <label className="text-xs font-extrabold text-zinc-900 block uppercase tracking-wider">
-                        1. SERVICES REQUIRED *
+                      <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">
+                        1. Services required *
                       </label>
                       <span className="text-[11px] text-zinc-600 font-medium">Select all that apply</span>
                     </div>
@@ -325,7 +336,7 @@ export const Contact = () => {
                             type="button"
                             key={service}
                             onClick={() => toggleService(service)}
-                            className={`p-2.5 px-3 rounded-xl border text-left text-xs font-bold tracking-tight transition-all duration-200 flex items-center justify-between gap-1.5 min-h-[44px] cursor-pointer font-outfit ${
+                            className={`p-2.5 px-3 rounded-xl border text-left text-[13px] font-medium tracking-normal transition-all duration-200 flex items-center justify-between gap-1.5 min-h-[44px] cursor-pointer ${
                               isSelected
                                 ? "bg-emerald-50/90 backdrop-blur-md border-2 border-emerald-600 text-emerald-950 shadow-xs"
                                 : "bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-800 hover:border-emerald-500/50 hover:bg-emerald-50/40 hover:text-zinc-900"
@@ -344,33 +355,33 @@ export const Contact = () => {
                   {/* Personal Details */}
                   <div className="gsap-form-field grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-extrabold text-zinc-800 block uppercase tracking-wider">FULL NAME *</label>
+                      <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">Full name *</label>
                       <input
                         type="text"
                         required
                         placeholder="e.g. Sarah Jenkins"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-medium text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs font-outfit"
+                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-normal text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-extrabold text-zinc-800 block uppercase tracking-wider">WORK EMAIL *</label>
+                      <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">Work email *</label>
                       <input
                         type="email"
                         required
                         placeholder="sarah@company.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-medium text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs font-outfit"
+                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-normal text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
                       />
                     </div>
                   </div>
 
                   {/* Step 1 Validation Notice */}
                   {stepError && (
-                    <p className="text-xs font-bold text-rose-600 bg-rose-50 border border-rose-200 rounded-xl px-3.5 py-2.5 font-outfit">
+                    <p className="text-[13px] font-medium text-rose-600 bg-rose-50 border border-rose-200 rounded-xl px-3.5 py-2.5">
                       {stepError}
                     </p>
                   )}
@@ -380,7 +391,7 @@ export const Contact = () => {
                     <button
                       type="button"
                       onClick={goToStep2}
-                      className="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-zinc-950 hover:bg-emerald-600 text-white font-extrabold text-xs px-6 sm:px-8 py-3.5 sm:py-3.5 rounded-xl uppercase tracking-widest transition-all shadow-md shadow-zinc-950/10 active:scale-[0.98] cursor-pointer min-h-[46px] group font-outfit"
+                      className="w-full xs:w-auto inline-flex items-center justify-center gap-2 bg-zinc-950 hover:bg-emerald-600 text-white font-semibold text-xs px-6 sm:px-8 py-3.5 sm:py-3.5 rounded-xl uppercase tracking-wide transition-all shadow-md shadow-zinc-950/10 active:scale-[0.98] cursor-pointer min-h-[46px] group"
                     >
                       <span>CONTINUE TO BRIEF</span>
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -398,52 +409,52 @@ export const Contact = () => {
                   {/* Contact Info */}
                   <div className="gsap-form-field grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-extrabold text-zinc-800 block uppercase tracking-wider">PHONE NUMBER *</label>
+                      <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">Phone number *</label>
                       <input
                         type="tel"
                         required
                         placeholder="+1 (555) 000-0000"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-medium text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs font-outfit"
+                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-normal text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-extrabold text-zinc-800 block uppercase tracking-wider">COMPANY NAME</label>
+                      <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">Company name</label>
                       <input
                         type="text"
                         placeholder="Nexus Retail"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-medium text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs font-outfit"
+                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-normal text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-extrabold text-zinc-800 block uppercase tracking-wider">JOB TITLE</label>
+                      <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">Job title</label>
                       <input
                         type="text"
                         placeholder="VP of Marketing"
                         value={formData.designation}
                         onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-medium text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs font-outfit"
+                        className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-normal text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl px-3.5 sm:px-4 py-3 sm:py-3.5 placeholder:text-zinc-400 transition-all shadow-2xs"
                       />
                     </div>
                   </div>
 
                   {/* Budget Radios */}
                   <div className="gsap-form-field space-y-2.5">
-                    <label className="text-xs font-extrabold text-zinc-900 block uppercase tracking-wider">
-                      2. MONTHLY AD BUDGET RANGE
+                    <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">
+                      2. Monthly ad budget range
                     </label>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
                       {BUDGET_OPTIONS.map((b) => (
                         <label
                           key={b}
-                          className={`py-3 px-2.5 rounded-xl border text-center text-xs font-bold uppercase tracking-wide cursor-pointer transition-all duration-200 min-h-[46px] flex items-center justify-center font-outfit ${
+                          className={`py-3 px-2.5 rounded-xl border text-center text-xs font-semibold uppercase tracking-normal cursor-pointer transition-all duration-200 min-h-[46px] flex items-center justify-center ${
                             formData.budget === b
-                              ? "bg-zinc-900 border-2 border-zinc-900 text-white font-extrabold shadow-md scale-[1.01]"
+                              ? "bg-zinc-900 border-2 border-zinc-900 text-white font-semibold shadow-md scale-[1.01]"
                               : "bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-800 hover:border-emerald-500/50 hover:bg-emerald-50/40 hover:text-zinc-900"
                           }`}
                         >
@@ -463,15 +474,15 @@ export const Contact = () => {
 
                   {/* Dropdown Menu */}
                   <div className="gsap-form-field space-y-1.5">
-                    <label className="text-xs font-extrabold text-zinc-800 block uppercase tracking-wider">HOW DID YOU HEAR ABOUT US?</label>
+                    <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">How did you hear about us?</label>
                     <div className="relative">
                       <select
                         value={formData.hearAbout}
                         onChange={(e) => setFormData({ ...formData, hearAbout: e.target.value })}
-                        className="w-full appearance-none bg-white/70 backdrop-blur-xs border border-zinc-200/90 focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 text-zinc-900 font-bold text-base sm:text-sm px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl cursor-pointer shadow-2xs transition-all outline-none min-h-[46px] font-outfit"
+                        className="w-full appearance-none bg-white/70 backdrop-blur-xs border border-zinc-200/90 focus:bg-white focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 text-zinc-900 font-normal text-base sm:text-sm px-3.5 sm:px-4 py-3 sm:py-3.5 rounded-xl cursor-pointer shadow-2xs transition-all outline-none min-h-[46px]"
                       >
                         {HEAR_ABOUT_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt} className="bg-white text-zinc-950 font-bold py-2 font-outfit">
+                          <option key={opt} value={opt} className="bg-white text-zinc-950 font-normal py-2">
                             {opt}
                           </option>
                         ))}
@@ -482,14 +493,14 @@ export const Contact = () => {
 
                   {/* Message Brief */}
                   <div className="gsap-form-field space-y-1.5">
-                    <label className="text-xs font-extrabold text-zinc-800 block uppercase tracking-wider">CAMPAIGN OBJECTIVES &amp; GOALS *</label>
+                    <label className="text-[13px] font-medium text-zinc-600 block tracking-normal">Campaign objectives &amp; goals *</label>
                     <textarea
                       rows={3}
                       required
                       placeholder="Outline your targets, monthly ad budget, website URL..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-medium text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl p-3.5 sm:p-4 placeholder:text-zinc-400 transition-all resize-none shadow-2xs font-outfit"
+                      className="w-full bg-white/70 backdrop-blur-xs border border-zinc-200/90 text-zinc-900 font-normal text-base sm:text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-500/20 rounded-xl p-3.5 sm:p-4 placeholder:text-zinc-400 transition-all resize-none shadow-2xs"
                     />
                   </div>
 
@@ -501,7 +512,7 @@ export const Contact = () => {
                         setStepError("");
                         setStep(1);
                       }}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-zinc-300 bg-white/80 text-zinc-800 font-extrabold text-xs uppercase tracking-widest hover:bg-zinc-100 hover:text-zinc-950 transition-all cursor-pointer min-h-[44px] group font-outfit"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-zinc-300 bg-white/80 text-zinc-800 font-semibold text-xs uppercase tracking-wide hover:bg-zinc-100 hover:text-zinc-950 transition-all cursor-pointer min-h-[44px] group"
                     >
                       <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
                       <span>BACK TO STEP 1</span>
@@ -509,7 +520,7 @@ export const Contact = () => {
 
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-6 sm:px-7 py-3.5 rounded-xl uppercase tracking-widest transition-all shadow-md shadow-emerald-600/25 active:scale-[0.98] cursor-pointer min-h-[46px] group backdrop-blur-xs font-outfit"
+                      className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-6 sm:px-7 py-3.5 rounded-xl uppercase tracking-wide transition-all shadow-md shadow-emerald-600/25 active:scale-[0.98] cursor-pointer min-h-[46px] group backdrop-blur-xs"
                     >
                       <span>SUBMIT BRIEF</span>
                       <Send className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />

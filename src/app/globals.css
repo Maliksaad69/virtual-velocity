@@ -2,13 +2,15 @@
 
 @layer base {
   :root {
-    --background: #fcfcfc;
-    --foreground: #18181b;
+    /* Porcelain white canvas — warmer & more premium than flat paper-white */
+    --background: #fafaf7;
+    --foreground: #0f1a15;
     --surface: #ffffff;
-    --surface-border: rgba(24, 24, 27, 0.08);
-    --accent: #00aeac;
-    --accent-secondary: #008280;
-    --muted: #71717a;
+    --surface-border: rgba(15, 26, 21, 0.08);
+    /* Deep "Royale" emerald — rich, saturated, majestic */
+    --accent: #178a66;
+    --accent-secondary: #0d5941;
+    --muted: #6b7a72;
   }
 }
 
@@ -23,23 +25,23 @@
   --font-display: var(--font-outfit), sans-serif;
   --font-sans: var(--font-inter), sans-serif;
 
-  /* Brand Teal/Green Accent Palette (#00aeac & #00a29f) */
-  --color-emerald-50: #e6f7f7;
-  --color-emerald-100: #c2eff0;
-  --color-emerald-200: #99e5e4;
-  --color-emerald-300: #66d7d5;
-  --color-emerald-400: #33c9c6;
-  --color-emerald-500: #00aeac;
-  --color-emerald-600: #00aeac;
-  --color-emerald-700: #00a29f;
-  --color-emerald-800: #008280;
-  --color-emerald-900: #006160;
-  --color-emerald-950: #003b3a;
+  /* Brand Emerald Royale Palette — deep forest emerald (#178a66 core) */
+  --color-emerald-50: #edf7f2;
+  --color-emerald-100: #d3ede2;
+  --color-emerald-200: #a7dbc6;
+  --color-emerald-300: #74c3a5;
+  --color-emerald-400: #40a583;
+  --color-emerald-500: #178a66;
+  --color-emerald-600: #106e51;
+  --color-emerald-700: #0d5941;
+  --color-emerald-800: #0b4735;
+  --color-emerald-900: #09382a;
+  --color-emerald-950: #041f17;
 }
 
 html {
   background-color: var(--background);
-  color: #18181b;
+  color: #0f1a15;
   font-family: var(--font-inter), sans-serif;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
@@ -71,7 +73,7 @@ body {
 }
 
 p {
-  color: #000000;
+  color: #0f1a15;
 }
 
 /* Maintain proper contrast in dark containers or explicit color overrides */
@@ -124,10 +126,10 @@ p[class*="text-emerald-"] {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f4f4f5;
+  background: #eef1ee;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: #c3cdc6;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -241,6 +243,10 @@ p[class*="text-emerald-"] {
 /* ── Global Font Utility ── */
 .font-calibri {
   font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 /* ── Prefers-reduced-motion Fallback ── */
