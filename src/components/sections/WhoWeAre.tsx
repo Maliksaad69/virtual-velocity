@@ -56,8 +56,8 @@ export const WhoWeAre = () => {
           transition={{ duration: 0.8, ease: EASE }}
           className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 border-b border-zinc-200 pb-3 sm:pb-4 text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-zinc-700"
         >
-          <span className="flex items-center gap-2 font-extrabold text-emerald-600">
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <span className="flex items-center gap-2 font-extrabold text-[#00A29F]">
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00A29F]" />
             Who We Are
           </span>
           <span className="text-zinc-700 font-semibold">( The Agency Manifesto )</span>
@@ -69,9 +69,9 @@ export const WhoWeAre = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
-          className="mt-4 sm:mt-6 text-2xl sm:text-4xl md:text-5xl font-black uppercase text-zinc-950 tracking-tight leading-tight"
+          className="mt-4 sm:mt-6 text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-zinc-950 tracking-tight leading-tight"
         >
-          We are <span className="text-emerald-600 font-extrabold">not</span> your usual marketing agency.
+          We are <span className="text-[#00A29F] font-extrabold">not</span> your usual marketing agency.
         </motion.h2>
 
         {/* Pure narrative layout — clean, compact & professional */}
@@ -81,12 +81,12 @@ export const WhoWeAre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
-            className="text-lg sm:text-2xl text-zinc-900 font-medium leading-snug"
+            className="text-xl sm:text-3xl text-zinc-900 font-lora italic font-normal leading-snug"
           >
             We are a creative house built for brands that want to be{" "}
-            <span className="font-bold text-emerald-600">seen</span>,{" "}
-            <span className="font-bold text-emerald-600">remembered</span>, and{" "}
-            <span className="font-bold text-emerald-600">talked about</span>.
+            <span className="font-semibold text-emerald-600 not-italic">seen</span>,{" "}
+            <span className="font-semibold text-emerald-600 not-italic">remembered</span>, and{" "}
+            <span className="font-semibold text-emerald-600 not-italic">talked about</span>.
           </motion.p>
 
           <motion.p

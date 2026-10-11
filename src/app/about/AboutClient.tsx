@@ -40,12 +40,12 @@ export function AboutClient() {
         <div className="pt-20 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto space-y-12 sm:space-y-16">
           {/* 1. Hero Header */}
           <div className="gsap-about-title space-y-4 border-b border-zinc-200 pb-8 sm:pb-10">
-            <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-2">
-              <Zap className="w-4 h-4 text-emerald-600" />
+            <span className="text-xs sm:text-sm font-outfit font-extrabold text-[#00A29F] uppercase tracking-wider flex items-center gap-2">
+              <Zap className="w-4 h-4 text-[#00A29F]" />
               AGENCY MANIFESTO &amp; CULTURE
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.5rem] font-outfit font-black text-zinc-900 tracking-tighter uppercase leading-[0.88] select-none">
-              <SplitTextReveal text="WE ARE VIRTUAL VELOCITY" highlightWords={["VELOCITY"]} accentColor="#178a66" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[3.25rem] font-outfit font-black text-zinc-900 tracking-tight uppercase leading-[0.98] select-none">
+              <SplitTextReveal text="WE ARE VIRTUAL VELOCITY" highlightWords={["VELOCITY"]} accentColor="#00A29F" />
             </h1>
             <p className="text-base sm:text-xl lg:text-2xl text-black max-w-3xl font-normal leading-relaxed">
               {AGENCY_INFO.tagline}. We combine strategic performance marketing, web app engineering, and creative direction to fuel business growth.
@@ -70,12 +70,12 @@ export function AboutClient() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="lg:col-span-8 space-y-4 order-2 lg:order-1"
               >
-                <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-700 font-extrabold uppercase tracking-wide">
-                  <ShieldCheck className="w-3.5 h-3.5" /> Founder &amp; Community Pioneer
+                <div className="inline-flex items-center gap-2 text-xs font-mono text-[#00A29F] font-extrabold uppercase tracking-wide">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#00A29F]" /> Founder &amp; Community Pioneer
                 </div>
 
-                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-black leading-tight">
-                  Driving Attention, Culture &amp; <span className="text-emerald-600">Growth.</span>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-black leading-tight">
+                  Driving Attention, Culture &amp; <span className="text-[#00A29F]">Growth.</span>
                 </h2>
 
                 <p className="text-base sm:text-lg text-black font-normal leading-relaxed">
@@ -153,8 +153,8 @@ export function AboutClient() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
               <div className="lg:col-span-7 space-y-4">
-                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-black leading-tight">
-                  A Creative House Built for Brands That Want to <span className="text-emerald-600">Move Forward.</span>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-black leading-tight">
+                  A Creative House Built for Brands That Want to <span className="text-[#00A29F]">Move Forward.</span>
                 </h2>
                 <p className="text-base sm:text-lg text-black font-normal leading-relaxed">
                   We are a creative house where strategy meets storytelling, bringing together digital marketing, content creation, commercial shoots, social media, technical SEO, influencer collaborations, graphic design, performance ads, and AI-driven growth solutions. Great brands aren&apos;t built by simply posting more — they are forged through ideas that connect and strategies that deliver real commercial impact.

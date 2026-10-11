@@ -216,12 +216,12 @@ export const Contact = () => {
         <div className="lg:col-span-5 flex flex-col justify-between space-y-6 sm:space-y-8">
           <div className="space-y-6">
             <div className="gsap-contact-headline space-y-3">
-              <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs sm:text-sm font-outfit font-extrabold text-[#00A29F] uppercase tracking-wider flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#00A29F] animate-pulse" />
                 INITIATE PARTNERSHIP
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black text-zinc-900 uppercase tracking-tighter leading-[0.95]">
-                LET&apos;S ENGINEER YOUR <span className="text-emerald-600">NEXT LEAP</span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-tight">
+                LET&apos;S ENGINEER YOUR <span className="text-[#00A29F]">NEXT LEAP</span>
               </h2>
               <p className="text-sm sm:text-base font-outfit text-zinc-600 font-normal leading-relaxed">
                 Scale your brand across high-growth international markets. Fill out your campaign brief and our senior strategists will formulate an ROI roadmap within 12 hours.
@@ -248,7 +248,7 @@ export const Contact = () => {
         </div>
 
         {/* Right Form - Frosted Glassmorphism Studio Card */}
-        <div className="lg:col-span-7 bg-white/80 backdrop-blur-xl border border-white/90 shadow-[0_20px_60px_-15px_rgba(23, 138, 102,0.1),0_8px_30px_rgba(0,0,0,0.04)] p-4 xs:p-6 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl relative flex flex-col justify-between text-zinc-900 overflow-hidden group font-inter">
+        <div className="lg:col-span-7 bg-white/80 backdrop-blur-xl border border-white/90 shadow-[0_20px_60px_-15px_rgba(0, 162, 159, 0.12),0_8px_30px_rgba(0,0,0,0.04)] p-4 xs:p-6 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl relative flex flex-col justify-between text-zinc-900 overflow-hidden group font-inter">
           {/* Ambient Glass Glow Orbs */}
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-emerald-400/20 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-emerald-300/15 blur-3xl pointer-events-none" />

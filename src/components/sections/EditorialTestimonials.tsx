@@ -166,11 +166,11 @@ export const EditorialTestimonials = () => {
         {/* Header Bar */}
         <div className="gsap-testimonial-header flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 border-b border-zinc-300 pb-6 sm:pb-8">
           <div className="space-y-2">
-            <span className="text-xs font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-1.5">
-              <Award className="w-3.5 h-3.5 text-emerald-600" /> CLIENT REVIEWS & ENDORSEMENTS
+            <span className="text-xs font-outfit font-extrabold text-[#00A29F] uppercase tracking-wider flex items-center gap-1.5">
+              <Award className="w-3.5 h-3.5 text-[#00A29F]" /> CLIENT REVIEWS &amp; ENDORSEMENTS
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-outfit font-black uppercase tracking-tight">
-              CLIENT <span className="text-emerald-600 font-black">REVIEWS</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-outfit font-black uppercase tracking-tight leading-tight">
+              CLIENT <span className="text-[#00A29F] font-black">REVIEWS</span>
             </h2>
           </div>
 
@@ -237,7 +237,7 @@ export const EditorialTestimonials = () => {
                       </div>
                     </div>
 
-                    <blockquote className="text-lg sm:text-2xl lg:text-3xl font-outfit font-normal leading-snug tracking-tight text-zinc-900 italic">
+                    <blockquote className="text-lg sm:text-2xl lg:text-3xl font-lora font-normal leading-snug tracking-tight text-zinc-900 italic">
                       &ldquo;{current.quote}&rdquo;
                     </blockquote>
 

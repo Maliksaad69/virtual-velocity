@@ -410,15 +410,15 @@ export const InstaReelsGallery = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 border-b border-zinc-200 pb-5 sm:pb-6">
           <div className="text-left space-y-2 max-w-2xl">
             <div className="flex items-center gap-2">
-              <span className="w-5 h-0.5 bg-emerald-600 rounded-full" />
-              <span className="text-[11px] sm:text-xs font-mono font-extrabold uppercase tracking-[0.25em] text-emerald-600 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="w-5 h-0.5 bg-[#00A29F] rounded-full" />
+              <span className="text-[11px] sm:text-xs font-mono font-extrabold uppercase tracking-[0.25em] text-[#00A29F] flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#00A29F]" />
                 FEATURED WORKS // REELS &amp; MEDIA
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase leading-[0.92] text-zinc-950">
-              Brand <span className="text-emerald-600 font-black">Gallery</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight uppercase leading-tight text-zinc-950">
+              Brand <span className="text-[#00A29F] font-black">Gallery</span>
             </h2>
 
             <p className="text-xs sm:text-sm md:text-base text-zinc-600 max-w-xl font-normal leading-relaxed pt-0.5">

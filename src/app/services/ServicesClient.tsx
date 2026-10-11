@@ -173,7 +173,7 @@ export function ServicesClient() {
             {/* Display title + division counter */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10">
               <div className="lg:col-span-8 xl:col-span-9">
-                <h1 className="gsap-service-hero-title font-outfit font-black uppercase text-white tracking-tighter leading-[0.88] text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[5rem] drop-shadow-md select-none">
+                <h1 className="gsap-service-hero-title font-outfit font-black uppercase text-white tracking-tight leading-[0.95] text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] drop-shadow-md select-none">
                   Services
                 </h1>
                 <div className="mt-3 sm:mt-5 flex items-center gap-3 sm:gap-4">
@@ -371,13 +371,13 @@ export function ServicesClient() {
         <section className="py-12 sm:py-20 lg:py-32 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto border-b border-zinc-200">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 lg:mb-16 pb-4 sm:pb-6 lg:pb-8 border-b border-zinc-200">
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-emerald-600 font-extrabold mb-2 sm:mb-3">
-                <Zap className="w-3.5 h-3.5 text-emerald-600" />
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-[#00A29F] font-extrabold mb-2 sm:mb-3">
+                <Zap className="w-3.5 h-3.5 text-[#00A29F]" />
                 <span>OPERATIONAL METHODOLOGY</span>
               </div>
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-outfit font-black text-zinc-950 uppercase tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-outfit font-black text-zinc-950 uppercase tracking-tight leading-tight">
                 HOW WE DELIVER <br />
-                <span className="text-emerald-600">PREDICTABLE GROWTH</span>
+                <span className="text-[#00A29F]">PREDICTABLE GROWTH</span>
               </h2>
             </div>
             <p className="mt-3 md:mt-0 text-xs sm:text-base text-black max-w-md font-normal leading-relaxed">

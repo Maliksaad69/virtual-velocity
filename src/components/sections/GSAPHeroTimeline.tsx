@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Volume2, VolumeX, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { MoleculeBackground } from "@/components/ui/MoleculeBackground";
 
 // The GSAP-driven pin/expand choreography lives in a headless component loaded
 // after hydration (`ssr: false`) so the animation library never enters the
@@ -136,20 +137,20 @@ export const GSAPHeroTimeline = () => {
         {/* Bottom gradient overlay for headline readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none z-10" />
 
-        {/* Hero Content (Badge, Headlines, Ticker, Indicators) - Directly ON the image */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-end px-3 xs:px-4 sm:px-8 lg:px-12 pb-5 xs:pb-6 sm:pb-10 lg:pb-12">
-          <div className="max-w-[1700px] mx-auto w-full">
-            <div className="flex items-center gap-1.5 xs:gap-2 text-[9px] xs:text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400 font-extrabold mb-1 sm:mb-3">
-              <Sparkles className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 text-emerald-400 animate-pulse" />
+        {/* Hero Content (Badge, Headlines, Ticker, Indicators) - Asymmetric Left-Aligned Editorial Architecture */}
+        <div className="absolute inset-0 z-20 flex flex-col justify-end px-4 sm:px-8 lg:px-14 pb-6 sm:pb-10 lg:pb-12">
+          <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl text-left">
+            <div className="flex items-center gap-1.5 xs:gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#00A29F] font-extrabold mb-1.5 sm:mb-2.5">
+              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#00A29F] animate-pulse" />
               <span>VIRTUAL VELOCITY • DIGITAL &amp; GROWTH HOUSE</span>
             </div>
 
-            <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter text-white uppercase leading-none sm:leading-[0.92] drop-shadow-md sm:drop-shadow-lg">
+            <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] xl:text-[2.6rem] font-black tracking-tight text-white uppercase leading-[1.1] sm:leading-[1.08] lg:leading-[1.06] drop-shadow-lg">
               VIRTUAL VELOCITY — DIGITAL MARKETING AGENCY PAKISTAN &amp; BPO SERVICES
             </h1>
 
-            <div className="mt-0.5 sm:mt-1.5 text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tighter uppercase leading-none">
-              <div className="relative h-[24px] xs:h-[28px] sm:h-[48px] md:h-[60px] lg:h-[72px] xl:h-[84px] overflow-hidden">
+            <div className="mt-1 sm:mt-1.5 text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] xl:text-[2.6rem] font-black tracking-tight uppercase leading-none">
+              <div className="relative h-[22px] xs:h-[26px] sm:h-[34px] md:h-[42px] lg:h-[48px] xl:h-[54px] overflow-hidden">
                 <div
                   className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
@@ -160,9 +161,9 @@ export const GSAPHeroTimeline = () => {
                   {TICKER_ITEMS.map((item, idx) => (
                     <div
                       key={idx}
-                      className="h-[24px] xs:h-[28px] sm:h-[48px] md:h-[60px] lg:h-[72px] xl:h-[84px] flex items-center whitespace-nowrap"
+                      className="h-[22px] xs:h-[26px] sm:h-[34px] md:h-[42px] lg:h-[48px] xl:h-[54px] flex items-center whitespace-nowrap"
                     >
-                      <span className="text-emerald-400 drop-shadow-md sm:drop-shadow-lg">
+                      <span className="text-[#00A29F] drop-shadow-[0_2px_12px_rgba(0,162,159,0.5)]">
                         {item}
                       </span>
                     </div>
@@ -171,7 +172,7 @@ export const GSAPHeroTimeline = () => {
               </div>
             </div>
 
-            <div className="mt-2 sm:mt-4 flex items-center gap-1.5 sm:gap-2">
+            <div className="mt-2.5 sm:mt-4 flex items-center gap-1.5 sm:gap-2">
               {SLIDER_IMAGES.map((_, idx) => {
                 const isActive = ((slideCount % SLIDER_IMAGES.length) + SLIDER_IMAGES.length) % SLIDER_IMAGES.length === idx;
                 return (
@@ -185,7 +186,7 @@ export const GSAPHeroTimeline = () => {
                       });
                     }}
                     className={`h-1 sm:h-1.5 rounded-full transition-all duration-400 ${
-                      isActive ? "w-6 sm:w-8 bg-emerald-400" : "w-1.5 bg-white/50 hover:bg-white/80"
+                      isActive ? "w-6 sm:w-8 bg-[#00A29F]" : "w-1.5 bg-white/50 hover:bg-white/80"
                     }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
@@ -194,7 +195,7 @@ export const GSAPHeroTimeline = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-3 sm:mt-5 flex flex-wrap items-center gap-2.5 sm:gap-3">
+            <div className="mt-3.5 sm:mt-5 flex flex-wrap items-center gap-2.5 sm:gap-3">
               <Button asChild variant="emerald" size="lg" className="font-bold tracking-wider">
                 <Link href="/contact">
                   <span>FREE GROWTH AUDIT</span>
@@ -212,11 +213,14 @@ export const GSAPHeroTimeline = () => {
       {/* ─── Video scroll section: native GSAP pinned container ─── */}
       <div
         ref={videoScrollRef}
-        className="relative w-full h-[70vh] sm:h-screen flex items-center justify-center overflow-hidden bg-white select-none font-outfit"
+        className="relative w-full h-[70vh] sm:h-screen flex items-center justify-center overflow-hidden bg-[#fafaf7] select-none font-outfit"
       >
+        {/* Dynamic Connected Molecule Network Background */}
+        <MoleculeBackground />
+
         <div
           ref={videoWrapperRef}
-          className="relative overflow-hidden bg-zinc-950 shadow-2xl transform-gpu w-[90%] md:w-[60%] h-[46vh] md:h-[55vh]"
+          className="relative z-10 overflow-hidden bg-zinc-950 shadow-2xl transform-gpu w-[90%] md:w-[60%] h-[46vh] md:h-[55vh]"
           style={{
             willChange: "transform, clip-path",
           }}
@@ -224,12 +228,11 @@ export const GSAPHeroTimeline = () => {
           <video
             ref={videoRef}
             src="/vv-website-video.mp4"
-            poster="/vv-website-video-poster.webp"
             autoPlay
             loop
             muted
             playsInline
-            preload="none"
+            preload="metadata"
             className="w-full h-full object-cover object-center pointer-events-none"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 via-transparent to-transparent pointer-events-none" />

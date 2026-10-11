@@ -59,13 +59,13 @@ export const InteractiveCTABanner = () => {
         {/* Top Header Tag */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-zinc-800 pb-6 sm:pb-8 relative z-10">
           <div className="space-y-3">
-            <span className="text-xs sm:text-sm font-outfit font-extrabold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
-              <Zap className="w-4 h-4 text-emerald-400 animate-pulse" />
+            <span className="text-xs sm:text-sm font-outfit font-extrabold text-[#00A29F] uppercase tracking-wider flex items-center gap-2">
+              <Zap className="w-4 h-4 text-[#00A29F] animate-pulse" />
               INTERACTIVE CAMPAIGN ROI ESTIMATOR
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-outfit font-black text-white uppercase tracking-tight leading-[0.95] sm:leading-[0.9]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-outfit font-black text-white uppercase tracking-tight leading-tight">
               READY TO SCALE YOUR <br />
-              <span className="text-emerald-400 font-black drop-shadow-[0_0_20px_rgba(23, 138, 102,0.4)]">BRAND REVENUE?</span>
+              <span className="text-[#00A29F] font-black drop-shadow-[0_0_20px_rgba(0,162,159,0.4)]">BRAND REVENUE?</span>
             </h2>
           </div>
 
@@ -112,7 +112,7 @@ export const InteractiveCTABanner = () => {
           <div className="lg:col-span-6 grid grid-cols-3 gap-3 sm:gap-4 border-t lg:border-t-0 lg:border-l border-zinc-800 pt-5 lg:pt-0 lg:pl-8">
             <div className="space-y-1">
               <span className="text-[10px] sm:text-xs font-outfit font-bold text-zinc-400 uppercase tracking-wider block">EST. REVENUE</span>
-              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-emerald-400 tracking-tight block font-mono drop-shadow-[0_0_15px_rgba(23, 138, 102,0.4)]">
+              <span className="text-xl sm:text-3xl lg:text-4xl font-outfit font-black text-emerald-400 tracking-tight block font-mono drop-shadow-[0_0_15px_rgba(0,162,159,0.4)]">
                 {activeTier.estRevenue}
               </span>
             </div>

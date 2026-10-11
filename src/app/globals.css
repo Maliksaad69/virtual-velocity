@@ -7,9 +7,9 @@
     --foreground: #0f1a15;
     --surface: #ffffff;
     --surface-border: rgba(15, 26, 21, 0.08);
-    /* Deep "Royale" emerald — rich, saturated, majestic */
-    --accent: #178a66;
-    --accent-secondary: #0d5941;
+    /* Brand Emerald/Teal — #00A29F */
+    --accent: #00A29F;
+    --accent-secondary: #007d7b;
     --muted: #6b7a72;
   }
 }
@@ -20,29 +20,36 @@
   --color-surface: var(--surface);
   --color-surface-border: var(--surface-border);
   --color-[#00f0ff]: var(--accent);
+  --color-accent: var(--accent);
   --color-accent-secondary: var(--accent-secondary);
   --color-muted: var(--muted);
-  --font-display: var(--font-outfit), sans-serif;
-  --font-sans: var(--font-inter), sans-serif;
 
-  /* Brand Emerald Royale Palette — deep forest emerald (#178a66 core) */
-  --color-emerald-50: #edf7f2;
-  --color-emerald-100: #d3ede2;
-  --color-emerald-200: #a7dbc6;
-  --color-emerald-300: #74c3a5;
-  --color-emerald-400: #40a583;
-  --color-emerald-500: #178a66;
-  --color-emerald-600: #106e51;
-  --color-emerald-700: #0d5941;
-  --color-emerald-800: #0b4735;
-  --color-emerald-900: #09382a;
-  --color-emerald-950: #041f17;
+  --font-roboto: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-lora: var(--font-lora), Georgia, serif;
+  --font-display: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-lora), Georgia, serif;
+  --font-outfit: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-inter: var(--font-roboto), system-ui, -apple-system, sans-serif;
+
+  /* Brand Emerald/Teal Palette centered on #00A29F */
+  --color-emerald-50: #e6f9f8;
+  --color-emerald-100: #c1f0ef;
+  --color-emerald-200: #8ee4e2;
+  --color-emerald-300: #52d3d0;
+  --color-emerald-400: #22bcba;
+  --color-emerald-500: #00A29F;
+  --color-emerald-600: #008280;
+  --color-emerald-700: #006766;
+  --color-emerald-800: #035251;
+  --color-emerald-900: #074443;
+  --color-emerald-950: #012727;
 }
 
 html {
   background-color: var(--background);
   color: #0f1a15;
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -240,13 +247,30 @@ p[class*="text-emerald-"] {
   animation-play-state: paused;
 }
 
-/* ── Global Font Utility ── */
-.font-calibri {
-  font-family: var(--font-outfit), system-ui, sans-serif;
+/* ── Typography Utilities: Roboto & Lora ── */
+.font-roboto {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
+}
+
+.font-lora {
+  font-family: var(--font-lora), Georgia, serif;
+}
+
+.font-serif {
+  font-family: var(--font-lora), Georgia, serif;
+}
+
+/* Backward-compatible mappings so existing components render in clean Roboto */
+.font-outfit {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
 }
 
 .font-inter {
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
+}
+
+.font-calibri {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
 }
 
 /* ── Prefers-reduced-motion Fallback ── */

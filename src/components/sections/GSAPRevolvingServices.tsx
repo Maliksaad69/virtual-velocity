@@ -11,19 +11,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Single emerald/white theme - consistent with rest of website
 const THEME = {
-  glow: "rgba(23, 138, 102, 0.35)",
+  glow: "rgba(0, 162, 159, 0.35)",
   border: "border-emerald-500/60",
   badge: "bg-emerald-500 text-white border-emerald-400",
   badgeInactive: "bg-white/10 text-white border-white/20",
-  accent: "#178a66",
-  accentSoft: "rgba(23, 138, 102, 0.12)",
+  accent: "#00A29F",
+  accentSoft: "rgba(0, 162, 159, 0.12)",
 };
-// Per-card accent shades — a coordinated spread within the Emerald Royale ramp
+// Per-card accent shades — a coordinated spread within the Emerald ramp
 const CARD_ACCENTS = [
-  { tint: "rgba(23, 138, 102, 0.30)", accent: "#178a66", glowSoft: "rgba(23, 138, 102, 0.45)" },
-  { tint: "rgba(64, 165, 131, 0.28)", accent: "#40a583", glowSoft: "rgba(64, 165, 131, 0.42)" },
-  { tint: "rgba(16, 110, 81, 0.30)", accent: "#106e51", glowSoft: "rgba(16, 110, 81, 0.45)" },
-  { tint: "rgba(116, 195, 165, 0.32)", accent: "#74c3a5", glowSoft: "rgba(116, 195, 165, 0.5)" },
+  { tint: "rgba(0, 162, 159, 0.30)", accent: "#00A29F", glowSoft: "rgba(0, 162, 159, 0.45)" },
+  { tint: "rgba(34, 188, 186, 0.28)", accent: "#22bcba", glowSoft: "rgba(34, 188, 186, 0.42)" },
+  { tint: "rgba(0, 130, 128, 0.30)", accent: "#008280", glowSoft: "rgba(0, 130, 128, 0.45)" },
+  { tint: "rgba(82, 211, 208, 0.32)", accent: "#52d3d0", glowSoft: "rgba(82, 211, 208, 0.5)" },
 ];
 
 // Soft HD abstract background images (bright/light, not dark)
@@ -198,12 +198,12 @@ export const GSAPRevolvingServices = () => {
       {/* Header Controls */}
       <header className="gsap-revolve-header max-w-7xl w-full mx-auto flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-4 sm:pb-6 z-20 gap-3 sm:gap-4 relative">
         <div>
-          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold text-emerald-600 uppercase tracking-widest mb-1 sm:mb-1.5">
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold text-[#00A29F] uppercase tracking-widest mb-1 sm:mb-1.5">
             <RotateCw className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isAutoRotating ? "animate-spin" : ""}`} />
             <span>Service Spectrum</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-zinc-900 leading-none">
-            Agency <span className="text-emerald-600">Services</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-zinc-900 leading-tight">
+            Agency <span className="text-[#00A29F]">Services</span>
           </h2>
         </div>
 
@@ -318,7 +318,7 @@ export const GSAPRevolvingServices = () => {
 
                     <div
                       className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}
-                      style={{ boxShadow: `inset 0 0 0 2px ${isVideography ? "rgba(23, 138, 102,0.8)" : `${acc.accent}66`}, inset 0 0 30px ${acc.glowSoft}` }}
+                      style={{ boxShadow: `inset 0 0 0 2px ${isVideography ? "rgba(0, 162, 159, 0.8)" : `${acc.accent}66`}, inset 0 0 30px ${acc.glowSoft}` }}
                     />
                   </div>
 

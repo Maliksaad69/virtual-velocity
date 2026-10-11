@@ -63,8 +63,8 @@ const RIGHT_START = -Math.PI * 0.5; // starts at -90° → sweeps right side
 
 const BASE_INNER_RADIUS = 260;
 const BASE_OUTER_RADIUS = 400;
-const BASE_INNER_CARD = 110;
-const BASE_OUTER_CARD = 110;
+const BASE_INNER_CARD = 88;
+const BASE_OUTER_CARD = 88;
 const BASE_CENTER_LOGO = 280;
 const BASE_CENTER_IMG = 220;
 
@@ -75,7 +75,7 @@ const innerCard = (hovering: boolean) =>
     borderRadius: "9999px",
     border: "2px solid rgba(228, 228, 231, 0.9)",
     filter: hovering
-      ? "drop-shadow(0 2px 4px rgba(24,24,27,0.10)) drop-shadow(0 10px 22px rgba(23, 138, 102,0.16))"
+      ? "drop-shadow(0 2px 4px rgba(24,24,27,0.10)) drop-shadow(0 10px 22px rgba(0, 162, 159, 0.22))"
       : "drop-shadow(0 1px 2px rgba(24,24,27,0.06)) drop-shadow(0 5px 12px rgba(24,24,27,0.08))",
   } as React.CSSProperties);
 
@@ -180,12 +180,12 @@ export const ClientPartners = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-4xl text-center"
         >
-          <div className="flex items-center justify-center gap-2 text-emerald-600 font-extrabold text-sm uppercase tracking-[0.25em]">
-            <Sparkles className="h-4 w-4" />
+          <div className="flex items-center justify-center gap-2 text-[#00A29F] font-extrabold text-sm uppercase tracking-[0.25em]">
+            <Sparkles className="h-4 w-4 text-[#00A29F]" />
             <span>Our Clients &amp; Partners</span>
           </div>
-          <h2 className="mt-3 text-4xl font-black uppercase leading-[0.95] tracking-tighter sm:text-6xl md:text-7xl">
-            Trusted by <span className="text-emerald-600">Ambitious Brands.</span>
+          <h2 className="mt-3 text-2xl sm:text-4xl lg:text-5xl font-black uppercase leading-tight tracking-tight">
+            Trusted by <span className="text-[#00A29F]">Ambitious Brands.</span>
           </h2>
           <p className="mt-5 text-base font-light leading-relaxed text-zinc-700 sm:text-lg md:text-xl">
             From emerging businesses to established companies, Virtual Velocity
@@ -215,7 +215,7 @@ export const ClientPartners = () => {
               borderRadius: "24px",
               background: "rgba(255,255,255,0.9)",
               filter:
-                "drop-shadow(0 2px 4px rgba(24,24,27,0.08)) drop-shadow(0 14px 30px rgba(23, 138, 102,0.12))",
+                "drop-shadow(0 2px 4px rgba(24,24,27,0.08)) drop-shadow(0 14px 30px rgba(0, 162, 159, 0.16))",
             }}
           >
             <img
