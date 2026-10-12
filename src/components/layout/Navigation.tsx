@@ -156,7 +156,7 @@ export const Navigation = () => {
                   <span
                     className="absolute inset-[-250%]"
                     style={{
-                      background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 50%, rgba(0, 174, 172, 0.2) 65%, #00aeac 78%, #10b981 88%, #34d399 96%, transparent 100%)",
+                      background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 50%, rgba(0, 162, 159, 0.2) 65%, #00A29F 78%, #22bcba 88%, #52d3d0 96%, transparent 100%)",
                       animation: "spin 3s linear infinite",
                       willChange: "transform",
                     }}

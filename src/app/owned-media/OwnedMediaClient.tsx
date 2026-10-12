@@ -32,7 +32,7 @@ const TONES = {
     num: "text-emerald-700 group-hover:text-emerald-600",
     head: "text-zinc-950 font-black",
     fill: "bg-gradient-to-r from-emerald-500 to-teal-400",
-    glow: "group-hover:shadow-[0_20px_45px_rgba(16,185,129,0.25)]",
+    glow: "group-hover:shadow-[0_20px_45px_rgba(23,138,102,0.25)]",
     ring: "ring-emerald-500/40 group-hover:ring-emerald-500",
   },
   amber: {
@@ -358,7 +358,7 @@ export function OwnedMediaClient() {
           <div className="mt-8 relative">
             <div className="relative rounded-3xl border border-zinc-200 bg-[#f8fafb] overflow-hidden shadow-xs">
               {/* Subtle Animated Background Matrix Dots */}
-              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(rgba(16,185,129,0.25)_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none" />
+              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(rgba(23,138,102,0.25)_1.5px,transparent_1.5px)] [background-size:24px_24px] pointer-events-none" />
 
               <div className="relative z-10 overflow-x-auto scrollbar-hide pt-8 sm:pt-12">
                 <div className="min-w-[900px] lg:min-w-0 grid grid-cols-7 items-end gap-3 sm:gap-5 lg:gap-6 xl:gap-8 px-4 sm:px-8 pb-0">

@@ -123,13 +123,13 @@ export const ServicesClientLogosCarousel = () => {
               {visibleBrands.map((brand) => (
                 <div
                   key={brand.name}
-                  className="flex items-center justify-center p-0.5 sm:p-1 h-[72px] xs:h-[84px] sm:h-[125px] group cursor-pointer"
+                  className="flex items-center justify-center p-0.5 sm:p-1 h-[68px] xs:h-[78px] sm:h-[110px] group cursor-pointer"
                 >
-                  <div className="w-[56px] h-[56px] xs:w-[68px] xs:h-[68px] sm:w-[100px] sm:h-[100px] lg:w-[110px] lg:h-[110px] rounded-full bg-white border border-zinc-200/90 sm:border-2 group-hover:border-emerald-500/80 p-1.5 xs:p-2 sm:p-3 flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-xs group-hover:shadow-lg">
+                  <div className="w-[52px] h-[52px] xs:w-[62px] xs:h-[62px] sm:w-[80px] sm:h-[80px] lg:w-[88px] lg:h-[88px] rounded-full bg-white border border-zinc-200/90 sm:border-2 group-hover:border-[#00A29F] p-1 sm:p-1.5 flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-xs group-hover:shadow-lg">
                     <img
                       src={brand.src}
                       alt={brand.name}
-                      className="max-h-[80%] max-w-[80%] w-auto h-auto object-contain transition-all duration-300"
+                      className="max-h-[92%] max-w-[92%] w-auto h-auto object-contain transition-all duration-300 drop-shadow-xs"
                       loading="lazy"
                       decoding="async"
                     />

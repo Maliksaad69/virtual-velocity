@@ -2,9 +2,6 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import {
   Quote,
   Star,
@@ -21,13 +18,12 @@ import {
   Loader2,
 } from "lucide-react";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { loadGsap } from "@/lib/gsapClient";
 import {
   submitReviewAction,
   fetchReviewsAction,
   ReviewRecord,
 } from "@/app/actions/reviews";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const AUTO_ROTATE_INTERVAL = 4000; // 4 seconds per review
 
@@ -92,24 +88,39 @@ export const EditorialTestimonials = () => {
     return () => clearInterval(timer);
   }, [isPlaying, isPausedHover, handleNext, reviewsList.length]);
 
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        ".gsap-testimonial-header",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        }
-      );
-    },
-    { scope: sectionRef }
-  );
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
+
+    (async () => {
+      const { gsap } = await loadGsap();
+      if (cancelled || !sectionRef.current) return;
+
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          ".gsap-testimonial-header",
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+            },
+          }
+        );
+      }, sectionRef);
+    })();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -155,11 +166,11 @@ export const EditorialTestimonials = () => {
         {/* Header Bar */}
         <div className="gsap-testimonial-header flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 border-b border-zinc-300 pb-6 sm:pb-8">
           <div className="space-y-2">
-            <span className="text-xs font-outfit font-extrabold text-emerald-600 uppercase tracking-wider flex items-center gap-1.5">
-              <Award className="w-3.5 h-3.5 text-emerald-600" /> CLIENT REVIEWS & ENDORSEMENTS
+            <span className="text-xs font-outfit font-extrabold text-[#00A29F] uppercase tracking-wider flex items-center gap-1.5">
+              <Award className="w-3.5 h-3.5 text-[#00A29F]" /> CLIENT REVIEWS &amp; ENDORSEMENTS
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-outfit font-black uppercase tracking-tight">
-              CLIENT <span className="text-emerald-600 font-black">REVIEWS</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-outfit font-black uppercase tracking-tight leading-tight">
+              CLIENT <span className="text-[#00A29F] font-black">REVIEWS</span>
             </h2>
           </div>
 
@@ -226,7 +237,7 @@ export const EditorialTestimonials = () => {
                       </div>
                     </div>
 
-                    <blockquote className="text-lg sm:text-2xl lg:text-3xl font-outfit font-normal leading-snug tracking-tight text-zinc-900 italic">
+                    <blockquote className="text-lg sm:text-2xl lg:text-3xl font-lora font-normal leading-snug tracking-tight text-zinc-900 italic">
                       &ldquo;{current.quote}&rdquo;
                     </blockquote>
 

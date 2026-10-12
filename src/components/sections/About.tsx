@@ -67,15 +67,15 @@ export const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "0px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="select-none max-w-6xl"
+          className="select-none max-w-4xl"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-outfit font-black text-zinc-900 tracking-tighter leading-[0.92] sm:leading-[0.9] uppercase">
-            A <span className="text-emerald-600">digital marketing</span>
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-outfit font-black text-zinc-900 tracking-tight leading-[1.05] sm:leading-[1.0] uppercase">
+            A <span className="text-[#00A29F]">digital marketing</span>{" "}
             <br className="hidden sm:block" />
             agency built for{" "}
             <span className="relative inline-block">
               <span className="relative z-10">scale.</span>
-              <span className="absolute left-0 -bottom-1 sm:-bottom-2 w-full h-3 sm:h-4 bg-emerald-200/80 -z-0 -skew-x-3" />
+              <span className="absolute left-0 -bottom-1 sm:-bottom-2 w-full h-3 sm:h-4 bg-[#00A29F]/20 -z-0 -skew-x-3" />
             </span>
           </h2>
         </motion.div>
@@ -90,7 +90,7 @@ export const About = () => {
         >
           {/* Narrative text */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6">
-            <p className="text-base sm:text-lg text-zinc-600 font-normal leading-[1.7]">
+            <p className="text-lg sm:text-2xl text-zinc-800 font-lora italic font-normal leading-relaxed">
               Virtual Velocity is a creative house where strategy, creativity, technology, and digital growth come together to build brands that stand out and grow.
             </p>
 

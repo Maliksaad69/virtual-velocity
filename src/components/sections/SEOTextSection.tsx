@@ -46,15 +46,15 @@ export const SEOTextSection = () => {
         <div className="w-full max-w-4xl mx-auto space-y-8">
           {/* Centered Header */}
           <div className="text-center space-y-3 flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-              <span className="text-[11px] sm:text-xs font-mono font-extrabold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-600">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A29F]/10 border border-[#00A29F]/25">
+              <Sparkles className="w-3.5 h-3.5 text-[#00A29F]" />
+              <span className="text-[11px] sm:text-xs font-mono font-extrabold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#00A29F]">
                 FREQUENTLY ASKED QUESTIONS
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase text-zinc-950 tracking-tight leading-[0.95]">
-              Everything You Need to <span className="text-emerald-600">Know</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-zinc-950 tracking-tight leading-tight">
+              Everything You Need to <span className="text-[#00A29F]">Know</span>
             </h2>
             <p className="text-xs sm:text-base text-zinc-600 max-w-xl mx-auto font-normal leading-relaxed">
               Clear answers regarding our Digital Marketing, BPO &amp; Outsourcing, Hospitality, Restaurant Lead Generation, and Performance Advertising capabilities.

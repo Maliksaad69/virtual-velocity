@@ -3,23 +3,52 @@ import dynamic from "next/dynamic";
 import { Navigation } from "@/components/layout/Navigation";
 import { GSAPHeroTimeline } from "@/components/sections/GSAPHeroTimeline";
 import { About } from "@/components/sections/About";
-import { WhoWeAre } from "@/components/sections/WhoWeAre";
-import { GSAPScrollGallery } from "@/components/sections/GSAPScrollGallery";
-import { LightStatsSection } from "@/components/sections/LightStatsSection";
-import { EditorialTestimonials } from "@/components/sections/EditorialTestimonials";
-import { SEOTextSection } from "@/components/sections/SEOTextSection";
-import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/layout/Footer";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 
-// Dynamic imports for heavy interactive components to boost Mobile PageSpeed Insights & reducing main thread TBT
+// ─────────────────────────────────────────────────────────────────────────────
+// Below-the-fold sections are code-split with `next/dynamic`. Their JS (and the
+// GSAP / framer-motion / matter-js code they pull in) is fetched on demand
+// instead of being part of the initial route bundle. SSR is preserved, so all
+// copy stays in the server-rendered HTML for SEO and there is no layout shift.
+// ─────────────────────────────────────────────────────────────────────────────
+const WhoWeAre = dynamic(() =>
+  import("@/components/sections/WhoWeAre").then((mod) => mod.WhoWeAre)
+);
+
+const GSAPScrollGallery = dynamic(
+  () => import("@/components/sections/GSAPScrollGallery").then((mod) => mod.GSAPScrollGallery)
+);
+
 const InstaReelsGallery = dynamic(
   () => import("@/components/sections/InstaReelsGallery").then((mod) => mod.InstaReelsGallery)
 );
 
 const BrandPhysicsBalls = dynamic(
   () => import("@/components/sections/BrandPhysicsBalls").then((mod) => mod.BrandPhysicsBalls)
+);
+
+const LightStatsSection = dynamic(
+  () => import("@/components/sections/LightStatsSection").then((mod) => mod.LightStatsSection)
+);
+
+const SEOTextSection = dynamic(
+  () => import("@/components/sections/SEOTextSection").then((mod) => mod.SEOTextSection)
+);
+
+const EditorialTestimonials = dynamic(
+  () => import("@/components/sections/EditorialTestimonials").then((mod) => mod.EditorialTestimonials)
+);
+
+const Contact = dynamic(
+  () => import("@/components/sections/Contact").then((mod) => mod.Contact)
+);
+
+// Decorative, non-critical: the custom cursor is a pure client enhancement and
+// must never block hydration or first paint. It renders nothing on the server
+// (it early-returns until the pointer is detected), so SSR output is untouched.
+const CustomCursor = dynamic(() =>
+  import("@/components/ui/CustomCursor").then((mod) => mod.CustomCursor)
 );
 
 export const metadata: Metadata = {

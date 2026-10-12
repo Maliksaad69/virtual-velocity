@@ -2,13 +2,15 @@
 
 @layer base {
   :root {
-    --background: #fcfcfc;
-    --foreground: #18181b;
+    /* Porcelain white canvas — warmer & more premium than flat paper-white */
+    --background: #fafaf7;
+    --foreground: #0f1a15;
     --surface: #ffffff;
-    --surface-border: rgba(24, 24, 27, 0.08);
-    --accent: #00aeac;
-    --accent-secondary: #008280;
-    --muted: #71717a;
+    --surface-border: rgba(15, 26, 21, 0.08);
+    /* Brand Emerald/Teal — #00A29F */
+    --accent: #00A29F;
+    --accent-secondary: #007d7b;
+    --muted: #6b7a72;
   }
 }
 
@@ -18,29 +20,36 @@
   --color-surface: var(--surface);
   --color-surface-border: var(--surface-border);
   --color-[#00f0ff]: var(--accent);
+  --color-accent: var(--accent);
   --color-accent-secondary: var(--accent-secondary);
   --color-muted: var(--muted);
-  --font-display: var(--font-outfit), sans-serif;
-  --font-sans: var(--font-inter), sans-serif;
 
-  /* Brand Teal/Green Accent Palette (#00aeac & #00a29f) */
-  --color-emerald-50: #e6f7f7;
-  --color-emerald-100: #c2eff0;
-  --color-emerald-200: #99e5e4;
-  --color-emerald-300: #66d7d5;
-  --color-emerald-400: #33c9c6;
-  --color-emerald-500: #00aeac;
-  --color-emerald-600: #00aeac;
-  --color-emerald-700: #00a29f;
-  --color-emerald-800: #008280;
-  --color-emerald-900: #006160;
-  --color-emerald-950: #003b3a;
+  --font-roboto: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-lora: var(--font-lora), Georgia, serif;
+  --font-display: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-lora), Georgia, serif;
+  --font-outfit: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  --font-inter: var(--font-roboto), system-ui, -apple-system, sans-serif;
+
+  /* Brand Emerald/Teal Palette centered on #00A29F */
+  --color-emerald-50: #e6f9f8;
+  --color-emerald-100: #c1f0ef;
+  --color-emerald-200: #8ee4e2;
+  --color-emerald-300: #52d3d0;
+  --color-emerald-400: #22bcba;
+  --color-emerald-500: #00A29F;
+  --color-emerald-600: #008280;
+  --color-emerald-700: #006766;
+  --color-emerald-800: #035251;
+  --color-emerald-900: #074443;
+  --color-emerald-950: #012727;
 }
 
 html {
   background-color: var(--background);
-  color: #18181b;
-  font-family: var(--font-inter), sans-serif;
+  color: #0f1a15;
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -71,7 +80,7 @@ body {
 }
 
 p {
-  color: #000000;
+  color: #0f1a15;
 }
 
 /* Maintain proper contrast in dark containers or explicit color overrides */
@@ -124,10 +133,10 @@ p[class*="text-emerald-"] {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f4f4f5;
+  background: #eef1ee;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: #c3cdc6;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -238,9 +247,30 @@ p[class*="text-emerald-"] {
   animation-play-state: paused;
 }
 
-/* ── Global Font Utility ── */
+/* ── Typography Utilities: Roboto & Lora ── */
+.font-roboto {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
+}
+
+.font-lora {
+  font-family: var(--font-lora), Georgia, serif;
+}
+
+.font-serif {
+  font-family: var(--font-lora), Georgia, serif;
+}
+
+/* Backward-compatible mappings so existing components render in clean Roboto */
+.font-outfit {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
+}
+
 .font-calibri {
-  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
 }
 
 /* ── Prefers-reduced-motion Fallback ── */

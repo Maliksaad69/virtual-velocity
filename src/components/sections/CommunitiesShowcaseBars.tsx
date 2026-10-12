@@ -283,7 +283,7 @@ export function CommunitiesShowcaseBars() {
                   key={comm.id}
                   style={{ transformOrigin: "bottom center" }}
                   className={`gsap-comm-bar relative flex flex-col justify-between rounded-[2rem] lg:rounded-[2.25rem] xl:rounded-[2.5rem] transition-all duration-300 p-2 sm:p-3 xl:p-4 pb-4 ${comm.heightClass} ${comm.cardBg} ${comm.cardBorder} ${
-                    isFeatured ? "z-20 scale-[1.02] shadow-[0_20px_50px_rgba(245,158,11,0.25)]" : "z-10 hover:scale-[1.05] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(16,185,129,0.2)]"
+                    isFeatured ? "z-20 scale-[1.02] shadow-[0_20px_50px_rgba(245,158,11,0.25)]" : "z-10 hover:scale-[1.05] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(23,138,102,0.2)]"
                   } group overflow-visible`}
                 >
                   {/* Floating Orb at Top Center */}

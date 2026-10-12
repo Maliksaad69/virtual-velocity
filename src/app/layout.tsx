@@ -1,23 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Inter } from "next/font/google";
+import { Roboto_Flex, Lora } from "next/font/google";
 import "./globals.css";
 
-// Outfit for headings – premium grotesk
-const outfit = Outfit({
+// Roboto Flex (variable font) for modern punchy headlines, UI, navigation, and body copy
+const roboto = Roboto_Flex({
   subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: ["100", "900"],
+  variable: "--font-roboto",
+  display: "swap",
 });
 
-// Inter for body copy
-const inter = Inter({
+// Lora (variable font) for contemporary, elegant editorial quotes, testimonials, and narrative accents
+const lora = Lora({
   subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["100", "900"],
+  variable: "--font-lora",
+  display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#00aeac",
+  themeColor: "#00A29F",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -327,7 +327,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${inter.variable} h-full antialiased`}
+      className={`${roboto.variable} ${lora.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -336,7 +336,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-foreground font-inter relative" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-background text-foreground font-roboto relative" suppressHydrationWarning>
         {children}
       </body>
     </html>

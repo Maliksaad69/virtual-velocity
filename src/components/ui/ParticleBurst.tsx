@@ -20,7 +20,7 @@ interface Particle {
   alpha: number;
 }
 
-const COLORS = ["#00aeac", "#00a29f", "#33c9c6", "#008280"];
+const COLORS = ["#00A29F", "#008280", "#22bcba", "#006766"];
 const PARTICLE_COUNT = 40;
 
 export const ParticleBurst = () => {

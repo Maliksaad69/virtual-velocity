@@ -1,17 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS } from "@/data/agencyData";
 import { Layers, TrendingUp, ArrowUpRight, BarChart2 } from "lucide-react";
 import { Magnetic } from "@/components/ui/Magnetic";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { loadGsap } from "@/lib/gsapClient";
 
 const gridVariants = {
   hidden: { opacity: 0 },
@@ -34,45 +30,58 @@ const cardVariants = {
 export const GSAPScrollGallery = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll reveal animation for cards
-  useGSAP(
-    () => {
-      const container = containerRef.current;
-      if (!container) return;
+  // Scroll reveal animation for cards (GSAP loaded on demand)
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-      const cards = gsap.utils.toArray<HTMLElement>(
-        container.querySelectorAll(".case-study-card")
-      );
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
 
-      if (cards.length === 0) return;
+    (async () => {
+      const { gsap } = await loadGsap();
+      if (cancelled || !containerRef.current) return;
 
       const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (prefersReduced) {
-        cards.forEach((card) => gsap.set(card, { autoAlpha: 1, y: 0, scale: 1 }));
-        return;
-      }
 
-      cards.forEach((card) => {
-        gsap.fromTo(
-          card,
-          { autoAlpha: 0, y: 50, scale: 0.95 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-          }
+      ctx = gsap.context(() => {
+        const cards = gsap.utils.toArray<HTMLElement>(
+          container.querySelectorAll(".case-study-card")
         );
-      });
-    },
-    { scope: containerRef }
-  );
+
+        if (cards.length === 0) return;
+
+        if (prefersReduced) {
+          cards.forEach((card) => gsap.set(card, { autoAlpha: 1, y: 0, scale: 1 }));
+          return;
+        }
+
+        cards.forEach((card) => {
+          gsap.fromTo(
+            card,
+            { autoAlpha: 0, y: 50, scale: 0.95 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        });
+      }, containerRef);
+    })();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, []);
 
   return (
     <section

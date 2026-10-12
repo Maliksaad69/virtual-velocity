@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Keep payloads small and never ship source maps to the browser in production.
+  compress: true,
+  productionBrowserSourceMaps: false,
+  experimental: {
+    // framer-motion is a huge barrel — only bundle the primitives actually imported.
+    optimizePackageImports: ["framer-motion"],
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
