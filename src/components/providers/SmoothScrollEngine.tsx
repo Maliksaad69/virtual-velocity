@@ -60,8 +60,8 @@ export const SmoothScrollEngine = () => {
 
       gsap.ticker.add(updateTicker);
 
-      // CRITICAL: Disable GSAP lagSmoothing so ticker time deltas don't clamp and stutter Lenis
-      gsap.ticker.lagSmoothing(0);
+      // Enable sensible lagSmoothing so CPU spikes don't cause violent scroll jumps
+      gsap.ticker.lagSmoothing(500, 33);
 
       // Recalculate ScrollTrigger positions after the next paint
       const refreshTimeout = window.setTimeout(() => {

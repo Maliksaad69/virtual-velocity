@@ -79,7 +79,7 @@ function ContactForm() {
   const params = useSearchParams();
   return (
     <Contact
-      endpoint={process.env.NEXT_PUBLIC_CONTACT_ENDPOINT}
+      endpoint={process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "/api/contact"}
       servicesQuery={params.get("services")}
     />
   );

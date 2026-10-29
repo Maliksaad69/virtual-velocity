@@ -149,7 +149,7 @@ function getServicePrefill(servicesQuery?: string | null) {
   };
 }
 
-export const Contact = ({ endpoint, servicesQuery }: ContactProps) => {
+export const Contact = ({ endpoint = "/api/contact", servicesQuery }: ContactProps) => {
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -217,19 +217,13 @@ export const Contact = ({ endpoint, servicesQuery }: ContactProps) => {
       return;
     }
 
-    if (!endpoint) {
-      setStatus("error");
-      setStepError(
-        "The form is not configured to send yet. Please use the contact links in the footer.",
-      );
-      return;
-    }
+    const targetEndpoint = endpoint || "/api/contact";
 
     setStatus("sending");
     try {
       const { website: honeypot, ...rest } = formData;
       void honeypot;
-      const res = await fetch(endpoint, {
+      const res = await fetch(targetEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...rest, services: selectedServices }),

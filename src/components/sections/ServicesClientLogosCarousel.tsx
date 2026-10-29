@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Layers, Building2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Building2 } from "lucide-react";
 
 interface BrandItem {
   src: string;

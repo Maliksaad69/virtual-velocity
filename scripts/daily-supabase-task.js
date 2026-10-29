@@ -9,10 +9,9 @@ const supabaseKey =
 
 async function fetchData() {
   if (!supabaseUrl || !supabaseKey) {
-    console.error(
-      "Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY before running this script.",
+    console.warn(
+      "SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are not configured. Skipping daily maintenance run.",
     );
-    process.exitCode = 1;
     return;
   }
 

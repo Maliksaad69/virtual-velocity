@@ -445,10 +445,12 @@ export const BrandPhysicsBalls = () => {
   }, [initPhysics]);
 
   useEffect(() => {
+    const tokenRef = initTokenRef;
+    const cleanupRef = cleanupPhysicsRef;
     return () => {
-      initTokenRef.current++; // cancel any in-flight init
-      cleanupPhysicsRef.current?.();
-      cleanupPhysicsRef.current = null;
+      tokenRef.current++; // cancel any in-flight init
+      cleanupRef.current?.();
+      cleanupRef.current = null;
     };
   }, []);
 
