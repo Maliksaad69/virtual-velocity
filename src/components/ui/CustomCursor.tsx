@@ -5,7 +5,6 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export const CustomCursor = () => {
   const [cursorText, setCursorText] = useState("");
-  const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -56,19 +55,13 @@ export const CustomCursor = () => {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      const interactive = target.closest("a, button, [data-cursor-pointer]");
       const projectCard = target.closest("[data-cursor-text]");
 
       if (projectCard) {
         const text = projectCard.getAttribute("data-cursor-text") || "VIEW";
         setCursorText(text);
-        setIsHovered(true);
-      } else if (interactive) {
-        setCursorText("");
-        setIsHovered(true);
       } else {
         setCursorText("");
-        setIsHovered(false);
       }
     };
 
@@ -101,9 +94,9 @@ export const CustomCursor = () => {
         translateY: "-50%",
       }}
       animate={{
-        width: cursorText ? 100 : isHovered ? 54 : 14,
-        height: cursorText ? 100 : isHovered ? 54 : 14,
-        backgroundColor: cursorText ? "#00A29F" : isHovered ? "rgba(0, 162, 159, 0.9)" : "#00A29F",
+        width: cursorText ? 100 : 14,
+        height: cursorText ? 100 : 14,
+        backgroundColor: "#00A29F",
         mixBlendMode: "normal",
       }}
       transition={{ type: "spring", damping: 28, stiffness: 350, mass: 0.3 }}

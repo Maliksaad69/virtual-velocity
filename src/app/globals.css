@@ -11,6 +11,11 @@
     --accent: #00A29F;
     --accent-secondary: #007d7b;
     --muted: #6b7a72;
+    --vv-container-width: 1700px;
+    --vv-section-space: clamp(5rem, 8vw, 8rem);
+    --vv-heading-size: clamp(2rem, 5.5vw, 3.75rem);
+    --vv-card-radius: 1.5rem;
+    --vv-card-shadow: 0 18px 55px -30px rgba(0, 80, 78, 0.28);
   }
 }
 
@@ -44,6 +49,28 @@
   --color-emerald-800: #035251;
   --color-emerald-900: #074443;
   --color-emerald-950: #012727;
+}
+
+@layer components {
+  .home-section {
+    padding-block: var(--vv-section-space);
+  }
+
+  .home-container {
+    width: min(calc(100% - 2rem), var(--vv-container-width));
+    margin-inline: auto;
+  }
+
+  .home-heading {
+    font-size: var(--vv-heading-size);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .home-card {
+    border-radius: var(--vv-card-radius);
+    box-shadow: var(--vv-card-shadow);
+  }
 }
 
 html {
@@ -145,7 +172,7 @@ p[class*="text-emerald-"] {
 
 /* Fluid Typography Utilities - Mobile-first tighter clamp ranges */
 .text-hero {
-  font-size: clamp(2rem, 5.5vw, 6rem);
+  font-size: clamp(2rem, 5.5vw, 4rem);
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 800;
@@ -153,7 +180,7 @@ p[class*="text-emerald-"] {
 }
 
 .text-section-title {
-  font-size: clamp(1.85rem, 4.8vw, 5.5rem);
+  font-size: clamp(1.85rem, 4.8vw, 3.75rem);
   line-height: 0.94;
   letter-spacing: -0.03em;
   font-weight: 800;
@@ -217,9 +244,11 @@ p[class*="text-emerald-"] {
   animation-duration: 45s;
 }
 
-.hover-marquee:hover .animate-marquee-left,
-.hover-marquee:hover .animate-marquee-right {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .hover-marquee:hover .animate-marquee-left,
+  .hover-marquee:hover .animate-marquee-right {
+    animation-play-state: paused;
+  }
 }
 
 /* Noise overlay effect */

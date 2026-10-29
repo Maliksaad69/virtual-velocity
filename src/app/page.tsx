@@ -5,6 +5,8 @@ import { GSAPHeroTimeline } from "@/components/sections/GSAPHeroTimeline";
 import { About } from "@/components/sections/About";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { MotionPreferences } from "@/components/sections/home/MotionPreferences";
+import { SITE_URL, SOCIAL_IMAGE } from "@/lib/site";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Below-the-fold sections are code-split with `next/dynamic`. Their JS (and the
@@ -25,7 +27,10 @@ const InstaReelsGallery = dynamic(
 );
 
 const BrandPhysicsBalls = dynamic(
-  () => import("@/components/sections/BrandPhysicsBalls").then((mod) => mod.BrandPhysicsBalls)
+  () =>
+    import("@/components/sections/BrandPhysicsBalls").then(
+      (mod) => mod.BrandPhysicsBalls
+    )
 );
 
 const LightStatsSection = dynamic(
@@ -52,9 +57,9 @@ const CustomCursor = dynamic(() =>
 );
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.thevirtualvelocity.com"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: "https://www.thevirtualvelocity.com",
+    canonical: SITE_URL,
   },
   title: "Virtual Velocity | Digital Marketing & BPO Agency",
   description:
@@ -90,53 +95,70 @@ export const metadata: Metadata = {
     title: "Virtual Velocity | Digital Marketing & BPO Agency",
     description:
       "Pakistan's premier Digital Marketing Agency & BPO service provider. Performance marketing, SEO, Meta Ads & Google Ads.",
-    url: "https://www.thevirtualvelocity.com",
+    url: SITE_URL,
+    images: [
+      {
+        url: SOCIAL_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Virtual Velocity Digital Marketing Agency Pakistan",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Virtual Velocity | Digital Marketing & BPO Agency",
+    description:
+      "Performance marketing, SEO, Meta Ads, Google Ads, branding and BPO services from Virtual Velocity.",
+    images: [{ url: SOCIAL_IMAGE, alt: "Virtual Velocity Digital Marketing Agency Pakistan" }],
   },
 };
 
 export default function Home() {
   return (
     <SmoothScrollProvider>
-      <main className="min-h-screen bg-white text-zinc-900 relative selection:bg-zinc-900 selection:text-white font-outfit">
-        {/* Custom Award-Style Dynamic Cursor */}
-        <CustomCursor />
+      <MotionPreferences>
+        <main id="main-content" tabIndex={-1} className="relative min-h-screen bg-white font-outfit text-zinc-900 selection:bg-zinc-900 selection:text-white">
+          {/* Custom Award-Style Dynamic Cursor */}
+          <CustomCursor />
 
-        {/* Global Floating Navigation Header */}
-        <Navigation />
+          {/* Global Floating Navigation Header */}
+          <Navigation />
 
-        {/* 1. GSAP Timeline Powered Hero Entrance */}
-        <GSAPHeroTimeline />
+          {/* 1. GSAP Timeline Powered Hero Entrance */}
+          <GSAPHeroTimeline />
 
-        {/* 2. About Virtual Velocity Agency Section */}
-        <About />
+          {/* 2. About Virtual Velocity Agency Section */}
+          <About />
 
-        {/* 3. Who We Are — Creative House Manifesto */}
-        <WhoWeAre />
+          {/* 3. Who We Are — Creative House Manifesto */}
+          <WhoWeAre />
 
-        {/* 4. Case Studies Walkthrough */}
-        <GSAPScrollGallery />
+          {/* 4. Case Studies Walkthrough */}
+          <GSAPScrollGallery />
 
-        {/* 5. Instagram Reels & Social Media Gallery */}
-        <InstaReelsGallery />
+          {/* 5. Instagram Reels & Social Media Gallery */}
+          <InstaReelsGallery />
 
-        {/* 6. Brand Physics Balls Drop */}
-        <BrandPhysicsBalls />
+          {/* 6. Interactive client logos */}
+          <BrandPhysicsBalls />
 
-        {/* 7. Proven Impact & Metrics */}
-        <LightStatsSection />
+          {/* 7. Proven Impact & Metrics */}
+          <LightStatsSection />
 
-        {/* 8. Agency Discovery & FAQ Text Section (Optimized for Text to Code Ratio) */}
-        <SEOTextSection />
+          {/* 8. Agency Discovery & FAQ Text Section (Optimized for Text to Code Ratio) */}
+          <SEOTextSection />
 
-        {/* 9. Client Testimonials */}
-        <EditorialTestimonials />
+          {/* 9. Client Testimonials */}
+          <EditorialTestimonials />
 
-        {/* 10. Project Estimator & Contact Form */}
-        <Contact />
+          {/* 10. Project Estimator & Contact Form */}
+          <Contact />
 
-        {/* Global Studio Footer */}
-        <Footer />
-      </main>
+          {/* Global Studio Footer */}
+          <Footer />
+        </main>
+      </MotionPreferences>
     </SmoothScrollProvider>
   );
 }
