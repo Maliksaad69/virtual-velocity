@@ -1,155 +1,89 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { STATS } from "@/data/agencyData";
-import { ArrowUpRight, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
+import { AGENCY_METRICS } from "@/data/agencyData";
+import {
+  CountUp,
+  HomeCard,
+  SectionHeader,
+} from "@/components/sections/home/primitives";
 
-gsap.registerPlugin(ScrollTrigger);
+const STATS_DATA = [
+  {
+    value: AGENCY_METRICS.campaignsManaged.target,
+    suffix: "+",
+    label: "Campaigns Deployed",
+    detail: "Across US, European & Asian markets",
+  },
+  {
+    value: AGENCY_METRICS.averageRoas.target,
+    suffix: "x",
+    decimals: 1,
+    label: "Average ROAS",
+    detail: "Across PPC, social & performance ads",
+  },
+  {
+    value: 320,
+    suffix: "%",
+    label: "Organic Growth",
+    detail: "Compounding search & audience reach",
+  },
+  {
+    value: 98,
+    suffix: "%",
+    label: "Client Retention",
+    detail: "Long-term client trust & brand retention",
+  },
+];
 
-/* ─── Parse a "240+" or "4.8x" string → { target, suffix, decimals } ─── */
-function parseStatValue(raw: string): { target: number; suffix: string; decimals: number } {
-  const match = raw.match(/^([\d.]+)(.*)$/);
-  if (!match) return { target: 0, suffix: raw, decimals: 0 };
-  return {
-    target: parseFloat(match[1]),
-    suffix: match[2],
-    decimals: match[1].includes(".") ? 1 : 0,
-  };
-}
+export const LightStatsSection = () => (
+  <section className="home-section relative overflow-hidden border-t border-zinc-800 bg-zinc-950 px-4 text-white sm:px-8 lg:px-12">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#00A29F]/20 blur-[140px]"
+    />
+    <div className="home-container relative z-10">
+      <SectionHeader
+        eyebrow={<><TrendingUp aria-hidden="true" className="h-3.5 w-3.5" /> Proven metrics &amp; impact</>}
+        index="07"
+        title={<>Agency impact <span className="text-[#52d3d0]">in numbers.</span></>}
+        description="Data-backed performance across paid media, search scaling, and custom web engineering."
+        tone="dark"
+      />
 
-/* ─── Animated Counter Component ─── */
-const AnimatedCounter = ({ rawValue, className }: { rawValue: string; className?: string }) => {
-  const spanRef = useRef<HTMLSpanElement>(null);
-  const { target, suffix, decimals } = parseStatValue(rawValue);
-  const proxyRef = useRef({ val: 0 });
-
-  useEffect(() => {
-    const el = spanRef.current;
-    const proxy = proxyRef.current;
-    if (!el) return;
-
-    const ctx = gsap.context(() => {
-      gsap.to(proxy, {
-        val: target,
-        duration: 2.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 92%",
-          toggleActions: "play none none none",
-        },
-        onUpdate: () => {
-          const formatted =
-            decimals > 0
-              ? proxy.val.toFixed(decimals)
-              : Math.round(proxy.val);
-          el.textContent = formatted + suffix;
-        },
-      });
-    }, el);
-
-    return () => ctx.revert();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <span ref={spanRef} className={className}>
-      0{suffix}
-    </span>
-  );
-};
-
-/* ─── Section ─── */
-export const LightStatsSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".gsap-stats-header",
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        ".gsap-stats-card",
-        { opacity: 0, y: 30, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section ref={sectionRef} className="py-10 sm:py-14 lg:py-16 px-4 sm:px-8 lg:px-12 bg-white text-zinc-900 border-y border-zinc-200 relative overflow-hidden">
-      <div className="max-w-[1700px] mx-auto space-y-8 sm:space-y-10">
-        {/* Header */}
-        <div className="gsap-stats-header flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-zinc-300 pb-5 sm:pb-6">
-          <div className="space-y-2">
-            <span className="text-[11px] font-mono text-emerald-600 uppercase tracking-widest font-extrabold flex items-center gap-1.5">
-              <TrendingUp className="w-3.5 h-3.5 text-emerald-600" /> MEASURABLE AGENCY IMPACT
-            </span>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-outfit font-black uppercase tracking-tighter leading-[0.95]">
-              PROVEN RESULTS <span className="text-emerald-600 font-black">&amp; METRICS</span>
-            </h2>
-          </div>
-
-          <p className="text-xs sm:text-sm text-black max-w-md font-medium leading-relaxed">
-            We deliver data-backed outcomes across e-commerce growth, technical SEO scaling, paid search return, and custom web engineering.
-          </p>
-        </div>
-
-        {/* Stats 4-Column Grid - Compact Animated Counters */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-          {STATS.map((stat, idx) => (
-            <div
-              key={idx}
-              className="gsap-stats-card p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-zinc-50 border border-zinc-200 space-y-3 hover:border-zinc-900 transition-colors shadow-xs"
-            >
-              <div className="flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-black font-bold">
-                <span>0{idx + 1} {"//"} METRIC</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-              </div>
-
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black tracking-tight text-black">
-                <AnimatedCounter rawValue={stat.value} />
-              </div>
-
-              <div className="space-y-0.5 pt-2.5 border-t border-zinc-200">
-                <h3 className="font-outfit font-bold text-xs uppercase text-black tracking-wide">
-                  {stat.label}
-                </h3>
-                <p className="text-[11px] sm:text-xs text-black font-medium leading-relaxed">
-                  {stat.detail}
-                </p>
-              </div>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+        {STATS_DATA.map((stat, index) => (
+          <HomeCard
+            key={stat.label}
+            className="border-white/15 bg-white/[0.04] p-5 text-white shadow-none hover:border-[#52d3d0]/50 hover:bg-white/[0.08] sm:p-6"
+          >
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-[10px] font-bold text-white/55">
+                0{index + 1}
+              </span>
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 rounded-full bg-[#52d3d0]"
+              />
             </div>
-          ))}
-        </div>
+            <div className="mt-8">
+              <p className="font-outfit text-4xl font-black tracking-tight text-white sm:text-5xl">
+                <CountUp
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  decimals={stat.decimals}
+                />
+              </p>
+              <h3 className="mt-2 text-xs font-extrabold uppercase tracking-[0.12em] text-white/85">
+                {stat.label}
+              </h3>
+            </div>
+            <p className="mt-5 border-t border-white/15 pt-3 text-xs leading-relaxed text-white/70">
+              {stat.detail}
+            </p>
+          </HomeCard>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);

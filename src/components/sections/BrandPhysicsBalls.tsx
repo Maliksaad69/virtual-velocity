@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import Matter from "matter-js";
-import { Sparkles } from "lucide-react";
+import type * as MatterNS from "matter-js";
+import { Sparkles, RotateCcw, Hand } from "lucide-react";
 
 interface BrandItem {
   src: string;
@@ -11,11 +11,17 @@ interface BrandItem {
 
 const BRANDS: BrandItem[] = [
   { src: "/All logo in SVG Format/pizza hut.svg", name: "Pizza Hut" },
-  { src: "/All logo in SVG Format/Gloria Jeans logo.svg", name: "Gloria Jeans" },
+  {
+    src: "/All logo in SVG Format/Gloria Jeans logo.svg",
+    name: "Gloria Jeans",
+  },
   { src: "/All logo in SVG Format/Anta logo.svg", name: "Anta" },
   { src: "/All logo in SVG Format/Unied nations.svg", name: "United Nations" },
   { src: "/All logo in SVG Format/chaaye khana.svg", name: "Chaaye Khana" },
-  { src: "/All logo in SVG Format/Blue world city.svg", name: "Blue World City" },
+  {
+    src: "/All logo in SVG Format/Blue world city.svg",
+    name: "Blue World City",
+  },
   { src: "/All logo in SVG Format/Red apple.svg", name: "Red Apple" },
   { src: "/All logo in SVG Format/Megazone logo.svg", name: "Megazone" },
   { src: "/All logo in SVG Format/wild wings logo.svg", name: "Wild Wings" },
@@ -29,7 +35,10 @@ const BRANDS: BrandItem[] = [
   { src: "/All logo in SVG Format/de asthethic.svg", name: "De Aesthetic" },
   { src: "/All logo in SVG Format/desi chapter.svg", name: "Desi Chapter" },
   { src: "/All logo in SVG Format/Untitled-1.svg", name: "Galaxy Hayatabad" },
-  { src: "/All logo in SVG Format/iplexmarketing.svg", name: "IPlex Marketing" },
+  {
+    src: "/All logo in SVG Format/iplexmarketing.svg",
+    name: "IPlex Marketing",
+  },
   { src: "/All logo in SVG Format/kapacious.svg", name: "Kapacious" },
   { src: "/All logo in SVG Format/levante.svg", name: "Levante" },
   { src: "/All logo in SVG Format/media sniffers.svg", name: "Media Sniffers" },
@@ -42,29 +51,107 @@ const BRANDS: BrandItem[] = [
   { src: "/All logo in SVG Format/oxbite.svg", name: "Oxbite" },
 ];
 
+/**
+ * Pick a ball radius from the arena size so all brands always fit with room
+ * to move — bigger (more legible) logos on phones thanks to a taller arena,
+ * and never oversized on wide desktops.
+ */
+const computeRadius = (w: number, h: number) => {
+  const r = Math.sqrt((0.5 * w * h) / (BRANDS.length * Math.PI));
+  return Math.round(Math.max(20, Math.min(42, r)));
+};
+
 export const BrandPhysicsBalls = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const ballElementsRef = useRef<(HTMLDivElement | null)[]>([]);
   const cleanupPhysicsRef = useRef<(() => void) | null>(null);
+  const startLoopRef = useRef<(() => void) | null>(null);
+  const stopLoopRef = useRef<(() => void) | null>(null);
   const hasTriggeredRef = useRef(false);
+  const initTokenRef = useRef(0);
+  const lastWidthRef = useRef(0);
+
+  // Tooltip (single DOM node, positioned from the hovered body each frame)
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const tooltipTextRef = useRef<HTMLSpanElement>(null);
+  const tooltipArrowRef = useRef<HTMLSpanElement>(null);
+  const hoveredRef = useRef<number | null>(null);
+  const bodiesRef = useRef<MatterNS.Body[]>([]);
+  const radiusRef = useRef(36);
+
   const [hasTriggered, setHasTriggered] = useState(false);
   const [ballRadius, setBallRadius] = useState(36);
 
-  // Responsive ball radius suited for the compact box height with prominent logos
-  const getRadius = useCallback(() => {
-    if (typeof window === "undefined") return 42;
-    const w = window.innerWidth;
-    if (w < 480) return 28; // 56px ball on small mobile
-    if (w < 768) return 33; // 66px ball on mobile
-    if (w < 1024) return 38; // 76px ball on tablet
-    return 44; // 88px ball on desktop
+  /* ----------------------------- Tooltip ----------------------------- */
+
+  const positionTooltip = useCallback(() => {
+    const tip = tooltipRef.current;
+    const arrow = tooltipArrowRef.current;
+    const container = containerRef.current;
+    const idx = hoveredRef.current;
+    if (!tip || !container) return;
+
+    if (idx === null) {
+      tip.style.opacity = "0";
+      return;
+    }
+    const body = bodiesRef.current[idx];
+    if (!body) return;
+
+    const w = tip.offsetWidth;
+    const h = tip.offsetHeight;
+    const cw = container.clientWidth;
+    const r = radiusRef.current;
+
+    let x = body.position.x - w / 2;
+    x = Math.max(6, Math.min(cw - w - 6, x));
+
+    let y = body.position.y - r - h - 10;
+    let below = false;
+    if (y < 6) {
+      y = body.position.y + r + 10;
+      below = true;
+    }
+
+    tip.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
+    tip.style.opacity = "1";
+
+    if (arrow) {
+      const ax = Math.max(12, Math.min(w - 12, body.position.x - x));
+      arrow.style.left = `${ax}px`;
+      arrow.style.top = below ? "-4px" : "auto";
+      arrow.style.bottom = below ? "auto" : "-4px";
+    }
   }, []);
 
-  const initPhysics = useCallback(() => {
+  const showTip = useCallback(
+    (idx: number) => {
+      hoveredRef.current = idx;
+      if (tooltipTextRef.current)
+        tooltipTextRef.current.textContent = BRANDS[idx].name;
+      positionTooltip();
+    },
+    [positionTooltip],
+  );
+
+  const hideTip = useCallback(() => {
+    hoveredRef.current = null;
+    positionTooltip();
+  }, [positionTooltip]);
+
+  /* ----------------------------- Physics ----------------------------- */
+
+  const initPhysics = useCallback(async () => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Clean up previous engine if any
+    const token = ++initTokenRef.current;
+
+    // Load the physics engine on demand — keeps ~90KB of matter-js off the
+    // initial page payload. It is only fetched once this section scrolls in.
+    const { default: Matter } = await import("matter-js");
+    if (token !== initTokenRef.current || !containerRef.current) return;
+
     if (cleanupPhysicsRef.current) {
       cleanupPhysicsRef.current();
       cleanupPhysicsRef.current = null;
@@ -73,73 +160,106 @@ export const BrandPhysicsBalls = () => {
     const width = container.clientWidth;
     const height = container.clientHeight;
     if (width <= 0 || height <= 0) return;
+    lastWidthRef.current = width;
 
-    const radius = getRadius();
+    const radius = computeRadius(width, height);
+    radiusRef.current = radius;
     setBallRadius(radius);
+    hoveredRef.current = null;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     const engine = Matter.Engine.create({
       gravity: { x: 0, y: 1.0, scale: 0.0012 },
+      enableSleeping: true,
     });
 
-    // Wall boundaries (Floor, Left, Right)
-    const wallOptions: Matter.IChamferableBodyDefinition = {
+    const wallOptions: MatterNS.IChamferableBodyDefinition = {
       isStatic: true,
       restitution: 0.45,
       friction: 0.35,
     };
-
     const wallThickness = 120;
     const floor = Matter.Bodies.rectangle(
       width / 2,
       height + wallThickness / 2,
       width * 3,
       wallThickness,
-      wallOptions
+      wallOptions,
     );
     const leftWall = Matter.Bodies.rectangle(
       -wallThickness / 2,
       height / 2,
       wallThickness,
       height * 8,
-      wallOptions
+      wallOptions,
     );
     const rightWall = Matter.Bodies.rectangle(
       width + wallThickness / 2,
       height / 2,
       wallThickness,
       height * 8,
-      wallOptions
+      wallOptions,
     );
-
     Matter.Composite.add(engine.world, [floor, leftWall, rightWall]);
 
-    // Create falling circular bodies for each brand
-    const bodies: Matter.Body[] = BRANDS.map((_, i) => {
-      const minX = radius + 20;
-      const maxX = Math.max(width - radius - 20, minX + 10);
+    const isMobile = width < 640;
+    const dropStagger = isMobile ? 8 : 22;
+    const bodies: MatterNS.Body[] = BRANDS.map((_, i) => {
+      const minX = radius + 10;
+      const maxX = Math.max(width - radius - 10, minX + 10);
       const randomX = minX + Math.random() * (maxX - minX);
-      // Drop staggered from above the box edge
-      const randomY = -40 - (i * 26) - Math.random() * 40;
+      const randomY = -radius - i * dropStagger - Math.random() * 20;
 
       const body = Matter.Bodies.circle(randomX, randomY, radius, {
-        restitution: 0.55,
-        friction: 0.3,
-        frictionAir: 0.015,
+        restitution: 0.52,
+        friction: 0.35,
+        frictionAir: 0.016,
         density: 0.002,
         angle: (Math.random() - 0.5) * 0.4,
       });
-
       Matter.Body.setVelocity(body, {
         x: (Math.random() - 0.5) * 2,
         y: Math.random() * 2,
       });
-
       return body;
     });
-
     Matter.Composite.add(engine.world, bodies);
+    bodiesRef.current = bodies;
 
-    // Mouse / Touch Drag Constraint
+    const renderFrame = () => {
+      let maxSpeed = 0;
+      for (let idx = 0; idx < bodies.length; idx++) {
+        const body = bodies[idx];
+        const el = ballElementsRef.current[idx];
+        if (el) {
+          const x = body.position.x - radius;
+          const y = body.position.y - radius;
+          const deg = (body.angle * 180) / Math.PI;
+          el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${deg}deg)`;
+        }
+        if (body.speed > maxSpeed) maxSpeed = body.speed;
+      }
+      if (hoveredRef.current !== null) positionTooltip();
+      return maxSpeed;
+    };
+
+    /* Reduced motion: pre-settle the balls, render once, no animation, no drag. */
+    if (reduceMotion) {
+      for (let i = 0; i < 600; i++) Matter.Engine.update(engine, 1000 / 60);
+      renderFrame();
+      startLoopRef.current = () => {};
+      stopLoopRef.current = () => {};
+      cleanupPhysicsRef.current = () => {
+        Matter.World.clear(engine.world, false);
+        Matter.Engine.clear(engine);
+      };
+      return;
+    }
+
+    /* Mouse / touch drag */
     const mouse = Matter.Mouse.create(container);
     const typedMouse = mouse as unknown as {
       mousewheel: (e: WheelEvent) => void;
@@ -148,43 +268,102 @@ export const BrandPhysicsBalls = () => {
       mouseup: (e: MouseEvent | TouchEvent) => void;
     };
 
-    // Detach default Matter.js wheel and touch listeners so page scrolling is never blocked
-    mouse.element.removeEventListener("wheel", typedMouse.mousewheel);
-    mouse.element.removeEventListener("touchmove", typedMouse.mousemove);
-    mouse.element.removeEventListener("touchstart", typedMouse.mousedown);
-    mouse.element.removeEventListener("touchend", typedMouse.mouseup);
+    // Detach Matter's default wheel + touch listeners so page scrolling is never blocked
+    const el = mouse.element as HTMLElement;
+    el.removeEventListener("wheel", typedMouse.mousewheel);
+    el.removeEventListener(
+      "mousewheel",
+      typedMouse.mousewheel as EventListener,
+    );
+    el.removeEventListener(
+      "DOMMouseScroll",
+      typedMouse.mousewheel as EventListener,
+    );
+    el.removeEventListener("touchmove", typedMouse.mousemove as EventListener);
+    el.removeEventListener("touchstart", typedMouse.mousedown as EventListener);
+    el.removeEventListener("touchend", typedMouse.mouseup as EventListener);
 
     const mouseConstraint = Matter.MouseConstraint.create(engine, {
       mouse,
-      constraint: {
-        stiffness: 0.2,
-        render: { visible: false },
-      },
+      constraint: { stiffness: 0.2, render: { visible: false } },
     });
-
     Matter.Composite.add(engine.world, mouseConstraint);
 
-    // Custom non-intrusive touch handling: only drag if touching a ball
+    const runner = Matter.Runner.create();
+    Matter.Runner.run(runner, engine);
+
+    let animationFrameId = 0;
+    let isRunning = true;
+    let isInteracting = false;
+    let idleFrames = 0;
+
+    const updateDOM = () => {
+      if (!isRunning) return;
+      const maxSpeed = renderFrame();
+
+      if (isInteracting || mouseConstraint.body) {
+        idleFrames = 0;
+      } else if (maxSpeed < 0.12) {
+        idleFrames++;
+      } else {
+        idleFrames = 0;
+      }
+
+      // Settled for 50 frames → pause engine + RAF to free the CPU/GPU
+      if (idleFrames > 50) {
+        isRunning = false;
+        Matter.Runner.stop(runner);
+        return;
+      }
+      animationFrameId = requestAnimationFrame(updateDOM);
+    };
+
+    const wakeUp = () => {
+      idleFrames = 0;
+      if (!isRunning) {
+        isRunning = true;
+        Matter.Runner.run(runner, engine);
+        animationFrameId = requestAnimationFrame(updateDOM);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(updateDOM);
+
     let activeTouch = false;
     const onTouchStart = (e: TouchEvent) => {
       const target = e.target as HTMLElement;
       if (target.closest("[data-ball='true']")) {
         activeTouch = true;
+        isInteracting = true;
+        wakeUp();
         typedMouse.mousedown(e);
       }
     };
-
     const onTouchMove = (e: TouchEvent) => {
       if (activeTouch && mouseConstraint.body) {
         if (e.cancelable) e.preventDefault();
+        wakeUp();
         typedMouse.mousemove(e);
       }
     };
-
     const onTouchEnd = (e: TouchEvent) => {
       if (activeTouch) {
         activeTouch = false;
+        isInteracting = false;
+        wakeUp();
         typedMouse.mouseup(e);
+      }
+    };
+    const onPointerDown = (e: MouseEvent) => {
+      if ((e.target as HTMLElement).closest("[data-ball='true']")) {
+        isInteracting = true;
+        wakeUp();
+      }
+    };
+    const onPointerUp = () => {
+      if (isInteracting) {
+        isInteracting = false;
+        wakeUp();
       }
     };
 
@@ -192,132 +371,197 @@ export const BrandPhysicsBalls = () => {
     container.addEventListener("touchmove", onTouchMove, { passive: false });
     container.addEventListener("touchend", onTouchEnd, { passive: true });
     container.addEventListener("touchcancel", onTouchEnd, { passive: true });
+    container.addEventListener("mousedown", onPointerDown, { passive: true });
+    window.addEventListener("mouseup", onPointerUp, { passive: true });
 
-    // Runner loop
-    const runner = Matter.Runner.create();
-    Matter.Runner.run(runner, engine);
-
-    // Render loop directly updating DOM transforms (GPU accelerated)
-    let animationFrameId: number;
-    const updateDOM = () => {
-      bodies.forEach((body, idx) => {
-        const el = ballElementsRef.current[idx];
-        if (el) {
-          const x = body.position.x - radius;
-          const y = body.position.y - radius;
-          const deg = (body.angle * 180) / Math.PI;
-          el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${deg}deg)`;
-        }
-      });
-      animationFrameId = requestAnimationFrame(updateDOM);
+    // Pause physics & RAF when off-screen
+    startLoopRef.current = wakeUp;
+    stopLoopRef.current = () => {
+      if (isRunning) {
+        isRunning = false;
+        cancelAnimationFrame(animationFrameId);
+        Matter.Runner.stop(runner);
+      }
     };
 
-    animationFrameId = requestAnimationFrame(updateDOM);
-
-    // Set cleanup
     cleanupPhysicsRef.current = () => {
+      isRunning = false;
       cancelAnimationFrame(animationFrameId);
       container.removeEventListener("touchstart", onTouchStart);
       container.removeEventListener("touchmove", onTouchMove);
       container.removeEventListener("touchend", onTouchEnd);
       container.removeEventListener("touchcancel", onTouchEnd);
+      container.removeEventListener("mousedown", onPointerDown);
+      window.removeEventListener("mouseup", onPointerUp);
       Matter.Runner.stop(runner);
       Matter.World.clear(engine.world, false);
       Matter.Engine.clear(engine);
     };
-  }, [getRadius]);
+  }, [positionTooltip]);
 
-  // Trigger when user reaches this section in view
+  /* --------------------- Start when scrolled into view --------------------- */
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasTriggeredRef.current) {
-          hasTriggeredRef.current = true;
-          setHasTriggered(true);
-          initPhysics();
+        if (entry.isIntersecting) {
+          if (!hasTriggeredRef.current) {
+            hasTriggeredRef.current = true;
+            setHasTriggered(true);
+            initPhysics();
+          } else {
+            startLoopRef.current?.();
+          }
+        } else {
+          stopLoopRef.current?.();
         }
       },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -30px 0px",
-      }
+      { threshold: 0.05, rootMargin: "80px 0px 80px 0px" },
     );
 
     observer.observe(container);
     return () => observer.disconnect();
   }, [initPhysics]);
 
-  // Handle window resize cleanly
+  /* Re-init on real width changes only (debounced). Ignoring height-only
+     resizes stops mobile address-bar show/hide from resetting the arena. */
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
     const handleResize = () => {
-      if (hasTriggeredRef.current) {
-        initPhysics();
-      }
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const c = containerRef.current;
+        if (!c || !hasTriggeredRef.current) return;
+        if (Math.abs(c.clientWidth - lastWidthRef.current) > 1) initPhysics();
+      }, 200);
     };
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
   }, [initPhysics]);
 
-  // Cleanup on component unmount
   useEffect(() => {
+    const tokenRef = initTokenRef;
+    const cleanupRef = cleanupPhysicsRef;
     return () => {
-      if (cleanupPhysicsRef.current) {
-        cleanupPhysicsRef.current();
-        cleanupPhysicsRef.current = null;
-      }
+      tokenRef.current++; // cancel any in-flight init
+      cleanupRef.current?.();
+      cleanupRef.current = null;
     };
   }, []);
 
+  /* ------------------------------ Render ------------------------------ */
+
   return (
-    <section className="relative w-full bg-white text-zinc-900 py-12 sm:py-16 lg:py-20 px-4 sm:px-8 lg:px-12 max-w-[1700px] mx-auto border-t border-zinc-200 select-none">
-      {/* Header section - clean without drag/drop buttons */}
-      <div className="mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-zinc-200">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-emerald-600 font-extrabold mb-2">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-          <span>OUR CLIENTS & PARTNERS</span>
+    <section
+      aria-labelledby="brands-heading"
+      className="relative mx-auto w-full max-w-[1700px] select-none border-t border-zinc-200 bg-white px-4 py-12 text-zinc-900 sm:px-8 sm:py-16 lg:px-12 lg:py-24"
+    >
+      {/* Header */}
+      <div className="mb-6 flex flex-col gap-5 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-2xl">
+          <div className="mb-3 flex items-center gap-2 font-mono text-[11px] font-extrabold uppercase tracking-[0.22em] text-[#00A29F] sm:text-xs">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>Our Clients &amp; Partners</span>
+          </div>
+          <h2
+            id="brands-heading"
+            className="font-outfit text-[clamp(1.6rem,4.5vw,3rem)] font-black uppercase leading-[1.05] tracking-tight text-zinc-950"
+          >
+            Trusted by <span className="text-[#00A29F]">Ambitious Brands.</span>
+          </h2>
+          <p className="mt-3 text-sm font-normal leading-relaxed text-zinc-600 sm:text-base">
+            From high-growth scaleups to international enterprises, we engineer
+            measurable momentum for brands worldwide.
+          </p>
         </div>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-outfit font-black text-zinc-950 uppercase tracking-tight leading-none">
-          Trusted by <span className="text-emerald-600">Ambitious Brands.</span>
-        </h2>
-        <p className="mt-2 text-xs sm:text-sm text-black max-w-xl font-normal leading-relaxed">
-          From high-growth scaleups to international enterprises, we engineer measurable momentum for brands worldwide.
-        </p>
+
+        <button
+          type="button"
+          onClick={() => initPhysics()}
+          className="group inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full border border-zinc-300 bg-white px-5 py-2.5 text-sm font-semibold text-zinc-800 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#00A29F] hover:text-[#00A29F] hover:shadow-md active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A29F] focus-visible:ring-offset-2 sm:w-auto"
+        >
+          <RotateCcw
+            className="h-4 w-4 transition-transform duration-500 group-hover:-rotate-180"
+            aria-hidden="true"
+          />
+          Drop again
+        </button>
       </div>
 
-      {/* Compact Interactive Physics Arena Box */}
+      {/* Screen-reader list of brands (the arena itself is visual/interactive) */}
+      <ul className="sr-only">
+        {BRANDS.map((b) => (
+          <li key={b.name}>{b.name}</li>
+        ))}
+      </ul>
+
+      {/* Physics arena — deep teal gradient so white logo badges pop */}
       <div
         ref={containerRef}
-        className="relative w-full h-[210px] sm:h-[260px] lg:h-[290px] rounded-3xl overflow-hidden border-2 border-zinc-200 bg-gradient-to-b from-zinc-50/70 via-white to-zinc-100/90 shadow-inner"
-        style={{ touchAction: "pan-y" }}
+        role="group"
+        aria-label="Interactive logos of our clients and partners. Drag a logo to move it."
+        className="relative h-[340px] w-full overflow-hidden rounded-3xl border border-teal-950/40 shadow-[0_24px_60px_-20px_rgba(0,60,60,0.55),inset_0_1px_0_rgba(255,255,255,0.12)] sm:h-[340px] lg:h-[400px]"
+        style={{
+          touchAction: "pan-y",
+          background:
+            "linear-gradient(155deg, #04282a 0%, #06504f 42%, #0a3b4a 72%, #0b1f33 100%)",
+        }}
       >
-        {/* Subtle decorative grid backdrop */}
+        {/* Colour glows */}
         <div
-          className="absolute inset-0 opacity-[0.035] pointer-events-none"
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage: "radial-gradient(#18181b 1.5px, transparent 1.5px)",
-            backgroundSize: "28px 28px",
+            background:
+              "radial-gradient(60% 70% at 12% 0%, rgba(0,200,196,0.38) 0%, transparent 60%), radial-gradient(55% 65% at 92% 100%, rgba(56,132,255,0.30) 0%, transparent 62%), radial-gradient(40% 50% at 55% 50%, rgba(255,255,255,0.06) 0%, transparent 70%)",
           }}
         />
 
-        {/* Scaled watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.05] select-none">
-          <span className="font-outfit font-black text-4xl sm:text-6xl lg:text-7xl tracking-tighter uppercase text-zinc-900">
-            VELOCITY
+        {/* Dot grid */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.14]"
+          style={{
+            backgroundImage:
+              "radial-gradient(#ffffff 1.2px, transparent 1.2px)",
+            backgroundSize: "26px 26px",
+            maskImage:
+              "radial-gradient(ellipse at center, black 35%, transparent 85%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at center, black 35%, transparent 85%)",
+          }}
+        />
+
+        {/* Watermark */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 flex select-none items-center justify-center overflow-hidden px-2"
+        >
+          <span
+            className="w-full whitespace-nowrap bg-gradient-to-b from-white/[0.16] to-white/[0.02] bg-clip-text text-center font-outfit text-[clamp(2.25rem,11vw,8rem)] font-black uppercase tracking-[0.25em] text-transparent"
+            style={{ WebkitTextFillColor: "transparent" }}
+          >
+            Velocity
           </span>
         </div>
 
-        {/* Physics balls rendered as crisp DOM elements */}
+        {/* Balls */}
         {BRANDS.map((brand, idx) => (
           <div
             key={brand.name}
             data-ball="true"
+            aria-hidden="true"
             ref={(el) => {
               ballElementsRef.current[idx] = el;
             }}
-            className={`absolute top-0 left-0 rounded-full bg-white border border-zinc-200/90 shadow-[0_6px_20px_rgba(0,0,0,0.06)] flex items-center justify-center p-1 sm:p-1.5 select-none cursor-grab active:cursor-grabbing hover:border-emerald-500 hover:shadow-[0_8px_25px_rgba(16,185,129,0.2)] transition-colors will-change-transform z-10 touch-none ${
+            onPointerEnter={() => showTip(idx)}
+            onPointerLeave={hideTip}
+            className={`group absolute left-0 top-0 z-10 cursor-grab touch-none select-none will-change-transform active:cursor-grabbing ${
               hasTriggered ? "opacity-100" : "opacity-0"
             }`}
             style={{
@@ -325,26 +569,51 @@ export const BrandPhysicsBalls = () => {
               height: `${ballRadius * 2}px`,
               transform: "translate3d(-200px, -200px, 0)",
             }}
-            title={brand.name}
           >
-            <img
-              src={brand.src}
-              alt={brand.name}
-              className="max-h-[85%] max-w-[85%] w-auto h-auto object-contain pointer-events-none select-none drop-shadow-2xs"
-              draggable={false}
-            />
+            {/* Inner circle takes the hover styling so it never fights the physics transform */}
+            <div className="flex h-full w-full items-center justify-center rounded-full border-2 border-white/80 bg-gradient-to-b from-white to-zinc-100 p-[3px] shadow-[0_6px_16px_rgba(0,20,25,0.45),0_0_0_1px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out group-hover:scale-110 group-hover:border-[#5eead4] group-hover:shadow-[0_10px_30px_rgba(45,212,191,0.55)] group-active:scale-105">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={brand.src}
+                alt={brand.name}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                className="pointer-events-none h-auto max-h-[88%] w-auto max-w-[88%] select-none object-contain"
+              />
+            </div>
           </div>
         ))}
 
-        {/* Bottom Arena Floor Lip */}
-        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-600 rounded-b-3xl opacity-85" />
+        {/* Tooltip (single node, positioned by JS) */}
+        <div
+          ref={tooltipRef}
+          role="tooltip"
+          className="pointer-events-none absolute left-0 top-0 z-20 rounded-lg bg-white px-3 py-1.5 text-xs font-bold tracking-wide text-zinc-900 opacity-0 shadow-xl shadow-black/30 transition-opacity duration-150"
+        >
+          <span ref={tooltipTextRef} className="whitespace-nowrap" />
+          <span
+            ref={tooltipArrowRef}
+            aria-hidden="true"
+            className="absolute h-2 w-2 -translate-x-1/2 rotate-45 bg-white"
+          />
+        </div>
+
+        {/* Floor lip */}
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 right-0 h-2 rounded-b-3xl bg-gradient-to-r from-[#00A29F] via-[#5eead4] to-[#3b82f6] opacity-95"
+        />
       </div>
 
-      {/* Bottom caption */}
-      <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono text-zinc-700">
-        <span className="uppercase tracking-wider">30+ Global Partner Brands</span>
-        <span className="hidden sm:inline uppercase tracking-widest text-emerald-600 font-bold">
-          Virtual Velocity Network
+      {/* Caption */}
+      <div className="mt-3 flex items-center justify-between gap-4 font-mono text-[11px] text-zinc-600">
+        <span className="font-semibold uppercase tracking-wider">
+          {BRANDS.length}+ Global Partner Brands
+        </span>
+        <span className="inline-flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#00A29F]">
+          <Hand className="h-3.5 w-3.5" aria-hidden="true" />
+          Drag &amp; throw the logos
         </span>
       </div>
     </section>

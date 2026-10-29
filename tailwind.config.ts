@@ -18,26 +18,31 @@ export default <Config>{
       colors: {
         background: 'var(--color-background)',
         foreground: 'var(--color-foreground)',
-        primary: '#111111', // near‑black
-        secondary: '#F5F5F0', // warm off‑white
-        accent: '#00aeac', // brand green/teal accent
+        primary: '#0f1a15', // deep near‑black green
+        secondary: '#F5F6F2', // warm off‑white
+        accent: '#00A29F', // brand emerald/teal accent
         emerald: {
-          50: '#e6f7f7',
-          100: '#c2eff0',
-          200: '#99e5e4',
-          300: '#66d7d5',
-          400: '#33c9c6',
-          500: '#00aeac',
-          600: '#00aeac',
-          700: '#00a29f',
-          800: '#008280',
-          900: '#006160',
-          950: '#003b3a',
+          50: '#e6f9f8',
+          100: '#c1f0ef',
+          200: '#8ee4e2',
+          300: '#52d3d0',
+          400: '#22bcba',
+          500: '#00A29F',
+          600: '#008280',
+          700: '#006766',
+          800: '#035251',
+          900: '#074443',
+          950: '#012727',
         },
       },
       fontFamily: {
-        sans: ['var(--font-outfit)', ...defaultTheme.fontFamily.sans],
-        body: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-roboto)', ...defaultTheme.fontFamily.sans],
+        roboto: ['var(--font-roboto)', ...defaultTheme.fontFamily.sans],
+        lora: ['var(--font-lora)', ...defaultTheme.fontFamily.serif],
+        serif: ['var(--font-lora)', ...defaultTheme.fontFamily.serif],
+        body: ['var(--font-roboto)', ...defaultTheme.fontFamily.sans],
+        outfit: ['var(--font-roboto)', ...defaultTheme.fontFamily.sans],
+        inter: ['var(--font-roboto)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         display: ['clamp(2.5rem,7vw,9.5rem)', { lineHeight: '1.05' }],

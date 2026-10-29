@@ -1,0 +1,31 @@
+name: Supabase Daily Sync & Health Check Cron
+
+on:
+  schedule:
+    # Runs everyday at 00:00 UTC (12:00 AM UTC)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Enables manual trigger button from GitHub Actions UI
+
+jobs:
+  supabase-cron-job:
+    name: Run Daily Supabase Maintenance Script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Daily Supabase Node Script
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY || secrets.SUPABASE_KEY || secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        run: node scripts/daily-supabase-task.js

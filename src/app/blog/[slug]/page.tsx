@@ -7,6 +7,26 @@ import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { SITE_URL, SOCIAL_IMAGE } from "@/lib/site";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
+
+const BLOG_METADATA_TITLES: Record<string, string> = {
+  "scaling-ecommerce-conversion-rates-2026":
+    "E-Commerce Conversion Tips for 2026 | Virtual Velocity",
+  "technical-seo-b2b-growth-guide":
+    "Technical SEO for B2B SaaS | Virtual Velocity",
+  "webgl-3d-web-experiences-future":
+    "Brand Storytelling & Video Marketing | Virtual Velocity",
+};
+
+const BLOG_METADATA_DESCRIPTIONS: Record<string, string> = {
+  "scaling-ecommerce-conversion-rates-2026":
+    "Explore Google Shopping, personalized retargeting, and checkout improvements as strategies for e-commerce conversion growth, with guidance for online retailers.",
+  "technical-seo-b2b-growth-guide":
+    "Learn how technical SEO, structured data, Core Web Vitals, and topic clusters support organic growth for B2B SaaS websites and search marketing teams.",
+  "webgl-3d-web-experiences-future":
+    "Explore visual storytelling, video content, and interactive brand experiences, and how these formats support modern digital marketing campaigns and engagement.",
+};
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
@@ -19,26 +39,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = BLOG_POSTS.find((p) => p.slug === slug);
 
   if (!post) {
-    return { title: "Post Not Found" };
+    return { title: "Post Not Found", robots: { index: false, follow: false } };
   }
 
+  const metadataTitle = BLOG_METADATA_TITLES[post.slug] ?? post.title;
+  const metadataDescription = BLOG_METADATA_DESCRIPTIONS[post.slug] ?? post.excerpt;
+
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: { absolute: metadataTitle },
+    description: metadataDescription,
+    alternates: {
+      canonical: `${SITE_URL}/blog/${post.slug}`,
+    },
     openGraph: {
-      title: `${post.title} | Virtual Velocity Journal`,
-      description: post.excerpt,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      title: metadataTitle,
+      description: metadataDescription,
       type: "article",
       publishedTime: post.date,
       authors: [post.author.name],
       tags: [post.category],
-      images: [{ url: "/VV png.png", alt: post.title }],
+      images: [{ url: SOCIAL_IMAGE, width: 1200, height: 630, alt: `Virtual Velocity article: ${post.title}` }],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
-      images: ["/VV png.png"],
+      title: metadataTitle,
+      description: metadataDescription,
+      images: [{ url: SOCIAL_IMAGE, alt: `Virtual Velocity article: ${post.title}` }],
     },
   };
 }
@@ -54,14 +81,44 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const currentIndex = BLOG_POSTS.findIndex((p) => p.slug === slug);
   const prevPost = currentIndex > 0 ? BLOG_POSTS[currentIndex - 1] : null;
   const nextPost = currentIndex < BLOG_POSTS.length - 1 ? BLOG_POSTS[currentIndex + 1] : null;
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Virtual Velocity",
+      url: SITE_URL,
+    },
+    mainEntityOfPage: postUrl,
+    image: `${SITE_URL}${SOCIAL_IMAGE}`,
+  };
 
   return (
     <SmoothScrollProvider>
-      <main className="min-h-screen bg-white text-zinc-900 relative font-outfit">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
+      />
+      <main id="main-content" tabIndex={-1} className="min-h-screen bg-white text-zinc-900 relative font-outfit">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
         <CustomCursor />
         <Navigation />
 
-        <article className="pt-28 sm:pt-36 pb-20 sm:pb-28 px-4 sm:px-8 lg:px-12 max-w-[70ch] mx-auto space-y-10 sm:space-y-12">
+        <article className="pt-20 sm:pt-24 pb-20 sm:pb-28 px-4 sm:px-8 lg:px-12 max-w-[70ch] mx-auto space-y-10 sm:space-y-12">
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-xs font-outfit font-extrabold text-zinc-700 hover:text-zinc-900 transition-colors uppercase tracking-widest min-h-[44px] py-2 px-3 -ml-3 rounded-lg hover:bg-zinc-100"
@@ -75,11 +132,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <span className="text-emerald-700 font-extrabold uppercase bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
                 {post.category}
               </span>
-              <span className="text-zinc-500">{"//"} {post.date}</span>
-              <span className="text-zinc-500">{"//"} {post.readTime}</span>
+              <span className="text-zinc-500">• {post.date}</span>
+              <span className="text-zinc-500">• {post.readTime}</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-outfit font-black text-zinc-900 uppercase tracking-tight leading-[1.05] break-words">
+            <h1 className="text-3xl sm:text-4xl lg:text-[3.5rem] font-outfit font-black text-zinc-900 uppercase tracking-tight leading-[1.05] break-words">
               {post.title}
             </h1>
 
@@ -87,6 +144,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <img
                 src={post.author.avatar}
                 alt={post.author.name}
+                loading="lazy"
+                decoding="async"
                 className="w-12 h-12 rounded-full object-cover border-2 border-emerald-500/20"
               />
               <div>
